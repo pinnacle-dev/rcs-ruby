@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require_relative "test_helper"
-require "pinnacle"
+require "pinnacle_sdk"
 
 # Basic Pinnacle tests
 class TestPinnacle < Minitest::Test

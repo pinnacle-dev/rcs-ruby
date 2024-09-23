@@ -3,10 +3,10 @@
 require_relative "environment"
 require_relative "types_export"
 require_relative "requests"
-require_relative "pinnacle/types/check_rcs_capability_response"
-require_relative "pinnacle/types/receive_rcs_messages_response"
-require_relative "pinnacle/types/send_an_rcs_message_request_body"
-require_relative "pinnacle/types/send_an_rcs_message_response"
+require_relative "pinnacle_sdk/types/check_rcs_capability_response"
+require_relative "pinnacle_sdk/types/receive_rcs_messages_response"
+require_relative "pinnacle_sdk/types/send_an_rcs_message_request_body"
+require_relative "pinnacle_sdk/types/send_an_rcs_message_response"
 
 module Pinnacle
   class Client

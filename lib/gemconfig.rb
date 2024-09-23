@@ -7,8 +7,8 @@ module Pinnacle
     EMAIL = ""
     SUMMARY = ""
     DESCRIPTION = ""
-    HOMEPAGE = "https://github.com/fern-demo/pinnacle-ruby-sdk"
-    SOURCE_CODE_URI = "https://github.com/fern-demo/pinnacle-ruby-sdk"
-    CHANGELOG_URI = "https://github.com/fern-demo/pinnacle-ruby-sdk/blob/master/CHANGELOG.md"
+    HOMEPAGE = "https://github.com/pinnacle-dev/rcs-ruby"
+    SOURCE_CODE_URI = "https://github.com/pinnacle-dev/rcs-ruby"
+    CHANGELOG_URI = "https://github.com/pinnacle-dev/rcs-ruby/blob/master/CHANGELOG.md"
   end
 end

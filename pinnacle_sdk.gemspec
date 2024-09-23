@@ -3,8 +3,8 @@
 require_relative "lib/gemconfig"
 
 Gem::Specification.new do |spec|
-  spec.name = "pinnacle"
-  spec.version = "0.0.0"
+  spec.name = "pinnacle_sdk"
+  spec.version = "0.0.1"
   spec.authors = Pinnacle::Gemconfig::AUTHORS
   spec.email = Pinnacle::Gemconfig::EMAIL
   spec.summary = Pinnacle::Gemconfig::SUMMARY

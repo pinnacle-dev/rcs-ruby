@@ -42,7 +42,7 @@ module Pinnacle
 
     # @return [Hash{String => String}]
     def get_headers
-      { "X-Fern-Language": "Ruby", "X-Fern-SDK-Name": "pinnacle", "X-Fern-SDK-Version": "0.0.0" }
+      { "X-Fern-Language": "Ruby", "X-Fern-SDK-Name": "pinnacle_sdk", "X-Fern-SDK-Version": "0.0.1" }
     end
   end
 
@@ -83,7 +83,7 @@ module Pinnacle
 
     # @return [Hash{String => String}]
     def get_headers
-      { "X-Fern-Language": "Ruby", "X-Fern-SDK-Name": "pinnacle", "X-Fern-SDK-Version": "0.0.0" }
+      { "X-Fern-Language": "Ruby", "X-Fern-SDK-Name": "pinnacle_sdk", "X-Fern-SDK-Version": "0.0.1" }
     end
   end
 
