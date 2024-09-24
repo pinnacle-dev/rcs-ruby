@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-require_relative "sms_message_sent_status"
 require "ostruct"
 require "json"
 
 module Pinnacle
-  class SmsMessageSent
-    # @return [Pinnacle::SmsMessageSentStatus] The status of the SMS message.
-    attr_reader :status
+  # The content of the message
+  class BasicRcsMessage
+    # @return [String] The text content of the RCS message
+    attr_reader :text
     # @return [OpenStruct] Additional properties unmapped to the current class definition
     attr_reader :additional_properties
     # @return [Object]
@@ -16,29 +16,27 @@ module Pinnacle
 
     OMIT = Object.new
 
-    # @param status [Pinnacle::SmsMessageSentStatus] The status of the SMS message.
+    # @param text [String] The text content of the RCS message
     # @param additional_properties [OpenStruct] Additional properties unmapped to the current class definition
-    # @return [Pinnacle::SmsMessageSent]
-    def initialize(status: OMIT, additional_properties: nil)
-      @status = status if status != OMIT
+    # @return [Pinnacle::BasicRcsMessage]
+    def initialize(text:, additional_properties: nil)
+      @text = text
       @additional_properties = additional_properties
-      @_field_set = { "status": status }.reject do |_k, v|
-        v == OMIT
-      end
+      @_field_set = { "text": text }
     end
 
-    # Deserialize a JSON object to an instance of SmsMessageSent
+    # Deserialize a JSON object to an instance of BasicRcsMessage
     #
     # @param json_object [String]
-    # @return [Pinnacle::SmsMessageSent]
+    # @return [Pinnacle::BasicRcsMessage]
     def self.from_json(json_object:)
       struct = JSON.parse(json_object, object_class: OpenStruct)
       parsed_json = JSON.parse(json_object)
-      status = parsed_json["status"]
-      new(status: status, additional_properties: struct)
+      text = parsed_json["text"]
+      new(text: text, additional_properties: struct)
     end
 
-    # Serialize an instance of SmsMessageSent to a JSON object
+    # Serialize an instance of BasicRcsMessage to a JSON object
     #
     # @return [String]
     def to_json(*_args)
@@ -52,7 +50,7 @@ module Pinnacle
     # @param obj [Object]
     # @return [Void]
     def self.validate_raw(obj:)
-      obj.status&.is_a?(Pinnacle::SmsMessageSentStatus) != false || raise("Passed value for field obj.status is not the expected type, validation failed.")
+      obj.text.is_a?(String) != false || raise("Passed value for field obj.text is not the expected type, validation failed.")
     end
   end
 end

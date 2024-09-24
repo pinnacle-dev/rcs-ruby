@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 module Pinnacle
-  class MessagePayloadMediaType
+  # The type of media being sent
+  class MediaType
     TEXT = "text"
     IMAGE = "image"
     VIDEO = "video"

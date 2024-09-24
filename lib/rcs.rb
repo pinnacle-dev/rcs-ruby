@@ -3,10 +3,11 @@
 require_relative "environment"
 require_relative "types_export"
 require_relative "requests"
-require_relative "pinnacle_sdk/types/check_rcs_capability_response"
-require_relative "pinnacle_sdk/types/receive_rcs_messages_response"
-require_relative "pinnacle_sdk/types/send_an_rcs_message_request_body"
-require_relative "pinnacle_sdk/types/send_an_rcs_message_response"
+require_relative "rcs/types/check_rcs_capability_response"
+require_relative "rcs/types/update_settings_response"
+require_relative "rcs/types/get_account_number_response"
+require_relative "rcs/types/send_request"
+require_relative "rcs/types/send_response"
 
 module Pinnacle
   class Client
@@ -14,35 +15,36 @@ module Pinnacle
     # @param environment [Pinnacle::Environment]
     # @param max_retries [Long] The number of times to retry a failed request, defaults to 2.
     # @param timeout_in_seconds [Long]
-    # @param pinnacle_api_key [String] Pinnacle API Key for authentication
+    # @param api_key [String]
     # @return [Pinnacle::Client]
-    def initialize(pinnacle_api_key:, base_url: nil, environment: Pinnacle::Environment::DEFAULT, max_retries: nil,
+    def initialize(api_key:, base_url: nil, environment: Pinnacle::Environment::DEFAULT, max_retries: nil,
                    timeout_in_seconds: nil)
       @request_client = Pinnacle::RequestClient.new(
         base_url: base_url,
         environment: environment,
         max_retries: max_retries,
         timeout_in_seconds: timeout_in_seconds,
-        pinnacle_api_key: pinnacle_api_key
+        api_key: api_key
       )
     end
 
     # Checks if a phone number is able to receive RCS
     #
-    # @param phone_number [String] The phone number to check for RCS capability
+    # @param phone_number [String] Phone number (E.164 format: [+][country code][subscriber number including area
+    #  code]) to check for RCS capability. Example: +1234567890
     # @param request_options [Pinnacle::RequestOptions]
     # @return [Pinnacle::CheckRcsCapabilityResponse]
     # @example
     #  api = Pinnacle::Client.new(
     #    base_url: "https://api.example.com",
     #    environment: Pinnacle::Environment::DEFAULT,
-    #    pinnacle_api_key: "PinnacleApiKey"
+    #    api_key: "YOUR_API_KEY"
     #  )
     #  api.check_rcs_capability(phone_number: "phone_number")
     def check_rcs_capability(phone_number:, request_options: nil)
       response = @request_client.conn.get do |req|
         req.options.timeout = request_options.timeout_in_seconds unless request_options&.timeout_in_seconds.nil?
-        req.headers["PINNACLE-API-KEY"] = request_options.pinnacle_api_key unless request_options&.pinnacle_api_key.nil?
+        req.headers["PINNACLE-API-Key"] = request_options.api_key unless request_options&.api_key.nil?
         req.headers = {
       **(req.headers || {}),
       **@request_client.get_headers,
@@ -57,20 +59,22 @@ module Pinnacle
       Pinnacle::CheckRcsCapabilityResponse.from_json(json_object: response.body)
     end
 
-    # @param webhook_url [String] Webhook URL to receive RCS messages
+    # Initializes settings related to RCS messaging, including webhook registration.
+    #
+    # @param webhook_url [String] Webhook URL to receive inbound messages
     # @param request_options [Pinnacle::RequestOptions]
-    # @return [Pinnacle::ReceiveRcsMessagesResponse]
+    # @return [Pinnacle::UpdateSettingsResponse]
     # @example
     #  api = Pinnacle::Client.new(
     #    base_url: "https://api.example.com",
     #    environment: Pinnacle::Environment::DEFAULT,
-    #    pinnacle_api_key: "PinnacleApiKey"
+    #    api_key: "YOUR_API_KEY"
     #  )
-    #  api.receive_rcs_messages
-    def receive_rcs_messages(webhook_url: nil, request_options: nil)
+    #  api.update_settings(webhook_url: "webhook_url")
+    def update_settings(webhook_url:, request_options: nil)
       response = @request_client.conn.post do |req|
         req.options.timeout = request_options.timeout_in_seconds unless request_options&.timeout_in_seconds.nil?
-        req.headers["PINNACLE-API-KEY"] = request_options.pinnacle_api_key unless request_options&.pinnacle_api_key.nil?
+        req.headers["PINNACLE-API-Key"] = request_options.api_key unless request_options&.api_key.nil?
         req.headers = {
       **(req.headers || {}),
       **@request_client.get_headers,
@@ -80,25 +84,58 @@ module Pinnacle
           req.params = { **(request_options&.additional_query_parameters || {}) }.compact
         end
         req.body = { **(request_options&.additional_body_parameters || {}), webhook_url: webhook_url }.compact
-        req.url "#{@request_client.get_url(request_options: request_options)}/init"
+        req.url "#{@request_client.get_url(request_options: request_options)}/update_settings"
       end
-      Pinnacle::ReceiveRcsMessagesResponse.from_json(json_object: response.body)
+      Pinnacle::UpdateSettingsResponse.from_json(json_object: response.body)
     end
 
-    # @param request [Pinnacle::RcsMessage, Pinnacle::SmsMessage]
+    # Retrieve the phone number associated with the account.
+    #
     # @param request_options [Pinnacle::RequestOptions]
-    # @return [Pinnacle::RcsMessageSent, Pinnacle::SmsMessageSent]
+    # @return [Pinnacle::GetAccountNumberResponse]
     # @example
     #  api = Pinnacle::Client.new(
     #    base_url: "https://api.example.com",
     #    environment: Pinnacle::Environment::DEFAULT,
-    #    pinnacle_api_key: "PinnacleApiKey"
+    #    api_key: "YOUR_API_KEY"
     #  )
-    #  api.send_an_rcs_message(request: {  })
-    def send_an_rcs_message(request:, request_options: nil)
+    #  api.get_account_number
+    def get_account_number(request_options: nil)
+      response = @request_client.conn.get do |req|
+        req.options.timeout = request_options.timeout_in_seconds unless request_options&.timeout_in_seconds.nil?
+        req.headers["PINNACLE-API-Key"] = request_options.api_key unless request_options&.api_key.nil?
+        req.headers = {
+      **(req.headers || {}),
+      **@request_client.get_headers,
+      **(request_options&.additional_headers || {})
+        }.compact
+        unless request_options.nil? || request_options&.additional_query_parameters.nil?
+          req.params = { **(request_options&.additional_query_parameters || {}) }.compact
+        end
+        unless request_options.nil? || request_options&.additional_body_parameters.nil?
+          req.body = { **(request_options&.additional_body_parameters || {}) }.compact
+        end
+        req.url "#{@request_client.get_url(request_options: request_options)}/get_account_number"
+      end
+      Pinnacle::GetAccountNumberResponse.from_json(json_object: response.body)
+    end
+
+    # Send a SMS or RCS message to a phone number
+    #
+    # @param request [Pinnacle::Sms, Pinnacle::BasicRcs, Pinnacle::MediaRcs, Pinnacle::CardRcs, Pinnacle::CarouselRcs]
+    # @param request_options [Pinnacle::RequestOptions]
+    # @return [Pinnacle::SendResponse]
+    # @example
+    #  api = Pinnacle::Client.new(
+    #    base_url: "https://api.example.com",
+    #    environment: Pinnacle::Environment::DEFAULT,
+    #    api_key: "YOUR_API_KEY"
+    #  )
+    #  api.send(request: { message_type: "sms", message: { body: "body" } })
+    def send(request:, request_options: nil)
       response = @request_client.conn.post do |req|
         req.options.timeout = request_options.timeout_in_seconds unless request_options&.timeout_in_seconds.nil?
-        req.headers["PINNACLE-API-KEY"] = request_options.pinnacle_api_key unless request_options&.pinnacle_api_key.nil?
+        req.headers["PINNACLE-API-Key"] = request_options.api_key unless request_options&.api_key.nil?
         req.headers = {
       **(req.headers || {}),
       **@request_client.get_headers,
@@ -110,7 +147,7 @@ module Pinnacle
         req.body = { **(request || {}), **(request_options&.additional_body_parameters || {}) }.compact
         req.url "#{@request_client.get_url(request_options: request_options)}/send"
       end
-      Pinnacle::SendAnRcsMessageResponse.from_json(json_object: response.body)
+      Pinnacle::SendResponse.from_json(json_object: response.body)
     end
   end
 
@@ -119,35 +156,36 @@ module Pinnacle
     # @param environment [Pinnacle::Environment]
     # @param max_retries [Long] The number of times to retry a failed request, defaults to 2.
     # @param timeout_in_seconds [Long]
-    # @param pinnacle_api_key [String] Pinnacle API Key for authentication
+    # @param api_key [String]
     # @return [Pinnacle::AsyncClient]
-    def initialize(pinnacle_api_key:, base_url: nil, environment: Pinnacle::Environment::DEFAULT, max_retries: nil,
+    def initialize(api_key:, base_url: nil, environment: Pinnacle::Environment::DEFAULT, max_retries: nil,
                    timeout_in_seconds: nil)
       @async_request_client = Pinnacle::AsyncRequestClient.new(
         base_url: base_url,
         environment: environment,
         max_retries: max_retries,
         timeout_in_seconds: timeout_in_seconds,
-        pinnacle_api_key: pinnacle_api_key
+        api_key: api_key
       )
     end
 
     # Checks if a phone number is able to receive RCS
     #
-    # @param phone_number [String] The phone number to check for RCS capability
+    # @param phone_number [String] Phone number (E.164 format: [+][country code][subscriber number including area
+    #  code]) to check for RCS capability. Example: +1234567890
     # @param request_options [Pinnacle::RequestOptions]
     # @return [Pinnacle::CheckRcsCapabilityResponse]
     # @example
     #  api = Pinnacle::Client.new(
     #    base_url: "https://api.example.com",
     #    environment: Pinnacle::Environment::DEFAULT,
-    #    pinnacle_api_key: "PinnacleApiKey"
+    #    api_key: "YOUR_API_KEY"
     #  )
     #  api.check_rcs_capability(phone_number: "phone_number")
     def check_rcs_capability(phone_number:, request_options: nil)
       response = @async_request_client.conn.get do |req|
         req.options.timeout = request_options.timeout_in_seconds unless request_options&.timeout_in_seconds.nil?
-        req.headers["PINNACLE-API-KEY"] = request_options.pinnacle_api_key unless request_options&.pinnacle_api_key.nil?
+        req.headers["PINNACLE-API-Key"] = request_options.api_key unless request_options&.api_key.nil?
         req.headers = {
       **(req.headers || {}),
       **@async_request_client.get_headers,
@@ -162,20 +200,22 @@ module Pinnacle
       Pinnacle::CheckRcsCapabilityResponse.from_json(json_object: response.body)
     end
 
-    # @param webhook_url [String] Webhook URL to receive RCS messages
+    # Initializes settings related to RCS messaging, including webhook registration.
+    #
+    # @param webhook_url [String] Webhook URL to receive inbound messages
     # @param request_options [Pinnacle::RequestOptions]
-    # @return [Pinnacle::ReceiveRcsMessagesResponse]
+    # @return [Pinnacle::UpdateSettingsResponse]
     # @example
     #  api = Pinnacle::Client.new(
     #    base_url: "https://api.example.com",
     #    environment: Pinnacle::Environment::DEFAULT,
-    #    pinnacle_api_key: "PinnacleApiKey"
+    #    api_key: "YOUR_API_KEY"
     #  )
-    #  api.receive_rcs_messages
-    def receive_rcs_messages(webhook_url: nil, request_options: nil)
+    #  api.update_settings(webhook_url: "webhook_url")
+    def update_settings(webhook_url:, request_options: nil)
       response = @async_request_client.conn.post do |req|
         req.options.timeout = request_options.timeout_in_seconds unless request_options&.timeout_in_seconds.nil?
-        req.headers["PINNACLE-API-KEY"] = request_options.pinnacle_api_key unless request_options&.pinnacle_api_key.nil?
+        req.headers["PINNACLE-API-Key"] = request_options.api_key unless request_options&.api_key.nil?
         req.headers = {
       **(req.headers || {}),
       **@async_request_client.get_headers,
@@ -185,25 +225,58 @@ module Pinnacle
           req.params = { **(request_options&.additional_query_parameters || {}) }.compact
         end
         req.body = { **(request_options&.additional_body_parameters || {}), webhook_url: webhook_url }.compact
-        req.url "#{@async_request_client.get_url(request_options: request_options)}/init"
+        req.url "#{@async_request_client.get_url(request_options: request_options)}/update_settings"
       end
-      Pinnacle::ReceiveRcsMessagesResponse.from_json(json_object: response.body)
+      Pinnacle::UpdateSettingsResponse.from_json(json_object: response.body)
     end
 
-    # @param request [Pinnacle::RcsMessage, Pinnacle::SmsMessage]
+    # Retrieve the phone number associated with the account.
+    #
     # @param request_options [Pinnacle::RequestOptions]
-    # @return [Pinnacle::RcsMessageSent, Pinnacle::SmsMessageSent]
+    # @return [Pinnacle::GetAccountNumberResponse]
     # @example
     #  api = Pinnacle::Client.new(
     #    base_url: "https://api.example.com",
     #    environment: Pinnacle::Environment::DEFAULT,
-    #    pinnacle_api_key: "PinnacleApiKey"
+    #    api_key: "YOUR_API_KEY"
     #  )
-    #  api.send_an_rcs_message(request: {  })
-    def send_an_rcs_message(request:, request_options: nil)
+    #  api.get_account_number
+    def get_account_number(request_options: nil)
+      response = @async_request_client.conn.get do |req|
+        req.options.timeout = request_options.timeout_in_seconds unless request_options&.timeout_in_seconds.nil?
+        req.headers["PINNACLE-API-Key"] = request_options.api_key unless request_options&.api_key.nil?
+        req.headers = {
+      **(req.headers || {}),
+      **@async_request_client.get_headers,
+      **(request_options&.additional_headers || {})
+        }.compact
+        unless request_options.nil? || request_options&.additional_query_parameters.nil?
+          req.params = { **(request_options&.additional_query_parameters || {}) }.compact
+        end
+        unless request_options.nil? || request_options&.additional_body_parameters.nil?
+          req.body = { **(request_options&.additional_body_parameters || {}) }.compact
+        end
+        req.url "#{@async_request_client.get_url(request_options: request_options)}/get_account_number"
+      end
+      Pinnacle::GetAccountNumberResponse.from_json(json_object: response.body)
+    end
+
+    # Send a SMS or RCS message to a phone number
+    #
+    # @param request [Pinnacle::Sms, Pinnacle::BasicRcs, Pinnacle::MediaRcs, Pinnacle::CardRcs, Pinnacle::CarouselRcs]
+    # @param request_options [Pinnacle::RequestOptions]
+    # @return [Pinnacle::SendResponse]
+    # @example
+    #  api = Pinnacle::Client.new(
+    #    base_url: "https://api.example.com",
+    #    environment: Pinnacle::Environment::DEFAULT,
+    #    api_key: "YOUR_API_KEY"
+    #  )
+    #  api.send(request: { message_type: "sms", message: { body: "body" } })
+    def send(request:, request_options: nil)
       response = @async_request_client.conn.post do |req|
         req.options.timeout = request_options.timeout_in_seconds unless request_options&.timeout_in_seconds.nil?
-        req.headers["PINNACLE-API-KEY"] = request_options.pinnacle_api_key unless request_options&.pinnacle_api_key.nil?
+        req.headers["PINNACLE-API-Key"] = request_options.api_key unless request_options&.api_key.nil?
         req.headers = {
       **(req.headers || {}),
       **@async_request_client.get_headers,
@@ -215,7 +288,7 @@ module Pinnacle
         req.body = { **(request || {}), **(request_options&.additional_body_parameters || {}) }.compact
         req.url "#{@async_request_client.get_url(request_options: request_options)}/send"
       end
-      Pinnacle::SendAnRcsMessageResponse.from_json(json_object: response.body)
+      Pinnacle::SendResponse.from_json(json_object: response.body)
     end
   end
 end

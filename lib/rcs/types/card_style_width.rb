@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 module Pinnacle
-  class CardStylePayloadWidth
+  # Width of the card
+  class CardStyleWidth
     SMALL = "small"
     MEDIUM = "medium"
   end

@@ -9,8 +9,6 @@ module Pinnacle
     attr_reader :success
     # @return [Boolean]
     attr_reader :rcs_enabled
-    # @return [String]
-    attr_reader :message
     # @return [OpenStruct] Additional properties unmapped to the current class definition
     attr_reader :additional_properties
     # @return [Object]
@@ -21,15 +19,13 @@ module Pinnacle
 
     # @param success [Boolean]
     # @param rcs_enabled [Boolean]
-    # @param message [String]
     # @param additional_properties [OpenStruct] Additional properties unmapped to the current class definition
     # @return [Pinnacle::CheckRcsCapabilityResponse]
-    def initialize(success: OMIT, rcs_enabled: OMIT, message: OMIT, additional_properties: nil)
+    def initialize(success: OMIT, rcs_enabled: OMIT, additional_properties: nil)
       @success = success if success != OMIT
       @rcs_enabled = rcs_enabled if rcs_enabled != OMIT
-      @message = message if message != OMIT
       @additional_properties = additional_properties
-      @_field_set = { "success": success, "rcsEnabled": rcs_enabled, "message": message }.reject do |_k, v|
+      @_field_set = { "success": success, "rcsEnabled": rcs_enabled }.reject do |_k, v|
         v == OMIT
       end
     end
@@ -43,11 +39,9 @@ module Pinnacle
       parsed_json = JSON.parse(json_object)
       success = parsed_json["success"]
       rcs_enabled = parsed_json["rcsEnabled"]
-      message = parsed_json["message"]
       new(
         success: success,
         rcs_enabled: rcs_enabled,
-        message: message,
         additional_properties: struct
       )
     end
@@ -68,7 +62,6 @@ module Pinnacle
     def self.validate_raw(obj:)
       obj.success&.is_a?(Boolean) != false || raise("Passed value for field obj.success is not the expected type, validation failed.")
       obj.rcs_enabled&.is_a?(Boolean) != false || raise("Passed value for field obj.rcs_enabled is not the expected type, validation failed.")
-      obj.message&.is_a?(String) != false || raise("Passed value for field obj.message is not the expected type, validation failed.")
     end
   end
 end

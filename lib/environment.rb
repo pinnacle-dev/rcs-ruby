@@ -2,6 +2,6 @@
 
 module Pinnacle
   class Environment
-    DEFAULT = "http://trypinnacle.dev/api/check_rcs"
+    DEFAULT = "https://trypinnacle.dev/api"
   end
 end

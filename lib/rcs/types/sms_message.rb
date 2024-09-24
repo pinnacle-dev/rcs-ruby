@@ -5,10 +5,10 @@ require "json"
 
 module Pinnacle
   # The content of the message
-  class SmsMessageMessage
-    # @return [String]
+  class SmsMessage
+    # @return [String] The body of the SMS message
     attr_reader :body
-    # @return [String]
+    # @return [String] Optional media URL for the SMS message
     attr_reader :media_url
     # @return [OpenStruct] Additional properties unmapped to the current class definition
     attr_reader :additional_properties
@@ -18,10 +18,10 @@ module Pinnacle
 
     OMIT = Object.new
 
-    # @param body [String]
-    # @param media_url [String]
+    # @param body [String] The body of the SMS message
+    # @param media_url [String] Optional media URL for the SMS message
     # @param additional_properties [OpenStruct] Additional properties unmapped to the current class definition
-    # @return [Pinnacle::SmsMessageMessage]
+    # @return [Pinnacle::SmsMessage]
     def initialize(body:, media_url: OMIT, additional_properties: nil)
       @body = body
       @media_url = media_url if media_url != OMIT
@@ -31,10 +31,10 @@ module Pinnacle
       end
     end
 
-    # Deserialize a JSON object to an instance of SmsMessageMessage
+    # Deserialize a JSON object to an instance of SmsMessage
     #
     # @param json_object [String]
-    # @return [Pinnacle::SmsMessageMessage]
+    # @return [Pinnacle::SmsMessage]
     def self.from_json(json_object:)
       struct = JSON.parse(json_object, object_class: OpenStruct)
       parsed_json = JSON.parse(json_object)
@@ -47,7 +47,7 @@ module Pinnacle
       )
     end
 
-    # Serialize an instance of SmsMessageMessage to a JSON object
+    # Serialize an instance of SmsMessage to a JSON object
     #
     # @return [String]
     def to_json(*_args)

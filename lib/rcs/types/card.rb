@@ -1,24 +1,22 @@
 # frozen_string_literal: true
 
 require_relative "action"
-require_relative "card_style_payload"
+require_relative "card_style"
 require "ostruct"
 require "json"
 
 module Pinnacle
-  class CardPayload
-    # @return [String]
+  class Card
+    # @return [String] The title of the card
     attr_reader :title
-    # @return [String]
+    # @return [String] The subtitle of the card
     attr_reader :subtitle
-    # @return [String]
+    # @return [String] The URL of the image to be displayed on the card
     attr_reader :image_url
-    # @return [Array<Pinnacle::Action>]
+    # @return [Array<Pinnacle::Action>] Array of buttons attached to the card. Maximum of 4 buttons.
     attr_reader :buttons
-    # @return [Pinnacle::CardStylePayload]
+    # @return [Pinnacle::CardStyle] The style of the card
     attr_reader :card_style
-    # @return [Array<Pinnacle::Action>]
-    attr_reader :quick_replies
     # @return [OpenStruct] Additional properties unmapped to the current class definition
     attr_reader :additional_properties
     # @return [Object]
@@ -27,39 +25,35 @@ module Pinnacle
 
     OMIT = Object.new
 
-    # @param title [String]
-    # @param subtitle [String]
-    # @param image_url [String]
-    # @param buttons [Array<Pinnacle::Action>]
-    # @param card_style [Pinnacle::CardStylePayload]
-    # @param quick_replies [Array<Pinnacle::Action>]
+    # @param title [String] The title of the card
+    # @param subtitle [String] The subtitle of the card
+    # @param image_url [String] The URL of the image to be displayed on the card
+    # @param buttons [Array<Pinnacle::Action>] Array of buttons attached to the card. Maximum of 4 buttons.
+    # @param card_style [Pinnacle::CardStyle] The style of the card
     # @param additional_properties [OpenStruct] Additional properties unmapped to the current class definition
-    # @return [Pinnacle::CardPayload]
-    def initialize(title:, buttons:, card_style:, subtitle: OMIT, image_url: OMIT, quick_replies: OMIT,
-                   additional_properties: nil)
+    # @return [Pinnacle::Card]
+    def initialize(title:, image_url:, subtitle: OMIT, buttons: OMIT, card_style: OMIT, additional_properties: nil)
       @title = title
       @subtitle = subtitle if subtitle != OMIT
-      @image_url = image_url if image_url != OMIT
-      @buttons = buttons
-      @card_style = card_style
-      @quick_replies = quick_replies if quick_replies != OMIT
+      @image_url = image_url
+      @buttons = buttons if buttons != OMIT
+      @card_style = card_style if card_style != OMIT
       @additional_properties = additional_properties
       @_field_set = {
         "title": title,
         "subtitle": subtitle,
         "image_url": image_url,
         "buttons": buttons,
-        "card_style": card_style,
-        "quick_replies": quick_replies
+        "card_style": card_style
       }.reject do |_k, v|
         v == OMIT
       end
     end
 
-    # Deserialize a JSON object to an instance of CardPayload
+    # Deserialize a JSON object to an instance of Card
     #
     # @param json_object [String]
-    # @return [Pinnacle::CardPayload]
+    # @return [Pinnacle::Card]
     def self.from_json(json_object:)
       struct = JSON.parse(json_object, object_class: OpenStruct)
       parsed_json = JSON.parse(json_object)
@@ -74,11 +68,7 @@ module Pinnacle
         card_style = nil
       else
         card_style = parsed_json["card_style"].to_json
-        card_style = Pinnacle::CardStylePayload.from_json(json_object: card_style)
-      end
-      quick_replies = parsed_json["quick_replies"]&.map do |item|
-        item = item.to_json
-        Pinnacle::Action.from_json(json_object: item)
+        card_style = Pinnacle::CardStyle.from_json(json_object: card_style)
       end
       new(
         title: title,
@@ -86,12 +76,11 @@ module Pinnacle
         image_url: image_url,
         buttons: buttons,
         card_style: card_style,
-        quick_replies: quick_replies,
         additional_properties: struct
       )
     end
 
-    # Serialize an instance of CardPayload to a JSON object
+    # Serialize an instance of Card to a JSON object
     #
     # @return [String]
     def to_json(*_args)
@@ -107,10 +96,9 @@ module Pinnacle
     def self.validate_raw(obj:)
       obj.title.is_a?(String) != false || raise("Passed value for field obj.title is not the expected type, validation failed.")
       obj.subtitle&.is_a?(String) != false || raise("Passed value for field obj.subtitle is not the expected type, validation failed.")
-      obj.image_url&.is_a?(String) != false || raise("Passed value for field obj.image_url is not the expected type, validation failed.")
-      obj.buttons.is_a?(Array) != false || raise("Passed value for field obj.buttons is not the expected type, validation failed.")
-      Pinnacle::CardStylePayload.validate_raw(obj: obj.card_style)
-      obj.quick_replies&.is_a?(Array) != false || raise("Passed value for field obj.quick_replies is not the expected type, validation failed.")
+      obj.image_url.is_a?(String) != false || raise("Passed value for field obj.image_url is not the expected type, validation failed.")
+      obj.buttons&.is_a?(Array) != false || raise("Passed value for field obj.buttons is not the expected type, validation failed.")
+      obj.card_style.nil? || Pinnacle::CardStyle.validate_raw(obj: obj.card_style)
     end
   end
 end

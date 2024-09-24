@@ -1,18 +1,20 @@
 # frozen_string_literal: true
 
-require_relative "rcs_message_message_type"
-require_relative "message_payload"
+require_relative "basic_rcs_message"
+require_relative "action"
 require "ostruct"
 require "json"
 
 module Pinnacle
-  class RcsMessage
-    # @return [String] The recipient's phone number
+  class BasicRcs
+    # @return [String] Phone number to send the SMS message to
     attr_reader :phone_number
-    # @return [Pinnacle::RcsMessageMessageType] The type of message being sent
+    # @return [String] The type of message being sent
     attr_reader :message_type
-    # @return [Pinnacle::MessagePayload]
+    # @return [Pinnacle::BasicRcsMessage] The content of the message
     attr_reader :message
+    # @return [Array<Pinnacle::Action>]
+    attr_reader :quick_replies
     # @return [OpenStruct] Additional properties unmapped to the current class definition
     attr_reader :additional_properties
     # @return [Object]
@@ -21,29 +23,32 @@ module Pinnacle
 
     OMIT = Object.new
 
-    # @param phone_number [String] The recipient's phone number
-    # @param message_type [Pinnacle::RcsMessageMessageType] The type of message being sent
-    # @param message [Pinnacle::MessagePayload]
+    # @param phone_number [String] Phone number to send the SMS message to
+    # @param message_type [String] The type of message being sent
+    # @param message [Pinnacle::BasicRcsMessage] The content of the message
+    # @param quick_replies [Array<Pinnacle::Action>]
     # @param additional_properties [OpenStruct] Additional properties unmapped to the current class definition
-    # @return [Pinnacle::RcsMessage]
-    def initialize(phone_number: OMIT, message_type: OMIT, message: OMIT, additional_properties: nil)
+    # @return [Pinnacle::BasicRcs]
+    def initialize(message_type:, message:, phone_number: OMIT, quick_replies: OMIT, additional_properties: nil)
       @phone_number = phone_number if phone_number != OMIT
-      @message_type = message_type if message_type != OMIT
-      @message = message if message != OMIT
+      @message_type = message_type
+      @message = message
+      @quick_replies = quick_replies if quick_replies != OMIT
       @additional_properties = additional_properties
       @_field_set = {
         "phone_number": phone_number,
         "message_type": message_type,
-        "message": message
+        "message": message,
+        "quick_replies": quick_replies
       }.reject do |_k, v|
         v == OMIT
       end
     end
 
-    # Deserialize a JSON object to an instance of RcsMessage
+    # Deserialize a JSON object to an instance of BasicRcs
     #
     # @param json_object [String]
-    # @return [Pinnacle::RcsMessage]
+    # @return [Pinnacle::BasicRcs]
     def self.from_json(json_object:)
       struct = JSON.parse(json_object, object_class: OpenStruct)
       parsed_json = JSON.parse(json_object)
@@ -53,17 +58,22 @@ module Pinnacle
         message = nil
       else
         message = parsed_json["message"].to_json
-        message = Pinnacle::MessagePayload.from_json(json_object: message)
+        message = Pinnacle::BasicRcsMessage.from_json(json_object: message)
+      end
+      quick_replies = parsed_json["quick_replies"]&.map do |item|
+        item = item.to_json
+        Pinnacle::Action.from_json(json_object: item)
       end
       new(
         phone_number: phone_number,
         message_type: message_type,
         message: message,
+        quick_replies: quick_replies,
         additional_properties: struct
       )
     end
 
-    # Serialize an instance of RcsMessage to a JSON object
+    # Serialize an instance of BasicRcs to a JSON object
     #
     # @return [String]
     def to_json(*_args)
@@ -78,8 +88,9 @@ module Pinnacle
     # @return [Void]
     def self.validate_raw(obj:)
       obj.phone_number&.is_a?(String) != false || raise("Passed value for field obj.phone_number is not the expected type, validation failed.")
-      obj.message_type&.is_a?(Pinnacle::RcsMessageMessageType) != false || raise("Passed value for field obj.message_type is not the expected type, validation failed.")
-      obj.message.nil? || Pinnacle::MessagePayload.validate_raw(obj: obj.message)
+      obj.message_type.is_a?(String) != false || raise("Passed value for field obj.message_type is not the expected type, validation failed.")
+      Pinnacle::BasicRcsMessage.validate_raw(obj: obj.message)
+      obj.quick_replies&.is_a?(Array) != false || raise("Passed value for field obj.quick_replies is not the expected type, validation failed.")
     end
   end
 end

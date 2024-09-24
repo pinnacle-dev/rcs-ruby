@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 module Pinnacle
-  class CardStylePayloadOrientation
+  # Orientation of the card
+  class CardStyleOrientation
     HORIZONTAL = "horizontal"
     VERTICAL = "vertical"
   end
