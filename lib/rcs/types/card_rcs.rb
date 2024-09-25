@@ -25,18 +25,12 @@ module Pinnacle
     # @param message [Pinnacle::CardRcsMessage] The content of the message
     # @param additional_properties [OpenStruct] Additional properties unmapped to the current class definition
     # @return [Pinnacle::CardRcs]
-    def initialize(message_type:, message:, phone_number: OMIT, additional_properties: nil)
-      @phone_number = phone_number if phone_number != OMIT
+    def initialize(phone_number:, message_type:, message:, additional_properties: nil)
+      @phone_number = phone_number
       @message_type = message_type
       @message = message
       @additional_properties = additional_properties
-      @_field_set = {
-        "phone_number": phone_number,
-        "message_type": message_type,
-        "message": message
-      }.reject do |_k, v|
-        v == OMIT
-      end
+      @_field_set = { "phone_number": phone_number, "message_type": message_type, "message": message }
     end
 
     # Deserialize a JSON object to an instance of CardRcs
@@ -76,7 +70,7 @@ module Pinnacle
     # @param obj [Object]
     # @return [Void]
     def self.validate_raw(obj:)
-      obj.phone_number&.is_a?(String) != false || raise("Passed value for field obj.phone_number is not the expected type, validation failed.")
+      obj.phone_number.is_a?(String) != false || raise("Passed value for field obj.phone_number is not the expected type, validation failed.")
       obj.message_type.is_a?(String) != false || raise("Passed value for field obj.message_type is not the expected type, validation failed.")
       Pinnacle::CardRcsMessage.validate_raw(obj: obj.message)
     end

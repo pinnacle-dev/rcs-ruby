@@ -29,8 +29,8 @@ module Pinnacle
     # @param quick_replies [Array<Pinnacle::Action>]
     # @param additional_properties [OpenStruct] Additional properties unmapped to the current class definition
     # @return [Pinnacle::BasicRcs]
-    def initialize(message_type:, message:, phone_number: OMIT, quick_replies: OMIT, additional_properties: nil)
-      @phone_number = phone_number if phone_number != OMIT
+    def initialize(phone_number:, message_type:, message:, quick_replies: OMIT, additional_properties: nil)
+      @phone_number = phone_number
       @message_type = message_type
       @message = message
       @quick_replies = quick_replies if quick_replies != OMIT
@@ -87,7 +87,7 @@ module Pinnacle
     # @param obj [Object]
     # @return [Void]
     def self.validate_raw(obj:)
-      obj.phone_number&.is_a?(String) != false || raise("Passed value for field obj.phone_number is not the expected type, validation failed.")
+      obj.phone_number.is_a?(String) != false || raise("Passed value for field obj.phone_number is not the expected type, validation failed.")
       obj.message_type.is_a?(String) != false || raise("Passed value for field obj.message_type is not the expected type, validation failed.")
       Pinnacle::BasicRcsMessage.validate_raw(obj: obj.message)
       obj.quick_replies&.is_a?(Array) != false || raise("Passed value for field obj.quick_replies is not the expected type, validation failed.")

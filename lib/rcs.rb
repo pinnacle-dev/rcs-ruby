@@ -131,7 +131,7 @@ module Pinnacle
     #    environment: Pinnacle::Environment::DEFAULT,
     #    api_key: "YOUR_API_KEY"
     #  )
-    #  api.send(request: { message_type: "card", message: { cards: [{ title: "title", image_url: "image_url" }] } })
+    #  api.send(request: { phone_number: "phone_number", message_type: "card", message: { cards: [{ title: "title" }] } })
     def send(request:, request_options: nil)
       response = @request_client.conn.post do |req|
         req.options.timeout = request_options.timeout_in_seconds unless request_options&.timeout_in_seconds.nil?
@@ -272,7 +272,7 @@ module Pinnacle
     #    environment: Pinnacle::Environment::DEFAULT,
     #    api_key: "YOUR_API_KEY"
     #  )
-    #  api.send(request: { message_type: "card", message: { cards: [{ title: "title", image_url: "image_url" }] } })
+    #  api.send(request: { phone_number: "phone_number", message_type: "card", message: { cards: [{ title: "title" }] } })
     def send(request:, request_options: nil)
       response = @async_request_client.conn.post do |req|
         req.options.timeout = request_options.timeout_in_seconds unless request_options&.timeout_in_seconds.nil?

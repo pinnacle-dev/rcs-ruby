@@ -32,10 +32,10 @@ module Pinnacle
     # @param card_style [Pinnacle::CardStyle] The style of the card
     # @param additional_properties [OpenStruct] Additional properties unmapped to the current class definition
     # @return [Pinnacle::Card]
-    def initialize(title:, image_url:, subtitle: OMIT, buttons: OMIT, card_style: OMIT, additional_properties: nil)
+    def initialize(title:, subtitle: OMIT, image_url: OMIT, buttons: OMIT, card_style: OMIT, additional_properties: nil)
       @title = title
       @subtitle = subtitle if subtitle != OMIT
-      @image_url = image_url
+      @image_url = image_url if image_url != OMIT
       @buttons = buttons if buttons != OMIT
       @card_style = card_style if card_style != OMIT
       @additional_properties = additional_properties
@@ -96,7 +96,7 @@ module Pinnacle
     def self.validate_raw(obj:)
       obj.title.is_a?(String) != false || raise("Passed value for field obj.title is not the expected type, validation failed.")
       obj.subtitle&.is_a?(String) != false || raise("Passed value for field obj.subtitle is not the expected type, validation failed.")
-      obj.image_url.is_a?(String) != false || raise("Passed value for field obj.image_url is not the expected type, validation failed.")
+      obj.image_url&.is_a?(String) != false || raise("Passed value for field obj.image_url is not the expected type, validation failed.")
       obj.buttons&.is_a?(Array) != false || raise("Passed value for field obj.buttons is not the expected type, validation failed.")
       obj.card_style.nil? || Pinnacle::CardStyle.validate_raw(obj: obj.card_style)
     end
