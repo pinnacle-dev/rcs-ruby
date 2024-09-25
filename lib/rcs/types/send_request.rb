@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 require "json"
+require_relative "card_rcs"
 require_relative "sms"
 require_relative "basic_rcs"
 require_relative "media_rcs"
-require_relative "card_rcs"
 require_relative "carousel_rcs"
 
 module Pinnacle
@@ -15,6 +15,14 @@ module Pinnacle
     # @return [Pinnacle::SendRequest]
     def self.from_json(json_object:)
       struct = JSON.parse(json_object, object_class: OpenStruct)
+      begin
+        Pinnacle::CardRcs.validate_raw(obj: struct)
+        return Pinnacle::CardRcs.from_json(json_object: struct) unless struct.nil?
+
+        return nil
+      rescue StandardError
+        # noop
+      end
       begin
         Pinnacle::Sms.validate_raw(obj: struct)
         return Pinnacle::Sms.from_json(json_object: struct) unless struct.nil?
@@ -40,14 +48,6 @@ module Pinnacle
         # noop
       end
       begin
-        Pinnacle::CardRcs.validate_raw(obj: struct)
-        return Pinnacle::CardRcs.from_json(json_object: struct) unless struct.nil?
-
-        return nil
-      rescue StandardError
-        # noop
-      end
-      begin
         Pinnacle::CarouselRcs.validate_raw(obj: struct)
         return Pinnacle::CarouselRcs.from_json(json_object: struct) unless struct.nil?
 
@@ -66,6 +66,11 @@ module Pinnacle
     # @return [Void]
     def self.validate_raw(obj:)
       begin
+        return Pinnacle::CardRcs.validate_raw(obj: obj)
+      rescue StandardError
+        # noop
+      end
+      begin
         return Pinnacle::Sms.validate_raw(obj: obj)
       rescue StandardError
         # noop
@@ -77,11 +82,6 @@ module Pinnacle
       end
       begin
         return Pinnacle::MediaRcs.validate_raw(obj: obj)
-      rescue StandardError
-        # noop
-      end
-      begin
-        return Pinnacle::CardRcs.validate_raw(obj: obj)
       rescue StandardError
         # noop
       end

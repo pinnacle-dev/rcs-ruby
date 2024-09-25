@@ -122,7 +122,7 @@ module Pinnacle
 
     # Send a SMS or RCS message to a phone number
     #
-    # @param request [Pinnacle::Sms, Pinnacle::BasicRcs, Pinnacle::MediaRcs, Pinnacle::CardRcs, Pinnacle::CarouselRcs]
+    # @param request [Pinnacle::CardRcs, Pinnacle::Sms, Pinnacle::BasicRcs, Pinnacle::MediaRcs, Pinnacle::CarouselRcs]
     # @param request_options [Pinnacle::RequestOptions]
     # @return [Pinnacle::SendResponse]
     # @example
@@ -131,7 +131,7 @@ module Pinnacle
     #    environment: Pinnacle::Environment::DEFAULT,
     #    api_key: "YOUR_API_KEY"
     #  )
-    #  api.send(request: { message_type: "sms", message: { body: "body" } })
+    #  api.send(request: { message_type: "card", message: { cards: [{ title: "title", image_url: "image_url" }] } })
     def send(request:, request_options: nil)
       response = @request_client.conn.post do |req|
         req.options.timeout = request_options.timeout_in_seconds unless request_options&.timeout_in_seconds.nil?
@@ -263,7 +263,7 @@ module Pinnacle
 
     # Send a SMS or RCS message to a phone number
     #
-    # @param request [Pinnacle::Sms, Pinnacle::BasicRcs, Pinnacle::MediaRcs, Pinnacle::CardRcs, Pinnacle::CarouselRcs]
+    # @param request [Pinnacle::CardRcs, Pinnacle::Sms, Pinnacle::BasicRcs, Pinnacle::MediaRcs, Pinnacle::CarouselRcs]
     # @param request_options [Pinnacle::RequestOptions]
     # @return [Pinnacle::SendResponse]
     # @example
@@ -272,7 +272,7 @@ module Pinnacle
     #    environment: Pinnacle::Environment::DEFAULT,
     #    api_key: "YOUR_API_KEY"
     #  )
-    #  api.send(request: { message_type: "sms", message: { body: "body" } })
+    #  api.send(request: { message_type: "card", message: { cards: [{ title: "title", image_url: "image_url" }] } })
     def send(request:, request_options: nil)
       response = @async_request_client.conn.post do |req|
         req.options.timeout = request_options.timeout_in_seconds unless request_options&.timeout_in_seconds.nil?
