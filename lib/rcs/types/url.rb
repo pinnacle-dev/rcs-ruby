@@ -7,6 +7,8 @@ module Pinnacle
   class Url
     # @return [String] The type of action being sent
     attr_reader :action_type
+    # @return [String] The title for the URL action. Maximum length is 25 characters.
+    attr_reader :title
     # @return [String] The url to open. Maximum length is 1000 characters.
     attr_reader :payload
     # @return [OpenStruct] Additional properties unmapped to the current class definition
@@ -18,14 +20,16 @@ module Pinnacle
     OMIT = Object.new
 
     # @param action_type [String] The type of action being sent
+    # @param title [String] The title for the URL action. Maximum length is 25 characters.
     # @param payload [String] The url to open. Maximum length is 1000 characters.
     # @param additional_properties [OpenStruct] Additional properties unmapped to the current class definition
     # @return [Pinnacle::Url]
-    def initialize(action_type:, payload:, additional_properties: nil)
+    def initialize(action_type:, title:, payload:, additional_properties: nil)
       @action_type = action_type
+      @title = title
       @payload = payload
       @additional_properties = additional_properties
-      @_field_set = { "action_type": action_type, "payload": payload }
+      @_field_set = { "action_type": action_type, "title": title, "payload": payload }
     end
 
     # Deserialize a JSON object to an instance of Url
@@ -36,9 +40,11 @@ module Pinnacle
       struct = JSON.parse(json_object, object_class: OpenStruct)
       parsed_json = JSON.parse(json_object)
       action_type = parsed_json["action_type"]
+      title = parsed_json["title"]
       payload = parsed_json["payload"]
       new(
         action_type: action_type,
+        title: title,
         payload: payload,
         additional_properties: struct
       )
@@ -59,6 +65,7 @@ module Pinnacle
     # @return [Void]
     def self.validate_raw(obj:)
       obj.action_type.is_a?(String) != false || raise("Passed value for field obj.action_type is not the expected type, validation failed.")
+      obj.title.is_a?(String) != false || raise("Passed value for field obj.title is not the expected type, validation failed.")
       obj.payload.is_a?(String) != false || raise("Passed value for field obj.payload is not the expected type, validation failed.")
     end
   end
