@@ -8,11 +8,11 @@ require_relative "media_rcs"
 require_relative "carousel_rcs"
 
 module Pinnacle
-  class SendRequest
-    # Deserialize a JSON object to an instance of SendRequest
+  class SendMessageRequest
+    # Deserialize a JSON object to an instance of SendMessageRequest
     #
     # @param json_object [String]
-    # @return [Pinnacle::SendRequest]
+    # @return [Pinnacle::SendMessageRequest]
     def self.from_json(json_object:)
       struct = JSON.parse(json_object, object_class: OpenStruct)
       begin

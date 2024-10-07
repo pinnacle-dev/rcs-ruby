@@ -4,11 +4,11 @@ require "ostruct"
 require "json"
 
 module Pinnacle
-  class InternalServerErrorBody
-    # @return [Boolean]
-    attr_reader :success
-    # @return [String]
-    attr_reader :error
+  class AdditionalWebsite
+    # @return [String] URL of the additional website.
+    attr_reader :url
+    # @return [String] Label for the additional website.
+    attr_reader :label
     # @return [OpenStruct] Additional properties unmapped to the current class definition
     attr_reader :additional_properties
     # @return [Object]
@@ -17,36 +17,34 @@ module Pinnacle
 
     OMIT = Object.new
 
-    # @param success [Boolean]
-    # @param error [String]
+    # @param url [String] URL of the additional website.
+    # @param label [String] Label for the additional website.
     # @param additional_properties [OpenStruct] Additional properties unmapped to the current class definition
-    # @return [Pinnacle::InternalServerErrorBody]
-    def initialize(success: OMIT, error: OMIT, additional_properties: nil)
-      @success = success if success != OMIT
-      @error = error if error != OMIT
+    # @return [Pinnacle::AdditionalWebsite]
+    def initialize(url:, label:, additional_properties: nil)
+      @url = url
+      @label = label
       @additional_properties = additional_properties
-      @_field_set = { "success": success, "error": error }.reject do |_k, v|
-        v == OMIT
-      end
+      @_field_set = { "url": url, "label": label }
     end
 
-    # Deserialize a JSON object to an instance of InternalServerErrorBody
+    # Deserialize a JSON object to an instance of AdditionalWebsite
     #
     # @param json_object [String]
-    # @return [Pinnacle::InternalServerErrorBody]
+    # @return [Pinnacle::AdditionalWebsite]
     def self.from_json(json_object:)
       struct = JSON.parse(json_object, object_class: OpenStruct)
       parsed_json = JSON.parse(json_object)
-      success = parsed_json["success"]
-      error = parsed_json["error"]
+      url = parsed_json["url"]
+      label = parsed_json["label"]
       new(
-        success: success,
-        error: error,
+        url: url,
+        label: label,
         additional_properties: struct
       )
     end
 
-    # Serialize an instance of InternalServerErrorBody to a JSON object
+    # Serialize an instance of AdditionalWebsite to a JSON object
     #
     # @return [String]
     def to_json(*_args)
@@ -60,8 +58,8 @@ module Pinnacle
     # @param obj [Object]
     # @return [Void]
     def self.validate_raw(obj:)
-      obj.success&.is_a?(Boolean) != false || raise("Passed value for field obj.success is not the expected type, validation failed.")
-      obj.error&.is_a?(String) != false || raise("Passed value for field obj.error is not the expected type, validation failed.")
+      obj.url.is_a?(String) != false || raise("Passed value for field obj.url is not the expected type, validation failed.")
+      obj.label.is_a?(String) != false || raise("Passed value for field obj.label is not the expected type, validation failed.")
     end
   end
 end
