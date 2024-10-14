@@ -5,8 +5,8 @@ require "json"
 
 module Pinnacle
   class UnauthorizedErrorBody
-    # @return [String]
-    attr_reader :error
+    # @return [Array<String>]
+    attr_reader :errors
     # @return [OpenStruct] Additional properties unmapped to the current class definition
     attr_reader :additional_properties
     # @return [Object]
@@ -15,13 +15,13 @@ module Pinnacle
 
     OMIT = Object.new
 
-    # @param error [String]
+    # @param errors [Array<String>]
     # @param additional_properties [OpenStruct] Additional properties unmapped to the current class definition
     # @return [Pinnacle::UnauthorizedErrorBody]
-    def initialize(error: OMIT, additional_properties: nil)
-      @error = error if error != OMIT
+    def initialize(errors: OMIT, additional_properties: nil)
+      @errors = errors if errors != OMIT
       @additional_properties = additional_properties
-      @_field_set = { "error": error }.reject do |_k, v|
+      @_field_set = { "errors": errors }.reject do |_k, v|
         v == OMIT
       end
     end
@@ -33,8 +33,8 @@ module Pinnacle
     def self.from_json(json_object:)
       struct = JSON.parse(json_object, object_class: OpenStruct)
       parsed_json = JSON.parse(json_object)
-      error = parsed_json["error"]
-      new(error: error, additional_properties: struct)
+      errors = parsed_json["errors"]
+      new(errors: errors, additional_properties: struct)
     end
 
     # Serialize an instance of UnauthorizedErrorBody to a JSON object
@@ -51,7 +51,7 @@ module Pinnacle
     # @param obj [Object]
     # @return [Void]
     def self.validate_raw(obj:)
-      obj.error&.is_a?(String) != false || raise("Passed value for field obj.error is not the expected type, validation failed.")
+      obj.errors&.is_a?(Array) != false || raise("Passed value for field obj.errors is not the expected type, validation failed.")
     end
   end
 end

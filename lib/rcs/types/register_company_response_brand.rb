@@ -21,13 +21,11 @@ module Pinnacle
     # @param id [Float]
     # @param additional_properties [OpenStruct] Additional properties unmapped to the current class definition
     # @return [Pinnacle::RegisterCompanyResponseBrand]
-    def initialize(name: OMIT, id: OMIT, additional_properties: nil)
-      @name = name if name != OMIT
-      @id = id if id != OMIT
+    def initialize(name:, id:, additional_properties: nil)
+      @name = name
+      @id = id
       @additional_properties = additional_properties
-      @_field_set = { "name": name, "id": id }.reject do |_k, v|
-        v == OMIT
-      end
+      @_field_set = { "name": name, "id": id }
     end
 
     # Deserialize a JSON object to an instance of RegisterCompanyResponseBrand
@@ -60,8 +58,8 @@ module Pinnacle
     # @param obj [Object]
     # @return [Void]
     def self.validate_raw(obj:)
-      obj.name&.is_a?(String) != false || raise("Passed value for field obj.name is not the expected type, validation failed.")
-      obj.id&.is_a?(Float) != false || raise("Passed value for field obj.id is not the expected type, validation failed.")
+      obj.name.is_a?(String) != false || raise("Passed value for field obj.name is not the expected type, validation failed.")
+      obj.id.is_a?(Float) != false || raise("Passed value for field obj.id is not the expected type, validation failed.")
     end
   end
 end

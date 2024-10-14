@@ -4,11 +4,11 @@ require "ostruct"
 require "json"
 
 module Pinnacle
-  # The latitude and longitude of the location to share with the user
-  class LatLng
-    # @return [Float] The latitude of the location
+  # Latitude and longitude coordinates. Required for 'sendLocation'.
+  class ActionLatLong
+    # @return [Float] Latitude value.
     attr_reader :lat
-    # @return [Float] The longitude of the location
+    # @return [Float] Longitude value.
     attr_reader :lng
     # @return [OpenStruct] Additional properties unmapped to the current class definition
     attr_reader :additional_properties
@@ -18,21 +18,23 @@ module Pinnacle
 
     OMIT = Object.new
 
-    # @param lat [Float] The latitude of the location
-    # @param lng [Float] The longitude of the location
+    # @param lat [Float] Latitude value.
+    # @param lng [Float] Longitude value.
     # @param additional_properties [OpenStruct] Additional properties unmapped to the current class definition
-    # @return [Pinnacle::LatLng]
-    def initialize(lat:, lng:, additional_properties: nil)
-      @lat = lat
-      @lng = lng
+    # @return [Pinnacle::ActionLatLong]
+    def initialize(lat: OMIT, lng: OMIT, additional_properties: nil)
+      @lat = lat if lat != OMIT
+      @lng = lng if lng != OMIT
       @additional_properties = additional_properties
-      @_field_set = { "lat": lat, "lng": lng }
+      @_field_set = { "lat": lat, "lng": lng }.reject do |_k, v|
+        v == OMIT
+      end
     end
 
-    # Deserialize a JSON object to an instance of LatLng
+    # Deserialize a JSON object to an instance of ActionLatLong
     #
     # @param json_object [String]
-    # @return [Pinnacle::LatLng]
+    # @return [Pinnacle::ActionLatLong]
     def self.from_json(json_object:)
       struct = JSON.parse(json_object, object_class: OpenStruct)
       parsed_json = JSON.parse(json_object)
@@ -45,7 +47,7 @@ module Pinnacle
       )
     end
 
-    # Serialize an instance of LatLng to a JSON object
+    # Serialize an instance of ActionLatLong to a JSON object
     #
     # @return [String]
     def to_json(*_args)
@@ -59,8 +61,8 @@ module Pinnacle
     # @param obj [Object]
     # @return [Void]
     def self.validate_raw(obj:)
-      obj.lat.is_a?(Float) != false || raise("Passed value for field obj.lat is not the expected type, validation failed.")
-      obj.lng.is_a?(Float) != false || raise("Passed value for field obj.lng is not the expected type, validation failed.")
+      obj.lat&.is_a?(Float) != false || raise("Passed value for field obj.lat is not the expected type, validation failed.")
+      obj.lng&.is_a?(Float) != false || raise("Passed value for field obj.lng is not the expected type, validation failed.")
     end
   end
 end

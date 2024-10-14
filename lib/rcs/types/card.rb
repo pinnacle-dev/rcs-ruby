@@ -1,22 +1,19 @@
 # frozen_string_literal: true
 
 require_relative "action"
-require_relative "card_style"
 require "ostruct"
 require "json"
 
 module Pinnacle
   class Card
-    # @return [String] The title of the card
+    # @return [String] The title of the card.
     attr_reader :title
-    # @return [String] The subtitle of the card
+    # @return [String] Optional subtitle for the card.
     attr_reader :subtitle
-    # @return [String] The URL of the image to be displayed on the card
-    attr_reader :image_url
-    # @return [Array<Pinnacle::Action>] Array of buttons attached to the card. Maximum of 4 buttons.
+    # @return [String] Optional media URL displayed with the card.
+    attr_reader :media_url
+    # @return [Array<Pinnacle::Action>] Optional list of buttons on the card (max 4).
     attr_reader :buttons
-    # @return [Pinnacle::CardStyle] The style of the card
-    attr_reader :card_style
     # @return [OpenStruct] Additional properties unmapped to the current class definition
     attr_reader :additional_properties
     # @return [Object]
@@ -25,26 +22,23 @@ module Pinnacle
 
     OMIT = Object.new
 
-    # @param title [String] The title of the card
-    # @param subtitle [String] The subtitle of the card
-    # @param image_url [String] The URL of the image to be displayed on the card
-    # @param buttons [Array<Pinnacle::Action>] Array of buttons attached to the card. Maximum of 4 buttons.
-    # @param card_style [Pinnacle::CardStyle] The style of the card
+    # @param title [String] The title of the card.
+    # @param subtitle [String] Optional subtitle for the card.
+    # @param media_url [String] Optional media URL displayed with the card.
+    # @param buttons [Array<Pinnacle::Action>] Optional list of buttons on the card (max 4).
     # @param additional_properties [OpenStruct] Additional properties unmapped to the current class definition
     # @return [Pinnacle::Card]
-    def initialize(title:, subtitle: OMIT, image_url: OMIT, buttons: OMIT, card_style: OMIT, additional_properties: nil)
+    def initialize(title:, subtitle: OMIT, media_url: OMIT, buttons: OMIT, additional_properties: nil)
       @title = title
       @subtitle = subtitle if subtitle != OMIT
-      @image_url = image_url if image_url != OMIT
+      @media_url = media_url if media_url != OMIT
       @buttons = buttons if buttons != OMIT
-      @card_style = card_style if card_style != OMIT
       @additional_properties = additional_properties
       @_field_set = {
         "title": title,
         "subtitle": subtitle,
-        "image_url": image_url,
-        "buttons": buttons,
-        "card_style": card_style
+        "mediaUrl": media_url,
+        "buttons": buttons
       }.reject do |_k, v|
         v == OMIT
       end
@@ -59,23 +53,16 @@ module Pinnacle
       parsed_json = JSON.parse(json_object)
       title = parsed_json["title"]
       subtitle = parsed_json["subtitle"]
-      image_url = parsed_json["image_url"]
+      media_url = parsed_json["mediaUrl"]
       buttons = parsed_json["buttons"]&.map do |item|
         item = item.to_json
         Pinnacle::Action.from_json(json_object: item)
       end
-      if parsed_json["card_style"].nil?
-        card_style = nil
-      else
-        card_style = parsed_json["card_style"].to_json
-        card_style = Pinnacle::CardStyle.from_json(json_object: card_style)
-      end
       new(
         title: title,
         subtitle: subtitle,
-        image_url: image_url,
+        media_url: media_url,
         buttons: buttons,
-        card_style: card_style,
         additional_properties: struct
       )
     end
@@ -96,9 +83,8 @@ module Pinnacle
     def self.validate_raw(obj:)
       obj.title.is_a?(String) != false || raise("Passed value for field obj.title is not the expected type, validation failed.")
       obj.subtitle&.is_a?(String) != false || raise("Passed value for field obj.subtitle is not the expected type, validation failed.")
-      obj.image_url&.is_a?(String) != false || raise("Passed value for field obj.image_url is not the expected type, validation failed.")
+      obj.media_url&.is_a?(String) != false || raise("Passed value for field obj.media_url is not the expected type, validation failed.")
       obj.buttons&.is_a?(Array) != false || raise("Passed value for field obj.buttons is not the expected type, validation failed.")
-      obj.card_style.nil? || Pinnacle::CardStyle.validate_raw(obj: obj.card_style)
     end
   end
 end

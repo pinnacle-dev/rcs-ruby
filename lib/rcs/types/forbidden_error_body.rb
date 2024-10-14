@@ -4,10 +4,9 @@ require "ostruct"
 require "json"
 
 module Pinnacle
-  # The content of the message
-  class BasicRcsMessage
-    # @return [String] The text content of the RCS message
-    attr_reader :text
+  class ForbiddenErrorBody
+    # @return [Array<String>]
+    attr_reader :errors
     # @return [OpenStruct] Additional properties unmapped to the current class definition
     attr_reader :additional_properties
     # @return [Object]
@@ -16,27 +15,29 @@ module Pinnacle
 
     OMIT = Object.new
 
-    # @param text [String] The text content of the RCS message
+    # @param errors [Array<String>]
     # @param additional_properties [OpenStruct] Additional properties unmapped to the current class definition
-    # @return [Pinnacle::BasicRcsMessage]
-    def initialize(text:, additional_properties: nil)
-      @text = text
+    # @return [Pinnacle::ForbiddenErrorBody]
+    def initialize(errors: OMIT, additional_properties: nil)
+      @errors = errors if errors != OMIT
       @additional_properties = additional_properties
-      @_field_set = { "text": text }
+      @_field_set = { "errors": errors }.reject do |_k, v|
+        v == OMIT
+      end
     end
 
-    # Deserialize a JSON object to an instance of BasicRcsMessage
+    # Deserialize a JSON object to an instance of ForbiddenErrorBody
     #
     # @param json_object [String]
-    # @return [Pinnacle::BasicRcsMessage]
+    # @return [Pinnacle::ForbiddenErrorBody]
     def self.from_json(json_object:)
       struct = JSON.parse(json_object, object_class: OpenStruct)
       parsed_json = JSON.parse(json_object)
-      text = parsed_json["text"]
-      new(text: text, additional_properties: struct)
+      errors = parsed_json["errors"]
+      new(errors: errors, additional_properties: struct)
     end
 
-    # Serialize an instance of BasicRcsMessage to a JSON object
+    # Serialize an instance of ForbiddenErrorBody to a JSON object
     #
     # @return [String]
     def to_json(*_args)
@@ -50,7 +51,7 @@ module Pinnacle
     # @param obj [Object]
     # @return [Void]
     def self.validate_raw(obj:)
-      obj.text.is_a?(String) != false || raise("Passed value for field obj.text is not the expected type, validation failed.")
+      obj.errors&.is_a?(Array) != false || raise("Passed value for field obj.errors is not the expected type, validation failed.")
     end
   end
 end

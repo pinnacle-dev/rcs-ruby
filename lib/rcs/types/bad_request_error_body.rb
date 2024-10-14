@@ -1,15 +1,12 @@
 # frozen_string_literal: true
 
-require_relative "bad_request_error_body_error"
 require "ostruct"
 require "json"
 
 module Pinnacle
   class BadRequestErrorBody
-    # @return [Pinnacle::BadRequestErrorBodyError]
-    attr_reader :error
-    # @return [Boolean]
-    attr_reader :success
+    # @return [Array<String>]
+    attr_reader :errors
     # @return [OpenStruct] Additional properties unmapped to the current class definition
     attr_reader :additional_properties
     # @return [Object]
@@ -18,15 +15,13 @@ module Pinnacle
 
     OMIT = Object.new
 
-    # @param error [Pinnacle::BadRequestErrorBodyError]
-    # @param success [Boolean]
+    # @param errors [Array<String>]
     # @param additional_properties [OpenStruct] Additional properties unmapped to the current class definition
     # @return [Pinnacle::BadRequestErrorBody]
-    def initialize(error: OMIT, success: OMIT, additional_properties: nil)
-      @error = error if error != OMIT
-      @success = success if success != OMIT
+    def initialize(errors: OMIT, additional_properties: nil)
+      @errors = errors if errors != OMIT
       @additional_properties = additional_properties
-      @_field_set = { "error": error, "success": success }.reject do |_k, v|
+      @_field_set = { "errors": errors }.reject do |_k, v|
         v == OMIT
       end
     end
@@ -38,18 +33,8 @@ module Pinnacle
     def self.from_json(json_object:)
       struct = JSON.parse(json_object, object_class: OpenStruct)
       parsed_json = JSON.parse(json_object)
-      if parsed_json["error"].nil?
-        error = nil
-      else
-        error = parsed_json["error"].to_json
-        error = Pinnacle::BadRequestErrorBodyError.from_json(json_object: error)
-      end
-      success = parsed_json["success"]
-      new(
-        error: error,
-        success: success,
-        additional_properties: struct
-      )
+      errors = parsed_json["errors"]
+      new(errors: errors, additional_properties: struct)
     end
 
     # Serialize an instance of BadRequestErrorBody to a JSON object
@@ -66,8 +51,7 @@ module Pinnacle
     # @param obj [Object]
     # @return [Void]
     def self.validate_raw(obj:)
-      obj.error.nil? || Pinnacle::BadRequestErrorBodyError.validate_raw(obj: obj.error)
-      obj.success&.is_a?(Boolean) != false || raise("Passed value for field obj.success is not the expected type, validation failed.")
+      obj.errors&.is_a?(Array) != false || raise("Passed value for field obj.errors is not the expected type, validation failed.")
     end
   end
 end

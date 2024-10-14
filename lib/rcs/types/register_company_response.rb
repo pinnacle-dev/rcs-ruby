@@ -6,8 +6,6 @@ require "json"
 
 module Pinnacle
   class RegisterCompanyResponse
-    # @return [Boolean]
-    attr_reader :success
     # @return [Pinnacle::RegisterCompanyResponseBrand]
     attr_reader :brand
     # @return [OpenStruct] Additional properties unmapped to the current class definition
@@ -18,17 +16,13 @@ module Pinnacle
 
     OMIT = Object.new
 
-    # @param success [Boolean]
     # @param brand [Pinnacle::RegisterCompanyResponseBrand]
     # @param additional_properties [OpenStruct] Additional properties unmapped to the current class definition
     # @return [Pinnacle::RegisterCompanyResponse]
-    def initialize(success: OMIT, brand: OMIT, additional_properties: nil)
-      @success = success if success != OMIT
-      @brand = brand if brand != OMIT
+    def initialize(brand:, additional_properties: nil)
+      @brand = brand
       @additional_properties = additional_properties
-      @_field_set = { "success": success, "brand": brand }.reject do |_k, v|
-        v == OMIT
-      end
+      @_field_set = { "brand": brand }
     end
 
     # Deserialize a JSON object to an instance of RegisterCompanyResponse
@@ -38,18 +32,13 @@ module Pinnacle
     def self.from_json(json_object:)
       struct = JSON.parse(json_object, object_class: OpenStruct)
       parsed_json = JSON.parse(json_object)
-      success = parsed_json["success"]
       if parsed_json["brand"].nil?
         brand = nil
       else
         brand = parsed_json["brand"].to_json
         brand = Pinnacle::RegisterCompanyResponseBrand.from_json(json_object: brand)
       end
-      new(
-        success: success,
-        brand: brand,
-        additional_properties: struct
-      )
+      new(brand: brand, additional_properties: struct)
     end
 
     # Serialize an instance of RegisterCompanyResponse to a JSON object
@@ -66,8 +55,7 @@ module Pinnacle
     # @param obj [Object]
     # @return [Void]
     def self.validate_raw(obj:)
-      obj.success&.is_a?(Boolean) != false || raise("Passed value for field obj.success is not the expected type, validation failed.")
-      obj.brand.nil? || Pinnacle::RegisterCompanyResponseBrand.validate_raw(obj: obj.brand)
+      Pinnacle::RegisterCompanyResponseBrand.validate_raw(obj: obj.brand)
     end
   end
 end

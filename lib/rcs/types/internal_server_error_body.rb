@@ -5,10 +5,8 @@ require "json"
 
 module Pinnacle
   class InternalServerErrorBody
-    # @return [Boolean]
-    attr_reader :success
-    # @return [String]
-    attr_reader :error
+    # @return [Array<String>]
+    attr_reader :errors
     # @return [OpenStruct] Additional properties unmapped to the current class definition
     attr_reader :additional_properties
     # @return [Object]
@@ -17,15 +15,13 @@ module Pinnacle
 
     OMIT = Object.new
 
-    # @param success [Boolean]
-    # @param error [String]
+    # @param errors [Array<String>]
     # @param additional_properties [OpenStruct] Additional properties unmapped to the current class definition
     # @return [Pinnacle::InternalServerErrorBody]
-    def initialize(success: OMIT, error: OMIT, additional_properties: nil)
-      @success = success if success != OMIT
-      @error = error if error != OMIT
+    def initialize(errors: OMIT, additional_properties: nil)
+      @errors = errors if errors != OMIT
       @additional_properties = additional_properties
-      @_field_set = { "success": success, "error": error }.reject do |_k, v|
+      @_field_set = { "errors": errors }.reject do |_k, v|
         v == OMIT
       end
     end
@@ -37,13 +33,8 @@ module Pinnacle
     def self.from_json(json_object:)
       struct = JSON.parse(json_object, object_class: OpenStruct)
       parsed_json = JSON.parse(json_object)
-      success = parsed_json["success"]
-      error = parsed_json["error"]
-      new(
-        success: success,
-        error: error,
-        additional_properties: struct
-      )
+      errors = parsed_json["errors"]
+      new(errors: errors, additional_properties: struct)
     end
 
     # Serialize an instance of InternalServerErrorBody to a JSON object
@@ -60,8 +51,7 @@ module Pinnacle
     # @param obj [Object]
     # @return [Void]
     def self.validate_raw(obj:)
-      obj.success&.is_a?(Boolean) != false || raise("Passed value for field obj.success is not the expected type, validation failed.")
-      obj.error&.is_a?(String) != false || raise("Passed value for field obj.error is not the expected type, validation failed.")
+      obj.errors&.is_a?(Array) != false || raise("Passed value for field obj.errors is not the expected type, validation failed.")
     end
   end
 end
