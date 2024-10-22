@@ -144,10 +144,9 @@ module Pinnacle
     #  api.send.mms(
     #    to: "to",
     #    from: "from",
-    #    text: "text",
     #    media_urls: ["https://example.com/image1.jpg", "https://example.com/video.mp4"]
     #  )
-    def mms(to:, from:, text:, media_urls:, request_options: nil)
+    def mms(to:, from:, media_urls:, text: nil, request_options: nil)
       response = @request_client.conn.post do |req|
         req.options.timeout = request_options.timeout_in_seconds unless request_options&.timeout_in_seconds.nil?
         req.headers["PINNACLE-API-Key"] = request_options.api_key unless request_options&.api_key.nil?
@@ -311,10 +310,9 @@ module Pinnacle
     #  api.send.mms(
     #    to: "to",
     #    from: "from",
-    #    text: "text",
     #    media_urls: ["https://example.com/image1.jpg", "https://example.com/video.mp4"]
     #  )
-    def mms(to:, from:, text:, media_urls:, request_options: nil)
+    def mms(to:, from:, media_urls:, text: nil, request_options: nil)
       Async do
         response = @request_client.conn.post do |req|
           req.options.timeout = request_options.timeout_in_seconds unless request_options&.timeout_in_seconds.nil?
