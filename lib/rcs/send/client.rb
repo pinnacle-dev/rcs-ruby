@@ -3,6 +3,7 @@
 require_relative "../../requests"
 require_relative "../types/card"
 require_relative "../types/action"
+require_relative "types/rcs_fallback"
 require_relative "types/send_rcs_response"
 require_relative "types/send_sms_response"
 require_relative "types/send_mms_response"
@@ -54,6 +55,12 @@ module Pinnacle
     #   * :lat_long (Hash)
     #     * :lat (Float)
     #     * :lng (Float)
+    # @param fallback [Hash] Request of type Pinnacle::Send::RcsFallback, as a Hash
+    #   * :from (String)
+    #   * :text (String)
+    #   * :media_urls (Array<String>)
+    # @param status_callback [String] Optional URL to receive a POST request when the message status changes. Read
+    #  more about status callbacks [here](/api-reference/receive-msg-statuses).
     # @param request_options [Pinnacle::RequestOptions]
     # @return [Pinnacle::Send::SendRcsResponse]
     # @example
@@ -63,7 +70,8 @@ module Pinnacle
     #    api_key: "YOUR_API_KEY"
     #  )
     #  api.send.rcs(from: "from", to: "to")
-    def rcs(from:, to:, text: nil, media_url: nil, cards: nil, quick_replies: nil, request_options: nil)
+    def rcs(from:, to:, text: nil, media_url: nil, cards: nil, quick_replies: nil, fallback: nil, status_callback: nil,
+            request_options: nil)
       response = @request_client.conn.post do |req|
         req.options.timeout = request_options.timeout_in_seconds unless request_options&.timeout_in_seconds.nil?
         req.headers["PINNACLE-API-Key"] = request_options.api_key unless request_options&.api_key.nil?
@@ -82,7 +90,9 @@ module Pinnacle
           text: text,
           mediaUrl: media_url,
           cards: cards,
-          quickReplies: quick_replies
+          quickReplies: quick_replies,
+          fallback: fallback,
+          statusCallback: status_callback
         }.compact
         req.url "#{@request_client.get_url(request_options: request_options)}/send/rcs"
       end
@@ -94,6 +104,8 @@ module Pinnacle
     # @param to [String] The recipient's phone number in E.164 format (e.g., +12345678901).
     # @param from [String] The sender's phone number in E.164 format. Must be owned by the user.
     # @param text [String] The SMS message content (max 1600 characters).
+    # @param status_callback [String] Optional URL to receive a POST request when the message status changes. Read
+    #  more about status callbacks [here](/api-reference/receive-msg-statuses).
     # @param request_options [Pinnacle::RequestOptions]
     # @return [Pinnacle::Send::SendSmsResponse]
     # @example
@@ -107,46 +119,7 @@ module Pinnacle
     #    from: "from",
     #    text: "text"
     #  )
-    def sms(to:, from:, text:, request_options: nil)
-      response = @request_client.conn.post do |req|
-        req.options.timeout = request_options.timeout_in_seconds unless request_options&.timeout_in_seconds.nil?
-        req.headers["PINNACLE-API-Key"] = request_options.api_key unless request_options&.api_key.nil?
-        req.headers = {
-      **(req.headers || {}),
-      **@request_client.get_headers,
-      **(request_options&.additional_headers || {})
-        }.compact
-        unless request_options.nil? || request_options&.additional_query_parameters.nil?
-          req.params = { **(request_options&.additional_query_parameters || {}) }.compact
-        end
-        req.body = { **(request_options&.additional_body_parameters || {}), to: to, from: from, text: text }.compact
-        req.url "#{@request_client.get_url(request_options: request_options)}/send/sms"
-      end
-      Pinnacle::Send::SendSmsResponse.from_json(json_object: response.body)
-    end
-
-    # Send an MMS message with media attachments.
-    #
-    # @param to [String] The recipient's phone number in E.164 format (e.g., +12345678901).
-    # @param from [String] The sender's phone number in E.164 format. Must be owned by the user.
-    # @param text [String] The MMS message content (max 1600 characters).
-    # @param media_urls [Array<String>] The URLs of media to include. `jpeg`, `jpg`, `gif`, and `png` file types are
-    #  fully supported and have a size limit of 5 MB. 500 KB limit for other types. Up
-    #  to 10 media URLs can be included.
-    # @param request_options [Pinnacle::RequestOptions]
-    # @return [Pinnacle::Send::SendMmsResponse]
-    # @example
-    #  api = Pinnacle::Client.new(
-    #    base_url: "https://api.example.com",
-    #    environment: Pinnacle::Environment::DEFAULT,
-    #    api_key: "YOUR_API_KEY"
-    #  )
-    #  api.send.mms(
-    #    to: "to",
-    #    from: "from",
-    #    media_urls: ["https://example.com/image1.jpg", "https://example.com/video.mp4"]
-    #  )
-    def mms(to:, from:, media_urls:, text: nil, request_options: nil)
+    def sms(to:, from:, text:, status_callback: nil, request_options: nil)
       response = @request_client.conn.post do |req|
         req.options.timeout = request_options.timeout_in_seconds unless request_options&.timeout_in_seconds.nil?
         req.headers["PINNACLE-API-Key"] = request_options.api_key unless request_options&.api_key.nil?
@@ -163,7 +136,55 @@ module Pinnacle
           to: to,
           from: from,
           text: text,
-          mediaUrls: media_urls
+          statusCallback: status_callback
+        }.compact
+        req.url "#{@request_client.get_url(request_options: request_options)}/send/sms"
+      end
+      Pinnacle::Send::SendSmsResponse.from_json(json_object: response.body)
+    end
+
+    # Send an MMS message with media attachments.
+    #
+    # @param to [String] The recipient's phone number in E.164 format (e.g., +12345678901).
+    # @param from [String] The sender's phone number in E.164 format. Must be owned by the user.
+    # @param text [String] The MMS message content (max 1600 characters).
+    # @param media_urls [Array<String>] The URLs of media to include. `jpeg`, `jpg`, `gif`, and `png` file types are
+    #  fully supported and have a size limit of 5 MB. 500 KB limit for other types. Up
+    #  to 10 media URLs can be included.
+    # @param status_callback [String] Optional URL to receive a POST request when the message status changes. Read
+    #  more about status callbacks [here](/api-reference/receive-msg-statuses).
+    # @param request_options [Pinnacle::RequestOptions]
+    # @return [Pinnacle::Send::SendMmsResponse]
+    # @example
+    #  api = Pinnacle::Client.new(
+    #    base_url: "https://api.example.com",
+    #    environment: Pinnacle::Environment::DEFAULT,
+    #    api_key: "YOUR_API_KEY"
+    #  )
+    #  api.send.mms(
+    #    to: "to",
+    #    from: "from",
+    #    media_urls: ["https://example.com/image1.jpg", "https://example.com/video.mp4"]
+    #  )
+    def mms(to:, from:, media_urls:, text: nil, status_callback: nil, request_options: nil)
+      response = @request_client.conn.post do |req|
+        req.options.timeout = request_options.timeout_in_seconds unless request_options&.timeout_in_seconds.nil?
+        req.headers["PINNACLE-API-Key"] = request_options.api_key unless request_options&.api_key.nil?
+        req.headers = {
+      **(req.headers || {}),
+      **@request_client.get_headers,
+      **(request_options&.additional_headers || {})
+        }.compact
+        unless request_options.nil? || request_options&.additional_query_parameters.nil?
+          req.params = { **(request_options&.additional_query_parameters || {}) }.compact
+        end
+        req.body = {
+          **(request_options&.additional_body_parameters || {}),
+          to: to,
+          from: from,
+          text: text,
+          mediaUrls: media_urls,
+          statusCallback: status_callback
         }.compact
         req.url "#{@request_client.get_url(request_options: request_options)}/send/mms"
       end
@@ -216,6 +237,12 @@ module Pinnacle
     #   * :lat_long (Hash)
     #     * :lat (Float)
     #     * :lng (Float)
+    # @param fallback [Hash] Request of type Pinnacle::Send::RcsFallback, as a Hash
+    #   * :from (String)
+    #   * :text (String)
+    #   * :media_urls (Array<String>)
+    # @param status_callback [String] Optional URL to receive a POST request when the message status changes. Read
+    #  more about status callbacks [here](/api-reference/receive-msg-statuses).
     # @param request_options [Pinnacle::RequestOptions]
     # @return [Pinnacle::Send::SendRcsResponse]
     # @example
@@ -225,7 +252,8 @@ module Pinnacle
     #    api_key: "YOUR_API_KEY"
     #  )
     #  api.send.rcs(from: "from", to: "to")
-    def rcs(from:, to:, text: nil, media_url: nil, cards: nil, quick_replies: nil, request_options: nil)
+    def rcs(from:, to:, text: nil, media_url: nil, cards: nil, quick_replies: nil, fallback: nil, status_callback: nil,
+            request_options: nil)
       Async do
         response = @request_client.conn.post do |req|
           req.options.timeout = request_options.timeout_in_seconds unless request_options&.timeout_in_seconds.nil?
@@ -245,7 +273,9 @@ module Pinnacle
             text: text,
             mediaUrl: media_url,
             cards: cards,
-            quickReplies: quick_replies
+            quickReplies: quick_replies,
+            fallback: fallback,
+            statusCallback: status_callback
           }.compact
           req.url "#{@request_client.get_url(request_options: request_options)}/send/rcs"
         end
@@ -258,6 +288,8 @@ module Pinnacle
     # @param to [String] The recipient's phone number in E.164 format (e.g., +12345678901).
     # @param from [String] The sender's phone number in E.164 format. Must be owned by the user.
     # @param text [String] The SMS message content (max 1600 characters).
+    # @param status_callback [String] Optional URL to receive a POST request when the message status changes. Read
+    #  more about status callbacks [here](/api-reference/receive-msg-statuses).
     # @param request_options [Pinnacle::RequestOptions]
     # @return [Pinnacle::Send::SendSmsResponse]
     # @example
@@ -271,48 +303,7 @@ module Pinnacle
     #    from: "from",
     #    text: "text"
     #  )
-    def sms(to:, from:, text:, request_options: nil)
-      Async do
-        response = @request_client.conn.post do |req|
-          req.options.timeout = request_options.timeout_in_seconds unless request_options&.timeout_in_seconds.nil?
-          req.headers["PINNACLE-API-Key"] = request_options.api_key unless request_options&.api_key.nil?
-          req.headers = {
-        **(req.headers || {}),
-        **@request_client.get_headers,
-        **(request_options&.additional_headers || {})
-          }.compact
-          unless request_options.nil? || request_options&.additional_query_parameters.nil?
-            req.params = { **(request_options&.additional_query_parameters || {}) }.compact
-          end
-          req.body = { **(request_options&.additional_body_parameters || {}), to: to, from: from, text: text }.compact
-          req.url "#{@request_client.get_url(request_options: request_options)}/send/sms"
-        end
-        Pinnacle::Send::SendSmsResponse.from_json(json_object: response.body)
-      end
-    end
-
-    # Send an MMS message with media attachments.
-    #
-    # @param to [String] The recipient's phone number in E.164 format (e.g., +12345678901).
-    # @param from [String] The sender's phone number in E.164 format. Must be owned by the user.
-    # @param text [String] The MMS message content (max 1600 characters).
-    # @param media_urls [Array<String>] The URLs of media to include. `jpeg`, `jpg`, `gif`, and `png` file types are
-    #  fully supported and have a size limit of 5 MB. 500 KB limit for other types. Up
-    #  to 10 media URLs can be included.
-    # @param request_options [Pinnacle::RequestOptions]
-    # @return [Pinnacle::Send::SendMmsResponse]
-    # @example
-    #  api = Pinnacle::Client.new(
-    #    base_url: "https://api.example.com",
-    #    environment: Pinnacle::Environment::DEFAULT,
-    #    api_key: "YOUR_API_KEY"
-    #  )
-    #  api.send.mms(
-    #    to: "to",
-    #    from: "from",
-    #    media_urls: ["https://example.com/image1.jpg", "https://example.com/video.mp4"]
-    #  )
-    def mms(to:, from:, media_urls:, text: nil, request_options: nil)
+    def sms(to:, from:, text:, status_callback: nil, request_options: nil)
       Async do
         response = @request_client.conn.post do |req|
           req.options.timeout = request_options.timeout_in_seconds unless request_options&.timeout_in_seconds.nil?
@@ -330,7 +321,57 @@ module Pinnacle
             to: to,
             from: from,
             text: text,
-            mediaUrls: media_urls
+            statusCallback: status_callback
+          }.compact
+          req.url "#{@request_client.get_url(request_options: request_options)}/send/sms"
+        end
+        Pinnacle::Send::SendSmsResponse.from_json(json_object: response.body)
+      end
+    end
+
+    # Send an MMS message with media attachments.
+    #
+    # @param to [String] The recipient's phone number in E.164 format (e.g., +12345678901).
+    # @param from [String] The sender's phone number in E.164 format. Must be owned by the user.
+    # @param text [String] The MMS message content (max 1600 characters).
+    # @param media_urls [Array<String>] The URLs of media to include. `jpeg`, `jpg`, `gif`, and `png` file types are
+    #  fully supported and have a size limit of 5 MB. 500 KB limit for other types. Up
+    #  to 10 media URLs can be included.
+    # @param status_callback [String] Optional URL to receive a POST request when the message status changes. Read
+    #  more about status callbacks [here](/api-reference/receive-msg-statuses).
+    # @param request_options [Pinnacle::RequestOptions]
+    # @return [Pinnacle::Send::SendMmsResponse]
+    # @example
+    #  api = Pinnacle::Client.new(
+    #    base_url: "https://api.example.com",
+    #    environment: Pinnacle::Environment::DEFAULT,
+    #    api_key: "YOUR_API_KEY"
+    #  )
+    #  api.send.mms(
+    #    to: "to",
+    #    from: "from",
+    #    media_urls: ["https://example.com/image1.jpg", "https://example.com/video.mp4"]
+    #  )
+    def mms(to:, from:, media_urls:, text: nil, status_callback: nil, request_options: nil)
+      Async do
+        response = @request_client.conn.post do |req|
+          req.options.timeout = request_options.timeout_in_seconds unless request_options&.timeout_in_seconds.nil?
+          req.headers["PINNACLE-API-Key"] = request_options.api_key unless request_options&.api_key.nil?
+          req.headers = {
+        **(req.headers || {}),
+        **@request_client.get_headers,
+        **(request_options&.additional_headers || {})
+          }.compact
+          unless request_options.nil? || request_options&.additional_query_parameters.nil?
+            req.params = { **(request_options&.additional_query_parameters || {}) }.compact
+          end
+          req.body = {
+            **(request_options&.additional_body_parameters || {}),
+            to: to,
+            from: from,
+            text: text,
+            mediaUrls: media_urls,
+            statusCallback: status_callback
           }.compact
           req.url "#{@request_client.get_url(request_options: request_options)}/send/mms"
         end

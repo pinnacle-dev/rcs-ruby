@@ -19,11 +19,15 @@ module Pinnacle
     #  URL to open. For 'call', the payload is the phone number to dial. For 'trigger',
     #  the payload is the predefined payload to send to the webhook.
     attr_reader :payload
-    # @return [String] Optional metadata. This is sent alongside the payload to the webhook.
+    # @return [String] Optional metadata. Only used for type 'trigger' ignored for other action types.
+    #  When the user presses the action, the metadata is sent to the webhook alongside
+    #  the payload.
     attr_reader :metadata
-    # @return [String] Start time for events. Required for 'scheduleEvent'.
+    # @return [String] Start time for events in ISO 8601 format. For example, '2022-01-01T12:00:00Z'.
+    #  Required for 'scheduleEvent'.
     attr_reader :event_start_time
-    # @return [String] End time for events. Required for 'scheduleEvent'.
+    # @return [String] End time for events in ISO 8601 format. For example, '2022-01-01T12:00:00Z'.
+    #  Required for 'scheduleEvent'.
     attr_reader :event_end_time
     # @return [String] Event title. Required for 'scheduleEvent'.
     attr_reader :event_title
@@ -48,9 +52,13 @@ module Pinnacle
     #  fields for the action type and is required. For 'openUrl', the payload is the
     #  URL to open. For 'call', the payload is the phone number to dial. For 'trigger',
     #  the payload is the predefined payload to send to the webhook.
-    # @param metadata [String] Optional metadata. This is sent alongside the payload to the webhook.
-    # @param event_start_time [String] Start time for events. Required for 'scheduleEvent'.
-    # @param event_end_time [String] End time for events. Required for 'scheduleEvent'.
+    # @param metadata [String] Optional metadata. Only used for type 'trigger' ignored for other action types.
+    #  When the user presses the action, the metadata is sent to the webhook alongside
+    #  the payload.
+    # @param event_start_time [String] Start time for events in ISO 8601 format. For example, '2022-01-01T12:00:00Z'.
+    #  Required for 'scheduleEvent'.
+    # @param event_end_time [String] End time for events in ISO 8601 format. For example, '2022-01-01T12:00:00Z'.
+    #  Required for 'scheduleEvent'.
     # @param event_title [String] Event title. Required for 'scheduleEvent'.
     # @param event_description [String] Optional event description.
     # @param lat_long [Pinnacle::ActionLatLong] Latitude and longitude coordinates. Required for 'sendLocation'.
