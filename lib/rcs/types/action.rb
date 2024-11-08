@@ -11,7 +11,7 @@ module Pinnacle
     attr_reader :title
     # @return [Pinnacle::ActionType] Type of action for the button. 'openUrl' opens a URL, 'call' dials a phone
     #  number, 'trigger' sends the predefined payload to the webhook when pressed,
-    #  'requestLocation' requests the user's location, 'scheduleEvent' creates a
+    #  'requestUserLocation' requests the user's location, 'scheduleEvent' creates a
     #  calendar event, 'sendLocation' sends a location.
     attr_reader :type
     # @return [String] Optional payload associated with the action. This payload encodes the respective
@@ -46,7 +46,7 @@ module Pinnacle
     # @param title [String] Title of the action (must be less than 25 characters).
     # @param type [Pinnacle::ActionType] Type of action for the button. 'openUrl' opens a URL, 'call' dials a phone
     #  number, 'trigger' sends the predefined payload to the webhook when pressed,
-    #  'requestLocation' requests the user's location, 'scheduleEvent' creates a
+    #  'requestUserLocation' requests the user's location, 'scheduleEvent' creates a
     #  calendar event, 'sendLocation' sends a location.
     # @param payload [String] Optional payload associated with the action. This payload encodes the respective
     #  fields for the action type and is required. For 'openUrl', the payload is the
