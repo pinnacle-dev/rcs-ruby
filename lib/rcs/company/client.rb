@@ -5,6 +5,7 @@ require_relative "../types/company"
 require "json"
 require_relative "../types/company_details"
 require_relative "../types/company_contact"
+require_relative "../types/messaging"
 require_relative "../types/point_of_contact"
 require_relative "../types/optionals"
 require_relative "types/company_register_response"
@@ -66,6 +67,7 @@ module Pinnacle
     #
     # @param company [Hash] Request of type Pinnacle::CompanyDetails, as a Hash
     #   * :name (String)
+    #   * :category (Pinnacle::CompanyCategory)
     #   * :address (String)
     #   * :ein (String)
     #   * :description (String)
@@ -81,6 +83,12 @@ module Pinnacle
     #   * :primary_email_label (String)
     #   * :privacy_policy_url (String)
     #   * :tos_url (String)
+    # @param messaging [Hash] Request of type Pinnacle::Messaging, as a Hash
+    #   * :opt_in (String)
+    #   * :opt_out (String)
+    #   * :opt_out_keywords (Array<String>)
+    #   * :agent_use_case (String)
+    #   * :expected_agent_responses (String)
     # @param point_of_contact [Hash] Request of type Pinnacle::PointOfContact, as a Hash
     #   * :poc_name (String)
     #   * :poc_title (String)
@@ -99,11 +107,17 @@ module Pinnacle
     #    api_key: "YOUR_API_KEY"
     #  )
     #  api.company.register(
-    #    company: { name: "name", address: "address", ein: "ein", description: "description", brand_color: "brandColor", logo_url: "logoUrl", hero_url: "heroUrl" },
+    #    company: { name: "name", category: ENTERTAINMENT, address: "address", ein: "ein", description: "description", brand_color: "brandColor", logo_url: "logoUrl", hero_url: "heroUrl" },
     #    company_contact: { primary_website_url: "primaryWebsiteUrl", primary_website_label: "primaryWebsiteLabel", primary_phone: "primaryPhone", primary_phone_label: "primaryPhoneLabel", primary_email: "primaryEmail", primary_email_label: "primaryEmailLabel", privacy_policy_url: "privacyPolicyUrl", tos_url: "tosUrl" },
+    #    messaging: { opt_in: "By opting in, you agree to receive messages from Pinnacle, including updates and promotions. Reply “STOP” to unsubscribe. Standard message and data rates may apply.", opt_out: "Reply with keywords like STOP or UNSUBSCRIBE to opt-out. A confirmation message will be sent, and no further messages will be received unless you re-subscribe.", opt_out_keywords: ["STOP", "UNSUBSCRIBE"], agent_use_case: "Pinnacle’s agent assists with product updates, promotions, order tracking, and support. It answers FAQs, provides order updates, and helps with opt-in/out processes. Escalates to live support when needed.", expected_agent_responses: "General Inquiry: “How can I assist you today?”
+    #  Order Status: “Provide your order number.”
+    #  Opt-In: “You’re now subscribed!”
+    #  Opt-Out: “You have unsubscribed.”
+    #  Escalation: “Connecting to a live agent.”
+    #  " },
     #    point_of_contact: { poc_name: "pocName", poc_title: "pocTitle", poc_email: "pocEmail" }
     #  )
-    def register(company:, company_contact:, point_of_contact:, optionals: nil, request_options: nil)
+    def register(company:, company_contact:, messaging:, point_of_contact:, optionals: nil, request_options: nil)
       response = @request_client.conn.post do |req|
         req.options.timeout = request_options.timeout_in_seconds unless request_options&.timeout_in_seconds.nil?
         req.headers["PINNACLE-API-Key"] = request_options.api_key unless request_options&.api_key.nil?
@@ -119,6 +133,7 @@ module Pinnacle
           **(request_options&.additional_body_parameters || {}),
           company: company,
           companyContact: company_contact,
+          messaging: messaging,
           pointOfContact: point_of_contact,
           optionals: optionals
         }.compact
@@ -134,6 +149,7 @@ module Pinnacle
     #   * :id (Integer)
     #   * :created_at (DateTime)
     #   * :name (String)
+    #   * :category (Pinnacle::CompanyCategory)
     #   * :address (String)
     #   * :ein (String)
     #   * :description (String)
@@ -151,6 +167,11 @@ module Pinnacle
     #   * :poc_name (String)
     #   * :poc_title (String)
     #   * :poc_email (String)
+    #   * :opt_in (String)
+    #   * :opt_out (String)
+    #   * :opt_out_keywords (Array<String>)
+    #   * :agent_use_case (String)
+    #   * :expected_agent_responses (String)
     #   * :test_numbers (Array<String>)
     #   * :status (String)
     #   * :additional_websites (Array<Pinnacle::CompanyAdditionalWebsitesItem>)
@@ -165,6 +186,12 @@ module Pinnacle
     #   * :primary_email_label (String)
     #   * :privacy_policy_url (String)
     #   * :tos_url (String)
+    # @param messaging [Hash] Request of type Pinnacle::Messaging, as a Hash
+    #   * :opt_in (String)
+    #   * :opt_out (String)
+    #   * :opt_out_keywords (Array<String>)
+    #   * :agent_use_case (String)
+    #   * :expected_agent_responses (String)
     # @param point_of_contact [Hash] Request of type Pinnacle::PointOfContact, as a Hash
     #   * :poc_name (String)
     #   * :poc_title (String)
@@ -183,7 +210,7 @@ module Pinnacle
     #    api_key: "YOUR_API_KEY"
     #  )
     #  api.company.update(company_id: "companyId")
-    def update(company_id:, company: nil, company_contact: nil, point_of_contact: nil, optionals: nil,
+    def update(company_id:, company: nil, company_contact: nil, messaging: nil, point_of_contact: nil, optionals: nil,
                request_options: nil)
       response = @request_client.conn.post do |req|
         req.options.timeout = request_options.timeout_in_seconds unless request_options&.timeout_in_seconds.nil?
@@ -201,6 +228,7 @@ module Pinnacle
           companyId: company_id,
           company: company,
           companyContact: company_contact,
+          messaging: messaging,
           pointOfContact: point_of_contact,
           optionals: optionals
         }.compact
@@ -266,6 +294,7 @@ module Pinnacle
     #
     # @param company [Hash] Request of type Pinnacle::CompanyDetails, as a Hash
     #   * :name (String)
+    #   * :category (Pinnacle::CompanyCategory)
     #   * :address (String)
     #   * :ein (String)
     #   * :description (String)
@@ -281,6 +310,12 @@ module Pinnacle
     #   * :primary_email_label (String)
     #   * :privacy_policy_url (String)
     #   * :tos_url (String)
+    # @param messaging [Hash] Request of type Pinnacle::Messaging, as a Hash
+    #   * :opt_in (String)
+    #   * :opt_out (String)
+    #   * :opt_out_keywords (Array<String>)
+    #   * :agent_use_case (String)
+    #   * :expected_agent_responses (String)
     # @param point_of_contact [Hash] Request of type Pinnacle::PointOfContact, as a Hash
     #   * :poc_name (String)
     #   * :poc_title (String)
@@ -299,11 +334,17 @@ module Pinnacle
     #    api_key: "YOUR_API_KEY"
     #  )
     #  api.company.register(
-    #    company: { name: "name", address: "address", ein: "ein", description: "description", brand_color: "brandColor", logo_url: "logoUrl", hero_url: "heroUrl" },
+    #    company: { name: "name", category: ENTERTAINMENT, address: "address", ein: "ein", description: "description", brand_color: "brandColor", logo_url: "logoUrl", hero_url: "heroUrl" },
     #    company_contact: { primary_website_url: "primaryWebsiteUrl", primary_website_label: "primaryWebsiteLabel", primary_phone: "primaryPhone", primary_phone_label: "primaryPhoneLabel", primary_email: "primaryEmail", primary_email_label: "primaryEmailLabel", privacy_policy_url: "privacyPolicyUrl", tos_url: "tosUrl" },
+    #    messaging: { opt_in: "By opting in, you agree to receive messages from Pinnacle, including updates and promotions. Reply “STOP” to unsubscribe. Standard message and data rates may apply.", opt_out: "Reply with keywords like STOP or UNSUBSCRIBE to opt-out. A confirmation message will be sent, and no further messages will be received unless you re-subscribe.", opt_out_keywords: ["STOP", "UNSUBSCRIBE"], agent_use_case: "Pinnacle’s agent assists with product updates, promotions, order tracking, and support. It answers FAQs, provides order updates, and helps with opt-in/out processes. Escalates to live support when needed.", expected_agent_responses: "General Inquiry: “How can I assist you today?”
+    #  Order Status: “Provide your order number.”
+    #  Opt-In: “You’re now subscribed!”
+    #  Opt-Out: “You have unsubscribed.”
+    #  Escalation: “Connecting to a live agent.”
+    #  " },
     #    point_of_contact: { poc_name: "pocName", poc_title: "pocTitle", poc_email: "pocEmail" }
     #  )
-    def register(company:, company_contact:, point_of_contact:, optionals: nil, request_options: nil)
+    def register(company:, company_contact:, messaging:, point_of_contact:, optionals: nil, request_options: nil)
       Async do
         response = @request_client.conn.post do |req|
           req.options.timeout = request_options.timeout_in_seconds unless request_options&.timeout_in_seconds.nil?
@@ -320,6 +361,7 @@ module Pinnacle
             **(request_options&.additional_body_parameters || {}),
             company: company,
             companyContact: company_contact,
+            messaging: messaging,
             pointOfContact: point_of_contact,
             optionals: optionals
           }.compact
@@ -336,6 +378,7 @@ module Pinnacle
     #   * :id (Integer)
     #   * :created_at (DateTime)
     #   * :name (String)
+    #   * :category (Pinnacle::CompanyCategory)
     #   * :address (String)
     #   * :ein (String)
     #   * :description (String)
@@ -353,6 +396,11 @@ module Pinnacle
     #   * :poc_name (String)
     #   * :poc_title (String)
     #   * :poc_email (String)
+    #   * :opt_in (String)
+    #   * :opt_out (String)
+    #   * :opt_out_keywords (Array<String>)
+    #   * :agent_use_case (String)
+    #   * :expected_agent_responses (String)
     #   * :test_numbers (Array<String>)
     #   * :status (String)
     #   * :additional_websites (Array<Pinnacle::CompanyAdditionalWebsitesItem>)
@@ -367,6 +415,12 @@ module Pinnacle
     #   * :primary_email_label (String)
     #   * :privacy_policy_url (String)
     #   * :tos_url (String)
+    # @param messaging [Hash] Request of type Pinnacle::Messaging, as a Hash
+    #   * :opt_in (String)
+    #   * :opt_out (String)
+    #   * :opt_out_keywords (Array<String>)
+    #   * :agent_use_case (String)
+    #   * :expected_agent_responses (String)
     # @param point_of_contact [Hash] Request of type Pinnacle::PointOfContact, as a Hash
     #   * :poc_name (String)
     #   * :poc_title (String)
@@ -385,7 +439,7 @@ module Pinnacle
     #    api_key: "YOUR_API_KEY"
     #  )
     #  api.company.update(company_id: "companyId")
-    def update(company_id:, company: nil, company_contact: nil, point_of_contact: nil, optionals: nil,
+    def update(company_id:, company: nil, company_contact: nil, messaging: nil, point_of_contact: nil, optionals: nil,
                request_options: nil)
       Async do
         response = @request_client.conn.post do |req|
@@ -404,6 +458,7 @@ module Pinnacle
             companyId: company_id,
             company: company,
             companyContact: company_contact,
+            messaging: messaging,
             pointOfContact: point_of_contact,
             optionals: optionals
           }.compact

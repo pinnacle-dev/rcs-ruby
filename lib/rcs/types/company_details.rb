@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require_relative "company_category"
 require "ostruct"
 require "json"
 
@@ -7,6 +8,8 @@ module Pinnacle
   class CompanyDetails
     # @return [String] The name of the company.
     attr_reader :name
+    # @return [Pinnacle::CompanyCategory] The category of the company.
+    attr_reader :category
     # @return [String] The address of the company.
     attr_reader :address
     # @return [String] The EIN (Employer Identification Number) of the company.
@@ -29,6 +32,7 @@ module Pinnacle
     OMIT = Object.new
 
     # @param name [String] The name of the company.
+    # @param category [Pinnacle::CompanyCategory] The category of the company.
     # @param address [String] The address of the company.
     # @param ein [String] The EIN (Employer Identification Number) of the company.
     # @param description [String] A description of the company.
@@ -38,8 +42,10 @@ module Pinnacle
     # @param hero_url [String] URL of the company's hero image.
     # @param additional_properties [OpenStruct] Additional properties unmapped to the current class definition
     # @return [Pinnacle::CompanyDetails]
-    def initialize(name:, address:, ein:, description:, brand_color:, logo_url:, hero_url:, additional_properties: nil)
+    def initialize(name:, category:, address:, ein:, description:, brand_color:, logo_url:, hero_url:,
+                   additional_properties: nil)
       @name = name
+      @category = category
       @address = address
       @ein = ein
       @description = description
@@ -49,6 +55,7 @@ module Pinnacle
       @additional_properties = additional_properties
       @_field_set = {
         "name": name,
+        "category": category,
         "address": address,
         "ein": ein,
         "description": description,
@@ -66,6 +73,7 @@ module Pinnacle
       struct = JSON.parse(json_object, object_class: OpenStruct)
       parsed_json = JSON.parse(json_object)
       name = parsed_json["name"]
+      category = parsed_json["category"]
       address = parsed_json["address"]
       ein = parsed_json["ein"]
       description = parsed_json["description"]
@@ -74,6 +82,7 @@ module Pinnacle
       hero_url = parsed_json["heroUrl"]
       new(
         name: name,
+        category: category,
         address: address,
         ein: ein,
         description: description,
@@ -99,6 +108,7 @@ module Pinnacle
     # @return [Void]
     def self.validate_raw(obj:)
       obj.name.is_a?(String) != false || raise("Passed value for field obj.name is not the expected type, validation failed.")
+      obj.category.is_a?(Pinnacle::CompanyCategory) != false || raise("Passed value for field obj.category is not the expected type, validation failed.")
       obj.address.is_a?(String) != false || raise("Passed value for field obj.address is not the expected type, validation failed.")
       obj.ein.is_a?(String) != false || raise("Passed value for field obj.ein is not the expected type, validation failed.")
       obj.description.is_a?(String) != false || raise("Passed value for field obj.description is not the expected type, validation failed.")

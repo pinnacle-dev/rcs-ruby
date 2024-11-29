@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "date"
+require_relative "company_category"
 require_relative "company_additional_websites_item"
 require_relative "company_additional_emails_item"
 require_relative "company_additional_phone_numbers_item"
@@ -15,6 +16,8 @@ module Pinnacle
     attr_reader :created_at
     # @return [String] The name of the company
     attr_reader :name
+    # @return [Pinnacle::CompanyCategory] The category of the company
+    attr_reader :category
     # @return [String] The address of the company
     attr_reader :address
     # @return [String] The Employer Identification Number (EIN) of the company
@@ -49,6 +52,17 @@ module Pinnacle
     attr_reader :poc_title
     # @return [String] The email address of the point of contact
     attr_reader :poc_email
+    # @return [String] Explain how users will opt in to receive messages.
+    attr_reader :opt_in
+    # @return [String] Explain how users will opt out of receiving messages.
+    attr_reader :opt_out
+    # @return [Array<String>] Please provide the unique keywords to opt out. Each keyword should not contain
+    #  spaces.
+    attr_reader :opt_out_keywords
+    # @return [String] Please define what your agent will do.
+    attr_reader :agent_use_case
+    # @return [String] Please provide some example messages that your agent will send.
+    attr_reader :expected_agent_responses
     # @return [Array<String>] A list of test phone numbers
     attr_reader :test_numbers
     # @return [String] The approval status of the company
@@ -70,6 +84,7 @@ module Pinnacle
     # @param id [Integer] The unique identifier for the company
     # @param created_at [DateTime] The date and time when the company was created
     # @param name [String] The name of the company
+    # @param category [Pinnacle::CompanyCategory] The category of the company
     # @param address [String] The address of the company
     # @param ein [String] The Employer Identification Number (EIN) of the company
     # @param description [String] A description of the company
@@ -87,6 +102,12 @@ module Pinnacle
     # @param poc_name [String] The name of the point of contact
     # @param poc_title [String] The title of the point of contact
     # @param poc_email [String] The email address of the point of contact
+    # @param opt_in [String] Explain how users will opt in to receive messages.
+    # @param opt_out [String] Explain how users will opt out of receiving messages.
+    # @param opt_out_keywords [Array<String>] Please provide the unique keywords to opt out. Each keyword should not contain
+    #  spaces.
+    # @param agent_use_case [String] Please define what your agent will do.
+    # @param expected_agent_responses [String] Please provide some example messages that your agent will send.
     # @param test_numbers [Array<String>] A list of test phone numbers
     # @param status [String] The approval status of the company
     # @param additional_websites [Array<Pinnacle::CompanyAdditionalWebsitesItem>] A list of additional websites
@@ -94,11 +115,12 @@ module Pinnacle
     # @param additional_phone_numbers [Array<Pinnacle::CompanyAdditionalPhoneNumbersItem>] A list of additional phone numbers
     # @param additional_properties [OpenStruct] Additional properties unmapped to the current class definition
     # @return [Pinnacle::Company]
-    def initialize(id: OMIT, created_at: OMIT, name: OMIT, address: OMIT, ein: OMIT, description: OMIT,
-                   brand_color: OMIT, logo_url: OMIT, hero_url: OMIT, primary_website_url: OMIT, primary_website_label: OMIT, primary_phone: OMIT, primary_phone_label: OMIT, primary_email: OMIT, primary_email_label: OMIT, privacy_policy_url: OMIT, tos_url: OMIT, poc_name: OMIT, poc_title: OMIT, poc_email: OMIT, test_numbers: OMIT, status: OMIT, additional_websites: OMIT, additional_emails: OMIT, additional_phone_numbers: OMIT, additional_properties: nil)
+    def initialize(id: OMIT, created_at: OMIT, name: OMIT, category: OMIT, address: OMIT, ein: OMIT, description: OMIT,
+                   brand_color: OMIT, logo_url: OMIT, hero_url: OMIT, primary_website_url: OMIT, primary_website_label: OMIT, primary_phone: OMIT, primary_phone_label: OMIT, primary_email: OMIT, primary_email_label: OMIT, privacy_policy_url: OMIT, tos_url: OMIT, poc_name: OMIT, poc_title: OMIT, poc_email: OMIT, opt_in: OMIT, opt_out: OMIT, opt_out_keywords: OMIT, agent_use_case: OMIT, expected_agent_responses: OMIT, test_numbers: OMIT, status: OMIT, additional_websites: OMIT, additional_emails: OMIT, additional_phone_numbers: OMIT, additional_properties: nil)
       @id = id if id != OMIT
       @created_at = created_at if created_at != OMIT
       @name = name if name != OMIT
+      @category = category if category != OMIT
       @address = address if address != OMIT
       @ein = ein if ein != OMIT
       @description = description if description != OMIT
@@ -116,6 +138,11 @@ module Pinnacle
       @poc_name = poc_name if poc_name != OMIT
       @poc_title = poc_title if poc_title != OMIT
       @poc_email = poc_email if poc_email != OMIT
+      @opt_in = opt_in if opt_in != OMIT
+      @opt_out = opt_out if opt_out != OMIT
+      @opt_out_keywords = opt_out_keywords if opt_out_keywords != OMIT
+      @agent_use_case = agent_use_case if agent_use_case != OMIT
+      @expected_agent_responses = expected_agent_responses if expected_agent_responses != OMIT
       @test_numbers = test_numbers if test_numbers != OMIT
       @status = status if status != OMIT
       @additional_websites = additional_websites if additional_websites != OMIT
@@ -126,6 +153,7 @@ module Pinnacle
         "id": id,
         "createdAt": created_at,
         "name": name,
+        "category": category,
         "address": address,
         "ein": ein,
         "description": description,
@@ -143,6 +171,11 @@ module Pinnacle
         "pocName": poc_name,
         "pocTitle": poc_title,
         "pocEmail": poc_email,
+        "optIn": opt_in,
+        "optOut": opt_out,
+        "optOutKeywords": opt_out_keywords,
+        "agentUseCase": agent_use_case,
+        "expectedAgentResponses": expected_agent_responses,
         "testNumbers": test_numbers,
         "status": status,
         "additionalWebsites": additional_websites,
@@ -163,6 +196,7 @@ module Pinnacle
       id = parsed_json["id"]
       created_at = (DateTime.parse(parsed_json["createdAt"]) unless parsed_json["createdAt"].nil?)
       name = parsed_json["name"]
+      category = parsed_json["category"]
       address = parsed_json["address"]
       ein = parsed_json["ein"]
       description = parsed_json["description"]
@@ -180,6 +214,11 @@ module Pinnacle
       poc_name = parsed_json["pocName"]
       poc_title = parsed_json["pocTitle"]
       poc_email = parsed_json["pocEmail"]
+      opt_in = parsed_json["optIn"]
+      opt_out = parsed_json["optOut"]
+      opt_out_keywords = parsed_json["optOutKeywords"]
+      agent_use_case = parsed_json["agentUseCase"]
+      expected_agent_responses = parsed_json["expectedAgentResponses"]
       test_numbers = parsed_json["testNumbers"]
       status = parsed_json["status"]
       additional_websites = parsed_json["additionalWebsites"]&.map do |item|
@@ -198,6 +237,7 @@ module Pinnacle
         id: id,
         created_at: created_at,
         name: name,
+        category: category,
         address: address,
         ein: ein,
         description: description,
@@ -215,6 +255,11 @@ module Pinnacle
         poc_name: poc_name,
         poc_title: poc_title,
         poc_email: poc_email,
+        opt_in: opt_in,
+        opt_out: opt_out,
+        opt_out_keywords: opt_out_keywords,
+        agent_use_case: agent_use_case,
+        expected_agent_responses: expected_agent_responses,
         test_numbers: test_numbers,
         status: status,
         additional_websites: additional_websites,
@@ -241,6 +286,7 @@ module Pinnacle
       obj.id&.is_a?(Integer) != false || raise("Passed value for field obj.id is not the expected type, validation failed.")
       obj.created_at&.is_a?(DateTime) != false || raise("Passed value for field obj.created_at is not the expected type, validation failed.")
       obj.name&.is_a?(String) != false || raise("Passed value for field obj.name is not the expected type, validation failed.")
+      obj.category&.is_a?(Pinnacle::CompanyCategory) != false || raise("Passed value for field obj.category is not the expected type, validation failed.")
       obj.address&.is_a?(String) != false || raise("Passed value for field obj.address is not the expected type, validation failed.")
       obj.ein&.is_a?(String) != false || raise("Passed value for field obj.ein is not the expected type, validation failed.")
       obj.description&.is_a?(String) != false || raise("Passed value for field obj.description is not the expected type, validation failed.")
@@ -258,6 +304,11 @@ module Pinnacle
       obj.poc_name&.is_a?(String) != false || raise("Passed value for field obj.poc_name is not the expected type, validation failed.")
       obj.poc_title&.is_a?(String) != false || raise("Passed value for field obj.poc_title is not the expected type, validation failed.")
       obj.poc_email&.is_a?(String) != false || raise("Passed value for field obj.poc_email is not the expected type, validation failed.")
+      obj.opt_in&.is_a?(String) != false || raise("Passed value for field obj.opt_in is not the expected type, validation failed.")
+      obj.opt_out&.is_a?(String) != false || raise("Passed value for field obj.opt_out is not the expected type, validation failed.")
+      obj.opt_out_keywords&.is_a?(Array) != false || raise("Passed value for field obj.opt_out_keywords is not the expected type, validation failed.")
+      obj.agent_use_case&.is_a?(String) != false || raise("Passed value for field obj.agent_use_case is not the expected type, validation failed.")
+      obj.expected_agent_responses&.is_a?(String) != false || raise("Passed value for field obj.expected_agent_responses is not the expected type, validation failed.")
       obj.test_numbers&.is_a?(Array) != false || raise("Passed value for field obj.test_numbers is not the expected type, validation failed.")
       obj.status&.is_a?(String) != false || raise("Passed value for field obj.status is not the expected type, validation failed.")
       obj.additional_websites&.is_a?(Array) != false || raise("Passed value for field obj.additional_websites is not the expected type, validation failed.")
