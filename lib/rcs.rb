@@ -5,6 +5,7 @@ require_relative "types_export"
 require_relative "requests"
 require_relative "rcs/company/client"
 require_relative "rcs/send/client"
+require_relative "rcs/tools/client"
 require_relative "rcs/types/rcs_functionalities"
 
 module Pinnacle
@@ -13,6 +14,8 @@ module Pinnacle
     attr_reader :company
     # @return [Pinnacle::SendClient]
     attr_reader :send
+    # @return [Pinnacle::ToolsClient]
+    attr_reader :tools
 
     # @param base_url [String]
     # @param environment [Pinnacle::Environment]
@@ -31,6 +34,7 @@ module Pinnacle
       )
       @company = Pinnacle::CompanyClient.new(request_client: @request_client)
       @send = Pinnacle::SendClient.new(request_client: @request_client)
+      @tools = Pinnacle::ToolsClient.new(request_client: @request_client)
     end
 
     # Retrieve the RCS functionality of a phone number. For example checks if a phone
@@ -71,6 +75,8 @@ module Pinnacle
     attr_reader :company
     # @return [Pinnacle::AsyncSendClient]
     attr_reader :send
+    # @return [Pinnacle::AsyncToolsClient]
+    attr_reader :tools
 
     # @param base_url [String]
     # @param environment [Pinnacle::Environment]
@@ -89,6 +95,7 @@ module Pinnacle
       )
       @company = Pinnacle::AsyncCompanyClient.new(request_client: @async_request_client)
       @send = Pinnacle::AsyncSendClient.new(request_client: @async_request_client)
+      @tools = Pinnacle::AsyncToolsClient.new(request_client: @async_request_client)
     end
 
     # Retrieve the RCS functionality of a phone number. For example checks if a phone
