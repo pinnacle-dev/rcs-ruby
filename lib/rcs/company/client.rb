@@ -93,7 +93,7 @@ module Pinnacle
       Pinnacle::Company::CompanyRegisterResponse.from_json(json_object: response.body)
     end
 
-    # Update a company on the Pinnacle platform
+    # Upsert a company on the Pinnacle platform
     #
     # @param company_id [String] Optional company ID. If provided, updates existing company. If not provided,
     #  creates a new company.
@@ -274,7 +274,7 @@ module Pinnacle
       end
     end
 
-    # Update a company on the Pinnacle platform
+    # Upsert a company on the Pinnacle platform
     #
     # @param company_id [String] Optional company ID. If provided, updates existing company. If not provided,
     #  creates a new company.
