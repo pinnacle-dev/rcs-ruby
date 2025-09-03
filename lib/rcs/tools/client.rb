@@ -53,6 +53,8 @@ module Pinnacle
 
     # Generate signed upload (expires in 2 hours) and download URLs for a file
     #  (expires in 1 hour).
+    #  See the [Upload](/api-reference/upload) page for native Python and Typescript
+    #  SDKs.
     #
     # @param content_type [String] The MIME type of the file.
     #  Supported types are audio/basic, audio/L24, audio/mp4, audio/mpeg, audio/mpg,
@@ -152,6 +154,8 @@ module Pinnacle
 
     # Generate signed upload (expires in 2 hours) and download URLs for a file
     #  (expires in 1 hour).
+    #  See the [Upload](/api-reference/upload) page for native Python and Typescript
+    #  SDKs.
     #
     # @param content_type [String] The MIME type of the file.
     #  Supported types are audio/basic, audio/L24, audio/mp4, audio/mpeg, audio/mpg,

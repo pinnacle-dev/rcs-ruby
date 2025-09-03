@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+require_relative "rcs/company/types/company_register_request_company_id"
+require_relative "rcs/company/types/company_register_request_company"
+require_relative "rcs/company/types/company_register_request"
 require_relative "rcs/company/types/company_register_response_brand"
 require_relative "rcs/company/types/company_register_response"
 require_relative "rcs/company/types/company_update_response_brand"
