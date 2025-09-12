@@ -4,17 +4,21 @@ require_relative "../../requests"
 require_relative "../types/message"
 require_relative "types/message_reaction_schema_options"
 require_relative "../types/reaction_result"
+require_relative "send/client"
 require "async"
 
 module Pinnacle
   class MessagesClient
     # @return [Pinnacle::RequestClient]
     attr_reader :request_client
+    # @return [Pinnacle::Messages::SendClient]
+    attr_reader :send
 
     # @param request_client [Pinnacle::RequestClient]
     # @return [Pinnacle::MessagesClient]
     def initialize(request_client:)
       @request_client = request_client
+      @send = Pinnacle::Messages::SendClient.new(request_client: request_client)
     end
 
     # Retrieve a previously sent message.
@@ -96,11 +100,14 @@ module Pinnacle
   class AsyncMessagesClient
     # @return [Pinnacle::AsyncRequestClient]
     attr_reader :request_client
+    # @return [Pinnacle::Messages::AsyncSendClient]
+    attr_reader :send
 
     # @param request_client [Pinnacle::AsyncRequestClient]
     # @return [Pinnacle::AsyncMessagesClient]
     def initialize(request_client:)
       @request_client = request_client
+      @send = Pinnacle::Messages::AsyncSendClient.new(request_client: request_client)
     end
 
     # Retrieve a previously sent message.
