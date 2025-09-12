@@ -1,0 +1,15 @@
+# frozen_string_literal: true
+
+module Pinnacle
+  # Enable tracking on sent messages. If not provided, messages are not tracked. You
+  #  will not be able to react to these messages unless you provide the
+  #  [options.force](./react#request.body.options.force) field.
+  #  `ID` - Append an explicit ID at the end of the message for tracking. Users will
+  #  see this ID. <br>
+  #  `HIDDEN` - Invisible IDs are sent with messages for tracking. Will not be
+  #  visible to users but will lead to slightly longer message lengths.
+  class Tracking
+    ID = "ID"
+    HIDDEN = "HIDDEN"
+  end
+end

@@ -43,8 +43,8 @@ module Pinnacle
 
     # @return [Hash{String => String}]
     def get_headers
-      headers = { "X-Fern-Language": "Ruby", "X-Fern-SDK-Name": "rcs", "X-Fern-SDK-Version": "1.0.18" }
-      headers["PINNACLE-API-Key"] = ((@api_key.is_a? Method) ? @api_key.call : @api_key) unless @api_key.nil?
+      headers = { "X-Fern-Language": "Ruby", "X-Fern-SDK-Name": "rcs", "X-Fern-SDK-Version": "2.0.0-rc.1" }
+      headers["PINNACLE-API-KEY"] = ((@api_key.is_a? Method) ? @api_key.call : @api_key) unless @api_key.nil?
       headers
     end
   end
@@ -87,8 +87,8 @@ module Pinnacle
 
     # @return [Hash{String => String}]
     def get_headers
-      headers = { "X-Fern-Language": "Ruby", "X-Fern-SDK-Name": "rcs", "X-Fern-SDK-Version": "1.0.18" }
-      headers["PINNACLE-API-Key"] = ((@api_key.is_a? Method) ? @api_key.call : @api_key) unless @api_key.nil?
+      headers = { "X-Fern-Language": "Ruby", "X-Fern-SDK-Name": "rcs", "X-Fern-SDK-Version": "2.0.0-rc.1" }
+      headers["PINNACLE-API-KEY"] = ((@api_key.is_a? Method) ? @api_key.call : @api_key) unless @api_key.nil?
       headers
     end
   end

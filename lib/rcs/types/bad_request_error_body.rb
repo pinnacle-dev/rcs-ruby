@@ -1,47 +1,34 @@
 # frozen_string_literal: true
 
-require "ostruct"
 require "json"
+require_relative "zod_error"
+require_relative "error"
 
 module Pinnacle
   class BadRequestErrorBody
-    # @return [Array<String>]
-    attr_reader :errors
-    # @return [OpenStruct] Additional properties unmapped to the current class definition
-    attr_reader :additional_properties
-    # @return [Object]
-    attr_reader :_field_set
-    protected :_field_set
-
-    OMIT = Object.new
-
-    # @param errors [Array<String>]
-    # @param additional_properties [OpenStruct] Additional properties unmapped to the current class definition
-    # @return [Pinnacle::BadRequestErrorBody]
-    def initialize(errors: OMIT, additional_properties: nil)
-      @errors = errors if errors != OMIT
-      @additional_properties = additional_properties
-      @_field_set = { "errors": errors }.reject do |_k, v|
-        v == OMIT
-      end
-    end
-
     # Deserialize a JSON object to an instance of BadRequestErrorBody
     #
     # @param json_object [String]
     # @return [Pinnacle::BadRequestErrorBody]
     def self.from_json(json_object:)
       struct = JSON.parse(json_object, object_class: OpenStruct)
-      parsed_json = JSON.parse(json_object)
-      errors = parsed_json["errors"]
-      new(errors: errors, additional_properties: struct)
-    end
+      begin
+        Pinnacle::ZodError.validate_raw(obj: struct)
+        return Pinnacle::ZodError.from_json(json_object: struct) unless struct.nil?
 
-    # Serialize an instance of BadRequestErrorBody to a JSON object
-    #
-    # @return [String]
-    def to_json(*_args)
-      @_field_set&.to_json
+        return nil
+      rescue StandardError
+        # noop
+      end
+      begin
+        Pinnacle::Error.validate_raw(obj: struct)
+        return Pinnacle::Error.from_json(json_object: struct) unless struct.nil?
+
+        return nil
+      rescue StandardError
+        # noop
+      end
+      struct
     end
 
     # Leveraged for Union-type generation, validate_raw attempts to parse the given
@@ -51,7 +38,17 @@ module Pinnacle
     # @param obj [Object]
     # @return [Void]
     def self.validate_raw(obj:)
-      obj.errors&.is_a?(Array) != false || raise("Passed value for field obj.errors is not the expected type, validation failed.")
+      begin
+        return Pinnacle::ZodError.validate_raw(obj: obj)
+      rescue StandardError
+        # noop
+      end
+      begin
+        return Pinnacle::Error.validate_raw(obj: obj)
+      rescue StandardError
+        # noop
+      end
+      raise("Passed value matched no type within the union, validation failed.")
     end
   end
 end

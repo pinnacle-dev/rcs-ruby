@@ -3,18 +3,38 @@
 require_relative "environment"
 require_relative "types_export"
 require_relative "requests"
-require_relative "rcs/company/client"
-require_relative "rcs/send/client"
+require_relative "rcs/brands/client"
+require_relative "rcs/contacts/client"
+require_relative "rcs/conversations/client"
+require_relative "rcs/messages/client"
+require_relative "rcs/phone_numbers/client"
+require_relative "rcs/webhooks/client"
+require_relative "rcs/campaigns/client"
+require_relative "rcs/message/client"
+require_relative "rcs/status/client"
 require_relative "rcs/tools/client"
-require_relative "rcs/types/rcs_functionalities"
 
 module Pinnacle
   class Client
-    # @return [Pinnacle::CompanyClient]
-    attr_reader :company
-    # @return [Pinnacle::SendClient]
-    attr_reader :send
-    # @return [Pinnacle::ToolsClient]
+    # @return [Pinnacle::BrandsClient]
+    attr_reader :brands
+    # @return [Pinnacle::ContactsClient]
+    attr_reader :contacts
+    # @return [Pinnacle::ConversationsClient]
+    attr_reader :conversations
+    # @return [Pinnacle::MessagesClient]
+    attr_reader :messages
+    # @return [Pinnacle::PhoneNumbersClient]
+    attr_reader :phone_numbers
+    # @return [Pinnacle::WebhooksClient]
+    attr_reader :webhooks
+    # @return [Pinnacle::Campaigns::Client]
+    attr_reader :campaigns
+    # @return [Pinnacle::Message::Client]
+    attr_reader :message
+    # @return [Pinnacle::Status::Client]
+    attr_reader :status
+    # @return [Pinnacle::Tools::Client]
     attr_reader :tools
 
     # @param base_url [String]
@@ -32,50 +52,39 @@ module Pinnacle
         timeout_in_seconds: timeout_in_seconds,
         api_key: api_key
       )
-      @company = Pinnacle::CompanyClient.new(request_client: @request_client)
-      @send = Pinnacle::SendClient.new(request_client: @request_client)
-      @tools = Pinnacle::ToolsClient.new(request_client: @request_client)
-    end
-
-    # Retrieve the RCS functionality of a phone number. For example checks if a phone
-    #  number can receive RCS message and if it can receive RCS carousels.
-    #
-    # @param phone_number [String] The phone number to check for RCS functionality. Should be in E.164 format (i.e.
-    #  +12345678901).
-    # @param request_options [Pinnacle::RequestOptions]
-    # @return [Pinnacle::RcsFunctionalities]
-    # @example
-    #  api = Pinnacle::Client.new(
-    #    base_url: "https://api.example.com",
-    #    environment: Pinnacle::Environment::DEFAULT,
-    #    api_key: "YOUR_API_KEY"
-    #  )
-    #  api.get_rcs_functionality
-    def get_rcs_functionality(phone_number: nil, request_options: nil)
-      response = @request_client.conn.get do |req|
-        req.options.timeout = request_options.timeout_in_seconds unless request_options&.timeout_in_seconds.nil?
-        req.headers["PINNACLE-API-Key"] = request_options.api_key unless request_options&.api_key.nil?
-        req.headers = {
-      **(req.headers || {}),
-      **@request_client.get_headers,
-      **(request_options&.additional_headers || {})
-        }.compact
-        req.params = { **(request_options&.additional_query_parameters || {}), "phoneNumber": phone_number }.compact
-        unless request_options.nil? || request_options&.additional_body_parameters.nil?
-          req.body = { **(request_options&.additional_body_parameters || {}) }.compact
-        end
-        req.url "#{@request_client.get_url(request_options: request_options)}/rcs_functionality"
-      end
-      Pinnacle::RcsFunctionalities.from_json(json_object: response.body)
+      @brands = Pinnacle::BrandsClient.new(request_client: @request_client)
+      @contacts = Pinnacle::ContactsClient.new(request_client: @request_client)
+      @conversations = Pinnacle::ConversationsClient.new(request_client: @request_client)
+      @messages = Pinnacle::MessagesClient.new(request_client: @request_client)
+      @phone_numbers = Pinnacle::PhoneNumbersClient.new(request_client: @request_client)
+      @webhooks = Pinnacle::WebhooksClient.new(request_client: @request_client)
+      @campaigns = Pinnacle::Campaigns::Client.new(request_client: @request_client)
+      @message = Pinnacle::Message::Client.new(request_client: @request_client)
+      @status = Pinnacle::Status::Client.new(request_client: @request_client)
+      @tools = Pinnacle::Tools::Client.new(request_client: @request_client)
     end
   end
 
   class AsyncClient
-    # @return [Pinnacle::AsyncCompanyClient]
-    attr_reader :company
-    # @return [Pinnacle::AsyncSendClient]
-    attr_reader :send
-    # @return [Pinnacle::AsyncToolsClient]
+    # @return [Pinnacle::AsyncBrandsClient]
+    attr_reader :brands
+    # @return [Pinnacle::AsyncContactsClient]
+    attr_reader :contacts
+    # @return [Pinnacle::AsyncConversationsClient]
+    attr_reader :conversations
+    # @return [Pinnacle::AsyncMessagesClient]
+    attr_reader :messages
+    # @return [Pinnacle::AsyncPhoneNumbersClient]
+    attr_reader :phone_numbers
+    # @return [Pinnacle::AsyncWebhooksClient]
+    attr_reader :webhooks
+    # @return [Pinnacle::Campaigns::AsyncClient]
+    attr_reader :campaigns
+    # @return [Pinnacle::Message::AsyncClient]
+    attr_reader :message
+    # @return [Pinnacle::Status::AsyncClient]
+    attr_reader :status
+    # @return [Pinnacle::Tools::AsyncClient]
     attr_reader :tools
 
     # @param base_url [String]
@@ -93,41 +102,16 @@ module Pinnacle
         timeout_in_seconds: timeout_in_seconds,
         api_key: api_key
       )
-      @company = Pinnacle::AsyncCompanyClient.new(request_client: @async_request_client)
-      @send = Pinnacle::AsyncSendClient.new(request_client: @async_request_client)
-      @tools = Pinnacle::AsyncToolsClient.new(request_client: @async_request_client)
-    end
-
-    # Retrieve the RCS functionality of a phone number. For example checks if a phone
-    #  number can receive RCS message and if it can receive RCS carousels.
-    #
-    # @param phone_number [String] The phone number to check for RCS functionality. Should be in E.164 format (i.e.
-    #  +12345678901).
-    # @param request_options [Pinnacle::RequestOptions]
-    # @return [Pinnacle::RcsFunctionalities]
-    # @example
-    #  api = Pinnacle::Client.new(
-    #    base_url: "https://api.example.com",
-    #    environment: Pinnacle::Environment::DEFAULT,
-    #    api_key: "YOUR_API_KEY"
-    #  )
-    #  api.get_rcs_functionality
-    def get_rcs_functionality(phone_number: nil, request_options: nil)
-      response = @async_request_client.conn.get do |req|
-        req.options.timeout = request_options.timeout_in_seconds unless request_options&.timeout_in_seconds.nil?
-        req.headers["PINNACLE-API-Key"] = request_options.api_key unless request_options&.api_key.nil?
-        req.headers = {
-      **(req.headers || {}),
-      **@async_request_client.get_headers,
-      **(request_options&.additional_headers || {})
-        }.compact
-        req.params = { **(request_options&.additional_query_parameters || {}), "phoneNumber": phone_number }.compact
-        unless request_options.nil? || request_options&.additional_body_parameters.nil?
-          req.body = { **(request_options&.additional_body_parameters || {}) }.compact
-        end
-        req.url "#{@async_request_client.get_url(request_options: request_options)}/rcs_functionality"
-      end
-      Pinnacle::RcsFunctionalities.from_json(json_object: response.body)
+      @brands = Pinnacle::AsyncBrandsClient.new(request_client: @async_request_client)
+      @contacts = Pinnacle::AsyncContactsClient.new(request_client: @async_request_client)
+      @conversations = Pinnacle::AsyncConversationsClient.new(request_client: @async_request_client)
+      @messages = Pinnacle::AsyncMessagesClient.new(request_client: @async_request_client)
+      @phone_numbers = Pinnacle::AsyncPhoneNumbersClient.new(request_client: @async_request_client)
+      @webhooks = Pinnacle::AsyncWebhooksClient.new(request_client: @async_request_client)
+      @campaigns = Pinnacle::Campaigns::AsyncClient.new(request_client: @async_request_client)
+      @message = Pinnacle::Message::AsyncClient.new(request_client: @async_request_client)
+      @status = Pinnacle::Status::AsyncClient.new(request_client: @async_request_client)
+      @tools = Pinnacle::Tools::AsyncClient.new(request_client: @async_request_client)
     end
   end
 end

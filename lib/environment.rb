@@ -2,6 +2,6 @@
 
 module Pinnacle
   class Environment
-    DEFAULT = "https://www.trypinnacle.dev/api"
+    DEFAULT = "https://api.pinnacle.sh"
   end
 end
