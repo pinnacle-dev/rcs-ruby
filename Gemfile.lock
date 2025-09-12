@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    rcs (2.0.0.pre.rc.1)
+    rcs (2.0.0.pre.rc.2)
       async-http-faraday (>= 0.0, < 1.0)
       faraday (>= 1.10, < 3.0)
       faraday-net_http (>= 1.0, < 4.0)
