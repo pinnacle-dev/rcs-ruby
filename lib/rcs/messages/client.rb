@@ -21,7 +21,7 @@ module Pinnacle
     #
     # @param id [Integer] Unique identifier of the message.
     # @param request_options [Pinnacle::RequestOptions]
-    # @return [Pinnacle::Message]
+    # @return [Pinnacle::Types::Message]
     # @example
     #  api = Pinnacle::Client.new(
     #    base_url: "https://api.example.com",
@@ -46,18 +46,18 @@ module Pinnacle
         end
         req.url "#{@request_client.get_url(request_options: request_options)}/messages/#{id}"
       end
-      Pinnacle::Message.from_json(json_object: response.body)
+      Pinnacle::Types::Message.from_json(json_object: response.body)
     end
 
     # Add or remove an emoji reaction to a previously sent message.
     #
     # @param message_id [Integer] Unique identifier of the message.
-    # @param options [Hash] Request of type Pinnacle::Messages::MessageReactionSchemaOptions, as a Hash
+    # @param options [Hash] Request of type Pinnacle::Messages::Types::MessageReactionSchemaOptions, as a Hash
     #   * :force (Boolean)
     # @param reaction [String] Unicode emoji to add. <br>
     #  Use `null` to remove existing reaction.
     # @param request_options [Pinnacle::RequestOptions]
-    # @return [Pinnacle::ReactionResult]
+    # @return [Pinnacle::Types::ReactionResult]
     # @example
     #  api = Pinnacle::Client.new(
     #    base_url: "https://api.example.com",
@@ -89,7 +89,7 @@ module Pinnacle
         }.compact
         req.url "#{@request_client.get_url(request_options: request_options)}/messages/react"
       end
-      Pinnacle::ReactionResult.from_json(json_object: response.body)
+      Pinnacle::Types::ReactionResult.from_json(json_object: response.body)
     end
   end
 
@@ -107,7 +107,7 @@ module Pinnacle
     #
     # @param id [Integer] Unique identifier of the message.
     # @param request_options [Pinnacle::RequestOptions]
-    # @return [Pinnacle::Message]
+    # @return [Pinnacle::Types::Message]
     # @example
     #  api = Pinnacle::Client.new(
     #    base_url: "https://api.example.com",
@@ -133,19 +133,19 @@ module Pinnacle
           end
           req.url "#{@request_client.get_url(request_options: request_options)}/messages/#{id}"
         end
-        Pinnacle::Message.from_json(json_object: response.body)
+        Pinnacle::Types::Message.from_json(json_object: response.body)
       end
     end
 
     # Add or remove an emoji reaction to a previously sent message.
     #
     # @param message_id [Integer] Unique identifier of the message.
-    # @param options [Hash] Request of type Pinnacle::Messages::MessageReactionSchemaOptions, as a Hash
+    # @param options [Hash] Request of type Pinnacle::Messages::Types::MessageReactionSchemaOptions, as a Hash
     #   * :force (Boolean)
     # @param reaction [String] Unicode emoji to add. <br>
     #  Use `null` to remove existing reaction.
     # @param request_options [Pinnacle::RequestOptions]
-    # @return [Pinnacle::ReactionResult]
+    # @return [Pinnacle::Types::ReactionResult]
     # @example
     #  api = Pinnacle::Client.new(
     #    base_url: "https://api.example.com",
@@ -178,7 +178,7 @@ module Pinnacle
           }.compact
           req.url "#{@request_client.get_url(request_options: request_options)}/messages/react"
         end
-        Pinnacle::ReactionResult.from_json(json_object: response.body)
+        Pinnacle::Types::ReactionResult.from_json(json_object: response.body)
       end
     end
   end

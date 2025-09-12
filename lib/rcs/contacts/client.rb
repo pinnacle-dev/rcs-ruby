@@ -24,7 +24,7 @@ module Pinnacle
     # @param phone_number [String] Phone number you want to look up contact information for, provided in
     #  URL-encoded E.164 format with %2B prefix instead of +.
     # @param request_options [Pinnacle::RequestOptions]
-    # @return [Pinnacle::Contact]
+    # @return [Pinnacle::Types::Contact]
     # @example
     #  api = Pinnacle::Client.new(
     #    base_url: "https://api.example.com",
@@ -51,7 +51,7 @@ module Pinnacle
         end
         req.url "#{@request_client.get_url(request_options: request_options)}/contacts"
       end
-      Pinnacle::Contact.from_json(json_object: response.body)
+      Pinnacle::Types::Contact.from_json(json_object: response.body)
     end
 
     # Create a new contact for a given phone number.
@@ -62,7 +62,7 @@ module Pinnacle
     # @param tags [Array<String>] New tags for your contact.
     # @param phone_number [String] Phone number to save for your contact, in E.164 format.
     # @param request_options [Pinnacle::RequestOptions]
-    # @return [Pinnacle::ContactId]
+    # @return [Pinnacle::Types::ContactId]
     # @example
     #  api = Pinnacle::Client.new(
     #    base_url: "https://api.example.com",
@@ -92,7 +92,7 @@ module Pinnacle
         }.compact
         req.url "#{@request_client.get_url(request_options: request_options)}/contacts"
       end
-      Pinnacle::ContactId.from_json(json_object: response.body)
+      Pinnacle::Types::ContactId.from_json(json_object: response.body)
     end
 
     # Update an existing contact.
@@ -103,7 +103,7 @@ module Pinnacle
     # @param tags [Array<String>] New tags for your contact.
     # @param id [Integer] ID of the contact you want to update.
     # @param request_options [Pinnacle::RequestOptions]
-    # @return [Pinnacle::UpdatedContactId]
+    # @return [Pinnacle::Types::UpdatedContactId]
     # @example
     #  api = Pinnacle::Client.new(
     #    base_url: "https://api.example.com",
@@ -133,7 +133,7 @@ module Pinnacle
         }.compact
         req.url "#{@request_client.get_url(request_options: request_options)}/contacts"
       end
-      Pinnacle::UpdatedContactId.from_json(json_object: response.body)
+      Pinnacle::Types::UpdatedContactId.from_json(json_object: response.body)
     end
   end
 
@@ -154,7 +154,7 @@ module Pinnacle
     # @param phone_number [String] Phone number you want to look up contact information for, provided in
     #  URL-encoded E.164 format with %2B prefix instead of +.
     # @param request_options [Pinnacle::RequestOptions]
-    # @return [Pinnacle::Contact]
+    # @return [Pinnacle::Types::Contact]
     # @example
     #  api = Pinnacle::Client.new(
     #    base_url: "https://api.example.com",
@@ -182,7 +182,7 @@ module Pinnacle
           end
           req.url "#{@request_client.get_url(request_options: request_options)}/contacts"
         end
-        Pinnacle::Contact.from_json(json_object: response.body)
+        Pinnacle::Types::Contact.from_json(json_object: response.body)
       end
     end
 
@@ -194,7 +194,7 @@ module Pinnacle
     # @param tags [Array<String>] New tags for your contact.
     # @param phone_number [String] Phone number to save for your contact, in E.164 format.
     # @param request_options [Pinnacle::RequestOptions]
-    # @return [Pinnacle::ContactId]
+    # @return [Pinnacle::Types::ContactId]
     # @example
     #  api = Pinnacle::Client.new(
     #    base_url: "https://api.example.com",
@@ -225,7 +225,7 @@ module Pinnacle
           }.compact
           req.url "#{@request_client.get_url(request_options: request_options)}/contacts"
         end
-        Pinnacle::ContactId.from_json(json_object: response.body)
+        Pinnacle::Types::ContactId.from_json(json_object: response.body)
       end
     end
 
@@ -237,7 +237,7 @@ module Pinnacle
     # @param tags [Array<String>] New tags for your contact.
     # @param id [Integer] ID of the contact you want to update.
     # @param request_options [Pinnacle::RequestOptions]
-    # @return [Pinnacle::UpdatedContactId]
+    # @return [Pinnacle::Types::UpdatedContactId]
     # @example
     #  api = Pinnacle::Client.new(
     #    base_url: "https://api.example.com",
@@ -268,7 +268,7 @@ module Pinnacle
           }.compact
           req.url "#{@request_client.get_url(request_options: request_options)}/contacts"
         end
-        Pinnacle::UpdatedContactId.from_json(json_object: response.body)
+        Pinnacle::Types::UpdatedContactId.from_json(json_object: response.body)
       end
     end
   end

@@ -20,7 +20,7 @@ module Pinnacle
     #
     # @param identifiers [Array<String>] List of URLs or phone numbers in E.164 format that the webhook is attached to.
     # @param request_options [Pinnacle::RequestOptions]
-    # @return [Pinnacle::WebhookResult]
+    # @return [Pinnacle::Types::WebhookResult]
     # @example
     #  api = Pinnacle::Client.new(
     #    base_url: "https://api.example.com",
@@ -43,7 +43,7 @@ module Pinnacle
         req.body = { **(request_options&.additional_body_parameters || {}), identifiers: identifiers }.compact
         req.url "#{@request_client.get_url(request_options: request_options)}/webhooks"
       end
-      Pinnacle::WebhookResult.from_json(json_object: response.body)
+      Pinnacle::Types::WebhookResult.from_json(json_object: response.body)
     end
   end
 
@@ -62,7 +62,7 @@ module Pinnacle
     #
     # @param identifiers [Array<String>] List of URLs or phone numbers in E.164 format that the webhook is attached to.
     # @param request_options [Pinnacle::RequestOptions]
-    # @return [Pinnacle::WebhookResult]
+    # @return [Pinnacle::Types::WebhookResult]
     # @example
     #  api = Pinnacle::Client.new(
     #    base_url: "https://api.example.com",
@@ -86,7 +86,7 @@ module Pinnacle
           req.body = { **(request_options&.additional_body_parameters || {}), identifiers: identifiers }.compact
           req.url "#{@request_client.get_url(request_options: request_options)}/webhooks"
         end
-        Pinnacle::WebhookResult.from_json(json_object: response.body)
+        Pinnacle::Types::WebhookResult.from_json(json_object: response.body)
       end
     end
   end

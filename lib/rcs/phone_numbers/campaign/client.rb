@@ -21,10 +21,10 @@ module Pinnacle
       # Link a phone number to a specific campaign.
       #
       # @param phones [Array<String>] List of phone number (E.164 format).
-      # @param campaign_type [Pinnacle::MessagingProfileEnum]
+      # @param campaign_type [Pinnacle::Types::MessagingProfileEnum]
       # @param campaign_id [Integer] Campaign's identifier.
       # @param request_options [Pinnacle::RequestOptions]
-      # @return [Pinnacle::AttachedPhoneNumberResult]
+      # @return [Pinnacle::Types::AttachedPhoneNumberResult]
       # @example
       #  api = Pinnacle::Client.new(
       #    base_url: "https://api.example.com",
@@ -56,14 +56,14 @@ module Pinnacle
           }.compact
           req.url "#{@request_client.get_url(request_options: request_options)}/phone-numbers/attach-campaign"
         end
-        Pinnacle::AttachedPhoneNumberResult.from_json(json_object: response.body)
+        Pinnacle::Types::AttachedPhoneNumberResult.from_json(json_object: response.body)
       end
 
       # Remove the association between a phone number and its attached campaign.
       #
       # @param phones [Array<String>] List of phone numbers (E.164 format).
       # @param request_options [Pinnacle::RequestOptions]
-      # @return [Pinnacle::DetachedPhoneNumberResult]
+      # @return [Pinnacle::Types::DetachedPhoneNumberResult]
       # @example
       #  api = Pinnacle::Client.new(
       #    base_url: "https://api.example.com",
@@ -86,7 +86,7 @@ module Pinnacle
           req.body = { **(request_options&.additional_body_parameters || {}), phones: phones }.compact
           req.url "#{@request_client.get_url(request_options: request_options)}/phone-numbers/detach-campaign"
         end
-        Pinnacle::DetachedPhoneNumberResult.from_json(json_object: response.body)
+        Pinnacle::Types::DetachedPhoneNumberResult.from_json(json_object: response.body)
       end
     end
 
@@ -103,10 +103,10 @@ module Pinnacle
       # Link a phone number to a specific campaign.
       #
       # @param phones [Array<String>] List of phone number (E.164 format).
-      # @param campaign_type [Pinnacle::MessagingProfileEnum]
+      # @param campaign_type [Pinnacle::Types::MessagingProfileEnum]
       # @param campaign_id [Integer] Campaign's identifier.
       # @param request_options [Pinnacle::RequestOptions]
-      # @return [Pinnacle::AttachedPhoneNumberResult]
+      # @return [Pinnacle::Types::AttachedPhoneNumberResult]
       # @example
       #  api = Pinnacle::Client.new(
       #    base_url: "https://api.example.com",
@@ -139,7 +139,7 @@ module Pinnacle
             }.compact
             req.url "#{@request_client.get_url(request_options: request_options)}/phone-numbers/attach-campaign"
           end
-          Pinnacle::AttachedPhoneNumberResult.from_json(json_object: response.body)
+          Pinnacle::Types::AttachedPhoneNumberResult.from_json(json_object: response.body)
         end
       end
 
@@ -147,7 +147,7 @@ module Pinnacle
       #
       # @param phones [Array<String>] List of phone numbers (E.164 format).
       # @param request_options [Pinnacle::RequestOptions]
-      # @return [Pinnacle::DetachedPhoneNumberResult]
+      # @return [Pinnacle::Types::DetachedPhoneNumberResult]
       # @example
       #  api = Pinnacle::Client.new(
       #    base_url: "https://api.example.com",
@@ -171,7 +171,7 @@ module Pinnacle
             req.body = { **(request_options&.additional_body_parameters || {}), phones: phones }.compact
             req.url "#{@request_client.get_url(request_options: request_options)}/phone-numbers/detach-campaign"
           end
-          Pinnacle::DetachedPhoneNumberResult.from_json(json_object: response.body)
+          Pinnacle::Types::DetachedPhoneNumberResult.from_json(json_object: response.body)
         end
       end
     end

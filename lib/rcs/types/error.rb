@@ -4,56 +4,58 @@ require "ostruct"
 require "json"
 
 module Pinnacle
-  # Standard error response returned when a request cannot be processed
-  #  successfully.
-  class Error
-    # @return [String] Human-readable description of the error that occurred, corresponding to the HTTP
-    #  status code.
-    attr_reader :error
-    # @return [OpenStruct] Additional properties unmapped to the current class definition
-    attr_reader :additional_properties
-    # @return [Object]
-    attr_reader :_field_set
-    protected :_field_set
+  module Types
+    # Standard error response returned when a request cannot be processed
+    #  successfully.
+    class Error
+      # @return [String] Human-readable description of the error that occurred, corresponding to the HTTP
+      #  status code.
+      attr_reader :error
+      # @return [OpenStruct] Additional properties unmapped to the current class definition
+      attr_reader :additional_properties
+      # @return [Object]
+      attr_reader :_field_set
+      protected :_field_set
 
-    OMIT = Object.new
+      OMIT = Object.new
 
-    # @param error [String] Human-readable description of the error that occurred, corresponding to the HTTP
-    #  status code.
-    # @param additional_properties [OpenStruct] Additional properties unmapped to the current class definition
-    # @return [Pinnacle::Error]
-    def initialize(error:, additional_properties: nil)
-      @error = error
-      @additional_properties = additional_properties
-      @_field_set = { "error": error }
-    end
+      # @param error [String] Human-readable description of the error that occurred, corresponding to the HTTP
+      #  status code.
+      # @param additional_properties [OpenStruct] Additional properties unmapped to the current class definition
+      # @return [Pinnacle::Types::Error]
+      def initialize(error:, additional_properties: nil)
+        @error = error
+        @additional_properties = additional_properties
+        @_field_set = { "error": error }
+      end
 
-    # Deserialize a JSON object to an instance of Error
-    #
-    # @param json_object [String]
-    # @return [Pinnacle::Error]
-    def self.from_json(json_object:)
-      struct = JSON.parse(json_object, object_class: OpenStruct)
-      parsed_json = JSON.parse(json_object)
-      error = parsed_json["error"]
-      new(error: error, additional_properties: struct)
-    end
+      # Deserialize a JSON object to an instance of Error
+      #
+      # @param json_object [String]
+      # @return [Pinnacle::Types::Error]
+      def self.from_json(json_object:)
+        struct = JSON.parse(json_object, object_class: OpenStruct)
+        parsed_json = JSON.parse(json_object)
+        error = parsed_json["error"]
+        new(error: error, additional_properties: struct)
+      end
 
-    # Serialize an instance of Error to a JSON object
-    #
-    # @return [String]
-    def to_json(*_args)
-      @_field_set&.to_json
-    end
+      # Serialize an instance of Error to a JSON object
+      #
+      # @return [String]
+      def to_json(*_args)
+        @_field_set&.to_json
+      end
 
-    # Leveraged for Union-type generation, validate_raw attempts to parse the given
-    #  hash and check each fields type against the current object's property
-    #  definitions.
-    #
-    # @param obj [Object]
-    # @return [Void]
-    def self.validate_raw(obj:)
-      obj.error.is_a?(String) != false || raise("Passed value for field obj.error is not the expected type, validation failed.")
+      # Leveraged for Union-type generation, validate_raw attempts to parse the given
+      #  hash and check each fields type against the current object's property
+      #  definitions.
+      #
+      # @param obj [Object]
+      # @return [Void]
+      def self.validate_raw(obj:)
+        obj.error.is_a?(String) != false || raise("Passed value for field obj.error is not the expected type, validation failed.")
+      end
     end
   end
 end

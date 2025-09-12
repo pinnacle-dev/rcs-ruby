@@ -29,11 +29,11 @@ module Pinnacle
       # Generate campaign details based off existing campaign and the brand it's
       #  connected to.
       #
-      # @param request [Hash] Request of type Pinnacle::AutofillCampaignParams, as a Hash
+      # @param request [Hash] Request of type Pinnacle::Types::AutofillCampaignParams, as a Hash
       #   * :additional_info (String)
       #   * :campaign_id (Integer)
       # @param request_options [Pinnacle::RequestOptions]
-      # @return [Pinnacle::Campaigns::Rcs::RcsAutofillResponse]
+      # @return [Pinnacle::Campaigns::Rcs::Types::RcsAutofillResponse]
       # @example
       #  api = Pinnacle::Client.new(
       #    base_url: "https://api.example.com",
@@ -56,14 +56,14 @@ module Pinnacle
           req.body = { **(request || {}), **(request_options&.additional_body_parameters || {}) }.compact
           req.url "#{@request_client.get_url(request_options: request_options)}/campaigns/rcs/autofill"
         end
-        Pinnacle::Campaigns::Rcs::RcsAutofillResponse.from_json(json_object: response.body)
+        Pinnacle::Campaigns::Rcs::Types::RcsAutofillResponse.from_json(json_object: response.body)
       end
 
       # Retrieve RCS campaign.
       #
       # @param campaign_id [Integer] Unique identifier of the RCS campaign.
       # @param request_options [Pinnacle::RequestOptions]
-      # @return [Pinnacle::ExtendedRcsCampaign]
+      # @return [Pinnacle::Types::ExtendedRcsCampaign]
       # @example
       #  api = Pinnacle::Client.new(
       #    base_url: "https://api.example.com",
@@ -88,14 +88,14 @@ module Pinnacle
           end
           req.url "#{@request_client.get_url(request_options: request_options)}/campaigns/rcs/#{campaign_id}"
         end
-        Pinnacle::ExtendedRcsCampaign.from_json(json_object: response.body)
+        Pinnacle::Types::ExtendedRcsCampaign.from_json(json_object: response.body)
       end
 
       # Submit your RCS campaign for approval and activation with carriers.
       #
       # @param campaign_id [Integer] Unique identifier of the RCS campaign to retrieve.
       # @param request_options [Pinnacle::RequestOptions]
-      # @return [Pinnacle::CampaignSubmissionResult]
+      # @return [Pinnacle::Types::CampaignSubmissionResult]
       # @example
       #  api = Pinnacle::Client.new(
       #    base_url: "https://api.example.com",
@@ -120,38 +120,38 @@ module Pinnacle
           end
           req.url "#{@request_client.get_url(request_options: request_options)}/campaigns/rcs/submit/#{campaign_id}"
         end
-        Pinnacle::CampaignSubmissionResult.from_json(json_object: response.body)
+        Pinnacle::Types::CampaignSubmissionResult.from_json(json_object: response.body)
       end
 
       # Create a new RCS campaign or updates an existing one. <br>
       #  Omit campaignId to create a campaign.
       #
-      # @param agent [Hash] Create an agent for the campaign.Request of type Pinnacle::Campaigns::Rcs::UpsertRcsSchemaAgent, as a Hash
+      # @param agent [Hash] Create an agent for the campaign.Request of type Pinnacle::Campaigns::Rcs::Types::UpsertRcsSchemaAgent, as a Hash
       #   * :color (String)
       #   * :description (String)
-      #   * :emails (Array<Pinnacle::Campaigns::Rcs::UpsertRcsSchemaAgentEmailsItem>)
+      #   * :emails (Array<Pinnacle::Campaigns::Rcs::Types::UpsertRcsSchemaAgentEmailsItem>)
       #   * :hero_url (String)
       #   * :icon_url (String)
       #   * :name (String)
-      #   * :phones (Array<Pinnacle::Campaigns::Rcs::UpsertRcsSchemaAgentPhonesItem>)
-      #   * :websites (Array<Pinnacle::Campaigns::Rcs::UpsertRcsSchemaAgentWebsitesItem>)
+      #   * :phones (Array<Pinnacle::Campaigns::Rcs::Types::UpsertRcsSchemaAgentPhonesItem>)
+      #   * :websites (Array<Pinnacle::Campaigns::Rcs::Types::UpsertRcsSchemaAgentWebsitesItem>)
       # @param brand [Integer] Unique identifier for the brand.
       # @param campaign_id [Integer] Unique identifier for the campaign.
       # @param expected_agent_responses [Array<String>] List of what the agent might say to users (1-5 required).
-      # @param links [Hash] Legal documentation links.Request of type Pinnacle::Campaigns::Rcs::UpsertRcsSchemaLinks, as a Hash
+      # @param links [Hash] Legal documentation links.Request of type Pinnacle::Campaigns::Rcs::Types::UpsertRcsSchemaLinks, as a Hash
       #   * :privacy_policy (String)
       #   * :terms_of_service (String)
-      # @param opt_in [Hash] Opt-in configuration.Request of type Pinnacle::Campaigns::Rcs::UpsertRcsSchemaOptIn, as a Hash
-      #   * :method (Pinnacle::RcsCampaignOptInMethodEnum)
+      # @param opt_in [Hash] Opt-in configuration.Request of type Pinnacle::Campaigns::Rcs::Types::UpsertRcsSchemaOptIn, as a Hash
+      #   * :method (Pinnacle::Types::RcsCampaignOptInMethodEnum)
       #   * :terms_and_conditions (String)
-      # @param opt_out [Hash] Opt-out configuration.Request of type Pinnacle::Campaigns::Rcs::UpsertRcsSchemaOptOut, as a Hash
+      # @param opt_out [Hash] Opt-out configuration.Request of type Pinnacle::Campaigns::Rcs::Types::UpsertRcsSchemaOptOut, as a Hash
       #   * :description (String)
       #   * :keywords (Array<String>)
-      # @param use_case [Hash] Use case classification for the campaign.Request of type Pinnacle::Campaigns::Rcs::UpsertRcsSchemaUseCase, as a Hash
+      # @param use_case [Hash] Use case classification for the campaign.Request of type Pinnacle::Campaigns::Rcs::Types::UpsertRcsSchemaUseCase, as a Hash
       #   * :behavior (String)
-      #   * :value (Pinnacle::RcsCampaignUseCaseEnum)
+      #   * :value (Pinnacle::Types::RcsCampaignUseCaseEnum)
       # @param request_options [Pinnacle::RequestOptions]
-      # @return [Pinnacle::ExtendedRcsCampaign]
+      # @return [Pinnacle::Types::ExtendedRcsCampaign]
       # @example
       #  api = Pinnacle::Client.new(
       #    base_url: "https://api.example.com",
@@ -193,17 +193,17 @@ module Pinnacle
           }.compact
           req.url "#{@request_client.get_url(request_options: request_options)}/campaigns/rcs"
         end
-        Pinnacle::ExtendedRcsCampaign.from_json(json_object: response.body)
+        Pinnacle::Types::ExtendedRcsCampaign.from_json(json_object: response.body)
       end
 
       # Validate your RCS campaign configuration against carrier requirements and
       #  compliance rules.
       #
-      # @param request [Hash] Request of type Pinnacle::ValidateCampaignParams, as a Hash
+      # @param request [Hash] Request of type Pinnacle::Types::ValidateCampaignParams, as a Hash
       #   * :additional_info (String)
       #   * :campaign_id (Integer)
       # @param request_options [Pinnacle::RequestOptions]
-      # @return [Pinnacle::CampaignValidationResult]
+      # @return [Pinnacle::Types::CampaignValidationResult]
       # @example
       #  api = Pinnacle::Client.new(
       #    base_url: "https://api.example.com",
@@ -226,7 +226,7 @@ module Pinnacle
           req.body = { **(request || {}), **(request_options&.additional_body_parameters || {}) }.compact
           req.url "#{@request_client.get_url(request_options: request_options)}/campaigns/rcs/validate"
         end
-        Pinnacle::CampaignValidationResult.from_json(json_object: response.body)
+        Pinnacle::Types::CampaignValidationResult.from_json(json_object: response.body)
       end
     end
 
@@ -243,11 +243,11 @@ module Pinnacle
       # Generate campaign details based off existing campaign and the brand it's
       #  connected to.
       #
-      # @param request [Hash] Request of type Pinnacle::AutofillCampaignParams, as a Hash
+      # @param request [Hash] Request of type Pinnacle::Types::AutofillCampaignParams, as a Hash
       #   * :additional_info (String)
       #   * :campaign_id (Integer)
       # @param request_options [Pinnacle::RequestOptions]
-      # @return [Pinnacle::Campaigns::Rcs::RcsAutofillResponse]
+      # @return [Pinnacle::Campaigns::Rcs::Types::RcsAutofillResponse]
       # @example
       #  api = Pinnacle::Client.new(
       #    base_url: "https://api.example.com",
@@ -271,7 +271,7 @@ module Pinnacle
             req.body = { **(request || {}), **(request_options&.additional_body_parameters || {}) }.compact
             req.url "#{@request_client.get_url(request_options: request_options)}/campaigns/rcs/autofill"
           end
-          Pinnacle::Campaigns::Rcs::RcsAutofillResponse.from_json(json_object: response.body)
+          Pinnacle::Campaigns::Rcs::Types::RcsAutofillResponse.from_json(json_object: response.body)
         end
       end
 
@@ -279,7 +279,7 @@ module Pinnacle
       #
       # @param campaign_id [Integer] Unique identifier of the RCS campaign.
       # @param request_options [Pinnacle::RequestOptions]
-      # @return [Pinnacle::ExtendedRcsCampaign]
+      # @return [Pinnacle::Types::ExtendedRcsCampaign]
       # @example
       #  api = Pinnacle::Client.new(
       #    base_url: "https://api.example.com",
@@ -305,7 +305,7 @@ module Pinnacle
             end
             req.url "#{@request_client.get_url(request_options: request_options)}/campaigns/rcs/#{campaign_id}"
           end
-          Pinnacle::ExtendedRcsCampaign.from_json(json_object: response.body)
+          Pinnacle::Types::ExtendedRcsCampaign.from_json(json_object: response.body)
         end
       end
 
@@ -313,7 +313,7 @@ module Pinnacle
       #
       # @param campaign_id [Integer] Unique identifier of the RCS campaign to retrieve.
       # @param request_options [Pinnacle::RequestOptions]
-      # @return [Pinnacle::CampaignSubmissionResult]
+      # @return [Pinnacle::Types::CampaignSubmissionResult]
       # @example
       #  api = Pinnacle::Client.new(
       #    base_url: "https://api.example.com",
@@ -339,39 +339,39 @@ module Pinnacle
             end
             req.url "#{@request_client.get_url(request_options: request_options)}/campaigns/rcs/submit/#{campaign_id}"
           end
-          Pinnacle::CampaignSubmissionResult.from_json(json_object: response.body)
+          Pinnacle::Types::CampaignSubmissionResult.from_json(json_object: response.body)
         end
       end
 
       # Create a new RCS campaign or updates an existing one. <br>
       #  Omit campaignId to create a campaign.
       #
-      # @param agent [Hash] Create an agent for the campaign.Request of type Pinnacle::Campaigns::Rcs::UpsertRcsSchemaAgent, as a Hash
+      # @param agent [Hash] Create an agent for the campaign.Request of type Pinnacle::Campaigns::Rcs::Types::UpsertRcsSchemaAgent, as a Hash
       #   * :color (String)
       #   * :description (String)
-      #   * :emails (Array<Pinnacle::Campaigns::Rcs::UpsertRcsSchemaAgentEmailsItem>)
+      #   * :emails (Array<Pinnacle::Campaigns::Rcs::Types::UpsertRcsSchemaAgentEmailsItem>)
       #   * :hero_url (String)
       #   * :icon_url (String)
       #   * :name (String)
-      #   * :phones (Array<Pinnacle::Campaigns::Rcs::UpsertRcsSchemaAgentPhonesItem>)
-      #   * :websites (Array<Pinnacle::Campaigns::Rcs::UpsertRcsSchemaAgentWebsitesItem>)
+      #   * :phones (Array<Pinnacle::Campaigns::Rcs::Types::UpsertRcsSchemaAgentPhonesItem>)
+      #   * :websites (Array<Pinnacle::Campaigns::Rcs::Types::UpsertRcsSchemaAgentWebsitesItem>)
       # @param brand [Integer] Unique identifier for the brand.
       # @param campaign_id [Integer] Unique identifier for the campaign.
       # @param expected_agent_responses [Array<String>] List of what the agent might say to users (1-5 required).
-      # @param links [Hash] Legal documentation links.Request of type Pinnacle::Campaigns::Rcs::UpsertRcsSchemaLinks, as a Hash
+      # @param links [Hash] Legal documentation links.Request of type Pinnacle::Campaigns::Rcs::Types::UpsertRcsSchemaLinks, as a Hash
       #   * :privacy_policy (String)
       #   * :terms_of_service (String)
-      # @param opt_in [Hash] Opt-in configuration.Request of type Pinnacle::Campaigns::Rcs::UpsertRcsSchemaOptIn, as a Hash
-      #   * :method (Pinnacle::RcsCampaignOptInMethodEnum)
+      # @param opt_in [Hash] Opt-in configuration.Request of type Pinnacle::Campaigns::Rcs::Types::UpsertRcsSchemaOptIn, as a Hash
+      #   * :method (Pinnacle::Types::RcsCampaignOptInMethodEnum)
       #   * :terms_and_conditions (String)
-      # @param opt_out [Hash] Opt-out configuration.Request of type Pinnacle::Campaigns::Rcs::UpsertRcsSchemaOptOut, as a Hash
+      # @param opt_out [Hash] Opt-out configuration.Request of type Pinnacle::Campaigns::Rcs::Types::UpsertRcsSchemaOptOut, as a Hash
       #   * :description (String)
       #   * :keywords (Array<String>)
-      # @param use_case [Hash] Use case classification for the campaign.Request of type Pinnacle::Campaigns::Rcs::UpsertRcsSchemaUseCase, as a Hash
+      # @param use_case [Hash] Use case classification for the campaign.Request of type Pinnacle::Campaigns::Rcs::Types::UpsertRcsSchemaUseCase, as a Hash
       #   * :behavior (String)
-      #   * :value (Pinnacle::RcsCampaignUseCaseEnum)
+      #   * :value (Pinnacle::Types::RcsCampaignUseCaseEnum)
       # @param request_options [Pinnacle::RequestOptions]
-      # @return [Pinnacle::ExtendedRcsCampaign]
+      # @return [Pinnacle::Types::ExtendedRcsCampaign]
       # @example
       #  api = Pinnacle::Client.new(
       #    base_url: "https://api.example.com",
@@ -414,18 +414,18 @@ module Pinnacle
             }.compact
             req.url "#{@request_client.get_url(request_options: request_options)}/campaigns/rcs"
           end
-          Pinnacle::ExtendedRcsCampaign.from_json(json_object: response.body)
+          Pinnacle::Types::ExtendedRcsCampaign.from_json(json_object: response.body)
         end
       end
 
       # Validate your RCS campaign configuration against carrier requirements and
       #  compliance rules.
       #
-      # @param request [Hash] Request of type Pinnacle::ValidateCampaignParams, as a Hash
+      # @param request [Hash] Request of type Pinnacle::Types::ValidateCampaignParams, as a Hash
       #   * :additional_info (String)
       #   * :campaign_id (Integer)
       # @param request_options [Pinnacle::RequestOptions]
-      # @return [Pinnacle::CampaignValidationResult]
+      # @return [Pinnacle::Types::CampaignValidationResult]
       # @example
       #  api = Pinnacle::Client.new(
       #    base_url: "https://api.example.com",
@@ -449,7 +449,7 @@ module Pinnacle
             req.body = { **(request || {}), **(request_options&.additional_body_parameters || {}) }.compact
             req.url "#{@request_client.get_url(request_options: request_options)}/campaigns/rcs/validate"
           end
-          Pinnacle::CampaignValidationResult.from_json(json_object: response.body)
+          Pinnacle::Types::CampaignValidationResult.from_json(json_object: response.body)
         end
       end
     end

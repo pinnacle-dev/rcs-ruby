@@ -27,23 +27,23 @@ module Pinnacle
 
     # Search for available phone numbers that match your exact criteria.
     #
-    # @param features [Array<Pinnacle::PhoneFeatureEnum>]
+    # @param features [Array<Pinnacle::Types::PhoneFeatureEnum>]
     # @param location [Hash] Filter your search by geographic location to find numbers in specific regions.
     #  <br>
-    #  Toll-free numbers ignore city and state filters.Request of type Pinnacle::PhoneNumbers::SearchSchemaLocation, as a Hash
+    #  Toll-free numbers ignore city and state filters.Request of type Pinnacle::PhoneNumbers::Types::SearchSchemaLocation, as a Hash
     #   * :city (String)
     #   * :country_code (String)
     #   * :national_destination_code (String)
     #   * :state (String)
-    # @param phone_number_digit_filters [Hash] Filter your search by digit pattern.Request of type Pinnacle::PhoneNumbers::SearchSchemaNumber, as a Hash
+    # @param phone_number_digit_filters [Hash] Filter your search by digit pattern.Request of type Pinnacle::PhoneNumbers::Types::SearchSchemaNumber, as a Hash
     #   * :contains (String)
     #   * :ends_with (String)
     #   * :starts_with (String)
-    # @param options [Hash] Extra search settings to control how many results you get.Request of type Pinnacle::PhoneNumbers::SearchSchemaOptions, as a Hash
+    # @param options [Hash] Extra search settings to control how many results you get.Request of type Pinnacle::PhoneNumbers::Types::SearchSchemaOptions, as a Hash
     #   * :limit (Integer)
-    # @param type [Array<Pinnacle::PhoneEnum>] Types of phone numbers to return in your search.
+    # @param type [Array<Pinnacle::Types::PhoneEnum>] Types of phone numbers to return in your search.
     # @param request_options [Pinnacle::RequestOptions]
-    # @return [Array<Pinnacle::PhoneNumberDetails>]
+    # @return [Array<Pinnacle::Types::PhoneNumberDetails>]
     # @example
     #  api = Pinnacle::Client.new(
     #    base_url: "https://api.example.com",
@@ -82,7 +82,7 @@ module Pinnacle
       parsed_json = JSON.parse(response.body)
       parsed_json&.map do |item|
         item = item.to_json
-        Pinnacle::PhoneNumberDetails.from_json(json_object: item)
+        Pinnacle::Types::PhoneNumberDetails.from_json(json_object: item)
       end
     end
 
@@ -97,7 +97,7 @@ module Pinnacle
     #  If any number in the request is unavailable or invalid, no purchases will be
     #  made and the request will be voided.
     # @param request_options [Pinnacle::RequestOptions]
-    # @return [Array<Pinnacle::PurchasedNumber>]
+    # @return [Array<Pinnacle::Types::PurchasedNumber>]
     # @example
     #  api = Pinnacle::Client.new(
     #    base_url: "https://api.example.com",
@@ -123,24 +123,24 @@ module Pinnacle
       parsed_json = JSON.parse(response.body)
       parsed_json&.map do |item|
         item = item.to_json
-        Pinnacle::PurchasedNumber.from_json(json_object: item)
+        Pinnacle::Types::PurchasedNumber.from_json(json_object: item)
       end
     end
 
     # Retrieve information about any phone number.
     #
     # @param phone [String] Phone number you want to analyze in E.164 format.
-    # @param level [Pinnacle::PhoneNumbers::PhoneDetailsSchemaLevel] Choose how much detail you want in your results:
+    # @param level [Pinnacle::PhoneNumbers::Types::PhoneDetailsSchemaLevel] Choose how much detail you want in your results:
     #  - `basic`: Receive essential info like carrier, location, and format.
     #  - `advanced`: Receive a deeper analysis including fraud risk, detailed location,
     #  and enhanced contact info.
-    # @param options [Hash] Customize your lookup with additional options.Request of type Pinnacle::PhoneNumbers::PhoneDetailsSchemaOptions, as a Hash
+    # @param options [Hash] Customize your lookup with additional options.Request of type Pinnacle::PhoneNumbers::Types::PhoneDetailsSchemaOptions, as a Hash
     #   * :force (Boolean)
     #   * :risk (Boolean)
     #   * :enhanced_contact_info (Hash)
     #     * :context (String)
     # @param request_options [Pinnacle::RequestOptions]
-    # @return [Pinnacle::BasicPhoneInformation, Pinnacle::AdvancedPhoneInformation]
+    # @return [Pinnacle::Types::BasicPhoneInformation, Pinnacle::Types::AdvancedPhoneInformation]
     # @example
     #  api = Pinnacle::Client.new(
     #    base_url: "https://api.example.com",
@@ -172,7 +172,7 @@ module Pinnacle
         }.compact
         req.url "#{@request_client.get_url(request_options: request_options)}/phone-numbers/details"
       end
-      Pinnacle::PhoneNumbers::PhoneNumbersGetResponse.from_json(json_object: response.body)
+      Pinnacle::PhoneNumbers::Types::PhoneNumbersGetResponse.from_json(json_object: response.body)
     end
   end
 
@@ -188,23 +188,23 @@ module Pinnacle
 
     # Search for available phone numbers that match your exact criteria.
     #
-    # @param features [Array<Pinnacle::PhoneFeatureEnum>]
+    # @param features [Array<Pinnacle::Types::PhoneFeatureEnum>]
     # @param location [Hash] Filter your search by geographic location to find numbers in specific regions.
     #  <br>
-    #  Toll-free numbers ignore city and state filters.Request of type Pinnacle::PhoneNumbers::SearchSchemaLocation, as a Hash
+    #  Toll-free numbers ignore city and state filters.Request of type Pinnacle::PhoneNumbers::Types::SearchSchemaLocation, as a Hash
     #   * :city (String)
     #   * :country_code (String)
     #   * :national_destination_code (String)
     #   * :state (String)
-    # @param phone_number_digit_filters [Hash] Filter your search by digit pattern.Request of type Pinnacle::PhoneNumbers::SearchSchemaNumber, as a Hash
+    # @param phone_number_digit_filters [Hash] Filter your search by digit pattern.Request of type Pinnacle::PhoneNumbers::Types::SearchSchemaNumber, as a Hash
     #   * :contains (String)
     #   * :ends_with (String)
     #   * :starts_with (String)
-    # @param options [Hash] Extra search settings to control how many results you get.Request of type Pinnacle::PhoneNumbers::SearchSchemaOptions, as a Hash
+    # @param options [Hash] Extra search settings to control how many results you get.Request of type Pinnacle::PhoneNumbers::Types::SearchSchemaOptions, as a Hash
     #   * :limit (Integer)
-    # @param type [Array<Pinnacle::PhoneEnum>] Types of phone numbers to return in your search.
+    # @param type [Array<Pinnacle::Types::PhoneEnum>] Types of phone numbers to return in your search.
     # @param request_options [Pinnacle::RequestOptions]
-    # @return [Array<Pinnacle::PhoneNumberDetails>]
+    # @return [Array<Pinnacle::Types::PhoneNumberDetails>]
     # @example
     #  api = Pinnacle::Client.new(
     #    base_url: "https://api.example.com",
@@ -244,7 +244,7 @@ module Pinnacle
         parsed_json = JSON.parse(response.body)
         parsed_json&.map do |item|
           item = item.to_json
-          Pinnacle::PhoneNumberDetails.from_json(json_object: item)
+          Pinnacle::Types::PhoneNumberDetails.from_json(json_object: item)
         end
       end
     end
@@ -260,7 +260,7 @@ module Pinnacle
     #  If any number in the request is unavailable or invalid, no purchases will be
     #  made and the request will be voided.
     # @param request_options [Pinnacle::RequestOptions]
-    # @return [Array<Pinnacle::PurchasedNumber>]
+    # @return [Array<Pinnacle::Types::PurchasedNumber>]
     # @example
     #  api = Pinnacle::Client.new(
     #    base_url: "https://api.example.com",
@@ -287,7 +287,7 @@ module Pinnacle
         parsed_json = JSON.parse(response.body)
         parsed_json&.map do |item|
           item = item.to_json
-          Pinnacle::PurchasedNumber.from_json(json_object: item)
+          Pinnacle::Types::PurchasedNumber.from_json(json_object: item)
         end
       end
     end
@@ -295,17 +295,17 @@ module Pinnacle
     # Retrieve information about any phone number.
     #
     # @param phone [String] Phone number you want to analyze in E.164 format.
-    # @param level [Pinnacle::PhoneNumbers::PhoneDetailsSchemaLevel] Choose how much detail you want in your results:
+    # @param level [Pinnacle::PhoneNumbers::Types::PhoneDetailsSchemaLevel] Choose how much detail you want in your results:
     #  - `basic`: Receive essential info like carrier, location, and format.
     #  - `advanced`: Receive a deeper analysis including fraud risk, detailed location,
     #  and enhanced contact info.
-    # @param options [Hash] Customize your lookup with additional options.Request of type Pinnacle::PhoneNumbers::PhoneDetailsSchemaOptions, as a Hash
+    # @param options [Hash] Customize your lookup with additional options.Request of type Pinnacle::PhoneNumbers::Types::PhoneDetailsSchemaOptions, as a Hash
     #   * :force (Boolean)
     #   * :risk (Boolean)
     #   * :enhanced_contact_info (Hash)
     #     * :context (String)
     # @param request_options [Pinnacle::RequestOptions]
-    # @return [Pinnacle::BasicPhoneInformation, Pinnacle::AdvancedPhoneInformation]
+    # @return [Pinnacle::Types::BasicPhoneInformation, Pinnacle::Types::AdvancedPhoneInformation]
     # @example
     #  api = Pinnacle::Client.new(
     #    base_url: "https://api.example.com",
@@ -338,7 +338,7 @@ module Pinnacle
           }.compact
           req.url "#{@request_client.get_url(request_options: request_options)}/phone-numbers/details"
         end
-        Pinnacle::PhoneNumbers::PhoneNumbersGetResponse.from_json(json_object: response.body)
+        Pinnacle::PhoneNumbers::Types::PhoneNumbersGetResponse.from_json(json_object: response.body)
       end
     end
   end

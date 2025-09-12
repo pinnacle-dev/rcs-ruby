@@ -27,11 +27,11 @@ module Pinnacle
       # Generate campaign details based off existing campaign and the brand it's
       #  connected to.
       #
-      # @param request [Hash] Request of type Pinnacle::AutofillCampaignParams, as a Hash
+      # @param request [Hash] Request of type Pinnacle::Types::AutofillCampaignParams, as a Hash
       #   * :additional_info (String)
       #   * :campaign_id (Integer)
       # @param request_options [Pinnacle::RequestOptions]
-      # @return [Pinnacle::Campaigns::TollFree::TollFreeAutofillResponse]
+      # @return [Pinnacle::Campaigns::TollFree::Types::TollFreeAutofillResponse]
       # @example
       #  api = Pinnacle::Client.new(
       #    base_url: "https://api.example.com",
@@ -54,14 +54,14 @@ module Pinnacle
           req.body = { **(request || {}), **(request_options&.additional_body_parameters || {}) }.compact
           req.url "#{@request_client.get_url(request_options: request_options)}/campaigns/toll-free/autofill"
         end
-        Pinnacle::Campaigns::TollFree::TollFreeAutofillResponse.from_json(json_object: response.body)
+        Pinnacle::Campaigns::TollFree::Types::TollFreeAutofillResponse.from_json(json_object: response.body)
       end
 
       # Retrieve Toll-Free campaign.
       #
       # @param campaign_id [Integer] Unique identifier of toll-free campaign.
       # @param request_options [Pinnacle::RequestOptions]
-      # @return [Pinnacle::TollFreeCampaignWithExtendedBrandAndStatus]
+      # @return [Pinnacle::Types::TollFreeCampaignWithExtendedBrandAndStatus]
       # @example
       #  api = Pinnacle::Client.new(
       #    base_url: "https://api.example.com",
@@ -86,14 +86,14 @@ module Pinnacle
           end
           req.url "#{@request_client.get_url(request_options: request_options)}/campaigns/toll-free/#{campaign_id}"
         end
-        Pinnacle::TollFreeCampaignWithExtendedBrandAndStatus.from_json(json_object: response.body)
+        Pinnacle::Types::TollFreeCampaignWithExtendedBrandAndStatus.from_json(json_object: response.body)
       end
 
       # Submit your toll-free campaign for approval and activation with carriers.
       #
       # @param campaign_id [Integer] Unique identifier of the toll-free campaign to submit.
       # @param request_options [Pinnacle::RequestOptions]
-      # @return [Pinnacle::CampaignSubmissionResult]
+      # @return [Pinnacle::Types::CampaignSubmissionResult]
       # @example
       #  api = Pinnacle::Client.new(
       #    base_url: "https://api.example.com",
@@ -118,7 +118,7 @@ module Pinnacle
           end
           req.url "#{@request_client.get_url(request_options: request_options)}/campaigns/toll-free/submit/#{campaign_id}"
         end
-        Pinnacle::CampaignSubmissionResult.from_json(json_object: response.body)
+        Pinnacle::Types::CampaignSubmissionResult.from_json(json_object: response.body)
       end
 
       # Create a new toll-free campaign or updates an existing one.<br>
@@ -126,18 +126,18 @@ module Pinnacle
       #
       # @param brand [Integer] Brand id.
       # @param campaign_id [Integer] Unique identifier for the campaign.
-      # @param monthly_volume [Pinnacle::MessageVolumeEnum]
+      # @param monthly_volume [Pinnacle::Types::MessageVolumeEnum]
       # @param name [String] Display name of the campaign.
-      # @param opt_in [Hash] Opt-in keyword settings.Request of type Pinnacle::Campaigns::TollFree::UpsertTollFreeSchemaOptIn, as a Hash
-      #   * :method (Pinnacle::OptInMethodEnum)
+      # @param opt_in [Hash] Opt-in keyword settings.Request of type Pinnacle::Campaigns::TollFree::Types::UpsertTollFreeSchemaOptIn, as a Hash
+      #   * :method (Pinnacle::Types::OptInMethodEnum)
       #   * :url (String)
       #   * :workflow_description (String)
       # @param production_message_content [String] Explain message that would be sent.
-      # @param use_case [Hash] Use case classification for the campaign.Request of type Pinnacle::Campaigns::TollFree::UpsertTollFreeSchemaUseCase, as a Hash
+      # @param use_case [Hash] Use case classification for the campaign.Request of type Pinnacle::Campaigns::TollFree::Types::UpsertTollFreeSchemaUseCase, as a Hash
       #   * :summary (String)
-      #   * :value (Pinnacle::TollFreeCampaignUseCaseEnum)
+      #   * :value (Pinnacle::Types::TollFreeCampaignUseCaseEnum)
       # @param request_options [Pinnacle::RequestOptions]
-      # @return [Pinnacle::TollFreeCampaignWithExtendedBrandAndStatus]
+      # @return [Pinnacle::Types::TollFreeCampaignWithExtendedBrandAndStatus]
       # @example
       #  api = Pinnacle::Client.new(
       #    base_url: "https://api.example.com",
@@ -178,17 +178,17 @@ module Pinnacle
           }.compact
           req.url "#{@request_client.get_url(request_options: request_options)}/campaigns/toll-free"
         end
-        Pinnacle::TollFreeCampaignWithExtendedBrandAndStatus.from_json(json_object: response.body)
+        Pinnacle::Types::TollFreeCampaignWithExtendedBrandAndStatus.from_json(json_object: response.body)
       end
 
       # Validate your toll-free campaign configuration against carrier requirements and
       #  compliance rules.
       #
-      # @param request [Hash] Request of type Pinnacle::ValidateCampaignParams, as a Hash
+      # @param request [Hash] Request of type Pinnacle::Types::ValidateCampaignParams, as a Hash
       #   * :additional_info (String)
       #   * :campaign_id (Integer)
       # @param request_options [Pinnacle::RequestOptions]
-      # @return [Pinnacle::CampaignValidationResult]
+      # @return [Pinnacle::Types::CampaignValidationResult]
       # @example
       #  api = Pinnacle::Client.new(
       #    base_url: "https://api.example.com",
@@ -211,7 +211,7 @@ module Pinnacle
           req.body = { **(request || {}), **(request_options&.additional_body_parameters || {}) }.compact
           req.url "#{@request_client.get_url(request_options: request_options)}/campaigns/toll-free/validate"
         end
-        Pinnacle::CampaignValidationResult.from_json(json_object: response.body)
+        Pinnacle::Types::CampaignValidationResult.from_json(json_object: response.body)
       end
     end
 
@@ -228,11 +228,11 @@ module Pinnacle
       # Generate campaign details based off existing campaign and the brand it's
       #  connected to.
       #
-      # @param request [Hash] Request of type Pinnacle::AutofillCampaignParams, as a Hash
+      # @param request [Hash] Request of type Pinnacle::Types::AutofillCampaignParams, as a Hash
       #   * :additional_info (String)
       #   * :campaign_id (Integer)
       # @param request_options [Pinnacle::RequestOptions]
-      # @return [Pinnacle::Campaigns::TollFree::TollFreeAutofillResponse]
+      # @return [Pinnacle::Campaigns::TollFree::Types::TollFreeAutofillResponse]
       # @example
       #  api = Pinnacle::Client.new(
       #    base_url: "https://api.example.com",
@@ -256,7 +256,7 @@ module Pinnacle
             req.body = { **(request || {}), **(request_options&.additional_body_parameters || {}) }.compact
             req.url "#{@request_client.get_url(request_options: request_options)}/campaigns/toll-free/autofill"
           end
-          Pinnacle::Campaigns::TollFree::TollFreeAutofillResponse.from_json(json_object: response.body)
+          Pinnacle::Campaigns::TollFree::Types::TollFreeAutofillResponse.from_json(json_object: response.body)
         end
       end
 
@@ -264,7 +264,7 @@ module Pinnacle
       #
       # @param campaign_id [Integer] Unique identifier of toll-free campaign.
       # @param request_options [Pinnacle::RequestOptions]
-      # @return [Pinnacle::TollFreeCampaignWithExtendedBrandAndStatus]
+      # @return [Pinnacle::Types::TollFreeCampaignWithExtendedBrandAndStatus]
       # @example
       #  api = Pinnacle::Client.new(
       #    base_url: "https://api.example.com",
@@ -290,7 +290,7 @@ module Pinnacle
             end
             req.url "#{@request_client.get_url(request_options: request_options)}/campaigns/toll-free/#{campaign_id}"
           end
-          Pinnacle::TollFreeCampaignWithExtendedBrandAndStatus.from_json(json_object: response.body)
+          Pinnacle::Types::TollFreeCampaignWithExtendedBrandAndStatus.from_json(json_object: response.body)
         end
       end
 
@@ -298,7 +298,7 @@ module Pinnacle
       #
       # @param campaign_id [Integer] Unique identifier of the toll-free campaign to submit.
       # @param request_options [Pinnacle::RequestOptions]
-      # @return [Pinnacle::CampaignSubmissionResult]
+      # @return [Pinnacle::Types::CampaignSubmissionResult]
       # @example
       #  api = Pinnacle::Client.new(
       #    base_url: "https://api.example.com",
@@ -324,7 +324,7 @@ module Pinnacle
             end
             req.url "#{@request_client.get_url(request_options: request_options)}/campaigns/toll-free/submit/#{campaign_id}"
           end
-          Pinnacle::CampaignSubmissionResult.from_json(json_object: response.body)
+          Pinnacle::Types::CampaignSubmissionResult.from_json(json_object: response.body)
         end
       end
 
@@ -333,18 +333,18 @@ module Pinnacle
       #
       # @param brand [Integer] Brand id.
       # @param campaign_id [Integer] Unique identifier for the campaign.
-      # @param monthly_volume [Pinnacle::MessageVolumeEnum]
+      # @param monthly_volume [Pinnacle::Types::MessageVolumeEnum]
       # @param name [String] Display name of the campaign.
-      # @param opt_in [Hash] Opt-in keyword settings.Request of type Pinnacle::Campaigns::TollFree::UpsertTollFreeSchemaOptIn, as a Hash
-      #   * :method (Pinnacle::OptInMethodEnum)
+      # @param opt_in [Hash] Opt-in keyword settings.Request of type Pinnacle::Campaigns::TollFree::Types::UpsertTollFreeSchemaOptIn, as a Hash
+      #   * :method (Pinnacle::Types::OptInMethodEnum)
       #   * :url (String)
       #   * :workflow_description (String)
       # @param production_message_content [String] Explain message that would be sent.
-      # @param use_case [Hash] Use case classification for the campaign.Request of type Pinnacle::Campaigns::TollFree::UpsertTollFreeSchemaUseCase, as a Hash
+      # @param use_case [Hash] Use case classification for the campaign.Request of type Pinnacle::Campaigns::TollFree::Types::UpsertTollFreeSchemaUseCase, as a Hash
       #   * :summary (String)
-      #   * :value (Pinnacle::TollFreeCampaignUseCaseEnum)
+      #   * :value (Pinnacle::Types::TollFreeCampaignUseCaseEnum)
       # @param request_options [Pinnacle::RequestOptions]
-      # @return [Pinnacle::TollFreeCampaignWithExtendedBrandAndStatus]
+      # @return [Pinnacle::Types::TollFreeCampaignWithExtendedBrandAndStatus]
       # @example
       #  api = Pinnacle::Client.new(
       #    base_url: "https://api.example.com",
@@ -386,18 +386,18 @@ module Pinnacle
             }.compact
             req.url "#{@request_client.get_url(request_options: request_options)}/campaigns/toll-free"
           end
-          Pinnacle::TollFreeCampaignWithExtendedBrandAndStatus.from_json(json_object: response.body)
+          Pinnacle::Types::TollFreeCampaignWithExtendedBrandAndStatus.from_json(json_object: response.body)
         end
       end
 
       # Validate your toll-free campaign configuration against carrier requirements and
       #  compliance rules.
       #
-      # @param request [Hash] Request of type Pinnacle::ValidateCampaignParams, as a Hash
+      # @param request [Hash] Request of type Pinnacle::Types::ValidateCampaignParams, as a Hash
       #   * :additional_info (String)
       #   * :campaign_id (Integer)
       # @param request_options [Pinnacle::RequestOptions]
-      # @return [Pinnacle::CampaignValidationResult]
+      # @return [Pinnacle::Types::CampaignValidationResult]
       # @example
       #  api = Pinnacle::Client.new(
       #    base_url: "https://api.example.com",
@@ -421,7 +421,7 @@ module Pinnacle
             req.body = { **(request || {}), **(request_options&.additional_body_parameters || {}) }.compact
             req.url "#{@request_client.get_url(request_options: request_options)}/campaigns/toll-free/validate"
           end
-          Pinnacle::CampaignValidationResult.from_json(json_object: response.body)
+          Pinnacle::Types::CampaignValidationResult.from_json(json_object: response.body)
         end
       end
     end

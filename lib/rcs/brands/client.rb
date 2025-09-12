@@ -30,11 +30,11 @@ module Pinnacle
     #
     # @param additional_info [String] Any extra details about the brand to help improve data accuracy.
     # @param name [String] Name of the brand.
-    # @param options [Hash] Request of type Pinnacle::Brands::AutofillBrandSchemaOptions, as a Hash
+    # @param options [Hash] Request of type Pinnacle::Brands::Types::AutofillBrandSchemaOptions, as a Hash
     #   * :force_reload (Boolean)
     # @param website [String] Brand's website URL.
     # @param request_options [Pinnacle::RequestOptions]
-    # @return [Pinnacle::OptionalBrandInfo]
+    # @return [Pinnacle::Types::OptionalBrandInfo]
     # @example
     #  api = Pinnacle::Client.new(
     #    base_url: "https://api.example.com",
@@ -68,13 +68,13 @@ module Pinnacle
         }.compact
         req.url "#{@request_client.get_url(request_options: request_options)}/brands/autofill"
       end
-      Pinnacle::OptionalBrandInfo.from_json(json_object: response.body)
+      Pinnacle::Types::OptionalBrandInfo.from_json(json_object: response.body)
     end
 
     # Create a new brand or update an existing brand by with the provided information.
     #
     # @param address [String] Primary brand address where the company is located.
-    # @param contact [Hash] Contact information for the brand.Request of type Pinnacle::NullableContact, as a Hash
+    # @param contact [Hash] Contact information for the brand.Request of type Pinnacle::Types::NullableContact, as a Hash
     #   * :email (String)
     #   * :name (String)
     #   * :phone (String)
@@ -86,11 +86,11 @@ module Pinnacle
     # @param id [Integer] Brand ID - include only when updating an existing brand, omit to create a new
     #  one.
     # @param name [String] Legal name of the brand as registered.
-    # @param sector [Pinnacle::CompanySectorEnum] Industry the brand operates in.
-    # @param type [Pinnacle::CompanyTypeEnum] Legal structure of the brand.
+    # @param sector [Pinnacle::Types::CompanySectorEnum] Industry the brand operates in.
+    # @param type [Pinnacle::Types::CompanyTypeEnum] Legal structure of the brand.
     # @param website [String] Brand website URL.
     # @param request_options [Pinnacle::RequestOptions]
-    # @return [Pinnacle::ExtendedBrand]
+    # @return [Pinnacle::Types::ExtendedBrand]
     # @example
     #  api = Pinnacle::Client.new(
     #    base_url: "https://api.example.com",
@@ -139,7 +139,7 @@ module Pinnacle
         }.compact
         req.url "#{@request_client.get_url(request_options: request_options)}/brands"
       end
-      Pinnacle::ExtendedBrand.from_json(json_object: response.body)
+      Pinnacle::Types::ExtendedBrand.from_json(json_object: response.body)
     end
 
     # Retrieve detailed information for a specific brand in your account by ID.
@@ -150,7 +150,7 @@ module Pinnacle
     #  When you set this to true, the EIN value will be replaced with a masked
     #  placeholder instead of the actual number.
     # @param request_options [Pinnacle::RequestOptions]
-    # @return [Pinnacle::ExtendedBrandWithVetting]
+    # @return [Pinnacle::Types::ExtendedBrandWithVetting]
     # @example
     #  api = Pinnacle::Client.new(
     #    base_url: "https://api.example.com",
@@ -173,7 +173,7 @@ module Pinnacle
         end
         req.url "#{@request_client.get_url(request_options: request_options)}/brands/#{id}"
       end
-      Pinnacle::ExtendedBrandWithVetting.from_json(json_object: response.body)
+      Pinnacle::Types::ExtendedBrandWithVetting.from_json(json_object: response.body)
     end
 
     # Submit your brand for review and approval by the compliance team.
@@ -182,7 +182,7 @@ module Pinnacle
     #  Must correspond to an existing brand in your account that is ready for
     #  submission.
     # @param request_options [Pinnacle::RequestOptions]
-    # @return [Pinnacle::SubmissionResults]
+    # @return [Pinnacle::Types::SubmissionResults]
     # @example
     #  api = Pinnacle::Client.new(
     #    base_url: "https://api.example.com",
@@ -207,14 +207,14 @@ module Pinnacle
         end
         req.url "#{@request_client.get_url(request_options: request_options)}/brands/#{brand_id}/submit"
       end
-      Pinnacle::SubmissionResults.from_json(json_object: response.body)
+      Pinnacle::Types::SubmissionResults.from_json(json_object: response.body)
     end
 
     # Validate your brand information for compliance and correctness before submission
     #  or storage.
     #
     # @param address [String] Primary brand address where the brand is located.
-    # @param contact [Hash] Contact information for the primary brand representative.Request of type Pinnacle::Brands::BrandContact, as a Hash
+    # @param contact [Hash] Contact information for the primary brand representative.Request of type Pinnacle::Brands::Types::BrandContact, as a Hash
     #   * :email (String)
     #   * :name (String)
     #   * :phone (String)
@@ -224,11 +224,11 @@ module Pinnacle
     # @param ein [String] Employer Identification Number (EIN) assigned by the IRS.
     # @param email [String] Main contact email address for the brand.
     # @param name [String] Legal name of the brand as registered.
-    # @param sector [Pinnacle::CompanySectorEnum]
-    # @param type [Pinnacle::CompanyTypeEnum]
+    # @param sector [Pinnacle::Types::CompanySectorEnum]
+    # @param type [Pinnacle::Types::CompanyTypeEnum]
     # @param website [String] Brand website URL.
     # @param request_options [Pinnacle::RequestOptions]
-    # @return [Pinnacle::ValidationResults]
+    # @return [Pinnacle::Types::ValidationResults]
     # @example
     #  api = Pinnacle::Client.new(
     #    base_url: "https://api.example.com",
@@ -275,7 +275,7 @@ module Pinnacle
         }.compact
         req.url "#{@request_client.get_url(request_options: request_options)}/brands/validate"
       end
-      Pinnacle::ValidationResults.from_json(json_object: response.body)
+      Pinnacle::Types::ValidationResults.from_json(json_object: response.body)
     end
 
     # Submit a brand for external vetting verification to enhance your brand's trust
@@ -284,7 +284,7 @@ module Pinnacle
     # @param brand_id [Integer] The unique identifier of the brand to vet. <br>
     #  The brand must be already registered before it can be vetted.
     # @param request_options [Pinnacle::RequestOptions]
-    # @return [Pinnacle::VettingResults]
+    # @return [Pinnacle::Types::VettingResults]
     # @example
     #  api = Pinnacle::Client.new(
     #    base_url: "https://api.example.com",
@@ -312,7 +312,7 @@ module Pinnacle
         }.compact
         req.url "#{@request_client.get_url(request_options: request_options)}/brands/#{brand_id}/vet"
       end
-      Pinnacle::VettingResults.from_json(json_object: response.body)
+      Pinnacle::Types::VettingResults.from_json(json_object: response.body)
     end
   end
 
@@ -331,11 +331,11 @@ module Pinnacle
     #
     # @param additional_info [String] Any extra details about the brand to help improve data accuracy.
     # @param name [String] Name of the brand.
-    # @param options [Hash] Request of type Pinnacle::Brands::AutofillBrandSchemaOptions, as a Hash
+    # @param options [Hash] Request of type Pinnacle::Brands::Types::AutofillBrandSchemaOptions, as a Hash
     #   * :force_reload (Boolean)
     # @param website [String] Brand's website URL.
     # @param request_options [Pinnacle::RequestOptions]
-    # @return [Pinnacle::OptionalBrandInfo]
+    # @return [Pinnacle::Types::OptionalBrandInfo]
     # @example
     #  api = Pinnacle::Client.new(
     #    base_url: "https://api.example.com",
@@ -370,14 +370,14 @@ module Pinnacle
           }.compact
           req.url "#{@request_client.get_url(request_options: request_options)}/brands/autofill"
         end
-        Pinnacle::OptionalBrandInfo.from_json(json_object: response.body)
+        Pinnacle::Types::OptionalBrandInfo.from_json(json_object: response.body)
       end
     end
 
     # Create a new brand or update an existing brand by with the provided information.
     #
     # @param address [String] Primary brand address where the company is located.
-    # @param contact [Hash] Contact information for the brand.Request of type Pinnacle::NullableContact, as a Hash
+    # @param contact [Hash] Contact information for the brand.Request of type Pinnacle::Types::NullableContact, as a Hash
     #   * :email (String)
     #   * :name (String)
     #   * :phone (String)
@@ -389,11 +389,11 @@ module Pinnacle
     # @param id [Integer] Brand ID - include only when updating an existing brand, omit to create a new
     #  one.
     # @param name [String] Legal name of the brand as registered.
-    # @param sector [Pinnacle::CompanySectorEnum] Industry the brand operates in.
-    # @param type [Pinnacle::CompanyTypeEnum] Legal structure of the brand.
+    # @param sector [Pinnacle::Types::CompanySectorEnum] Industry the brand operates in.
+    # @param type [Pinnacle::Types::CompanyTypeEnum] Legal structure of the brand.
     # @param website [String] Brand website URL.
     # @param request_options [Pinnacle::RequestOptions]
-    # @return [Pinnacle::ExtendedBrand]
+    # @return [Pinnacle::Types::ExtendedBrand]
     # @example
     #  api = Pinnacle::Client.new(
     #    base_url: "https://api.example.com",
@@ -443,7 +443,7 @@ module Pinnacle
           }.compact
           req.url "#{@request_client.get_url(request_options: request_options)}/brands"
         end
-        Pinnacle::ExtendedBrand.from_json(json_object: response.body)
+        Pinnacle::Types::ExtendedBrand.from_json(json_object: response.body)
       end
     end
 
@@ -455,7 +455,7 @@ module Pinnacle
     #  When you set this to true, the EIN value will be replaced with a masked
     #  placeholder instead of the actual number.
     # @param request_options [Pinnacle::RequestOptions]
-    # @return [Pinnacle::ExtendedBrandWithVetting]
+    # @return [Pinnacle::Types::ExtendedBrandWithVetting]
     # @example
     #  api = Pinnacle::Client.new(
     #    base_url: "https://api.example.com",
@@ -479,7 +479,7 @@ module Pinnacle
           end
           req.url "#{@request_client.get_url(request_options: request_options)}/brands/#{id}"
         end
-        Pinnacle::ExtendedBrandWithVetting.from_json(json_object: response.body)
+        Pinnacle::Types::ExtendedBrandWithVetting.from_json(json_object: response.body)
       end
     end
 
@@ -489,7 +489,7 @@ module Pinnacle
     #  Must correspond to an existing brand in your account that is ready for
     #  submission.
     # @param request_options [Pinnacle::RequestOptions]
-    # @return [Pinnacle::SubmissionResults]
+    # @return [Pinnacle::Types::SubmissionResults]
     # @example
     #  api = Pinnacle::Client.new(
     #    base_url: "https://api.example.com",
@@ -515,7 +515,7 @@ module Pinnacle
           end
           req.url "#{@request_client.get_url(request_options: request_options)}/brands/#{brand_id}/submit"
         end
-        Pinnacle::SubmissionResults.from_json(json_object: response.body)
+        Pinnacle::Types::SubmissionResults.from_json(json_object: response.body)
       end
     end
 
@@ -523,7 +523,7 @@ module Pinnacle
     #  or storage.
     #
     # @param address [String] Primary brand address where the brand is located.
-    # @param contact [Hash] Contact information for the primary brand representative.Request of type Pinnacle::Brands::BrandContact, as a Hash
+    # @param contact [Hash] Contact information for the primary brand representative.Request of type Pinnacle::Brands::Types::BrandContact, as a Hash
     #   * :email (String)
     #   * :name (String)
     #   * :phone (String)
@@ -533,11 +533,11 @@ module Pinnacle
     # @param ein [String] Employer Identification Number (EIN) assigned by the IRS.
     # @param email [String] Main contact email address for the brand.
     # @param name [String] Legal name of the brand as registered.
-    # @param sector [Pinnacle::CompanySectorEnum]
-    # @param type [Pinnacle::CompanyTypeEnum]
+    # @param sector [Pinnacle::Types::CompanySectorEnum]
+    # @param type [Pinnacle::Types::CompanyTypeEnum]
     # @param website [String] Brand website URL.
     # @param request_options [Pinnacle::RequestOptions]
-    # @return [Pinnacle::ValidationResults]
+    # @return [Pinnacle::Types::ValidationResults]
     # @example
     #  api = Pinnacle::Client.new(
     #    base_url: "https://api.example.com",
@@ -585,7 +585,7 @@ module Pinnacle
           }.compact
           req.url "#{@request_client.get_url(request_options: request_options)}/brands/validate"
         end
-        Pinnacle::ValidationResults.from_json(json_object: response.body)
+        Pinnacle::Types::ValidationResults.from_json(json_object: response.body)
       end
     end
 
@@ -595,7 +595,7 @@ module Pinnacle
     # @param brand_id [Integer] The unique identifier of the brand to vet. <br>
     #  The brand must be already registered before it can be vetted.
     # @param request_options [Pinnacle::RequestOptions]
-    # @return [Pinnacle::VettingResults]
+    # @return [Pinnacle::Types::VettingResults]
     # @example
     #  api = Pinnacle::Client.new(
     #    base_url: "https://api.example.com",
@@ -624,7 +624,7 @@ module Pinnacle
           }.compact
           req.url "#{@request_client.get_url(request_options: request_options)}/brands/#{brand_id}/vet"
         end
-        Pinnacle::VettingResults.from_json(json_object: response.body)
+        Pinnacle::Types::VettingResults.from_json(json_object: response.body)
       end
     end
   end

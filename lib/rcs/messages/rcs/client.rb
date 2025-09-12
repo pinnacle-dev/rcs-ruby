@@ -19,9 +19,9 @@ module Pinnacle
 
       # Validate RCS message content without sending it.
       #
-      # @param request [Pinnacle::RcsTextContent, Pinnacle::RcsValidateContentMedia, Pinnacle::RcsCards]
+      # @param request [Pinnacle::Types::RcsTextContent, Pinnacle::Types::RcsValidateContentMedia, Pinnacle::Types::RcsCards]
       # @param request_options [Pinnacle::RequestOptions]
-      # @return [Pinnacle::RcsValidationResult]
+      # @return [Pinnacle::Types::RcsValidationResult]
       # @example
       #  api = Pinnacle::Client.new(
       #    base_url: "https://api.example.com",
@@ -44,7 +44,7 @@ module Pinnacle
           req.body = { **(request || {}), **(request_options&.additional_body_parameters || {}) }.compact
           req.url "#{@request_client.get_url(request_options: request_options)}/messages/validate/rcs"
         end
-        Pinnacle::RcsValidationResult.from_json(json_object: response.body)
+        Pinnacle::Types::RcsValidationResult.from_json(json_object: response.body)
       end
     end
 
@@ -60,9 +60,9 @@ module Pinnacle
 
       # Validate RCS message content without sending it.
       #
-      # @param request [Pinnacle::RcsTextContent, Pinnacle::RcsValidateContentMedia, Pinnacle::RcsCards]
+      # @param request [Pinnacle::Types::RcsTextContent, Pinnacle::Types::RcsValidateContentMedia, Pinnacle::Types::RcsCards]
       # @param request_options [Pinnacle::RequestOptions]
-      # @return [Pinnacle::RcsValidationResult]
+      # @return [Pinnacle::Types::RcsValidationResult]
       # @example
       #  api = Pinnacle::Client.new(
       #    base_url: "https://api.example.com",
@@ -86,7 +86,7 @@ module Pinnacle
             req.body = { **(request || {}), **(request_options&.additional_body_parameters || {}) }.compact
             req.url "#{@request_client.get_url(request_options: request_options)}/messages/validate/rcs"
           end
-          Pinnacle::RcsValidationResult.from_json(json_object: response.body)
+          Pinnacle::Types::RcsValidationResult.from_json(json_object: response.body)
         end
       end
     end

@@ -24,7 +24,7 @@ module Pinnacle
       #
       # @param brand_id [Integer] ID of the brand.
       # @param request_options [Pinnacle::RequestOptions]
-      # @return [Pinnacle::BrandStatus]
+      # @return [Pinnacle::Types::BrandStatus]
       # @example
       #  api = Pinnacle::Client.new(
       #    base_url: "https://api.example.com",
@@ -49,14 +49,14 @@ module Pinnacle
           end
           req.url "#{@request_client.get_url(request_options: request_options)}/status/brand/#{brand_id}"
         end
-        Pinnacle::BrandStatus.from_json(json_object: response.body)
+        Pinnacle::Types::BrandStatus.from_json(json_object: response.body)
       end
 
       # Retrieve a toll-free campaign's status.
       #
       # @param campaign_id [Integer] ID of the toll-free campaign.
       # @param request_options [Pinnacle::RequestOptions]
-      # @return [Pinnacle::TollFreeCampaignStatus]
+      # @return [Pinnacle::Types::TollFreeCampaignStatus]
       # @example
       #  api = Pinnacle::Client.new(
       #    base_url: "https://api.example.com",
@@ -81,14 +81,14 @@ module Pinnacle
           end
           req.url "#{@request_client.get_url(request_options: request_options)}/status/toll-free-campaign/#{campaign_id}"
         end
-        Pinnacle::TollFreeCampaignStatus.from_json(json_object: response.body)
+        Pinnacle::Types::TollFreeCampaignStatus.from_json(json_object: response.body)
       end
 
       # Retrieve a DLC campaign's status.
       #
       # @param campaign_id [Integer] ID of the DLC campaign.
       # @param request_options [Pinnacle::RequestOptions]
-      # @return [Pinnacle::DlcCampaignStatus]
+      # @return [Pinnacle::Types::DlcCampaignStatus]
       # @example
       #  api = Pinnacle::Client.new(
       #    base_url: "https://api.example.com",
@@ -113,14 +113,14 @@ module Pinnacle
           end
           req.url "#{@request_client.get_url(request_options: request_options)}/status/dlc-campaign/#{campaign_id}"
         end
-        Pinnacle::DlcCampaignStatus.from_json(json_object: response.body)
+        Pinnacle::Types::DlcCampaignStatus.from_json(json_object: response.body)
       end
 
       # Retrieve a RCS campaign's status.
       #
       # @param campaign_id [Integer] ID of the campaign.
       # @param request_options [Pinnacle::RequestOptions]
-      # @return [Pinnacle::RcsCampaignStatus]
+      # @return [Pinnacle::Types::RcsCampaignStatus]
       # @example
       #  api = Pinnacle::Client.new(
       #    base_url: "https://api.example.com",
@@ -145,7 +145,7 @@ module Pinnacle
           end
           req.url "#{@request_client.get_url(request_options: request_options)}/status/rcs-campaign/#{campaign_id}"
         end
-        Pinnacle::RcsCampaignStatus.from_json(json_object: response.body)
+        Pinnacle::Types::RcsCampaignStatus.from_json(json_object: response.body)
       end
 
       # Retrieve a phone number's order status and campaign attachment status. <br>
@@ -153,7 +153,7 @@ module Pinnacle
       #
       # @param phone_number [String] Phone number in E164 format that is in review.
       # @param request_options [Pinnacle::RequestOptions]
-      # @return [Pinnacle::PhoneNumberStatus]
+      # @return [Pinnacle::Types::PhoneNumberStatus]
       # @example
       #  api = Pinnacle::Client.new(
       #    base_url: "https://api.example.com",
@@ -178,7 +178,7 @@ module Pinnacle
           end
           req.url "#{@request_client.get_url(request_options: request_options)}/status/phone-number/#{phone_number}"
         end
-        Pinnacle::PhoneNumberStatus.from_json(json_object: response.body)
+        Pinnacle::Types::PhoneNumberStatus.from_json(json_object: response.body)
       end
     end
 
@@ -196,7 +196,7 @@ module Pinnacle
       #
       # @param brand_id [Integer] ID of the brand.
       # @param request_options [Pinnacle::RequestOptions]
-      # @return [Pinnacle::BrandStatus]
+      # @return [Pinnacle::Types::BrandStatus]
       # @example
       #  api = Pinnacle::Client.new(
       #    base_url: "https://api.example.com",
@@ -222,7 +222,7 @@ module Pinnacle
             end
             req.url "#{@request_client.get_url(request_options: request_options)}/status/brand/#{brand_id}"
           end
-          Pinnacle::BrandStatus.from_json(json_object: response.body)
+          Pinnacle::Types::BrandStatus.from_json(json_object: response.body)
         end
       end
 
@@ -230,7 +230,7 @@ module Pinnacle
       #
       # @param campaign_id [Integer] ID of the toll-free campaign.
       # @param request_options [Pinnacle::RequestOptions]
-      # @return [Pinnacle::TollFreeCampaignStatus]
+      # @return [Pinnacle::Types::TollFreeCampaignStatus]
       # @example
       #  api = Pinnacle::Client.new(
       #    base_url: "https://api.example.com",
@@ -256,7 +256,7 @@ module Pinnacle
             end
             req.url "#{@request_client.get_url(request_options: request_options)}/status/toll-free-campaign/#{campaign_id}"
           end
-          Pinnacle::TollFreeCampaignStatus.from_json(json_object: response.body)
+          Pinnacle::Types::TollFreeCampaignStatus.from_json(json_object: response.body)
         end
       end
 
@@ -264,7 +264,7 @@ module Pinnacle
       #
       # @param campaign_id [Integer] ID of the DLC campaign.
       # @param request_options [Pinnacle::RequestOptions]
-      # @return [Pinnacle::DlcCampaignStatus]
+      # @return [Pinnacle::Types::DlcCampaignStatus]
       # @example
       #  api = Pinnacle::Client.new(
       #    base_url: "https://api.example.com",
@@ -290,7 +290,7 @@ module Pinnacle
             end
             req.url "#{@request_client.get_url(request_options: request_options)}/status/dlc-campaign/#{campaign_id}"
           end
-          Pinnacle::DlcCampaignStatus.from_json(json_object: response.body)
+          Pinnacle::Types::DlcCampaignStatus.from_json(json_object: response.body)
         end
       end
 
@@ -298,7 +298,7 @@ module Pinnacle
       #
       # @param campaign_id [Integer] ID of the campaign.
       # @param request_options [Pinnacle::RequestOptions]
-      # @return [Pinnacle::RcsCampaignStatus]
+      # @return [Pinnacle::Types::RcsCampaignStatus]
       # @example
       #  api = Pinnacle::Client.new(
       #    base_url: "https://api.example.com",
@@ -324,7 +324,7 @@ module Pinnacle
             end
             req.url "#{@request_client.get_url(request_options: request_options)}/status/rcs-campaign/#{campaign_id}"
           end
-          Pinnacle::RcsCampaignStatus.from_json(json_object: response.body)
+          Pinnacle::Types::RcsCampaignStatus.from_json(json_object: response.body)
         end
       end
 
@@ -333,7 +333,7 @@ module Pinnacle
       #
       # @param phone_number [String] Phone number in E164 format that is in review.
       # @param request_options [Pinnacle::RequestOptions]
-      # @return [Pinnacle::PhoneNumberStatus]
+      # @return [Pinnacle::Types::PhoneNumberStatus]
       # @example
       #  api = Pinnacle::Client.new(
       #    base_url: "https://api.example.com",
@@ -359,7 +359,7 @@ module Pinnacle
             end
             req.url "#{@request_client.get_url(request_options: request_options)}/status/phone-number/#{phone_number}"
           end
-          Pinnacle::PhoneNumberStatus.from_json(json_object: response.body)
+          Pinnacle::Types::PhoneNumberStatus.from_json(json_object: response.body)
         end
       end
     end

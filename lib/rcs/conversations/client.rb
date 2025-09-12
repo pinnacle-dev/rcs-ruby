@@ -22,9 +22,9 @@ module Pinnacle
     # Fetch a specific conversation using either its unique identifier or by matching
     #  sender and recipient details.
     #
-    # @param request [Pinnacle::GetConversationRequestId, Pinnacle::GetConversationRequestRecipient]
+    # @param request [Pinnacle::Types::GetConversationRequestId, Pinnacle::Types::GetConversationRequestRecipient]
     # @param request_options [Pinnacle::RequestOptions]
-    # @return [Pinnacle::Conversation]
+    # @return [Pinnacle::Types::Conversation]
     # @example
     #  api = Pinnacle::Client.new(
     #    base_url: "https://api.example.com",
@@ -47,7 +47,7 @@ module Pinnacle
         req.body = { **(request || {}), **(request_options&.additional_body_parameters || {}) }.compact
         req.url "#{@request_client.get_url(request_options: request_options)}/conversations/get"
       end
-      Pinnacle::Conversation.from_json(json_object: response.body)
+      Pinnacle::Types::Conversation.from_json(json_object: response.body)
     end
 
     # Retrieves conversations by page with optional filtering based off provided
@@ -55,13 +55,13 @@ module Pinnacle
     #
     # @param brand_id [Integer] The unique identifier of the brand to filter conversations.
     # @param campaign_id [Integer] The unique identifier of the campaign to filter conversations.
-    # @param campaign_type [Pinnacle::CampaignEnum]
+    # @param campaign_type [Pinnacle::Types::CampaignEnum]
     # @param page_index [Integer] Zero-based index for pagination.
     # @param page_size [Integer] Number of conversations to return per page.
     # @param receiver [String] Receiver's phone number in E.164 format.
     # @param sender [String]
     # @param request_options [Pinnacle::RequestOptions]
-    # @return [Pinnacle::ConversationList]
+    # @return [Pinnacle::Types::ConversationList]
     # @example
     #  api = Pinnacle::Client.new(
     #    base_url: "https://api.example.com",
@@ -102,7 +102,7 @@ module Pinnacle
         }.compact
         req.url "#{@request_client.get_url(request_options: request_options)}/conversations/list"
       end
-      Pinnacle::ConversationList.from_json(json_object: response.body)
+      Pinnacle::Types::ConversationList.from_json(json_object: response.body)
     end
 
     # Update the notes associated with a specific conversation.
@@ -110,7 +110,7 @@ module Pinnacle
     # @param id [Integer] The unique identifier of the conversation to update.
     # @param notes [String] New notes or comments for the conversation.
     # @param request_options [Pinnacle::RequestOptions]
-    # @return [Pinnacle::SuccessfulConversationUpdate]
+    # @return [Pinnacle::Types::SuccessfulConversationUpdate]
     # @example
     #  api = Pinnacle::Client.new(
     #    base_url: "https://api.example.com",
@@ -133,7 +133,7 @@ module Pinnacle
         req.body = { **(request_options&.additional_body_parameters || {}), id: id, notes: notes }.compact
         req.url "#{@request_client.get_url(request_options: request_options)}/conversations/update"
       end
-      Pinnacle::SuccessfulConversationUpdate.from_json(json_object: response.body)
+      Pinnacle::Types::SuccessfulConversationUpdate.from_json(json_object: response.body)
     end
   end
 
@@ -150,9 +150,9 @@ module Pinnacle
     # Fetch a specific conversation using either its unique identifier or by matching
     #  sender and recipient details.
     #
-    # @param request [Pinnacle::GetConversationRequestId, Pinnacle::GetConversationRequestRecipient]
+    # @param request [Pinnacle::Types::GetConversationRequestId, Pinnacle::Types::GetConversationRequestRecipient]
     # @param request_options [Pinnacle::RequestOptions]
-    # @return [Pinnacle::Conversation]
+    # @return [Pinnacle::Types::Conversation]
     # @example
     #  api = Pinnacle::Client.new(
     #    base_url: "https://api.example.com",
@@ -176,7 +176,7 @@ module Pinnacle
           req.body = { **(request || {}), **(request_options&.additional_body_parameters || {}) }.compact
           req.url "#{@request_client.get_url(request_options: request_options)}/conversations/get"
         end
-        Pinnacle::Conversation.from_json(json_object: response.body)
+        Pinnacle::Types::Conversation.from_json(json_object: response.body)
       end
     end
 
@@ -185,13 +185,13 @@ module Pinnacle
     #
     # @param brand_id [Integer] The unique identifier of the brand to filter conversations.
     # @param campaign_id [Integer] The unique identifier of the campaign to filter conversations.
-    # @param campaign_type [Pinnacle::CampaignEnum]
+    # @param campaign_type [Pinnacle::Types::CampaignEnum]
     # @param page_index [Integer] Zero-based index for pagination.
     # @param page_size [Integer] Number of conversations to return per page.
     # @param receiver [String] Receiver's phone number in E.164 format.
     # @param sender [String]
     # @param request_options [Pinnacle::RequestOptions]
-    # @return [Pinnacle::ConversationList]
+    # @return [Pinnacle::Types::ConversationList]
     # @example
     #  api = Pinnacle::Client.new(
     #    base_url: "https://api.example.com",
@@ -233,7 +233,7 @@ module Pinnacle
           }.compact
           req.url "#{@request_client.get_url(request_options: request_options)}/conversations/list"
         end
-        Pinnacle::ConversationList.from_json(json_object: response.body)
+        Pinnacle::Types::ConversationList.from_json(json_object: response.body)
       end
     end
 
@@ -242,7 +242,7 @@ module Pinnacle
     # @param id [Integer] The unique identifier of the conversation to update.
     # @param notes [String] New notes or comments for the conversation.
     # @param request_options [Pinnacle::RequestOptions]
-    # @return [Pinnacle::SuccessfulConversationUpdate]
+    # @return [Pinnacle::Types::SuccessfulConversationUpdate]
     # @example
     #  api = Pinnacle::Client.new(
     #    base_url: "https://api.example.com",
@@ -266,7 +266,7 @@ module Pinnacle
           req.body = { **(request_options&.additional_body_parameters || {}), id: id, notes: notes }.compact
           req.url "#{@request_client.get_url(request_options: request_options)}/conversations/update"
         end
-        Pinnacle::SuccessfulConversationUpdate.from_json(json_object: response.body)
+        Pinnacle::Types::SuccessfulConversationUpdate.from_json(json_object: response.body)
       end
     end
   end

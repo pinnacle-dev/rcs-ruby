@@ -28,10 +28,10 @@ module Pinnacle
       #  file.
       #
       # @param id [Integer] ID of your contact.
-      # @param options [Hash] Request of type Pinnacle::Tools::ContactCard::GetVCardSchemaOptions, as a Hash
+      # @param options [Hash] Request of type Pinnacle::Tools::ContactCard::Types::GetVCardSchemaOptions, as a Hash
       #   * :expires_at (String)
       # @param request_options [Pinnacle::RequestOptions]
-      # @return [Pinnacle::VCardData]
+      # @return [Pinnacle::Types::VCardData]
       # @example
       #  api = Pinnacle::Client.new(
       #    base_url: "https://api.example.com",
@@ -54,14 +54,14 @@ module Pinnacle
           req.body = { **(request_options&.additional_body_parameters || {}), id: id, options: options }.compact
           req.url "#{@request_client.get_url(request_options: request_options)}/tools/contact-card"
         end
-        Pinnacle::VCardData.from_json(json_object: response.body)
+        Pinnacle::Types::VCardData.from_json(json_object: response.body)
       end
 
       # Create a new contact card or updates an existing one with full vCard data.
       #
       # @param id [Integer] Unique identifier for the contact.
       # @param formatted_name [String] Full display name for the vCard.
-      # @param name [Hash] Structured name components.Request of type Pinnacle::VCardName, as a Hash
+      # @param name [Hash] Structured name components.Request of type Pinnacle::Types::VCardName, as a Hash
       #   * :family_name (String)
       #   * :given_name (String)
       #   * :additional_names (Array<String>)
@@ -69,7 +69,7 @@ module Pinnacle
       #   * :honorific_suffixes (Array<String>)
       # @param nickname [Array<String>] Nicknames or aliases.
       # @param birthday [String] Birthday in ISO 8601 date format (YYYY-MM-DD).
-      # @param addresses [Array<Hash>] Physical addresses.Request of type Array<Pinnacle::VcardAddress>, as a Hash
+      # @param addresses [Array<Hash>] Physical addresses.Request of type Array<Pinnacle::Types::VcardAddress>, as a Hash
       #   * :country_name (String)
       #   * :extended_address (String)
       #   * :fulladdress (String)
@@ -78,28 +78,28 @@ module Pinnacle
       #   * :post_office_box (String)
       #   * :region (String)
       #   * :street_address (String)
-      #   * :type (Array<Pinnacle::VCardAddressSchemaTypeItem>)
+      #   * :type (Array<Pinnacle::Types::VCardAddressSchemaTypeItem>)
       # @param url [String] Website URL.
-      # @param phones [Array<Hash>] Phone numbers.Request of type Array<Pinnacle::VcardPhone>, as a Hash
-      #   * :type (Array<Pinnacle::VCardPhoneSchemaTypeItem>)
+      # @param phones [Array<Hash>] Phone numbers.Request of type Array<Pinnacle::Types::VcardPhone>, as a Hash
+      #   * :type (Array<Pinnacle::Types::VCardPhoneSchemaTypeItem>)
       #   * :value (String)
-      # @param emails [Array<Hash>] Email addresses.Request of type Array<Pinnacle::VcardEmail>, as a Hash
-      #   * :type (Array<Pinnacle::VCardEmailSchemaTypeItem>)
+      # @param emails [Array<Hash>] Email addresses.Request of type Array<Pinnacle::Types::VcardEmail>, as a Hash
+      #   * :type (Array<Pinnacle::Types::VCardEmailSchemaTypeItem>)
       #   * :value (String)
       # @param timezone [String] Timezone (e.g., "America/New_York").
-      # @param geo [Hash] Geographic coordinates.Request of type Pinnacle::VCardGeo, as a Hash
+      # @param geo [Hash] Geographic coordinates.Request of type Pinnacle::Types::VCardGeo, as a Hash
       #   * :latitude (Float)
       #   * :longitude (Float)
       # @param title [String] Job title or position.
       # @param role [String] Role or function within the organization.
-      # @param organization [Hash] Organization or company information.Request of type Pinnacle::VCardOrganization, as a Hash
+      # @param organization [Hash] Organization or company information.Request of type Pinnacle::Types::VCardOrganization, as a Hash
       #   * :name (String)
       #   * :units (Array<String>)
       # @param categories [Array<String>] Categories or tags for organizing contacts.
       # @param note [String] Additional notes or comments.
       # @param photo [String] Contact's photo
       # @param request_options [Pinnacle::RequestOptions]
-      # @return [Pinnacle::VcardResource]
+      # @return [Pinnacle::Types::VcardResource]
       # @example
       #  api = Pinnacle::Client.new(
       #    base_url: "https://api.example.com",
@@ -142,7 +142,7 @@ module Pinnacle
           }.compact
           req.url "#{@request_client.get_url(request_options: request_options)}/tools/contact-card/upsert"
         end
-        Pinnacle::VcardResource.from_json(json_object: response.body)
+        Pinnacle::Types::VcardResource.from_json(json_object: response.body)
       end
     end
 
@@ -160,10 +160,10 @@ module Pinnacle
       #  file.
       #
       # @param id [Integer] ID of your contact.
-      # @param options [Hash] Request of type Pinnacle::Tools::ContactCard::GetVCardSchemaOptions, as a Hash
+      # @param options [Hash] Request of type Pinnacle::Tools::ContactCard::Types::GetVCardSchemaOptions, as a Hash
       #   * :expires_at (String)
       # @param request_options [Pinnacle::RequestOptions]
-      # @return [Pinnacle::VCardData]
+      # @return [Pinnacle::Types::VCardData]
       # @example
       #  api = Pinnacle::Client.new(
       #    base_url: "https://api.example.com",
@@ -187,7 +187,7 @@ module Pinnacle
             req.body = { **(request_options&.additional_body_parameters || {}), id: id, options: options }.compact
             req.url "#{@request_client.get_url(request_options: request_options)}/tools/contact-card"
           end
-          Pinnacle::VCardData.from_json(json_object: response.body)
+          Pinnacle::Types::VCardData.from_json(json_object: response.body)
         end
       end
 
@@ -195,7 +195,7 @@ module Pinnacle
       #
       # @param id [Integer] Unique identifier for the contact.
       # @param formatted_name [String] Full display name for the vCard.
-      # @param name [Hash] Structured name components.Request of type Pinnacle::VCardName, as a Hash
+      # @param name [Hash] Structured name components.Request of type Pinnacle::Types::VCardName, as a Hash
       #   * :family_name (String)
       #   * :given_name (String)
       #   * :additional_names (Array<String>)
@@ -203,7 +203,7 @@ module Pinnacle
       #   * :honorific_suffixes (Array<String>)
       # @param nickname [Array<String>] Nicknames or aliases.
       # @param birthday [String] Birthday in ISO 8601 date format (YYYY-MM-DD).
-      # @param addresses [Array<Hash>] Physical addresses.Request of type Array<Pinnacle::VcardAddress>, as a Hash
+      # @param addresses [Array<Hash>] Physical addresses.Request of type Array<Pinnacle::Types::VcardAddress>, as a Hash
       #   * :country_name (String)
       #   * :extended_address (String)
       #   * :fulladdress (String)
@@ -212,28 +212,28 @@ module Pinnacle
       #   * :post_office_box (String)
       #   * :region (String)
       #   * :street_address (String)
-      #   * :type (Array<Pinnacle::VCardAddressSchemaTypeItem>)
+      #   * :type (Array<Pinnacle::Types::VCardAddressSchemaTypeItem>)
       # @param url [String] Website URL.
-      # @param phones [Array<Hash>] Phone numbers.Request of type Array<Pinnacle::VcardPhone>, as a Hash
-      #   * :type (Array<Pinnacle::VCardPhoneSchemaTypeItem>)
+      # @param phones [Array<Hash>] Phone numbers.Request of type Array<Pinnacle::Types::VcardPhone>, as a Hash
+      #   * :type (Array<Pinnacle::Types::VCardPhoneSchemaTypeItem>)
       #   * :value (String)
-      # @param emails [Array<Hash>] Email addresses.Request of type Array<Pinnacle::VcardEmail>, as a Hash
-      #   * :type (Array<Pinnacle::VCardEmailSchemaTypeItem>)
+      # @param emails [Array<Hash>] Email addresses.Request of type Array<Pinnacle::Types::VcardEmail>, as a Hash
+      #   * :type (Array<Pinnacle::Types::VCardEmailSchemaTypeItem>)
       #   * :value (String)
       # @param timezone [String] Timezone (e.g., "America/New_York").
-      # @param geo [Hash] Geographic coordinates.Request of type Pinnacle::VCardGeo, as a Hash
+      # @param geo [Hash] Geographic coordinates.Request of type Pinnacle::Types::VCardGeo, as a Hash
       #   * :latitude (Float)
       #   * :longitude (Float)
       # @param title [String] Job title or position.
       # @param role [String] Role or function within the organization.
-      # @param organization [Hash] Organization or company information.Request of type Pinnacle::VCardOrganization, as a Hash
+      # @param organization [Hash] Organization or company information.Request of type Pinnacle::Types::VCardOrganization, as a Hash
       #   * :name (String)
       #   * :units (Array<String>)
       # @param categories [Array<String>] Categories or tags for organizing contacts.
       # @param note [String] Additional notes or comments.
       # @param photo [String] Contact's photo
       # @param request_options [Pinnacle::RequestOptions]
-      # @return [Pinnacle::VcardResource]
+      # @return [Pinnacle::Types::VcardResource]
       # @example
       #  api = Pinnacle::Client.new(
       #    base_url: "https://api.example.com",
@@ -277,7 +277,7 @@ module Pinnacle
             }.compact
             req.url "#{@request_client.get_url(request_options: request_options)}/tools/contact-card/upsert"
           end
-          Pinnacle::VcardResource.from_json(json_object: response.body)
+          Pinnacle::Types::VcardResource.from_json(json_object: response.body)
         end
       end
     end

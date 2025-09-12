@@ -24,17 +24,17 @@ module Pinnacle
       # Send a SMS message immediately or schedule it for future delivery.
       #
       # @param from [String] Phone number that sends the message in E.164 format.
-      # @param options [Hash] Additional settings to customize SMS delivery.Request of type Pinnacle::Messages::Send::SendSmsSchemaOptions, as a Hash
+      # @param options [Hash] Additional settings to customize SMS delivery.Request of type Pinnacle::Messages::Send::Types::SendSmsSchemaOptions, as a Hash
       #   * :schedule (Hash)
       #     * :end_date (DateTime)
       #     * :recurrence (String)
       #     * :send_at (String)
       #     * :timezone (String)
-      #   * :tracking (Pinnacle::Tracking)
+      #   * :tracking (Pinnacle::Types::Tracking)
       # @param text [String] Message content.
       # @param to [String] Recipient's phone number in E.164 format.
       # @param request_options [Pinnacle::RequestOptions]
-      # @return [Pinnacle::SentSmsDetails, Pinnacle::ScheduledMessaage]
+      # @return [Pinnacle::Types::SentSmsDetails, Pinnacle::Types::ScheduledMessaage]
       # @example
       #  api = Pinnacle::Client.new(
       #    base_url: "https://api.example.com",
@@ -67,7 +67,7 @@ module Pinnacle
           }.compact
           req.url "#{@request_client.get_url(request_options: request_options)}/messages/send/sms"
         end
-        Pinnacle::Messages::Send::SendSmsResponse.from_json(json_object: response.body)
+        Pinnacle::Messages::Send::Types::SendSmsResponse.from_json(json_object: response.body)
       end
 
       # Send a MMS immediately or schedule it for future delivery.
@@ -76,19 +76,19 @@ module Pinnacle
       # @param media_urls [Array<String>] Media file URLs to send.<br>
       #  See [supported media
       #  types](https://app.pinnacle.sh/supported-file-types?type=MMS).
-      # @param options [Hash] Control how your MMS is processed and delivered.Request of type Pinnacle::Messages::Send::SendMmsSchemaOptions, as a Hash
+      # @param options [Hash] Control how your MMS is processed and delivered.Request of type Pinnacle::Messages::Send::Types::SendMmsSchemaOptions, as a Hash
       #   * :multiple_messages (Boolean)
       #   * :schedule (Hash)
       #     * :end_date (DateTime)
       #     * :recurrence (String)
       #     * :send_at (String)
       #     * :timezone (String)
-      #   * :tracking (Pinnacle::Tracking)
+      #   * :tracking (Pinnacle::Types::Tracking)
       #   * :validate (Boolean)
       # @param text [String] Message text to accompany the media.
       # @param to [String] Recipient's phone number in E.164 format.
       # @param request_options [Pinnacle::RequestOptions]
-      # @return [Pinnacle::SentMmsDetails, Pinnacle::ScheduledMessaage]
+      # @return [Pinnacle::Types::SentMmsDetails, Pinnacle::Types::ScheduledMessaage]
       # @example
       #  api = Pinnacle::Client.new(
       #    base_url: "https://api.example.com",
@@ -124,16 +124,16 @@ module Pinnacle
           }.compact
           req.url "#{@request_client.get_url(request_options: request_options)}/messages/send/mms"
         end
-        Pinnacle::Messages::Send::SendMmsResponse.from_json(json_object: response.body)
+        Pinnacle::Messages::Send::Types::SendMmsResponse.from_json(json_object: response.body)
       end
 
       # Send a RCS message immediately or schedule it for future delivery. <br>
       #  Requires an active RCS agent and recipient devices that support RCS Business
       #  Messaging.
       #
-      # @param request [Pinnacle::RcsText, Pinnacle::RcsMedia, Pinnacle::RcsCard]
+      # @param request [Pinnacle::Types::RcsText, Pinnacle::Types::RcsMedia, Pinnacle::Types::RcsCard]
       # @param request_options [Pinnacle::RequestOptions]
-      # @return [Pinnacle::SentRcsDetails, Pinnacle::ScheduledMessaage]
+      # @return [Pinnacle::Types::SentRcsDetails, Pinnacle::Types::ScheduledMessaage]
       # @example
       #  api = Pinnacle::Client.new(
       #    base_url: "https://api.example.com",
@@ -156,7 +156,7 @@ module Pinnacle
           req.body = { **(request || {}), **(request_options&.additional_body_parameters || {}) }.compact
           req.url "#{@request_client.get_url(request_options: request_options)}/messages/send/rcs"
         end
-        Pinnacle::Messages::Send::SendRcsResponse.from_json(json_object: response.body)
+        Pinnacle::Messages::Send::Types::SendRcsResponse.from_json(json_object: response.body)
       end
     end
 
@@ -173,17 +173,17 @@ module Pinnacle
       # Send a SMS message immediately or schedule it for future delivery.
       #
       # @param from [String] Phone number that sends the message in E.164 format.
-      # @param options [Hash] Additional settings to customize SMS delivery.Request of type Pinnacle::Messages::Send::SendSmsSchemaOptions, as a Hash
+      # @param options [Hash] Additional settings to customize SMS delivery.Request of type Pinnacle::Messages::Send::Types::SendSmsSchemaOptions, as a Hash
       #   * :schedule (Hash)
       #     * :end_date (DateTime)
       #     * :recurrence (String)
       #     * :send_at (String)
       #     * :timezone (String)
-      #   * :tracking (Pinnacle::Tracking)
+      #   * :tracking (Pinnacle::Types::Tracking)
       # @param text [String] Message content.
       # @param to [String] Recipient's phone number in E.164 format.
       # @param request_options [Pinnacle::RequestOptions]
-      # @return [Pinnacle::SentSmsDetails, Pinnacle::ScheduledMessaage]
+      # @return [Pinnacle::Types::SentSmsDetails, Pinnacle::Types::ScheduledMessaage]
       # @example
       #  api = Pinnacle::Client.new(
       #    base_url: "https://api.example.com",
@@ -217,7 +217,7 @@ module Pinnacle
             }.compact
             req.url "#{@request_client.get_url(request_options: request_options)}/messages/send/sms"
           end
-          Pinnacle::Messages::Send::SendSmsResponse.from_json(json_object: response.body)
+          Pinnacle::Messages::Send::Types::SendSmsResponse.from_json(json_object: response.body)
         end
       end
 
@@ -227,19 +227,19 @@ module Pinnacle
       # @param media_urls [Array<String>] Media file URLs to send.<br>
       #  See [supported media
       #  types](https://app.pinnacle.sh/supported-file-types?type=MMS).
-      # @param options [Hash] Control how your MMS is processed and delivered.Request of type Pinnacle::Messages::Send::SendMmsSchemaOptions, as a Hash
+      # @param options [Hash] Control how your MMS is processed and delivered.Request of type Pinnacle::Messages::Send::Types::SendMmsSchemaOptions, as a Hash
       #   * :multiple_messages (Boolean)
       #   * :schedule (Hash)
       #     * :end_date (DateTime)
       #     * :recurrence (String)
       #     * :send_at (String)
       #     * :timezone (String)
-      #   * :tracking (Pinnacle::Tracking)
+      #   * :tracking (Pinnacle::Types::Tracking)
       #   * :validate (Boolean)
       # @param text [String] Message text to accompany the media.
       # @param to [String] Recipient's phone number in E.164 format.
       # @param request_options [Pinnacle::RequestOptions]
-      # @return [Pinnacle::SentMmsDetails, Pinnacle::ScheduledMessaage]
+      # @return [Pinnacle::Types::SentMmsDetails, Pinnacle::Types::ScheduledMessaage]
       # @example
       #  api = Pinnacle::Client.new(
       #    base_url: "https://api.example.com",
@@ -276,7 +276,7 @@ module Pinnacle
             }.compact
             req.url "#{@request_client.get_url(request_options: request_options)}/messages/send/mms"
           end
-          Pinnacle::Messages::Send::SendMmsResponse.from_json(json_object: response.body)
+          Pinnacle::Messages::Send::Types::SendMmsResponse.from_json(json_object: response.body)
         end
       end
 
@@ -284,9 +284,9 @@ module Pinnacle
       #  Requires an active RCS agent and recipient devices that support RCS Business
       #  Messaging.
       #
-      # @param request [Pinnacle::RcsText, Pinnacle::RcsMedia, Pinnacle::RcsCard]
+      # @param request [Pinnacle::Types::RcsText, Pinnacle::Types::RcsMedia, Pinnacle::Types::RcsCard]
       # @param request_options [Pinnacle::RequestOptions]
-      # @return [Pinnacle::SentRcsDetails, Pinnacle::ScheduledMessaage]
+      # @return [Pinnacle::Types::SentRcsDetails, Pinnacle::Types::ScheduledMessaage]
       # @example
       #  api = Pinnacle::Client.new(
       #    base_url: "https://api.example.com",
@@ -310,7 +310,7 @@ module Pinnacle
             req.body = { **(request || {}), **(request_options&.additional_body_parameters || {}) }.compact
             req.url "#{@request_client.get_url(request_options: request_options)}/messages/send/rcs"
           end
-          Pinnacle::Messages::Send::SendRcsResponse.from_json(json_object: response.body)
+          Pinnacle::Messages::Send::Types::SendRcsResponse.from_json(json_object: response.body)
         end
       end
     end

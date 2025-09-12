@@ -25,9 +25,9 @@ module Pinnacle
       #  is url encoded (i.e. replace the leading + with %2B). <br>
       #  Must be a phone number that you own and have already [purchased](./buy) through
       #  the API.
-      # @param request [Pinnacle::AttachWebhookSchemaWebhookId, Pinnacle::AttachWebhookSchemaName]
+      # @param request [Pinnacle::Types::AttachWebhookSchemaWebhookId, Pinnacle::Types::AttachWebhookSchemaName]
       # @param request_options [Pinnacle::RequestOptions]
-      # @return [Pinnacle::ConfiguredWebhook]
+      # @return [Pinnacle::Types::ConfiguredWebhook]
       # @example
       #  api = Pinnacle::Client.new(
       #    base_url: "https://api.example.com",
@@ -50,7 +50,7 @@ module Pinnacle
           req.body = { **(request || {}), **(request_options&.additional_body_parameters || {}) }.compact
           req.url "#{@request_client.get_url(request_options: request_options)}/phone-numbers/#{phone}/attach-webhook"
         end
-        Pinnacle::ConfiguredWebhook.from_json(json_object: response.body)
+        Pinnacle::Types::ConfiguredWebhook.from_json(json_object: response.body)
       end
 
       # Disconnect a webhook from your phone number to stop receiving event
@@ -67,7 +67,7 @@ module Pinnacle
       #  This must be a valid webhook ID that is currently attached to the specified
       #  phone number.
       # @param request_options [Pinnacle::RequestOptions]
-      # @return [Pinnacle::DetachedWebhookInfo]
+      # @return [Pinnacle::Types::DetachedWebhookInfo]
       # @example
       #  api = Pinnacle::Client.new(
       #    base_url: "https://api.example.com",
@@ -92,7 +92,7 @@ module Pinnacle
           end
           req.url "#{@request_client.get_url(request_options: request_options)}/phone-numbers/#{phone}/detach-webhook/#{webhook_id}"
         end
-        Pinnacle::DetachedWebhookInfo.from_json(json_object: response.body)
+        Pinnacle::Types::DetachedWebhookInfo.from_json(json_object: response.body)
       end
     end
 
@@ -113,9 +113,9 @@ module Pinnacle
       #  is url encoded (i.e. replace the leading + with %2B). <br>
       #  Must be a phone number that you own and have already [purchased](./buy) through
       #  the API.
-      # @param request [Pinnacle::AttachWebhookSchemaWebhookId, Pinnacle::AttachWebhookSchemaName]
+      # @param request [Pinnacle::Types::AttachWebhookSchemaWebhookId, Pinnacle::Types::AttachWebhookSchemaName]
       # @param request_options [Pinnacle::RequestOptions]
-      # @return [Pinnacle::ConfiguredWebhook]
+      # @return [Pinnacle::Types::ConfiguredWebhook]
       # @example
       #  api = Pinnacle::Client.new(
       #    base_url: "https://api.example.com",
@@ -139,7 +139,7 @@ module Pinnacle
             req.body = { **(request || {}), **(request_options&.additional_body_parameters || {}) }.compact
             req.url "#{@request_client.get_url(request_options: request_options)}/phone-numbers/#{phone}/attach-webhook"
           end
-          Pinnacle::ConfiguredWebhook.from_json(json_object: response.body)
+          Pinnacle::Types::ConfiguredWebhook.from_json(json_object: response.body)
         end
       end
 
@@ -157,7 +157,7 @@ module Pinnacle
       #  This must be a valid webhook ID that is currently attached to the specified
       #  phone number.
       # @param request_options [Pinnacle::RequestOptions]
-      # @return [Pinnacle::DetachedWebhookInfo]
+      # @return [Pinnacle::Types::DetachedWebhookInfo]
       # @example
       #  api = Pinnacle::Client.new(
       #    base_url: "https://api.example.com",
@@ -183,7 +183,7 @@ module Pinnacle
             end
             req.url "#{@request_client.get_url(request_options: request_options)}/phone-numbers/#{phone}/detach-webhook/#{webhook_id}"
           end
-          Pinnacle::DetachedWebhookInfo.from_json(json_object: response.body)
+          Pinnacle::Types::DetachedWebhookInfo.from_json(json_object: response.body)
         end
       end
     end

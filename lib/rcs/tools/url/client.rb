@@ -22,10 +22,10 @@ module Pinnacle
       #
       # @param url [String] Destination URL for the shortened link that visitors will be redirected to when
       #  clicked.
-      # @param options [Hash] Request of type Pinnacle::CreateUrlOptions, as a Hash
+      # @param options [Hash] Request of type Pinnacle::Types::CreateUrlOptions, as a Hash
       #   * :expires_at (String)
       # @param request_options [Pinnacle::RequestOptions]
-      # @return [Pinnacle::ShortenedUrl]
+      # @return [Pinnacle::Types::ShortenedUrl]
       # @example
       #  api = Pinnacle::Client.new(
       #    base_url: "https://api.example.com",
@@ -48,7 +48,7 @@ module Pinnacle
           req.body = { **(request_options&.additional_body_parameters || {}), url: url, options: options }.compact
           req.url "#{@request_client.get_url(request_options: request_options)}/tools/url"
         end
-        Pinnacle::ShortenedUrl.from_json(json_object: response.body)
+        Pinnacle::Types::ShortenedUrl.from_json(json_object: response.body)
       end
 
       # Retrieve configuration and details for your shortened URL using its unique
@@ -58,7 +58,7 @@ module Pinnacle
       #  `https://pncl.to/ePzVxILF`, the `linkId` is `ePzVxILF`. <br>
       #  See the response of [Create Shortened URL](./create-url) for more information.
       # @param request_options [Pinnacle::RequestOptions]
-      # @return [Pinnacle::ShortenedUrlWithClickData]
+      # @return [Pinnacle::Types::ShortenedUrlWithClickData]
       # @example
       #  api = Pinnacle::Client.new(
       #    base_url: "https://api.example.com",
@@ -83,7 +83,7 @@ module Pinnacle
           end
           req.url "#{@request_client.get_url(request_options: request_options)}/tools/url/#{link_id}"
         end
-        Pinnacle::ShortenedUrlWithClickData.from_json(json_object: response.body)
+        Pinnacle::Types::ShortenedUrlWithClickData.from_json(json_object: response.body)
       end
 
       # Update the destination or configuration of an existing shortened URL.
@@ -92,10 +92,10 @@ module Pinnacle
       #  `https://pncl.to/ePzVxILF`, the `linkId` is `ePzVxILF`. <br>
       #  See the response of [Create Shortened URL](./create-url) for more information.
       # @param url [String] New destination URL where your visitors will be redirected.
-      # @param options [Hash] Request of type Pinnacle::CreateUrlOptions, as a Hash
+      # @param options [Hash] Request of type Pinnacle::Types::CreateUrlOptions, as a Hash
       #   * :expires_at (String)
       # @param request_options [Pinnacle::RequestOptions]
-      # @return [Pinnacle::ShortenedUrl]
+      # @return [Pinnacle::Types::ShortenedUrl]
       # @example
       #  api = Pinnacle::Client.new(
       #    base_url: "https://api.example.com",
@@ -118,7 +118,7 @@ module Pinnacle
           req.body = { **(request_options&.additional_body_parameters || {}), url: url, options: options }.compact
           req.url "#{@request_client.get_url(request_options: request_options)}/tools/url/#{link_id}"
         end
-        Pinnacle::ShortenedUrl.from_json(json_object: response.body)
+        Pinnacle::Types::ShortenedUrl.from_json(json_object: response.body)
       end
     end
 
@@ -136,10 +136,10 @@ module Pinnacle
       #
       # @param url [String] Destination URL for the shortened link that visitors will be redirected to when
       #  clicked.
-      # @param options [Hash] Request of type Pinnacle::CreateUrlOptions, as a Hash
+      # @param options [Hash] Request of type Pinnacle::Types::CreateUrlOptions, as a Hash
       #   * :expires_at (String)
       # @param request_options [Pinnacle::RequestOptions]
-      # @return [Pinnacle::ShortenedUrl]
+      # @return [Pinnacle::Types::ShortenedUrl]
       # @example
       #  api = Pinnacle::Client.new(
       #    base_url: "https://api.example.com",
@@ -163,7 +163,7 @@ module Pinnacle
             req.body = { **(request_options&.additional_body_parameters || {}), url: url, options: options }.compact
             req.url "#{@request_client.get_url(request_options: request_options)}/tools/url"
           end
-          Pinnacle::ShortenedUrl.from_json(json_object: response.body)
+          Pinnacle::Types::ShortenedUrl.from_json(json_object: response.body)
         end
       end
 
@@ -174,7 +174,7 @@ module Pinnacle
       #  `https://pncl.to/ePzVxILF`, the `linkId` is `ePzVxILF`. <br>
       #  See the response of [Create Shortened URL](./create-url) for more information.
       # @param request_options [Pinnacle::RequestOptions]
-      # @return [Pinnacle::ShortenedUrlWithClickData]
+      # @return [Pinnacle::Types::ShortenedUrlWithClickData]
       # @example
       #  api = Pinnacle::Client.new(
       #    base_url: "https://api.example.com",
@@ -200,7 +200,7 @@ module Pinnacle
             end
             req.url "#{@request_client.get_url(request_options: request_options)}/tools/url/#{link_id}"
           end
-          Pinnacle::ShortenedUrlWithClickData.from_json(json_object: response.body)
+          Pinnacle::Types::ShortenedUrlWithClickData.from_json(json_object: response.body)
         end
       end
 
@@ -210,10 +210,10 @@ module Pinnacle
       #  `https://pncl.to/ePzVxILF`, the `linkId` is `ePzVxILF`. <br>
       #  See the response of [Create Shortened URL](./create-url) for more information.
       # @param url [String] New destination URL where your visitors will be redirected.
-      # @param options [Hash] Request of type Pinnacle::CreateUrlOptions, as a Hash
+      # @param options [Hash] Request of type Pinnacle::Types::CreateUrlOptions, as a Hash
       #   * :expires_at (String)
       # @param request_options [Pinnacle::RequestOptions]
-      # @return [Pinnacle::ShortenedUrl]
+      # @return [Pinnacle::Types::ShortenedUrl]
       # @example
       #  api = Pinnacle::Client.new(
       #    base_url: "https://api.example.com",
@@ -237,7 +237,7 @@ module Pinnacle
             req.body = { **(request_options&.additional_body_parameters || {}), url: url, options: options }.compact
             req.url "#{@request_client.get_url(request_options: request_options)}/tools/url/#{link_id}"
           end
-          Pinnacle::ShortenedUrl.from_json(json_object: response.body)
+          Pinnacle::Types::ShortenedUrl.from_json(json_object: response.body)
         end
       end
     end

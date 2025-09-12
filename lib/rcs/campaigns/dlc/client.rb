@@ -28,11 +28,11 @@ module Pinnacle
       # Generate campaign details based off existing campaign and the brand it's
       #  connected to.
       #
-      # @param request [Hash] Request of type Pinnacle::AutofillCampaignParams, as a Hash
+      # @param request [Hash] Request of type Pinnacle::Types::AutofillCampaignParams, as a Hash
       #   * :additional_info (String)
       #   * :campaign_id (Integer)
       # @param request_options [Pinnacle::RequestOptions]
-      # @return [Pinnacle::AutofillDlcCampaignResponse]
+      # @return [Pinnacle::Types::AutofillDlcCampaignResponse]
       # @example
       #  api = Pinnacle::Client.new(
       #    base_url: "https://api.example.com",
@@ -55,14 +55,14 @@ module Pinnacle
           req.body = { **(request || {}), **(request_options&.additional_body_parameters || {}) }.compact
           req.url "#{@request_client.get_url(request_options: request_options)}/campaigns/dlc/autofill"
         end
-        Pinnacle::AutofillDlcCampaignResponse.from_json(json_object: response.body)
+        Pinnacle::Types::AutofillDlcCampaignResponse.from_json(json_object: response.body)
       end
 
       # Retrieve DLC campaign.
       #
       # @param campaign_id [Integer] Unique identifier of the DLC campaign.
       # @param request_options [Pinnacle::RequestOptions]
-      # @return [Pinnacle::DlcCampaignWithExtendedBrandAndStatus]
+      # @return [Pinnacle::Types::DlcCampaignWithExtendedBrandAndStatus]
       # @example
       #  api = Pinnacle::Client.new(
       #    base_url: "https://api.example.com",
@@ -87,14 +87,14 @@ module Pinnacle
           end
           req.url "#{@request_client.get_url(request_options: request_options)}/campaigns/dlc/#{campaign_id}"
         end
-        Pinnacle::DlcCampaignWithExtendedBrandAndStatus.from_json(json_object: response.body)
+        Pinnacle::Types::DlcCampaignWithExtendedBrandAndStatus.from_json(json_object: response.body)
       end
 
       # Submit your DLC campaign for approval and activation with carriers.
       #
       # @param campaign_id [Integer] Unique identifier of the DLC campaign to submit.
       # @param request_options [Pinnacle::RequestOptions]
-      # @return [Pinnacle::CampaignSubmissionResult]
+      # @return [Pinnacle::Types::CampaignSubmissionResult]
       # @example
       #  api = Pinnacle::Client.new(
       #    base_url: "https://api.example.com",
@@ -119,7 +119,7 @@ module Pinnacle
           end
           req.url "#{@request_client.get_url(request_options: request_options)}/campaigns/dlc/submit/#{campaign_id}"
         end
-        Pinnacle::CampaignSubmissionResult.from_json(json_object: response.body)
+        Pinnacle::Types::CampaignSubmissionResult.from_json(json_object: response.body)
       end
 
       # Create a new DLC campaign or updates an existing one. <br>
@@ -129,7 +129,7 @@ module Pinnacle
       # @param brand [Integer] Brand id.
       # @param campaign_id [Integer] Unique identifier for the campaign.
       # @param description [String] Description of the campaign.
-      # @param keywords [Hash] Keyword response configuration.Request of type Pinnacle::Campaigns::Dlc::UpsertDlcSchemaKeywords, as a Hash
+      # @param keywords [Hash] Keyword response configuration.Request of type Pinnacle::Campaigns::Dlc::Types::UpsertDlcSchemaKeywords, as a Hash
       #   * :help (Hash)
       #     * :message (String)
       #     * :values (Array<String>)
@@ -139,12 +139,12 @@ module Pinnacle
       #   * :opt_out (Hash)
       #     * :message (String)
       #     * :values (Array<String>)
-      # @param links [Hash] Legal documentation links.Request of type Pinnacle::Campaigns::Dlc::UpsertDlcSchemaLinks, as a Hash
+      # @param links [Hash] Legal documentation links.Request of type Pinnacle::Campaigns::Dlc::Types::UpsertDlcSchemaLinks, as a Hash
       #   * :privacy_policy (String)
       #   * :terms_of_service (String)
       # @param message_flow [String] Describe the flow of how users will opt in to this campaign.
       # @param name [String] Display name of the campaign.
-      # @param options [Hash] Campaign configuration options.Request of type Pinnacle::Campaigns::Dlc::UpsertDlcSchemaOptions, as a Hash
+      # @param options [Hash] Campaign configuration options.Request of type Pinnacle::Campaigns::Dlc::Types::UpsertDlcSchemaOptions, as a Hash
       #   * :affiliate_marketing (Boolean)
       #   * :age_gated (Boolean)
       #   * :direct_lending (Boolean)
@@ -152,11 +152,11 @@ module Pinnacle
       #   * :embedded_phone (Boolean)
       #   * :number_pooling (Boolean)
       # @param sample_messages [Array<String>] Example messages for the campaign.
-      # @param use_case [Hash] Use case for the campaign.Request of type Pinnacle::Campaigns::Dlc::UpsertDlcSchemaUseCase, as a Hash
-      #   * :sub (Array<Pinnacle::SubUseCaseEnum>)
-      #   * :value (Pinnacle::DlcCampaignUseCaseEnum)
+      # @param use_case [Hash] Use case for the campaign.Request of type Pinnacle::Campaigns::Dlc::Types::UpsertDlcSchemaUseCase, as a Hash
+      #   * :sub (Array<Pinnacle::Types::SubUseCaseEnum>)
+      #   * :value (Pinnacle::Types::DlcCampaignUseCaseEnum)
       # @param request_options [Pinnacle::RequestOptions]
-      # @return [Pinnacle::DlcCampaignWithExtendedBrandAndStatus]
+      # @return [Pinnacle::Types::DlcCampaignWithExtendedBrandAndStatus]
       # @example
       #  api = Pinnacle::Client.new(
       #    base_url: "https://api.example.com",
@@ -204,17 +204,17 @@ module Pinnacle
           }.compact
           req.url "#{@request_client.get_url(request_options: request_options)}/campaigns/dlc"
         end
-        Pinnacle::DlcCampaignWithExtendedBrandAndStatus.from_json(json_object: response.body)
+        Pinnacle::Types::DlcCampaignWithExtendedBrandAndStatus.from_json(json_object: response.body)
       end
 
       # Validate your DLC campaign configuration against carrier requirements and
       #  compliance rules.
       #
-      # @param request [Hash] Request of type Pinnacle::ValidateCampaignParams, as a Hash
+      # @param request [Hash] Request of type Pinnacle::Types::ValidateCampaignParams, as a Hash
       #   * :additional_info (String)
       #   * :campaign_id (Integer)
       # @param request_options [Pinnacle::RequestOptions]
-      # @return [Pinnacle::CampaignValidationResult]
+      # @return [Pinnacle::Types::CampaignValidationResult]
       # @example
       #  api = Pinnacle::Client.new(
       #    base_url: "https://api.example.com",
@@ -237,7 +237,7 @@ module Pinnacle
           req.body = { **(request || {}), **(request_options&.additional_body_parameters || {}) }.compact
           req.url "#{@request_client.get_url(request_options: request_options)}/campaigns/dlc/validate"
         end
-        Pinnacle::CampaignValidationResult.from_json(json_object: response.body)
+        Pinnacle::Types::CampaignValidationResult.from_json(json_object: response.body)
       end
     end
 
@@ -254,11 +254,11 @@ module Pinnacle
       # Generate campaign details based off existing campaign and the brand it's
       #  connected to.
       #
-      # @param request [Hash] Request of type Pinnacle::AutofillCampaignParams, as a Hash
+      # @param request [Hash] Request of type Pinnacle::Types::AutofillCampaignParams, as a Hash
       #   * :additional_info (String)
       #   * :campaign_id (Integer)
       # @param request_options [Pinnacle::RequestOptions]
-      # @return [Pinnacle::AutofillDlcCampaignResponse]
+      # @return [Pinnacle::Types::AutofillDlcCampaignResponse]
       # @example
       #  api = Pinnacle::Client.new(
       #    base_url: "https://api.example.com",
@@ -282,7 +282,7 @@ module Pinnacle
             req.body = { **(request || {}), **(request_options&.additional_body_parameters || {}) }.compact
             req.url "#{@request_client.get_url(request_options: request_options)}/campaigns/dlc/autofill"
           end
-          Pinnacle::AutofillDlcCampaignResponse.from_json(json_object: response.body)
+          Pinnacle::Types::AutofillDlcCampaignResponse.from_json(json_object: response.body)
         end
       end
 
@@ -290,7 +290,7 @@ module Pinnacle
       #
       # @param campaign_id [Integer] Unique identifier of the DLC campaign.
       # @param request_options [Pinnacle::RequestOptions]
-      # @return [Pinnacle::DlcCampaignWithExtendedBrandAndStatus]
+      # @return [Pinnacle::Types::DlcCampaignWithExtendedBrandAndStatus]
       # @example
       #  api = Pinnacle::Client.new(
       #    base_url: "https://api.example.com",
@@ -316,7 +316,7 @@ module Pinnacle
             end
             req.url "#{@request_client.get_url(request_options: request_options)}/campaigns/dlc/#{campaign_id}"
           end
-          Pinnacle::DlcCampaignWithExtendedBrandAndStatus.from_json(json_object: response.body)
+          Pinnacle::Types::DlcCampaignWithExtendedBrandAndStatus.from_json(json_object: response.body)
         end
       end
 
@@ -324,7 +324,7 @@ module Pinnacle
       #
       # @param campaign_id [Integer] Unique identifier of the DLC campaign to submit.
       # @param request_options [Pinnacle::RequestOptions]
-      # @return [Pinnacle::CampaignSubmissionResult]
+      # @return [Pinnacle::Types::CampaignSubmissionResult]
       # @example
       #  api = Pinnacle::Client.new(
       #    base_url: "https://api.example.com",
@@ -350,7 +350,7 @@ module Pinnacle
             end
             req.url "#{@request_client.get_url(request_options: request_options)}/campaigns/dlc/submit/#{campaign_id}"
           end
-          Pinnacle::CampaignSubmissionResult.from_json(json_object: response.body)
+          Pinnacle::Types::CampaignSubmissionResult.from_json(json_object: response.body)
         end
       end
 
@@ -361,7 +361,7 @@ module Pinnacle
       # @param brand [Integer] Brand id.
       # @param campaign_id [Integer] Unique identifier for the campaign.
       # @param description [String] Description of the campaign.
-      # @param keywords [Hash] Keyword response configuration.Request of type Pinnacle::Campaigns::Dlc::UpsertDlcSchemaKeywords, as a Hash
+      # @param keywords [Hash] Keyword response configuration.Request of type Pinnacle::Campaigns::Dlc::Types::UpsertDlcSchemaKeywords, as a Hash
       #   * :help (Hash)
       #     * :message (String)
       #     * :values (Array<String>)
@@ -371,12 +371,12 @@ module Pinnacle
       #   * :opt_out (Hash)
       #     * :message (String)
       #     * :values (Array<String>)
-      # @param links [Hash] Legal documentation links.Request of type Pinnacle::Campaigns::Dlc::UpsertDlcSchemaLinks, as a Hash
+      # @param links [Hash] Legal documentation links.Request of type Pinnacle::Campaigns::Dlc::Types::UpsertDlcSchemaLinks, as a Hash
       #   * :privacy_policy (String)
       #   * :terms_of_service (String)
       # @param message_flow [String] Describe the flow of how users will opt in to this campaign.
       # @param name [String] Display name of the campaign.
-      # @param options [Hash] Campaign configuration options.Request of type Pinnacle::Campaigns::Dlc::UpsertDlcSchemaOptions, as a Hash
+      # @param options [Hash] Campaign configuration options.Request of type Pinnacle::Campaigns::Dlc::Types::UpsertDlcSchemaOptions, as a Hash
       #   * :affiliate_marketing (Boolean)
       #   * :age_gated (Boolean)
       #   * :direct_lending (Boolean)
@@ -384,11 +384,11 @@ module Pinnacle
       #   * :embedded_phone (Boolean)
       #   * :number_pooling (Boolean)
       # @param sample_messages [Array<String>] Example messages for the campaign.
-      # @param use_case [Hash] Use case for the campaign.Request of type Pinnacle::Campaigns::Dlc::UpsertDlcSchemaUseCase, as a Hash
-      #   * :sub (Array<Pinnacle::SubUseCaseEnum>)
-      #   * :value (Pinnacle::DlcCampaignUseCaseEnum)
+      # @param use_case [Hash] Use case for the campaign.Request of type Pinnacle::Campaigns::Dlc::Types::UpsertDlcSchemaUseCase, as a Hash
+      #   * :sub (Array<Pinnacle::Types::SubUseCaseEnum>)
+      #   * :value (Pinnacle::Types::DlcCampaignUseCaseEnum)
       # @param request_options [Pinnacle::RequestOptions]
-      # @return [Pinnacle::DlcCampaignWithExtendedBrandAndStatus]
+      # @return [Pinnacle::Types::DlcCampaignWithExtendedBrandAndStatus]
       # @example
       #  api = Pinnacle::Client.new(
       #    base_url: "https://api.example.com",
@@ -437,18 +437,18 @@ module Pinnacle
             }.compact
             req.url "#{@request_client.get_url(request_options: request_options)}/campaigns/dlc"
           end
-          Pinnacle::DlcCampaignWithExtendedBrandAndStatus.from_json(json_object: response.body)
+          Pinnacle::Types::DlcCampaignWithExtendedBrandAndStatus.from_json(json_object: response.body)
         end
       end
 
       # Validate your DLC campaign configuration against carrier requirements and
       #  compliance rules.
       #
-      # @param request [Hash] Request of type Pinnacle::ValidateCampaignParams, as a Hash
+      # @param request [Hash] Request of type Pinnacle::Types::ValidateCampaignParams, as a Hash
       #   * :additional_info (String)
       #   * :campaign_id (Integer)
       # @param request_options [Pinnacle::RequestOptions]
-      # @return [Pinnacle::CampaignValidationResult]
+      # @return [Pinnacle::Types::CampaignValidationResult]
       # @example
       #  api = Pinnacle::Client.new(
       #    base_url: "https://api.example.com",
@@ -472,7 +472,7 @@ module Pinnacle
             req.body = { **(request || {}), **(request_options&.additional_body_parameters || {}) }.compact
             req.url "#{@request_client.get_url(request_options: request_options)}/campaigns/dlc/validate"
           end
-          Pinnacle::CampaignValidationResult.from_json(json_object: response.body)
+          Pinnacle::Types::CampaignValidationResult.from_json(json_object: response.body)
         end
       end
     end

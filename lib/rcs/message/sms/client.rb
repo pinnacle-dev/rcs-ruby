@@ -19,10 +19,10 @@ module Pinnacle
 
       # Validate SMS message content without sending it.
       #
-      # @param request [Hash] Request of type Pinnacle::SmsContent, as a Hash
+      # @param request [Hash] Request of type Pinnacle::Types::SmsContent, as a Hash
       #   * :text (String)
       # @param request_options [Pinnacle::RequestOptions]
-      # @return [Pinnacle::SmsValidationResult]
+      # @return [Pinnacle::Types::SmsValidationResult]
       # @example
       #  api = Pinnacle::Client.new(
       #    base_url: "https://api.example.com",
@@ -45,7 +45,7 @@ module Pinnacle
           req.body = { **(request || {}), **(request_options&.additional_body_parameters || {}) }.compact
           req.url "#{@request_client.get_url(request_options: request_options)}/messages/validate/sms"
         end
-        Pinnacle::SmsValidationResult.from_json(json_object: response.body)
+        Pinnacle::Types::SmsValidationResult.from_json(json_object: response.body)
       end
     end
 
@@ -61,10 +61,10 @@ module Pinnacle
 
       # Validate SMS message content without sending it.
       #
-      # @param request [Hash] Request of type Pinnacle::SmsContent, as a Hash
+      # @param request [Hash] Request of type Pinnacle::Types::SmsContent, as a Hash
       #   * :text (String)
       # @param request_options [Pinnacle::RequestOptions]
-      # @return [Pinnacle::SmsValidationResult]
+      # @return [Pinnacle::Types::SmsValidationResult]
       # @example
       #  api = Pinnacle::Client.new(
       #    base_url: "https://api.example.com",
@@ -88,7 +88,7 @@ module Pinnacle
             req.body = { **(request || {}), **(request_options&.additional_body_parameters || {}) }.compact
             req.url "#{@request_client.get_url(request_options: request_options)}/messages/validate/sms"
           end
-          Pinnacle::SmsValidationResult.from_json(json_object: response.body)
+          Pinnacle::Types::SmsValidationResult.from_json(json_object: response.body)
         end
       end
     end

@@ -3,5 +3,7 @@
 require_relative "enhanced_contact_item"
 
 module Pinnacle
-  ENHANCED_CONTACT = Array
+  module Types
+    ENHANCED_CONTACT = Array
+  end
 end

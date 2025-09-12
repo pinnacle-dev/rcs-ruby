@@ -28,11 +28,11 @@ module Pinnacle
       #  - Documents: pdf, csv, rtf, calendar, vcard
       # @param size [Integer] Size of your file in bytes. Should be less than 100 MB.
       # @param name [String] Name of your file.
-      # @param options [Hash] Additional configurations for your file.Request of type Pinnacle::Tools::File::FileUploadSchemaOptions, as a Hash
+      # @param options [Hash] Additional configurations for your file.Request of type Pinnacle::Tools::File::Types::FileUploadSchemaOptions, as a Hash
       #   * :download (Hash)
       #     * :expires_at (String)
       # @param request_options [Pinnacle::RequestOptions]
-      # @return [Pinnacle::UploadResults]
+      # @return [Pinnacle::Types::UploadResults]
       # @example
       #  api = Pinnacle::Client.new(
       #    base_url: "https://api.example.com",
@@ -66,7 +66,7 @@ module Pinnacle
           }.compact
           req.url "#{@request_client.get_url(request_options: request_options)}/tools/files/upload"
         end
-        Pinnacle::UploadResults.from_json(json_object: response.body)
+        Pinnacle::Types::UploadResults.from_json(json_object: response.body)
       end
     end
 
@@ -91,11 +91,11 @@ module Pinnacle
       #  - Documents: pdf, csv, rtf, calendar, vcard
       # @param size [Integer] Size of your file in bytes. Should be less than 100 MB.
       # @param name [String] Name of your file.
-      # @param options [Hash] Additional configurations for your file.Request of type Pinnacle::Tools::File::FileUploadSchemaOptions, as a Hash
+      # @param options [Hash] Additional configurations for your file.Request of type Pinnacle::Tools::File::Types::FileUploadSchemaOptions, as a Hash
       #   * :download (Hash)
       #     * :expires_at (String)
       # @param request_options [Pinnacle::RequestOptions]
-      # @return [Pinnacle::UploadResults]
+      # @return [Pinnacle::Types::UploadResults]
       # @example
       #  api = Pinnacle::Client.new(
       #    base_url: "https://api.example.com",
@@ -130,7 +130,7 @@ module Pinnacle
             }.compact
             req.url "#{@request_client.get_url(request_options: request_options)}/tools/files/upload"
           end
-          Pinnacle::UploadResults.from_json(json_object: response.body)
+          Pinnacle::Types::UploadResults.from_json(json_object: response.body)
         end
       end
     end
