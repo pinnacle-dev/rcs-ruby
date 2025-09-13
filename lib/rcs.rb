@@ -10,7 +10,6 @@ require_relative "rcs/messages/client"
 require_relative "rcs/phone_numbers/client"
 require_relative "rcs/webhooks/client"
 require_relative "rcs/campaigns/client"
-require_relative "rcs/message/client"
 require_relative "rcs/status/client"
 require_relative "rcs/tools/client"
 
@@ -30,8 +29,6 @@ module Pinnacle
     attr_reader :webhooks
     # @return [Pinnacle::Campaigns::Client]
     attr_reader :campaigns
-    # @return [Pinnacle::Message::Client]
-    attr_reader :message
     # @return [Pinnacle::Status::Client]
     attr_reader :status
     # @return [Pinnacle::Tools::Client]
@@ -59,7 +56,6 @@ module Pinnacle
       @phone_numbers = Pinnacle::PhoneNumbersClient.new(request_client: @request_client)
       @webhooks = Pinnacle::WebhooksClient.new(request_client: @request_client)
       @campaigns = Pinnacle::Campaigns::Client.new(request_client: @request_client)
-      @message = Pinnacle::Message::Client.new(request_client: @request_client)
       @status = Pinnacle::Status::Client.new(request_client: @request_client)
       @tools = Pinnacle::Tools::Client.new(request_client: @request_client)
     end
@@ -80,8 +76,6 @@ module Pinnacle
     attr_reader :webhooks
     # @return [Pinnacle::Campaigns::AsyncClient]
     attr_reader :campaigns
-    # @return [Pinnacle::Message::AsyncClient]
-    attr_reader :message
     # @return [Pinnacle::Status::AsyncClient]
     attr_reader :status
     # @return [Pinnacle::Tools::AsyncClient]
@@ -109,7 +103,6 @@ module Pinnacle
       @phone_numbers = Pinnacle::AsyncPhoneNumbersClient.new(request_client: @async_request_client)
       @webhooks = Pinnacle::AsyncWebhooksClient.new(request_client: @async_request_client)
       @campaigns = Pinnacle::Campaigns::AsyncClient.new(request_client: @async_request_client)
-      @message = Pinnacle::Message::AsyncClient.new(request_client: @async_request_client)
       @status = Pinnacle::Status::AsyncClient.new(request_client: @async_request_client)
       @tools = Pinnacle::Tools::AsyncClient.new(request_client: @async_request_client)
     end

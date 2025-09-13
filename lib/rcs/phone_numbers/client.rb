@@ -2,15 +2,15 @@
 
 require_relative "../../requests"
 require_relative "../types/phone_feature_enum"
-require_relative "types/search_schema_location"
-require_relative "types/search_schema_number"
-require_relative "types/search_schema_options"
+require_relative "types/search_phone_number_by_location"
+require_relative "types/search_phone_number_by_digits"
+require_relative "types/search_phone_number_options"
 require_relative "../types/phone_enum"
 require_relative "../types/phone_number_details"
 require "json"
 require_relative "../types/purchased_number"
 require_relative "types/phone_details_schema_level"
-require_relative "types/phone_details_schema_options"
+require_relative "types/retrieve_phone_number_details_options"
 require_relative "types/phone_numbers_get_response"
 require "async"
 
@@ -30,16 +30,16 @@ module Pinnacle
     # @param features [Array<Pinnacle::Types::PhoneFeatureEnum>]
     # @param location [Hash] Filter your search by geographic location to find numbers in specific regions.
     #  <br>
-    #  Toll-free numbers ignore city and state filters.Request of type Pinnacle::PhoneNumbers::Types::SearchSchemaLocation, as a Hash
+    #  Toll-free numbers ignore city and state filters.Request of type Pinnacle::PhoneNumbers::Types::SearchPhoneNumberByLocation, as a Hash
     #   * :city (String)
     #   * :country_code (String)
     #   * :national_destination_code (String)
     #   * :state (String)
-    # @param phone_number_digit_filters [Hash] Filter your search by digit pattern.Request of type Pinnacle::PhoneNumbers::Types::SearchSchemaNumber, as a Hash
+    # @param number [Hash] Filter your search by digit pattern.Request of type Pinnacle::PhoneNumbers::Types::SearchPhoneNumberByDigits, as a Hash
     #   * :contains (String)
     #   * :ends_with (String)
     #   * :starts_with (String)
-    # @param options [Hash] Extra search settings to control how many results you get.Request of type Pinnacle::PhoneNumbers::Types::SearchSchemaOptions, as a Hash
+    # @param options [Hash] Extra search settings to control how many results you get.Request of type Pinnacle::PhoneNumbers::Types::SearchPhoneNumberOptions, as a Hash
     #   * :limit (Integer)
     # @param type [Array<Pinnacle::Types::PhoneEnum>] Types of phone numbers to return in your search.
     # @param request_options [Pinnacle::RequestOptions]
@@ -53,11 +53,11 @@ module Pinnacle
     #  api.phone_numbers.search(
     #    features: [SMS, MMS],
     #    location: { city: "New York", national_destination_code: "212" },
-    #    phone_number_digit_filters: { contains: "514", starts_with: "45" },
+    #    number: { contains: "514", starts_with: "45" },
     #    options: { limit: 4 },
     #    type: [LOCAL]
     #  )
-    def search(type:, features: nil, location: nil, phone_number_digit_filters: nil, options: nil, request_options: nil)
+    def search(type:, features: nil, location: nil, number: nil, options: nil, request_options: nil)
       response = @request_client.conn.post do |req|
         req.options.timeout = request_options.timeout_in_seconds unless request_options&.timeout_in_seconds.nil?
         req.headers["PINNACLE-API-KEY"] = request_options.api_key unless request_options&.api_key.nil?
@@ -73,7 +73,7 @@ module Pinnacle
           **(request_options&.additional_body_parameters || {}),
           features: features,
           location: location,
-          number: phone_number_digit_filters,
+          number: number,
           options: options,
           type: type
         }.compact
@@ -134,7 +134,7 @@ module Pinnacle
     #  - `basic`: Receive essential info like carrier, location, and format.
     #  - `advanced`: Receive a deeper analysis including fraud risk, detailed location,
     #  and enhanced contact info.
-    # @param options [Hash] Customize your lookup with additional options.Request of type Pinnacle::PhoneNumbers::Types::PhoneDetailsSchemaOptions, as a Hash
+    # @param options [Hash] Customize your lookup with additional options.Request of type Pinnacle::PhoneNumbers::Types::RetrievePhoneNumberDetailsOptions, as a Hash
     #   * :force (Boolean)
     #   * :risk (Boolean)
     #   * :enhanced_contact_info (Hash)
@@ -191,16 +191,16 @@ module Pinnacle
     # @param features [Array<Pinnacle::Types::PhoneFeatureEnum>]
     # @param location [Hash] Filter your search by geographic location to find numbers in specific regions.
     #  <br>
-    #  Toll-free numbers ignore city and state filters.Request of type Pinnacle::PhoneNumbers::Types::SearchSchemaLocation, as a Hash
+    #  Toll-free numbers ignore city and state filters.Request of type Pinnacle::PhoneNumbers::Types::SearchPhoneNumberByLocation, as a Hash
     #   * :city (String)
     #   * :country_code (String)
     #   * :national_destination_code (String)
     #   * :state (String)
-    # @param phone_number_digit_filters [Hash] Filter your search by digit pattern.Request of type Pinnacle::PhoneNumbers::Types::SearchSchemaNumber, as a Hash
+    # @param number [Hash] Filter your search by digit pattern.Request of type Pinnacle::PhoneNumbers::Types::SearchPhoneNumberByDigits, as a Hash
     #   * :contains (String)
     #   * :ends_with (String)
     #   * :starts_with (String)
-    # @param options [Hash] Extra search settings to control how many results you get.Request of type Pinnacle::PhoneNumbers::Types::SearchSchemaOptions, as a Hash
+    # @param options [Hash] Extra search settings to control how many results you get.Request of type Pinnacle::PhoneNumbers::Types::SearchPhoneNumberOptions, as a Hash
     #   * :limit (Integer)
     # @param type [Array<Pinnacle::Types::PhoneEnum>] Types of phone numbers to return in your search.
     # @param request_options [Pinnacle::RequestOptions]
@@ -214,11 +214,11 @@ module Pinnacle
     #  api.phone_numbers.search(
     #    features: [SMS, MMS],
     #    location: { city: "New York", national_destination_code: "212" },
-    #    phone_number_digit_filters: { contains: "514", starts_with: "45" },
+    #    number: { contains: "514", starts_with: "45" },
     #    options: { limit: 4 },
     #    type: [LOCAL]
     #  )
-    def search(type:, features: nil, location: nil, phone_number_digit_filters: nil, options: nil, request_options: nil)
+    def search(type:, features: nil, location: nil, number: nil, options: nil, request_options: nil)
       Async do
         response = @request_client.conn.post do |req|
           req.options.timeout = request_options.timeout_in_seconds unless request_options&.timeout_in_seconds.nil?
@@ -235,7 +235,7 @@ module Pinnacle
             **(request_options&.additional_body_parameters || {}),
             features: features,
             location: location,
-            number: phone_number_digit_filters,
+            number: number,
             options: options,
             type: type
           }.compact
@@ -299,7 +299,7 @@ module Pinnacle
     #  - `basic`: Receive essential info like carrier, location, and format.
     #  - `advanced`: Receive a deeper analysis including fraud risk, detailed location,
     #  and enhanced contact info.
-    # @param options [Hash] Customize your lookup with additional options.Request of type Pinnacle::PhoneNumbers::Types::PhoneDetailsSchemaOptions, as a Hash
+    # @param options [Hash] Customize your lookup with additional options.Request of type Pinnacle::PhoneNumbers::Types::RetrievePhoneNumberDetailsOptions, as a Hash
     #   * :force (Boolean)
     #   * :risk (Boolean)
     #   * :enhanced_contact_info (Hash)

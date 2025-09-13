@@ -3,8 +3,8 @@
 require_relative "extended_brand"
 require_relative "profile_status_enum"
 require_relative "message_volume_enum"
-require_relative "toll_free_campaign_schema_opt_in"
-require_relative "toll_free_campaign_schema_use_case"
+require_relative "upsert_toll_free_campaign_opt_in"
+require_relative "upsert_toll_free_campaign_use_case"
 require "ostruct"
 require "json"
 
@@ -27,11 +27,11 @@ module Pinnacle
       attr_reader :monthly_volume
       # @return [String] Display name of the campaign.
       attr_reader :name
-      # @return [Pinnacle::Types::TollFreeCampaignSchemaOptIn] Opt-in keyword settings.
+      # @return [Pinnacle::Types::UpsertTollFreeCampaignOptIn] Opt-in keyword settings.
       attr_reader :opt_in
       # @return [String] Explain message that would be sent.
       attr_reader :production_message_content
-      # @return [Pinnacle::Types::TollFreeCampaignSchemaUseCase] Use case classification for the campaign.
+      # @return [Pinnacle::Types::UpsertTollFreeCampaignUseCase] Use case classification for the campaign.
       attr_reader :use_case
       # @return [OpenStruct] Additional properties unmapped to the current class definition
       attr_reader :additional_properties
@@ -52,9 +52,9 @@ module Pinnacle
       # @param campaign_id [Integer] Unique identifier for the campaign.
       # @param monthly_volume [Pinnacle::Types::MessageVolumeEnum]
       # @param name [String] Display name of the campaign.
-      # @param opt_in [Pinnacle::Types::TollFreeCampaignSchemaOptIn] Opt-in keyword settings.
+      # @param opt_in [Pinnacle::Types::UpsertTollFreeCampaignOptIn] Opt-in keyword settings.
       # @param production_message_content [String] Explain message that would be sent.
-      # @param use_case [Pinnacle::Types::TollFreeCampaignSchemaUseCase] Use case classification for the campaign.
+      # @param use_case [Pinnacle::Types::UpsertTollFreeCampaignUseCase] Use case classification for the campaign.
       # @param additional_properties [OpenStruct] Additional properties unmapped to the current class definition
       # @return [Pinnacle::Types::TollFreeCampaignWithExtendedBrandAndStatus]
       def initialize(brand:, status:, campaign_id: OMIT, monthly_volume: OMIT, name: OMIT, opt_in: OMIT,
@@ -104,14 +104,14 @@ module Pinnacle
           opt_in = nil
         else
           opt_in = parsed_json["optIn"].to_json
-          opt_in = Pinnacle::Types::TollFreeCampaignSchemaOptIn.from_json(json_object: opt_in)
+          opt_in = Pinnacle::Types::UpsertTollFreeCampaignOptIn.from_json(json_object: opt_in)
         end
         production_message_content = parsed_json["productionMessageContent"]
         if parsed_json["useCase"].nil?
           use_case = nil
         else
           use_case = parsed_json["useCase"].to_json
-          use_case = Pinnacle::Types::TollFreeCampaignSchemaUseCase.from_json(json_object: use_case)
+          use_case = Pinnacle::Types::UpsertTollFreeCampaignUseCase.from_json(json_object: use_case)
         end
         new(
           brand: brand,
@@ -146,9 +146,9 @@ module Pinnacle
         obj.campaign_id&.is_a?(Integer) != false || raise("Passed value for field obj.campaign_id is not the expected type, validation failed.")
         obj.monthly_volume&.is_a?(Pinnacle::Types::MessageVolumeEnum) != false || raise("Passed value for field obj.monthly_volume is not the expected type, validation failed.")
         obj.name&.is_a?(String) != false || raise("Passed value for field obj.name is not the expected type, validation failed.")
-        obj.opt_in.nil? || Pinnacle::Types::TollFreeCampaignSchemaOptIn.validate_raw(obj: obj.opt_in)
+        obj.opt_in.nil? || Pinnacle::Types::UpsertTollFreeCampaignOptIn.validate_raw(obj: obj.opt_in)
         obj.production_message_content&.is_a?(String) != false || raise("Passed value for field obj.production_message_content is not the expected type, validation failed.")
-        obj.use_case.nil? || Pinnacle::Types::TollFreeCampaignSchemaUseCase.validate_raw(obj: obj.use_case)
+        obj.use_case.nil? || Pinnacle::Types::UpsertTollFreeCampaignUseCase.validate_raw(obj: obj.use_case)
       end
     end
   end

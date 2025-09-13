@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 require "json"
-require_relative "get_conversation_request_id"
-require_relative "get_conversation_request_recipient"
+require_relative "conversation_by_id_params"
+require_relative "conversation_by_participants_params"
 
 module Pinnacle
   module Types
@@ -15,16 +15,16 @@ module Pinnacle
       def self.from_json(json_object:)
         struct = JSON.parse(json_object, object_class: OpenStruct)
         begin
-          Pinnacle::Types::GetConversationRequestId.validate_raw(obj: struct)
-          return Pinnacle::Types::GetConversationRequestId.from_json(json_object: struct) unless struct.nil?
+          Pinnacle::Types::ConversationByIdParams.validate_raw(obj: struct)
+          return Pinnacle::Types::ConversationByIdParams.from_json(json_object: struct) unless struct.nil?
 
           return nil
         rescue StandardError
           # noop
         end
         begin
-          Pinnacle::Types::GetConversationRequestRecipient.validate_raw(obj: struct)
-          return Pinnacle::Types::GetConversationRequestRecipient.from_json(json_object: struct) unless struct.nil?
+          Pinnacle::Types::ConversationByParticipantsParams.validate_raw(obj: struct)
+          return Pinnacle::Types::ConversationByParticipantsParams.from_json(json_object: struct) unless struct.nil?
 
           return nil
         rescue StandardError
@@ -41,12 +41,12 @@ module Pinnacle
       # @return [Void]
       def self.validate_raw(obj:)
         begin
-          return Pinnacle::Types::GetConversationRequestId.validate_raw(obj: obj)
+          return Pinnacle::Types::ConversationByIdParams.validate_raw(obj: obj)
         rescue StandardError
           # noop
         end
         begin
-          return Pinnacle::Types::GetConversationRequestRecipient.validate_raw(obj: obj)
+          return Pinnacle::Types::ConversationByParticipantsParams.validate_raw(obj: obj)
         rescue StandardError
           # noop
         end

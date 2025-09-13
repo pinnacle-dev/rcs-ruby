@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require_relative "../../../requests"
-require_relative "types/file_upload_schema_options"
+require_relative "types/upload_file_options"
 require_relative "../../types/upload_results"
 require "async"
 
@@ -28,7 +28,7 @@ module Pinnacle
       #  - Documents: pdf, csv, rtf, calendar, vcard
       # @param size [Integer] Size of your file in bytes. Should be less than 100 MB.
       # @param name [String] Name of your file.
-      # @param options [Hash] Additional configurations for your file.Request of type Pinnacle::Tools::File::Types::FileUploadSchemaOptions, as a Hash
+      # @param options [Hash] Additional configurations for your file.Request of type Pinnacle::Tools::File::Types::UploadFileOptions, as a Hash
       #   * :download (Hash)
       #     * :expires_at (String)
       # @param request_options [Pinnacle::RequestOptions]
@@ -91,7 +91,7 @@ module Pinnacle
       #  - Documents: pdf, csv, rtf, calendar, vcard
       # @param size [Integer] Size of your file in bytes. Should be less than 100 MB.
       # @param name [String] Name of your file.
-      # @param options [Hash] Additional configurations for your file.Request of type Pinnacle::Tools::File::Types::FileUploadSchemaOptions, as a Hash
+      # @param options [Hash] Additional configurations for your file.Request of type Pinnacle::Tools::File::Types::UploadFileOptions, as a Hash
       #   * :download (Hash)
       #     * :expires_at (String)
       # @param request_options [Pinnacle::RequestOptions]

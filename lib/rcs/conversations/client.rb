@@ -22,7 +22,7 @@ module Pinnacle
     # Fetch a specific conversation using either its unique identifier or by matching
     #  sender and recipient details.
     #
-    # @param request [Pinnacle::Types::GetConversationRequestId, Pinnacle::Types::GetConversationRequestRecipient]
+    # @param request [Pinnacle::Types::ConversationByIdParams, Pinnacle::Types::ConversationByParticipantsParams]
     # @param request_options [Pinnacle::RequestOptions]
     # @return [Pinnacle::Types::Conversation]
     # @example
@@ -150,7 +150,7 @@ module Pinnacle
     # Fetch a specific conversation using either its unique identifier or by matching
     #  sender and recipient details.
     #
-    # @param request [Pinnacle::Types::GetConversationRequestId, Pinnacle::Types::GetConversationRequestRecipient]
+    # @param request [Pinnacle::Types::ConversationByIdParams, Pinnacle::Types::ConversationByParticipantsParams]
     # @param request_options [Pinnacle::RequestOptions]
     # @return [Pinnacle::Types::Conversation]
     # @example

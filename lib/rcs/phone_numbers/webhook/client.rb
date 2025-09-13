@@ -25,7 +25,7 @@ module Pinnacle
       #  is url encoded (i.e. replace the leading + with %2B). <br>
       #  Must be a phone number that you own and have already [purchased](./buy) through
       #  the API.
-      # @param request [Pinnacle::Types::AttachWebhookSchemaWebhookId, Pinnacle::Types::AttachWebhookSchemaName]
+      # @param request [Pinnacle::Types::AttachWebhookByIdParams, Pinnacle::Types::CreateAndAttachWebhookByUrlParams]
       # @param request_options [Pinnacle::RequestOptions]
       # @return [Pinnacle::Types::ConfiguredWebhook]
       # @example
@@ -113,7 +113,7 @@ module Pinnacle
       #  is url encoded (i.e. replace the leading + with %2B). <br>
       #  Must be a phone number that you own and have already [purchased](./buy) through
       #  the API.
-      # @param request [Pinnacle::Types::AttachWebhookSchemaWebhookId, Pinnacle::Types::AttachWebhookSchemaName]
+      # @param request [Pinnacle::Types::AttachWebhookByIdParams, Pinnacle::Types::CreateAndAttachWebhookByUrlParams]
       # @param request_options [Pinnacle::RequestOptions]
       # @return [Pinnacle::Types::ConfiguredWebhook]
       # @example

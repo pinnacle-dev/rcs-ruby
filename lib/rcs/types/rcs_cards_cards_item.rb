@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "rcs_button_content"
+require_relative "rich_button"
 require "ostruct"
 require "json"
 
@@ -8,7 +8,7 @@ module Pinnacle
   module Types
     # Individual card containing title, optional media, and action buttons.
     class RcsCardsCardsItem
-      # @return [Array<Pinnacle::Types::RcsButtonContent>] Action buttons attached to the card.
+      # @return [Array<Pinnacle::Types::RichButton>] Action buttons attached to the card.
       attr_reader :buttons
       # @return [String] Media file URLs to send.
       attr_reader :media
@@ -24,7 +24,7 @@ module Pinnacle
 
       OMIT = Object.new
 
-      # @param buttons [Array<Pinnacle::Types::RcsButtonContent>] Action buttons attached to the card.
+      # @param buttons [Array<Pinnacle::Types::RichButton>] Action buttons attached to the card.
       # @param media [String] Media file URLs to send.
       # @param subtitle [String] Secondary text displayed below the title for additional context.
       # @param title [String] Title displayed on the card.
@@ -50,7 +50,7 @@ module Pinnacle
         parsed_json = JSON.parse(json_object)
         buttons = parsed_json["buttons"]&.map do |item|
           item = item.to_json
-          Pinnacle::Types::RcsButtonContent.from_json(json_object: item)
+          Pinnacle::Types::RichButton.from_json(json_object: item)
         end
         media = parsed_json["media"]
         subtitle = parsed_json["subtitle"]

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require_relative "rcs_cards_content_cards_item"
-require_relative "rcs_button_content"
+require_relative "rich_button"
 require "ostruct"
 require "json"
 
@@ -14,7 +14,7 @@ module Pinnacle
     class RcsCardsContent
       # @return [Array<Pinnacle::Types::RcsCardsContentCardsItem>] Collection of cards attached to the message.
       attr_reader :cards
-      # @return [Array<Pinnacle::Types::RcsButtonContent>] List of interactive quick reply buttons in the message.
+      # @return [Array<Pinnacle::Types::RichButton>] List of interactive quick reply buttons in the message.
       attr_reader :quick_replies
       # @return [OpenStruct] Additional properties unmapped to the current class definition
       attr_reader :additional_properties
@@ -25,7 +25,7 @@ module Pinnacle
       OMIT = Object.new
 
       # @param cards [Array<Pinnacle::Types::RcsCardsContentCardsItem>] Collection of cards attached to the message.
-      # @param quick_replies [Array<Pinnacle::Types::RcsButtonContent>] List of interactive quick reply buttons in the message.
+      # @param quick_replies [Array<Pinnacle::Types::RichButton>] List of interactive quick reply buttons in the message.
       # @param additional_properties [OpenStruct] Additional properties unmapped to the current class definition
       # @return [Pinnacle::Types::RcsCardsContent]
       def initialize(cards:, quick_replies:, additional_properties: nil)
@@ -48,7 +48,7 @@ module Pinnacle
         end
         quick_replies = parsed_json["quickReplies"]&.map do |item|
           item = item.to_json
-          Pinnacle::Types::RcsButtonContent.from_json(json_object: item)
+          Pinnacle::Types::RichButton.from_json(json_object: item)
         end
         new(
           cards: cards,

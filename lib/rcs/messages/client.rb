@@ -2,7 +2,7 @@
 
 require_relative "../../requests"
 require_relative "../types/message"
-require_relative "types/message_reaction_schema_options"
+require_relative "types/react_message_options"
 require_relative "../types/reaction_result"
 require "async"
 
@@ -52,7 +52,7 @@ module Pinnacle
     # Add or remove an emoji reaction to a previously sent message.
     #
     # @param message_id [Integer] Unique identifier of the message.
-    # @param options [Hash] Request of type Pinnacle::Messages::Types::MessageReactionSchemaOptions, as a Hash
+    # @param options [Hash] Request of type Pinnacle::Messages::Types::ReactMessageOptions, as a Hash
     #   * :force (Boolean)
     # @param reaction [String] Unicode emoji to add. <br>
     #  Use `null` to remove existing reaction.
@@ -140,7 +140,7 @@ module Pinnacle
     # Add or remove an emoji reaction to a previously sent message.
     #
     # @param message_id [Integer] Unique identifier of the message.
-    # @param options [Hash] Request of type Pinnacle::Messages::Types::MessageReactionSchemaOptions, as a Hash
+    # @param options [Hash] Request of type Pinnacle::Messages::Types::ReactMessageOptions, as a Hash
     #   * :force (Boolean)
     # @param reaction [String] Unicode emoji to add. <br>
     #  Use `null` to remove existing reaction.

@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 require "json"
-require_relative "rcs_text"
-require_relative "rcs_media"
-require_relative "rcs_card"
+require_relative "rich_text_message"
+require_relative "rich_media_message"
+require_relative "rich_cards_message"
 
 module Pinnacle
   module Types
@@ -15,24 +15,24 @@ module Pinnacle
       def self.from_json(json_object:)
         struct = JSON.parse(json_object, object_class: OpenStruct)
         begin
-          Pinnacle::Types::RcsText.validate_raw(obj: struct)
-          return Pinnacle::Types::RcsText.from_json(json_object: struct) unless struct.nil?
+          Pinnacle::Types::RichTextMessage.validate_raw(obj: struct)
+          return Pinnacle::Types::RichTextMessage.from_json(json_object: struct) unless struct.nil?
 
           return nil
         rescue StandardError
           # noop
         end
         begin
-          Pinnacle::Types::RcsMedia.validate_raw(obj: struct)
-          return Pinnacle::Types::RcsMedia.from_json(json_object: struct) unless struct.nil?
+          Pinnacle::Types::RichMediaMessage.validate_raw(obj: struct)
+          return Pinnacle::Types::RichMediaMessage.from_json(json_object: struct) unless struct.nil?
 
           return nil
         rescue StandardError
           # noop
         end
         begin
-          Pinnacle::Types::RcsCard.validate_raw(obj: struct)
-          return Pinnacle::Types::RcsCard.from_json(json_object: struct) unless struct.nil?
+          Pinnacle::Types::RichCardsMessage.validate_raw(obj: struct)
+          return Pinnacle::Types::RichCardsMessage.from_json(json_object: struct) unless struct.nil?
 
           return nil
         rescue StandardError
@@ -49,17 +49,17 @@ module Pinnacle
       # @return [Void]
       def self.validate_raw(obj:)
         begin
-          return Pinnacle::Types::RcsText.validate_raw(obj: obj)
+          return Pinnacle::Types::RichTextMessage.validate_raw(obj: obj)
         rescue StandardError
           # noop
         end
         begin
-          return Pinnacle::Types::RcsMedia.validate_raw(obj: obj)
+          return Pinnacle::Types::RichMediaMessage.validate_raw(obj: obj)
         rescue StandardError
           # noop
         end
         begin
-          return Pinnacle::Types::RcsCard.validate_raw(obj: obj)
+          return Pinnacle::Types::RichCardsMessage.validate_raw(obj: obj)
         rescue StandardError
           # noop
         end

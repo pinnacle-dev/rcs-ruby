@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 require_relative "../../requests"
-require_relative "types/autofill_brand_schema_options"
+require_relative "types/autofill_brand_options"
 require_relative "../types/optional_brand_info"
-require_relative "../types/nullable_contact"
+require_relative "../types/upsert_contact"
 require_relative "../types/company_sector_enum"
 require_relative "../types/company_type_enum"
 require_relative "../types/extended_brand"
@@ -30,7 +30,7 @@ module Pinnacle
     #
     # @param additional_info [String] Any extra details about the brand to help improve data accuracy.
     # @param name [String] Name of the brand.
-    # @param options [Hash] Request of type Pinnacle::Brands::Types::AutofillBrandSchemaOptions, as a Hash
+    # @param options [Hash] Request of type Pinnacle::Brands::Types::AutofillBrandOptions, as a Hash
     #   * :force_reload (Boolean)
     # @param website [String] Brand's website URL.
     # @param request_options [Pinnacle::RequestOptions]
@@ -74,7 +74,7 @@ module Pinnacle
     # Create a new brand or update an existing brand by with the provided information.
     #
     # @param address [String] Primary brand address where the company is located.
-    # @param contact [Hash] Contact information for the brand.Request of type Pinnacle::Types::NullableContact, as a Hash
+    # @param contact [Hash] Contact information for the brand.Request of type Pinnacle::Types::UpsertContact, as a Hash
     #   * :email (String)
     #   * :name (String)
     #   * :phone (String)
@@ -331,7 +331,7 @@ module Pinnacle
     #
     # @param additional_info [String] Any extra details about the brand to help improve data accuracy.
     # @param name [String] Name of the brand.
-    # @param options [Hash] Request of type Pinnacle::Brands::Types::AutofillBrandSchemaOptions, as a Hash
+    # @param options [Hash] Request of type Pinnacle::Brands::Types::AutofillBrandOptions, as a Hash
     #   * :force_reload (Boolean)
     # @param website [String] Brand's website URL.
     # @param request_options [Pinnacle::RequestOptions]
@@ -377,7 +377,7 @@ module Pinnacle
     # Create a new brand or update an existing brand by with the provided information.
     #
     # @param address [String] Primary brand address where the company is located.
-    # @param contact [Hash] Contact information for the brand.Request of type Pinnacle::Types::NullableContact, as a Hash
+    # @param contact [Hash] Contact information for the brand.Request of type Pinnacle::Types::UpsertContact, as a Hash
     #   * :email (String)
     #   * :name (String)
     #   * :phone (String)

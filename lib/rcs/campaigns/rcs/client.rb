@@ -5,11 +5,11 @@ require_relative "../../types/autofill_campaign_params"
 require_relative "types/rcs_autofill_response"
 require_relative "../../types/extended_rcs_campaign"
 require_relative "../../types/campaign_submission_result"
-require_relative "types/upsert_rcs_schema_agent"
-require_relative "types/upsert_rcs_schema_links"
-require_relative "types/upsert_rcs_schema_opt_in"
-require_relative "types/upsert_rcs_schema_opt_out"
-require_relative "types/upsert_rcs_schema_use_case"
+require_relative "types/upsert_rcs_agent"
+require_relative "types/upsert_rcs_links"
+require_relative "types/upsert_rcs_opt_in"
+require_relative "types/upsert_rcs_opt_out"
+require_relative "types/upsert_rcs_use_case"
 require_relative "../../types/validate_campaign_params"
 require_relative "../../types/campaign_validation_result"
 require "async"
@@ -126,28 +126,28 @@ module Pinnacle
       # Create a new RCS campaign or updates an existing one. <br>
       #  Omit campaignId to create a campaign.
       #
-      # @param agent [Hash] Create an agent for the campaign.Request of type Pinnacle::Campaigns::Rcs::Types::UpsertRcsSchemaAgent, as a Hash
+      # @param agent [Hash] Create an agent for the campaign.Request of type Pinnacle::Campaigns::Rcs::Types::UpsertRcsAgent, as a Hash
       #   * :color (String)
       #   * :description (String)
-      #   * :emails (Array<Pinnacle::Campaigns::Rcs::Types::UpsertRcsSchemaAgentEmailsItem>)
+      #   * :emails (Array<Pinnacle::Campaigns::Rcs::Types::RcsAgentEmail>)
       #   * :hero_url (String)
       #   * :icon_url (String)
       #   * :name (String)
-      #   * :phones (Array<Pinnacle::Campaigns::Rcs::Types::UpsertRcsSchemaAgentPhonesItem>)
-      #   * :websites (Array<Pinnacle::Campaigns::Rcs::Types::UpsertRcsSchemaAgentWebsitesItem>)
+      #   * :phones (Array<Pinnacle::Campaigns::Rcs::Types::RcsAgentPhone>)
+      #   * :websites (Array<Pinnacle::Campaigns::Rcs::Types::RcsAgentWebsite>)
       # @param brand [Integer] Unique identifier for the brand.
       # @param campaign_id [Integer] Unique identifier for the campaign.
       # @param expected_agent_responses [Array<String>] List of what the agent might say to users (1-5 required).
-      # @param links [Hash] Legal documentation links.Request of type Pinnacle::Campaigns::Rcs::Types::UpsertRcsSchemaLinks, as a Hash
+      # @param links [Hash] Legal documentation links.Request of type Pinnacle::Campaigns::Rcs::Types::UpsertRcsLinks, as a Hash
       #   * :privacy_policy (String)
       #   * :terms_of_service (String)
-      # @param opt_in [Hash] Opt-in configuration.Request of type Pinnacle::Campaigns::Rcs::Types::UpsertRcsSchemaOptIn, as a Hash
+      # @param opt_in [Hash] Opt-in configuration.Request of type Pinnacle::Campaigns::Rcs::Types::UpsertRcsOptIn, as a Hash
       #   * :method_ (Pinnacle::Types::RcsCampaignOptInMethodEnum)
       #   * :terms_and_conditions (String)
-      # @param opt_out [Hash] Opt-out configuration.Request of type Pinnacle::Campaigns::Rcs::Types::UpsertRcsSchemaOptOut, as a Hash
+      # @param opt_out [Hash] Opt-out configuration.Request of type Pinnacle::Campaigns::Rcs::Types::UpsertRcsOptOut, as a Hash
       #   * :description (String)
       #   * :keywords (Array<String>)
-      # @param use_case [Hash] Use case classification for the campaign.Request of type Pinnacle::Campaigns::Rcs::Types::UpsertRcsSchemaUseCase, as a Hash
+      # @param use_case [Hash] Use case classification for the campaign.Request of type Pinnacle::Campaigns::Rcs::Types::UpsertRcsUseCase, as a Hash
       #   * :behavior (String)
       #   * :value (Pinnacle::Types::RcsCampaignUseCaseEnum)
       # @param request_options [Pinnacle::RequestOptions]
@@ -346,28 +346,28 @@ module Pinnacle
       # Create a new RCS campaign or updates an existing one. <br>
       #  Omit campaignId to create a campaign.
       #
-      # @param agent [Hash] Create an agent for the campaign.Request of type Pinnacle::Campaigns::Rcs::Types::UpsertRcsSchemaAgent, as a Hash
+      # @param agent [Hash] Create an agent for the campaign.Request of type Pinnacle::Campaigns::Rcs::Types::UpsertRcsAgent, as a Hash
       #   * :color (String)
       #   * :description (String)
-      #   * :emails (Array<Pinnacle::Campaigns::Rcs::Types::UpsertRcsSchemaAgentEmailsItem>)
+      #   * :emails (Array<Pinnacle::Campaigns::Rcs::Types::RcsAgentEmail>)
       #   * :hero_url (String)
       #   * :icon_url (String)
       #   * :name (String)
-      #   * :phones (Array<Pinnacle::Campaigns::Rcs::Types::UpsertRcsSchemaAgentPhonesItem>)
-      #   * :websites (Array<Pinnacle::Campaigns::Rcs::Types::UpsertRcsSchemaAgentWebsitesItem>)
+      #   * :phones (Array<Pinnacle::Campaigns::Rcs::Types::RcsAgentPhone>)
+      #   * :websites (Array<Pinnacle::Campaigns::Rcs::Types::RcsAgentWebsite>)
       # @param brand [Integer] Unique identifier for the brand.
       # @param campaign_id [Integer] Unique identifier for the campaign.
       # @param expected_agent_responses [Array<String>] List of what the agent might say to users (1-5 required).
-      # @param links [Hash] Legal documentation links.Request of type Pinnacle::Campaigns::Rcs::Types::UpsertRcsSchemaLinks, as a Hash
+      # @param links [Hash] Legal documentation links.Request of type Pinnacle::Campaigns::Rcs::Types::UpsertRcsLinks, as a Hash
       #   * :privacy_policy (String)
       #   * :terms_of_service (String)
-      # @param opt_in [Hash] Opt-in configuration.Request of type Pinnacle::Campaigns::Rcs::Types::UpsertRcsSchemaOptIn, as a Hash
+      # @param opt_in [Hash] Opt-in configuration.Request of type Pinnacle::Campaigns::Rcs::Types::UpsertRcsOptIn, as a Hash
       #   * :method_ (Pinnacle::Types::RcsCampaignOptInMethodEnum)
       #   * :terms_and_conditions (String)
-      # @param opt_out [Hash] Opt-out configuration.Request of type Pinnacle::Campaigns::Rcs::Types::UpsertRcsSchemaOptOut, as a Hash
+      # @param opt_out [Hash] Opt-out configuration.Request of type Pinnacle::Campaigns::Rcs::Types::UpsertRcsOptOut, as a Hash
       #   * :description (String)
       #   * :keywords (Array<String>)
-      # @param use_case [Hash] Use case classification for the campaign.Request of type Pinnacle::Campaigns::Rcs::Types::UpsertRcsSchemaUseCase, as a Hash
+      # @param use_case [Hash] Use case classification for the campaign.Request of type Pinnacle::Campaigns::Rcs::Types::UpsertRcsUseCase, as a Hash
       #   * :behavior (String)
       #   * :value (Pinnacle::Types::RcsCampaignUseCaseEnum)
       # @param request_options [Pinnacle::RequestOptions]

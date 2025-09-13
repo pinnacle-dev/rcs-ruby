@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 require "json"
-require_relative "attach_webhook_schema_webhook_id"
-require_relative "attach_webhook_schema_name"
+require_relative "attach_webhook_by_id_params"
+require_relative "create_and_attach_webhook_by_url_params"
 
 module Pinnacle
   module Types
@@ -18,16 +18,16 @@ module Pinnacle
       def self.from_json(json_object:)
         struct = JSON.parse(json_object, object_class: OpenStruct)
         begin
-          Pinnacle::Types::AttachWebhookSchemaWebhookId.validate_raw(obj: struct)
-          return Pinnacle::Types::AttachWebhookSchemaWebhookId.from_json(json_object: struct) unless struct.nil?
+          Pinnacle::Types::AttachWebhookByIdParams.validate_raw(obj: struct)
+          return Pinnacle::Types::AttachWebhookByIdParams.from_json(json_object: struct) unless struct.nil?
 
           return nil
         rescue StandardError
           # noop
         end
         begin
-          Pinnacle::Types::AttachWebhookSchemaName.validate_raw(obj: struct)
-          return Pinnacle::Types::AttachWebhookSchemaName.from_json(json_object: struct) unless struct.nil?
+          Pinnacle::Types::CreateAndAttachWebhookByUrlParams.validate_raw(obj: struct)
+          return Pinnacle::Types::CreateAndAttachWebhookByUrlParams.from_json(json_object: struct) unless struct.nil?
 
           return nil
         rescue StandardError
@@ -44,12 +44,12 @@ module Pinnacle
       # @return [Void]
       def self.validate_raw(obj:)
         begin
-          return Pinnacle::Types::AttachWebhookSchemaWebhookId.validate_raw(obj: obj)
+          return Pinnacle::Types::AttachWebhookByIdParams.validate_raw(obj: obj)
         rescue StandardError
           # noop
         end
         begin
-          return Pinnacle::Types::AttachWebhookSchemaName.validate_raw(obj: obj)
+          return Pinnacle::Types::CreateAndAttachWebhookByUrlParams.validate_raw(obj: obj)
         rescue StandardError
           # noop
         end

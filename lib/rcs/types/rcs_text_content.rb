@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "rcs_button_content"
+require_relative "rich_button"
 require "ostruct"
 require "json"
 
@@ -8,7 +8,7 @@ module Pinnacle
   module Types
     # Message containing longer text content with optional quick reply buttons.
     class RcsTextContent
-      # @return [Array<Pinnacle::Types::RcsButtonContent>] List of interactive quick reply buttons in the message.
+      # @return [Array<Pinnacle::Types::RichButton>] List of interactive quick reply buttons in the message.
       attr_reader :quick_replies
       # @return [String] Text content of the RCS message.
       attr_reader :text
@@ -20,7 +20,7 @@ module Pinnacle
 
       OMIT = Object.new
 
-      # @param quick_replies [Array<Pinnacle::Types::RcsButtonContent>] List of interactive quick reply buttons in the message.
+      # @param quick_replies [Array<Pinnacle::Types::RichButton>] List of interactive quick reply buttons in the message.
       # @param text [String] Text content of the RCS message.
       # @param additional_properties [OpenStruct] Additional properties unmapped to the current class definition
       # @return [Pinnacle::Types::RcsTextContent]
@@ -40,7 +40,7 @@ module Pinnacle
         parsed_json = JSON.parse(json_object)
         quick_replies = parsed_json["quickReplies"]&.map do |item|
           item = item.to_json
-          Pinnacle::Types::RcsButtonContent.from_json(json_object: item)
+          Pinnacle::Types::RichButton.from_json(json_object: item)
         end
         text = parsed_json["text"]
         new(
