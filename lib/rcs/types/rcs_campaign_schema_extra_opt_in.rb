@@ -9,7 +9,7 @@ module Pinnacle
     # Opt-in configuration.
     class RcsCampaignSchemaExtraOptIn
       # @return [Pinnacle::Types::RcsCampaignOptInMethodEnum]
-      attr_reader :method
+      attr_reader :method_
       # @return [String] Message shown to users explaining what they are agreeing to when opting in.
       attr_reader :terms_and_conditions
       # @return [OpenStruct] Additional properties unmapped to the current class definition
@@ -20,15 +20,15 @@ module Pinnacle
 
       OMIT = Object.new
 
-      # @param method [Pinnacle::Types::RcsCampaignOptInMethodEnum]
+      # @param method_ [Pinnacle::Types::RcsCampaignOptInMethodEnum]
       # @param terms_and_conditions [String] Message shown to users explaining what they are agreeing to when opting in.
       # @param additional_properties [OpenStruct] Additional properties unmapped to the current class definition
       # @return [Pinnacle::Types::RcsCampaignSchemaExtraOptIn]
-      def initialize(method: OMIT, terms_and_conditions: OMIT, additional_properties: nil)
-        @method = method if method != OMIT
+      def initialize(method_: OMIT, terms_and_conditions: OMIT, additional_properties: nil)
+        @method_ = method_ if method_ != OMIT
         @terms_and_conditions = terms_and_conditions if terms_and_conditions != OMIT
         @additional_properties = additional_properties
-        @_field_set = { "method": method, "termsAndConditions": terms_and_conditions }.reject do |_k, v|
+        @_field_set = { "method": method_, "termsAndConditions": terms_and_conditions }.reject do |_k, v|
           v == OMIT
         end
       end
@@ -40,10 +40,10 @@ module Pinnacle
       def self.from_json(json_object:)
         struct = JSON.parse(json_object, object_class: OpenStruct)
         parsed_json = JSON.parse(json_object)
-        method = parsed_json["method"]
+        method_ = parsed_json["method"]
         terms_and_conditions = parsed_json["termsAndConditions"]
         new(
-          method: method,
+          method_: method_,
           terms_and_conditions: terms_and_conditions,
           additional_properties: struct
         )
@@ -63,7 +63,7 @@ module Pinnacle
       # @param obj [Object]
       # @return [Void]
       def self.validate_raw(obj:)
-        obj.method&.is_a?(Pinnacle::Types::RcsCampaignOptInMethodEnum) != false || raise("Passed value for field obj.method is not the expected type, validation failed.")
+        obj.method_&.is_a?(Pinnacle::Types::RcsCampaignOptInMethodEnum) != false || raise("Passed value for field obj.method_ is not the expected type, validation failed.")
         obj.terms_and_conditions&.is_a?(String) != false || raise("Passed value for field obj.terms_and_conditions is not the expected type, validation failed.")
       end
     end

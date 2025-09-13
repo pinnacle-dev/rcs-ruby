@@ -129,7 +129,7 @@ module Pinnacle
       # @param monthly_volume [Pinnacle::Types::MessageVolumeEnum]
       # @param name [String] Display name of the campaign.
       # @param opt_in [Hash] Opt-in keyword settings.Request of type Pinnacle::Campaigns::TollFree::Types::UpsertTollFreeSchemaOptIn, as a Hash
-      #   * :method (Pinnacle::Types::OptInMethodEnum)
+      #   * :method_ (Pinnacle::Types::OptInMethodEnum)
       #   * :url (String)
       #   * :workflow_description (String)
       # @param production_message_content [String] Explain message that would be sent.
@@ -149,7 +149,7 @@ module Pinnacle
       #    campaign_id: 161,
       #    monthly_volume: ONE_000,
       #    name: "Pinnacle",
-      #    opt_in: { method: DIGITAL, url: "https://www.pinnacle.sh/", workflow_description: "Visit https://www.pinnacle.sh/" },
+      #    opt_in: { method_: DIGITAL, url: "https://www.pinnacle.sh/", workflow_description: "Visit https://www.pinnacle.sh/" },
       #    production_message_content: "Join Pinnacle's workshop tomorrow and send your first RCS!",
       #    use_case: { summary: "Alerts clients about any Pinnacle hosted workshops.", value: WORKSHOP_ALERTS }
       #  )
@@ -336,7 +336,7 @@ module Pinnacle
       # @param monthly_volume [Pinnacle::Types::MessageVolumeEnum]
       # @param name [String] Display name of the campaign.
       # @param opt_in [Hash] Opt-in keyword settings.Request of type Pinnacle::Campaigns::TollFree::Types::UpsertTollFreeSchemaOptIn, as a Hash
-      #   * :method (Pinnacle::Types::OptInMethodEnum)
+      #   * :method_ (Pinnacle::Types::OptInMethodEnum)
       #   * :url (String)
       #   * :workflow_description (String)
       # @param production_message_content [String] Explain message that would be sent.
@@ -356,7 +356,7 @@ module Pinnacle
       #    campaign_id: 161,
       #    monthly_volume: ONE_000,
       #    name: "Pinnacle",
-      #    opt_in: { method: DIGITAL, url: "https://www.pinnacle.sh/", workflow_description: "Visit https://www.pinnacle.sh/" },
+      #    opt_in: { method_: DIGITAL, url: "https://www.pinnacle.sh/", workflow_description: "Visit https://www.pinnacle.sh/" },
       #    production_message_content: "Join Pinnacle's workshop tomorrow and send your first RCS!",
       #    use_case: { summary: "Alerts clients about any Pinnacle hosted workshops.", value: WORKSHOP_ALERTS }
       #  )

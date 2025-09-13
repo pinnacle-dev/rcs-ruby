@@ -142,7 +142,7 @@ module Pinnacle
       #   * :privacy_policy (String)
       #   * :terms_of_service (String)
       # @param opt_in [Hash] Opt-in configuration.Request of type Pinnacle::Campaigns::Rcs::Types::UpsertRcsSchemaOptIn, as a Hash
-      #   * :method (Pinnacle::Types::RcsCampaignOptInMethodEnum)
+      #   * :method_ (Pinnacle::Types::RcsCampaignOptInMethodEnum)
       #   * :terms_and_conditions (String)
       # @param opt_out [Hash] Opt-out configuration.Request of type Pinnacle::Campaigns::Rcs::Types::UpsertRcsSchemaOptOut, as a Hash
       #   * :description (String)
@@ -163,7 +163,7 @@ module Pinnacle
       #    brand: 2,
       #    expected_agent_responses: ["Here are the things I can help you with.", "I can assist you with booking an appointment, or you may choose to book manually.", "Here are the available times to connect with a representative tomorrow.", "Your appointment has been scheduled."],
       #    links: { privacy_policy: "https://www.trypinnacle.app/privacy", terms_of_service: "https://www.trypinnacle.app/terms" },
-      #    opt_in: { method: WEBSITE, terms_and_conditions: "Would you like to subscribe to Pinnacle?" },
+      #    opt_in: { method_: WEBSITE, terms_and_conditions: "Would you like to subscribe to Pinnacle?" },
       #    opt_out: { description: "Reply STOP to opt-out anytime.", keywords: ["STOP", "UNSUBSCRIBE", "END"] },
       #    use_case: { behavior: "Acts as a customer service representative.", value: OTHER }
       #  )
@@ -362,7 +362,7 @@ module Pinnacle
       #   * :privacy_policy (String)
       #   * :terms_of_service (String)
       # @param opt_in [Hash] Opt-in configuration.Request of type Pinnacle::Campaigns::Rcs::Types::UpsertRcsSchemaOptIn, as a Hash
-      #   * :method (Pinnacle::Types::RcsCampaignOptInMethodEnum)
+      #   * :method_ (Pinnacle::Types::RcsCampaignOptInMethodEnum)
       #   * :terms_and_conditions (String)
       # @param opt_out [Hash] Opt-out configuration.Request of type Pinnacle::Campaigns::Rcs::Types::UpsertRcsSchemaOptOut, as a Hash
       #   * :description (String)
@@ -383,7 +383,7 @@ module Pinnacle
       #    brand: 2,
       #    expected_agent_responses: ["Here are the things I can help you with.", "I can assist you with booking an appointment, or you may choose to book manually.", "Here are the available times to connect with a representative tomorrow.", "Your appointment has been scheduled."],
       #    links: { privacy_policy: "https://www.trypinnacle.app/privacy", terms_of_service: "https://www.trypinnacle.app/terms" },
-      #    opt_in: { method: WEBSITE, terms_and_conditions: "Would you like to subscribe to Pinnacle?" },
+      #    opt_in: { method_: WEBSITE, terms_and_conditions: "Would you like to subscribe to Pinnacle?" },
       #    opt_out: { description: "Reply STOP to opt-out anytime.", keywords: ["STOP", "UNSUBSCRIBE", "END"] },
       #    use_case: { behavior: "Acts as a customer service representative.", value: OTHER }
       #  )

@@ -26,7 +26,7 @@ module Pinnacle
       # @return [Integer] Unique identifier of the message.
       attr_reader :id
       # @return [Pinnacle::Types::MessageMethodEnum]
-      attr_reader :method
+      attr_reader :method_
       # @return [Integer] Number of segments the message was split into for delivery.
       attr_reader :num_segments
       # @return [String] Phone number that received the message in E.164 format.
@@ -58,7 +58,7 @@ module Pinnacle
       #  <br>
       #  Null indicates no errors.
       # @param id [Integer] Unique identifier of the message.
-      # @param method [Pinnacle::Types::MessageMethodEnum]
+      # @param method_ [Pinnacle::Types::MessageMethodEnum]
       # @param num_segments [Integer] Number of segments the message was split into for delivery.
       # @param receiver [String] Phone number that received the message in E.164 format.
       # @param sender [String] Phone number or agent that sent the message.
@@ -68,14 +68,14 @@ module Pinnacle
       # @param type [Pinnacle::Types::MessageProtocolEnum]
       # @param additional_properties [OpenStruct] Additional properties unmapped to the current class definition
       # @return [Pinnacle::Types::Message]
-      def initialize(content:, id:, method:, num_segments:, receiver:, sender:, status:, type:, cost: OMIT,
+      def initialize(content:, id:, method_:, num_segments:, receiver:, sender:, status:, type:, cost: OMIT,
                      delivered_at: OMIT, error: OMIT, sent_at: OMIT, additional_properties: nil)
         @content = content
         @cost = cost if cost != OMIT
         @delivered_at = delivered_at if delivered_at != OMIT
         @error = error if error != OMIT
         @id = id
-        @method = method
+        @method_ = method_
         @num_segments = num_segments
         @receiver = receiver
         @sender = sender
@@ -89,7 +89,7 @@ module Pinnacle
           "deliveredAt": delivered_at,
           "error": error,
           "id": id,
-          "method": method,
+          "method": method_,
           "numSegments": num_segments,
           "receiver": receiver,
           "sender": sender,
@@ -118,7 +118,7 @@ module Pinnacle
         delivered_at = parsed_json["deliveredAt"]
         error = parsed_json["error"]
         id = parsed_json["id"]
-        method = parsed_json["method"]
+        method_ = parsed_json["method"]
         num_segments = parsed_json["numSegments"]
         receiver = parsed_json["receiver"]
         sender = parsed_json["sender"]
@@ -131,7 +131,7 @@ module Pinnacle
           delivered_at: delivered_at,
           error: error,
           id: id,
-          method: method,
+          method_: method_,
           num_segments: num_segments,
           receiver: receiver,
           sender: sender,
@@ -161,7 +161,7 @@ module Pinnacle
         obj.delivered_at&.is_a?(String) != false || raise("Passed value for field obj.delivered_at is not the expected type, validation failed.")
         obj.error&.is_a?(String) != false || raise("Passed value for field obj.error is not the expected type, validation failed.")
         obj.id.is_a?(Integer) != false || raise("Passed value for field obj.id is not the expected type, validation failed.")
-        obj.method.is_a?(Pinnacle::Types::MessageMethodEnum) != false || raise("Passed value for field obj.method is not the expected type, validation failed.")
+        obj.method_.is_a?(Pinnacle::Types::MessageMethodEnum) != false || raise("Passed value for field obj.method_ is not the expected type, validation failed.")
         obj.num_segments.is_a?(Integer) != false || raise("Passed value for field obj.num_segments is not the expected type, validation failed.")
         obj.receiver.is_a?(String) != false || raise("Passed value for field obj.receiver is not the expected type, validation failed.")
         obj.sender.is_a?(String) != false || raise("Passed value for field obj.sender is not the expected type, validation failed.")

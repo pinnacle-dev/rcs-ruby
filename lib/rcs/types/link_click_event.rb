@@ -59,7 +59,7 @@ module Pinnacle
       # @return [Hash{String => Object}] Additional metadata as JSON object.
       attr_reader :metadata
       # @return [String] HTTP method used.
-      attr_reader :method
+      attr_reader :method_
       # @return [Integer] Metro area code.
       attr_reader :metro_code
       # @return [Float] Network downlink speed estimate in Mbps.
@@ -142,7 +142,7 @@ module Pinnacle
       # @param link_id [Integer] ID of your shortened URL.
       # @param longitude [Float] Geographic longitude.
       # @param metadata [Hash{String => Object}] Additional metadata as JSON object.
-      # @param method [String] HTTP method used.
+      # @param method_ [String] HTTP method used.
       # @param metro_code [Integer] Metro area code.
       # @param network_downlink [Float] Network downlink speed estimate in Mbps.
       # @param network_rtt [Integer] Network round-trip time in milliseconds.
@@ -170,7 +170,7 @@ module Pinnacle
       # @param additional_properties [OpenStruct] Additional properties unmapped to the current class definition
       # @return [Pinnacle::Types::LinkClickEvent]
       def initialize(created_at:, id:, link_id:, accept_language: OMIT, accuracy_radius_km: OMIT, asn: OMIT, blocked_reason: OMIT,
-                     ch_ua_brand: OMIT, ch_ua_mobile: OMIT, ch_ua_platform: OMIT, city: OMIT, color_depth: OMIT, connection_type: OMIT, country: OMIT, error_details: OMIT, fbclid: OMIT, final_url: OMIT, fingerprint_id: OMIT, gclid: OMIT, ip_address: OMIT, ip_chain: OMIT, is_bot: OMIT, latency_ms: OMIT, latitude: OMIT, longitude: OMIT, metadata: OMIT, method: OMIT, metro_code: OMIT, network_downlink: OMIT, network_rtt: OMIT, performance_ttfb_ms: OMIT, postal_code: OMIT, redirect_hops: OMIT, referrer: OMIT, referrer_domain: OMIT, region: OMIT, resolved_at: OMIT, screen_res: OMIT, status_code: OMIT, timezone_offset_min: OMIT, tor_exit_node: OMIT, ua_browser: OMIT, ua_device: OMIT, ua_os: OMIT, ua_version: OMIT, user_agent: OMIT, utm_campaign: OMIT, utm_content: OMIT, utm_medium: OMIT, utm_source: OMIT, utm_term: OMIT, additional_properties: nil)
+                     ch_ua_brand: OMIT, ch_ua_mobile: OMIT, ch_ua_platform: OMIT, city: OMIT, color_depth: OMIT, connection_type: OMIT, country: OMIT, error_details: OMIT, fbclid: OMIT, final_url: OMIT, fingerprint_id: OMIT, gclid: OMIT, ip_address: OMIT, ip_chain: OMIT, is_bot: OMIT, latency_ms: OMIT, latitude: OMIT, longitude: OMIT, metadata: OMIT, method_: OMIT, metro_code: OMIT, network_downlink: OMIT, network_rtt: OMIT, performance_ttfb_ms: OMIT, postal_code: OMIT, redirect_hops: OMIT, referrer: OMIT, referrer_domain: OMIT, region: OMIT, resolved_at: OMIT, screen_res: OMIT, status_code: OMIT, timezone_offset_min: OMIT, tor_exit_node: OMIT, ua_browser: OMIT, ua_device: OMIT, ua_os: OMIT, ua_version: OMIT, user_agent: OMIT, utm_campaign: OMIT, utm_content: OMIT, utm_medium: OMIT, utm_source: OMIT, utm_term: OMIT, additional_properties: nil)
         @accept_language = accept_language if accept_language != OMIT
         @accuracy_radius_km = accuracy_radius_km if accuracy_radius_km != OMIT
         @asn = asn if asn != OMIT
@@ -197,7 +197,7 @@ module Pinnacle
         @link_id = link_id
         @longitude = longitude if longitude != OMIT
         @metadata = metadata if metadata != OMIT
-        @method = method if method != OMIT
+        @method_ = method_ if method_ != OMIT
         @metro_code = metro_code if metro_code != OMIT
         @network_downlink = network_downlink if network_downlink != OMIT
         @network_rtt = network_rtt if network_rtt != OMIT
@@ -250,7 +250,7 @@ module Pinnacle
           "link_id": link_id,
           "longitude": longitude,
           "metadata": metadata,
-          "method": method,
+          "method": method_,
           "metro_code": metro_code,
           "network_downlink": network_downlink,
           "network_rtt": network_rtt,
@@ -313,7 +313,7 @@ module Pinnacle
         link_id = parsed_json["link_id"]
         longitude = parsed_json["longitude"]
         metadata = parsed_json["metadata"]
-        method = parsed_json["method"]
+        method_ = parsed_json["method"]
         metro_code = parsed_json["metro_code"]
         network_downlink = parsed_json["network_downlink"]
         network_rtt = parsed_json["network_rtt"]
@@ -365,7 +365,7 @@ module Pinnacle
           link_id: link_id,
           longitude: longitude,
           metadata: metadata,
-          method: method,
+          method_: method_,
           metro_code: metro_code,
           network_downlink: network_downlink,
           network_rtt: network_rtt,
@@ -434,7 +434,7 @@ module Pinnacle
         obj.link_id.is_a?(Integer) != false || raise("Passed value for field obj.link_id is not the expected type, validation failed.")
         obj.longitude&.is_a?(Float) != false || raise("Passed value for field obj.longitude is not the expected type, validation failed.")
         obj.metadata&.is_a?(Hash) != false || raise("Passed value for field obj.metadata is not the expected type, validation failed.")
-        obj.method&.is_a?(String) != false || raise("Passed value for field obj.method is not the expected type, validation failed.")
+        obj.method_&.is_a?(String) != false || raise("Passed value for field obj.method_ is not the expected type, validation failed.")
         obj.metro_code&.is_a?(Integer) != false || raise("Passed value for field obj.metro_code is not the expected type, validation failed.")
         obj.network_downlink&.is_a?(Float) != false || raise("Passed value for field obj.network_downlink is not the expected type, validation failed.")
         obj.network_rtt&.is_a?(Integer) != false || raise("Passed value for field obj.network_rtt is not the expected type, validation failed.")

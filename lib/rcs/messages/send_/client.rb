@@ -41,7 +41,7 @@ module Pinnacle
       #    environment: Pinnacle::Environment::DEFAULT,
       #    api_key: "YOUR_API_KEY"
       #  )
-      #  api.messages.send.sms(
+      #  api.messages.send_.sms(
       #    from: "+14155164736",
       #    text: "Hey! 😂",
       #    to: "+14154746461"
@@ -95,7 +95,7 @@ module Pinnacle
       #    environment: Pinnacle::Environment::DEFAULT,
       #    api_key: "YOUR_API_KEY"
       #  )
-      #  api.messages.send.mms(
+      #  api.messages.send_.mms(
       #    from: "+14155164736",
       #    media_urls: ["https://fastly.picsum.photos/id/941/300/300.jpg?hmac=mDxM9PWSqRDjecwSCEpzU4bj35gqnG7yA25OL29uNv0"],
       #    options: { multiple_messages: true, validate: true },
@@ -140,7 +140,7 @@ module Pinnacle
       #    environment: Pinnacle::Environment::DEFAULT,
       #    api_key: "YOUR_API_KEY"
       #  )
-      #  api.messages.send.rcs(request: { quick_replies: , text: "text", from: "from", to: "to" })
+      #  api.messages.send_.rcs(request: { quick_replies: , text: "text", from: "from", to: "to" })
       def rcs(request:, request_options: nil)
         response = @request_client.conn.post do |req|
           req.options.timeout = request_options.timeout_in_seconds unless request_options&.timeout_in_seconds.nil?
@@ -190,7 +190,7 @@ module Pinnacle
       #    environment: Pinnacle::Environment::DEFAULT,
       #    api_key: "YOUR_API_KEY"
       #  )
-      #  api.messages.send.sms(
+      #  api.messages.send_.sms(
       #    from: "+14155164736",
       #    text: "Hey! 😂",
       #    to: "+14154746461"
@@ -246,7 +246,7 @@ module Pinnacle
       #    environment: Pinnacle::Environment::DEFAULT,
       #    api_key: "YOUR_API_KEY"
       #  )
-      #  api.messages.send.mms(
+      #  api.messages.send_.mms(
       #    from: "+14155164736",
       #    media_urls: ["https://fastly.picsum.photos/id/941/300/300.jpg?hmac=mDxM9PWSqRDjecwSCEpzU4bj35gqnG7yA25OL29uNv0"],
       #    options: { multiple_messages: true, validate: true },
@@ -293,7 +293,7 @@ module Pinnacle
       #    environment: Pinnacle::Environment::DEFAULT,
       #    api_key: "YOUR_API_KEY"
       #  )
-      #  api.messages.send.rcs(request: { quick_replies: , text: "text", from: "from", to: "to" })
+      #  api.messages.send_.rcs(request: { quick_replies: , text: "text", from: "from", to: "to" })
       def rcs(request:, request_options: nil)
         Async do
           response = @request_client.conn.post do |req|
