@@ -18,6 +18,10 @@ module Pinnacle
       attr_reader :agent_id
       # @return [Pinnacle::Types::ExtendedBrand] Brand associated with this campaign.
       attr_reader :brand
+      # @return [String] Link to document verifying the brand's name. This may be the certificate of
+      #  incorporation, business license, or other relevant document. You can typically
+      #  find this on the Secretary of State website.
+      attr_reader :brand_verification_url
       # @return [Boolean] Indicates whether the brand has provided an attestation.
       attr_reader :brand_attestation
       # @return [Integer] Unique identifier for the campaign.
@@ -43,6 +47,9 @@ module Pinnacle
       # @param agent [Pinnacle::Types::RcsCampaignSchemaExtraAgent] Agent configured to the campaign.
       # @param agent_id [String] Agent's unique identifier.
       # @param brand [Pinnacle::Types::ExtendedBrand] Brand associated with this campaign.
+      # @param brand_verification_url [String] Link to document verifying the brand's name. This may be the certificate of
+      #  incorporation, business license, or other relevant document. You can typically
+      #  find this on the Secretary of State website.
       # @param brand_attestation [Boolean] Indicates whether the brand has provided an attestation.
       # @param campaign_id [Integer] Unique identifier for the campaign.
       # @param expected_agent_responses [Array<String>] List of what the agent might say to users.
@@ -52,11 +59,12 @@ module Pinnacle
       # @param use_case [Pinnacle::Types::RcsCampaignSchemaExtraUseCase] Use case classification for the campaign.
       # @param additional_properties [OpenStruct] Additional properties unmapped to the current class definition
       # @return [Pinnacle::Types::ExtendedRcsCampaign]
-      def initialize(agent:, agent_id:, brand:, brand_attestation:, campaign_id:, links:, opt_in:, opt_out:, use_case:,
+      def initialize(agent:, agent_id:, brand:, brand_attestation:, campaign_id:, links:, opt_in:, opt_out:, use_case:, brand_verification_url: OMIT,
                      expected_agent_responses: OMIT, additional_properties: nil)
         @agent = agent
         @agent_id = agent_id
         @brand = brand
+        @brand_verification_url = brand_verification_url if brand_verification_url != OMIT
         @brand_attestation = brand_attestation
         @campaign_id = campaign_id
         @expected_agent_responses = expected_agent_responses if expected_agent_responses != OMIT
@@ -69,6 +77,7 @@ module Pinnacle
           "agent": agent,
           "agentId": agent_id,
           "brand": brand,
+          "brandVerificationUrl": brand_verification_url,
           "brandAttestation": brand_attestation,
           "campaignId": campaign_id,
           "expectedAgentResponses": expected_agent_responses,
@@ -101,6 +110,7 @@ module Pinnacle
           brand = parsed_json["brand"].to_json
           brand = Pinnacle::Types::ExtendedBrand.from_json(json_object: brand)
         end
+        brand_verification_url = parsed_json["brandVerificationUrl"]
         brand_attestation = parsed_json["brandAttestation"]
         campaign_id = parsed_json["campaignId"]
         expected_agent_responses = parsed_json["expectedAgentResponses"]
@@ -132,6 +142,7 @@ module Pinnacle
           agent: agent,
           agent_id: agent_id,
           brand: brand,
+          brand_verification_url: brand_verification_url,
           brand_attestation: brand_attestation,
           campaign_id: campaign_id,
           expected_agent_responses: expected_agent_responses,
@@ -160,6 +171,7 @@ module Pinnacle
         Pinnacle::Types::RcsCampaignSchemaExtraAgent.validate_raw(obj: obj.agent)
         obj.agent_id.is_a?(String) != false || raise("Passed value for field obj.agent_id is not the expected type, validation failed.")
         Pinnacle::Types::ExtendedBrand.validate_raw(obj: obj.brand)
+        obj.brand_verification_url&.is_a?(String) != false || raise("Passed value for field obj.brand_verification_url is not the expected type, validation failed.")
         obj.brand_attestation.is_a?(Boolean) != false || raise("Passed value for field obj.brand_attestation is not the expected type, validation failed.")
         obj.campaign_id.is_a?(Integer) != false || raise("Passed value for field obj.campaign_id is not the expected type, validation failed.")
         obj.expected_agent_responses&.is_a?(Array) != false || raise("Passed value for field obj.expected_agent_responses is not the expected type, validation failed.")

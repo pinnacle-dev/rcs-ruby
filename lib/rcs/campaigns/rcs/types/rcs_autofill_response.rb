@@ -19,6 +19,10 @@ module Pinnacle
           attr_reader :agent
           # @return [Integer] Unique identifier for the campaign.
           attr_reader :campaign_id
+          # @return [String] Link to document verifying the brand's name. This may be the certificate of
+          #  incorporation, business license, or other relevant document. You can typically
+          #  find this on the Secretary of State website.
+          attr_reader :brand_verification_url
           # @return [Array<String>] List of what the agent might say to users.
           attr_reader :expected_agent_responses
           # @return [Pinnacle::Types::RcsCampaignSchemaLinks] Legal documentation links.
@@ -40,6 +44,9 @@ module Pinnacle
           # @param brand [Integer]
           # @param agent [Pinnacle::Types::RcsCampaignSchemaAgent] Agent configured to the campaign.
           # @param campaign_id [Integer] Unique identifier for the campaign.
+          # @param brand_verification_url [String] Link to document verifying the brand's name. This may be the certificate of
+          #  incorporation, business license, or other relevant document. You can typically
+          #  find this on the Secretary of State website.
           # @param expected_agent_responses [Array<String>] List of what the agent might say to users.
           # @param links [Pinnacle::Types::RcsCampaignSchemaLinks] Legal documentation links.
           # @param opt_in [Pinnacle::Types::RcsCampaignSchemaOptIn] Opt-in configuration.
@@ -47,11 +54,12 @@ module Pinnacle
           # @param use_case [Pinnacle::Types::RcsCampaignSchemaUseCase] Use case classification for the campaign.
           # @param additional_properties [OpenStruct] Additional properties unmapped to the current class definition
           # @return [Pinnacle::Campaigns::Rcs::Types::RcsAutofillResponse]
-          def initialize(brand: OMIT, agent: OMIT, campaign_id: OMIT, expected_agent_responses: OMIT, links: OMIT,
-                         opt_in: OMIT, opt_out: OMIT, use_case: OMIT, additional_properties: nil)
+          def initialize(brand: OMIT, agent: OMIT, campaign_id: OMIT, brand_verification_url: OMIT,
+                         expected_agent_responses: OMIT, links: OMIT, opt_in: OMIT, opt_out: OMIT, use_case: OMIT, additional_properties: nil)
             @brand = brand if brand != OMIT
             @agent = agent if agent != OMIT
             @campaign_id = campaign_id if campaign_id != OMIT
+            @brand_verification_url = brand_verification_url if brand_verification_url != OMIT
             @expected_agent_responses = expected_agent_responses if expected_agent_responses != OMIT
             @links = links if links != OMIT
             @opt_in = opt_in if opt_in != OMIT
@@ -62,6 +70,7 @@ module Pinnacle
               "brand": brand,
               "agent": agent,
               "campaignId": campaign_id,
+              "brandVerificationUrl": brand_verification_url,
               "expectedAgentResponses": expected_agent_responses,
               "links": links,
               "optIn": opt_in,
@@ -87,6 +96,7 @@ module Pinnacle
               agent = Pinnacle::Types::RcsCampaignSchemaAgent.from_json(json_object: agent)
             end
             campaign_id = parsed_json["campaignId"]
+            brand_verification_url = parsed_json["brandVerificationUrl"]
             expected_agent_responses = parsed_json["expectedAgentResponses"]
             if parsed_json["links"].nil?
               links = nil
@@ -116,6 +126,7 @@ module Pinnacle
               brand: brand,
               agent: agent,
               campaign_id: campaign_id,
+              brand_verification_url: brand_verification_url,
               expected_agent_responses: expected_agent_responses,
               links: links,
               opt_in: opt_in,
@@ -142,6 +153,7 @@ module Pinnacle
             obj.brand&.is_a?(Integer) != false || raise("Passed value for field obj.brand is not the expected type, validation failed.")
             obj.agent.nil? || Pinnacle::Types::RcsCampaignSchemaAgent.validate_raw(obj: obj.agent)
             obj.campaign_id&.is_a?(Integer) != false || raise("Passed value for field obj.campaign_id is not the expected type, validation failed.")
+            obj.brand_verification_url&.is_a?(String) != false || raise("Passed value for field obj.brand_verification_url is not the expected type, validation failed.")
             obj.expected_agent_responses&.is_a?(Array) != false || raise("Passed value for field obj.expected_agent_responses is not the expected type, validation failed.")
             obj.links.nil? || Pinnacle::Types::RcsCampaignSchemaLinks.validate_raw(obj: obj.links)
             obj.opt_in.nil? || Pinnacle::Types::RcsCampaignSchemaOptIn.validate_raw(obj: obj.opt_in)

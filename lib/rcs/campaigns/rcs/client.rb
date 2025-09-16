@@ -135,6 +135,9 @@ module Pinnacle
       #   * :name (String)
       #   * :phones (Array<Pinnacle::Campaigns::Rcs::Types::RcsAgentPhone>)
       #   * :websites (Array<Pinnacle::Campaigns::Rcs::Types::RcsAgentWebsite>)
+      # @param brand_verification_url [String] Link to document verifying the brand's name. This may be the certificate of
+      #  incorporation, business license, or other relevant document. You can typically
+      #  find this on the Secretary of State website.
       # @param brand [Integer] Unique identifier for the brand.
       # @param campaign_id [Integer] Unique identifier for the campaign.
       # @param expected_agent_responses [Array<String>] List of what the agent might say to users (1-5 required).
@@ -160,6 +163,7 @@ module Pinnacle
       #  )
       #  api.campaigns.rcs.upsert(
       #    agent: { color: "#000000", description: "Engaging campaigns with RBM – next-gen SMS marketing with rich content and better analytics.", emails: [{ email: "founders@trypinnacle.app", label: "Email Us" }], hero_url: "https://agent-logos.storage.googleapis.com/_/m0bk9mmw7kfynqiKSPfsaoc6", icon_url: "https://agent-logos.storage.googleapis.com/_/m0bk9gvlDunZEw1krfruZmw3", name: "Pinnacle Software Development", phones: [{ label: "Contact us directly", phone: "+14154467821" }], websites: [{ label: "Get started with Pinnacle", url: "https://www.trypinnacle.app/" }] },
+      #    brand_verification_url: "https://www.pinnacle.sh/articles-of-incorporation.pdf",
       #    brand: 2,
       #    expected_agent_responses: ["Here are the things I can help you with.", "I can assist you with booking an appointment, or you may choose to book manually.", "Here are the available times to connect with a representative tomorrow.", "Your appointment has been scheduled."],
       #    links: { privacy_policy: "https://www.trypinnacle.app/privacy", terms_of_service: "https://www.trypinnacle.app/terms" },
@@ -167,8 +171,8 @@ module Pinnacle
       #    opt_out: { description: "Reply STOP to opt-out anytime.", keywords: ["STOP", "UNSUBSCRIBE", "END"] },
       #    use_case: { behavior: "Acts as a customer service representative.", value: OTHER }
       #  )
-      def upsert(agent: nil, brand: nil, campaign_id: nil, expected_agent_responses: nil, links: nil, opt_in: nil,
-                 opt_out: nil, use_case: nil, request_options: nil)
+      def upsert(agent: nil, brand_verification_url: nil, brand: nil, campaign_id: nil, expected_agent_responses: nil,
+                 links: nil, opt_in: nil, opt_out: nil, use_case: nil, request_options: nil)
         response = @request_client.conn.post do |req|
           req.options.timeout = request_options.timeout_in_seconds unless request_options&.timeout_in_seconds.nil?
           req.headers["PINNACLE-API-KEY"] = request_options.api_key unless request_options&.api_key.nil?
@@ -183,6 +187,7 @@ module Pinnacle
           req.body = {
             **(request_options&.additional_body_parameters || {}),
             agent: agent,
+            brandVerificationUrl: brand_verification_url,
             brand: brand,
             campaignId: campaign_id,
             expectedAgentResponses: expected_agent_responses,
@@ -355,6 +360,9 @@ module Pinnacle
       #   * :name (String)
       #   * :phones (Array<Pinnacle::Campaigns::Rcs::Types::RcsAgentPhone>)
       #   * :websites (Array<Pinnacle::Campaigns::Rcs::Types::RcsAgentWebsite>)
+      # @param brand_verification_url [String] Link to document verifying the brand's name. This may be the certificate of
+      #  incorporation, business license, or other relevant document. You can typically
+      #  find this on the Secretary of State website.
       # @param brand [Integer] Unique identifier for the brand.
       # @param campaign_id [Integer] Unique identifier for the campaign.
       # @param expected_agent_responses [Array<String>] List of what the agent might say to users (1-5 required).
@@ -380,6 +388,7 @@ module Pinnacle
       #  )
       #  api.campaigns.rcs.upsert(
       #    agent: { color: "#000000", description: "Engaging campaigns with RBM – next-gen SMS marketing with rich content and better analytics.", emails: [{ email: "founders@trypinnacle.app", label: "Email Us" }], hero_url: "https://agent-logos.storage.googleapis.com/_/m0bk9mmw7kfynqiKSPfsaoc6", icon_url: "https://agent-logos.storage.googleapis.com/_/m0bk9gvlDunZEw1krfruZmw3", name: "Pinnacle Software Development", phones: [{ label: "Contact us directly", phone: "+14154467821" }], websites: [{ label: "Get started with Pinnacle", url: "https://www.trypinnacle.app/" }] },
+      #    brand_verification_url: "https://www.pinnacle.sh/articles-of-incorporation.pdf",
       #    brand: 2,
       #    expected_agent_responses: ["Here are the things I can help you with.", "I can assist you with booking an appointment, or you may choose to book manually.", "Here are the available times to connect with a representative tomorrow.", "Your appointment has been scheduled."],
       #    links: { privacy_policy: "https://www.trypinnacle.app/privacy", terms_of_service: "https://www.trypinnacle.app/terms" },
@@ -387,8 +396,8 @@ module Pinnacle
       #    opt_out: { description: "Reply STOP to opt-out anytime.", keywords: ["STOP", "UNSUBSCRIBE", "END"] },
       #    use_case: { behavior: "Acts as a customer service representative.", value: OTHER }
       #  )
-      def upsert(agent: nil, brand: nil, campaign_id: nil, expected_agent_responses: nil, links: nil, opt_in: nil,
-                 opt_out: nil, use_case: nil, request_options: nil)
+      def upsert(agent: nil, brand_verification_url: nil, brand: nil, campaign_id: nil, expected_agent_responses: nil,
+                 links: nil, opt_in: nil, opt_out: nil, use_case: nil, request_options: nil)
         Async do
           response = @request_client.conn.post do |req|
             req.options.timeout = request_options.timeout_in_seconds unless request_options&.timeout_in_seconds.nil?
@@ -404,6 +413,7 @@ module Pinnacle
             req.body = {
               **(request_options&.additional_body_parameters || {}),
               agent: agent,
+              brandVerificationUrl: brand_verification_url,
               brand: brand,
               campaignId: campaign_id,
               expectedAgentResponses: expected_agent_responses,
