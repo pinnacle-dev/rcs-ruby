@@ -4,7 +4,7 @@ require_relative "lib/gemconfig"
 
 Gem::Specification.new do |spec|
   spec.name = "rcs"
-  spec.version = "2.0.0-rc.4"
+  spec.version = "2.0.0-rc.5"
   spec.authors = Pinnacle::Gemconfig::AUTHORS
   spec.email = Pinnacle::Gemconfig::EMAIL
   spec.summary = Pinnacle::Gemconfig::SUMMARY
