@@ -22,9 +22,9 @@ module Pinnacle
       attr_reader :phones
       # @return [Array<Pinnacle::Types::RcsCampaignSchemaAgentWebsitesItem>] List of urls.
       attr_reader :websites
-      # @return [String] Link to the agent's hero.
+      # @return [String] Link to the agent's hero. Hero must be an image file with dimensions 1440x448px.
       attr_reader :hero_url
-      # @return [String] Link to the agent's icon.
+      # @return [String] Link to the agent's icon. Icon must be an image file with dimensions 224x224px.
       attr_reader :icon_url
       # @return [OpenStruct] Additional properties unmapped to the current class definition
       attr_reader :additional_properties
@@ -40,8 +40,8 @@ module Pinnacle
       # @param emails [Array<Pinnacle::Types::RcsCampaignSchemaAgentEmailsItem>] List of emails.
       # @param phones [Array<Pinnacle::Types::RcsCampaignSchemaAgentPhonesItem>] List of phone numbers.
       # @param websites [Array<Pinnacle::Types::RcsCampaignSchemaAgentWebsitesItem>] List of urls.
-      # @param hero_url [String] Link to the agent's hero.
-      # @param icon_url [String] Link to the agent's icon.
+      # @param hero_url [String] Link to the agent's hero. Hero must be an image file with dimensions 1440x448px.
+      # @param icon_url [String] Link to the agent's icon. Icon must be an image file with dimensions 224x224px.
       # @param additional_properties [OpenStruct] Additional properties unmapped to the current class definition
       # @return [Pinnacle::Types::RcsCampaignSchemaAgent]
       def initialize(name: OMIT, description: OMIT, color: OMIT, emails: OMIT, phones: OMIT, websites: OMIT,

@@ -4,29 +4,17 @@ require_relative "../../requests"
 require_relative "../types/message"
 require_relative "types/react_message_options"
 require_relative "../types/reaction_result"
-require_relative "sms/client"
-require_relative "mms/client"
-require_relative "rcs/client"
 require "async"
 
 module Pinnacle
   class MessagesClient
     # @return [Pinnacle::RequestClient]
     attr_reader :request_client
-    # @return [Pinnacle::Messages::SmsClient]
-    attr_reader :sms
-    # @return [Pinnacle::Messages::MmsClient]
-    attr_reader :mms
-    # @return [Pinnacle::Messages::RcsClient]
-    attr_reader :rcs
 
     # @param request_client [Pinnacle::RequestClient]
     # @return [Pinnacle::MessagesClient]
     def initialize(request_client:)
       @request_client = request_client
-      @sms = Pinnacle::Messages::SmsClient.new(request_client: request_client)
-      @mms = Pinnacle::Messages::MmsClient.new(request_client: request_client)
-      @rcs = Pinnacle::Messages::RcsClient.new(request_client: request_client)
     end
 
     # Retrieve a previously sent message.
@@ -108,20 +96,11 @@ module Pinnacle
   class AsyncMessagesClient
     # @return [Pinnacle::AsyncRequestClient]
     attr_reader :request_client
-    # @return [Pinnacle::Messages::AsyncSmsClient]
-    attr_reader :sms
-    # @return [Pinnacle::Messages::AsyncMmsClient]
-    attr_reader :mms
-    # @return [Pinnacle::Messages::AsyncRcsClient]
-    attr_reader :rcs
 
     # @param request_client [Pinnacle::AsyncRequestClient]
     # @return [Pinnacle::AsyncMessagesClient]
     def initialize(request_client:)
       @request_client = request_client
-      @sms = Pinnacle::Messages::AsyncSmsClient.new(request_client: request_client)
-      @mms = Pinnacle::Messages::AsyncMmsClient.new(request_client: request_client)
-      @rcs = Pinnacle::Messages::AsyncRcsClient.new(request_client: request_client)
     end
 
     # Retrieve a previously sent message.

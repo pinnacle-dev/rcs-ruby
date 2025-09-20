@@ -8,6 +8,7 @@ require_relative "rcs/contacts/client"
 require_relative "rcs/conversations/client"
 require_relative "rcs/messages/client"
 require_relative "rcs/phone_numbers/client"
+require_relative "rcs/rcs/client"
 require_relative "rcs/webhooks/client"
 require_relative "rcs/campaigns/client"
 require_relative "rcs/status/client"
@@ -25,6 +26,8 @@ module Pinnacle
     attr_reader :messages
     # @return [Pinnacle::PhoneNumbersClient]
     attr_reader :phone_numbers
+    # @return [Pinnacle::RcsClient]
+    attr_reader :rcs
     # @return [Pinnacle::WebhooksClient]
     attr_reader :webhooks
     # @return [Pinnacle::Campaigns::Client]
@@ -54,6 +57,7 @@ module Pinnacle
       @conversations = Pinnacle::ConversationsClient.new(request_client: @request_client)
       @messages = Pinnacle::MessagesClient.new(request_client: @request_client)
       @phone_numbers = Pinnacle::PhoneNumbersClient.new(request_client: @request_client)
+      @rcs = Pinnacle::RcsClient.new(request_client: @request_client)
       @webhooks = Pinnacle::WebhooksClient.new(request_client: @request_client)
       @campaigns = Pinnacle::Campaigns::Client.new(request_client: @request_client)
       @status = Pinnacle::Status::Client.new(request_client: @request_client)
@@ -72,6 +76,8 @@ module Pinnacle
     attr_reader :messages
     # @return [Pinnacle::AsyncPhoneNumbersClient]
     attr_reader :phone_numbers
+    # @return [Pinnacle::AsyncRcsClient]
+    attr_reader :rcs
     # @return [Pinnacle::AsyncWebhooksClient]
     attr_reader :webhooks
     # @return [Pinnacle::Campaigns::AsyncClient]
@@ -101,6 +107,7 @@ module Pinnacle
       @conversations = Pinnacle::AsyncConversationsClient.new(request_client: @async_request_client)
       @messages = Pinnacle::AsyncMessagesClient.new(request_client: @async_request_client)
       @phone_numbers = Pinnacle::AsyncPhoneNumbersClient.new(request_client: @async_request_client)
+      @rcs = Pinnacle::AsyncRcsClient.new(request_client: @async_request_client)
       @webhooks = Pinnacle::AsyncWebhooksClient.new(request_client: @async_request_client)
       @campaigns = Pinnacle::Campaigns::AsyncClient.new(request_client: @async_request_client)
       @status = Pinnacle::Status::AsyncClient.new(request_client: @async_request_client)

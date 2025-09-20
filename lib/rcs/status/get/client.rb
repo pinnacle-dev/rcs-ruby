@@ -84,9 +84,9 @@ module Pinnacle
         Pinnacle::Types::TollFreeCampaignStatus.from_json(json_object: response.body)
       end
 
-      # Retrieve a DLC campaign's status.
+      # Retrieve a 10DLC campaign's status.
       #
-      # @param campaign_id [Integer] ID of the DLC campaign.
+      # @param campaign_id [Integer] ID of the 10DLC campaign.
       # @param request_options [Pinnacle::RequestOptions]
       # @return [Pinnacle::Types::DlcCampaignStatus]
       # @example
@@ -260,9 +260,9 @@ module Pinnacle
         end
       end
 
-      # Retrieve a DLC campaign's status.
+      # Retrieve a 10DLC campaign's status.
       #
-      # @param campaign_id [Integer] ID of the DLC campaign.
+      # @param campaign_id [Integer] ID of the 10DLC campaign.
       # @param request_options [Pinnacle::RequestOptions]
       # @return [Pinnacle::Types::DlcCampaignStatus]
       # @example

@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require_relative "rich_button"
 require "ostruct"
 require "json"
 
@@ -12,6 +13,8 @@ module Pinnacle
     class RcsValidateContentMedia
       # @return [String] Media file URLs to send.
       attr_reader :media
+      # @return [Array<Pinnacle::Types::RichButton>]
+      attr_reader :quick_replies
       # @return [OpenStruct] Additional properties unmapped to the current class definition
       attr_reader :additional_properties
       # @return [Object]
@@ -21,12 +24,14 @@ module Pinnacle
       OMIT = Object.new
 
       # @param media [String] Media file URLs to send.
+      # @param quick_replies [Array<Pinnacle::Types::RichButton>]
       # @param additional_properties [OpenStruct] Additional properties unmapped to the current class definition
       # @return [Pinnacle::Types::RcsValidateContentMedia]
-      def initialize(media:, additional_properties: nil)
+      def initialize(media:, quick_replies:, additional_properties: nil)
         @media = media
+        @quick_replies = quick_replies
         @additional_properties = additional_properties
-        @_field_set = { "media": media }
+        @_field_set = { "media": media, "quickReplies": quick_replies }
       end
 
       # Deserialize a JSON object to an instance of RcsValidateContentMedia
@@ -37,7 +42,15 @@ module Pinnacle
         struct = JSON.parse(json_object, object_class: OpenStruct)
         parsed_json = JSON.parse(json_object)
         media = parsed_json["media"]
-        new(media: media, additional_properties: struct)
+        quick_replies = parsed_json["quickReplies"]&.map do |item|
+          item = item.to_json
+          Pinnacle::Types::RichButton.from_json(json_object: item)
+        end
+        new(
+          media: media,
+          quick_replies: quick_replies,
+          additional_properties: struct
+        )
       end
 
       # Serialize an instance of RcsValidateContentMedia to a JSON object
@@ -55,6 +68,7 @@ module Pinnacle
       # @return [Void]
       def self.validate_raw(obj:)
         obj.media.is_a?(String) != false || raise("Passed value for field obj.media is not the expected type, validation failed.")
+        obj.quick_replies.is_a?(Array) != false || raise("Passed value for field obj.quick_replies is not the expected type, validation failed.")
       end
     end
   end

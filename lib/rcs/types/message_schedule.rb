@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require "date"
 require "ostruct"
 require "json"
 
@@ -8,7 +7,7 @@ module Pinnacle
   module Types
     # Define when and how your message should be sent.
     class MessageSchedule
-      # @return [DateTime] Date and time when you want recurring messages to stop in ISO 8601 format.
+      # @return [String] Date and time when you want recurring messages to stop in ISO 8601 format.
       attr_reader :end_date
       # @return [String] Provide an AWS cron expression to control the when messages are sent. <br>
       #  [Learn more about cron
@@ -26,7 +25,7 @@ module Pinnacle
 
       OMIT = Object.new
 
-      # @param end_date [DateTime] Date and time when you want recurring messages to stop in ISO 8601 format.
+      # @param end_date [String] Date and time when you want recurring messages to stop in ISO 8601 format.
       # @param recurrence [String] Provide an AWS cron expression to control the when messages are sent. <br>
       #  [Learn more about cron
       #  ocs.aws.amazon.com/eventbridge/latest/userguide/eb-scheduled-rule-pattern.html).
@@ -57,7 +56,7 @@ module Pinnacle
       def self.from_json(json_object:)
         struct = JSON.parse(json_object, object_class: OpenStruct)
         parsed_json = JSON.parse(json_object)
-        end_date = (DateTime.parse(parsed_json["endDate"]) unless parsed_json["endDate"].nil?)
+        end_date = parsed_json["endDate"]
         recurrence = parsed_json["recurrence"]
         send_at = parsed_json["sendAt"]
         timezone = parsed_json["timezone"]
@@ -84,7 +83,7 @@ module Pinnacle
       # @param obj [Object]
       # @return [Void]
       def self.validate_raw(obj:)
-        obj.end_date&.is_a?(DateTime) != false || raise("Passed value for field obj.end_date is not the expected type, validation failed.")
+        obj.end_date&.is_a?(String) != false || raise("Passed value for field obj.end_date is not the expected type, validation failed.")
         obj.recurrence&.is_a?(String) != false || raise("Passed value for field obj.recurrence is not the expected type, validation failed.")
         obj.send_at.is_a?(String) != false || raise("Passed value for field obj.send_at is not the expected type, validation failed.")
         obj.timezone.is_a?(String) != false || raise("Passed value for field obj.timezone is not the expected type, validation failed.")

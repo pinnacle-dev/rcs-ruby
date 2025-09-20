@@ -16,9 +16,9 @@ module Pinnacle
       attr_reader :description
       # @return [Array<Pinnacle::Types::RcsCampaignSchemaExtraAgentEmailsItem>] List of emails.
       attr_reader :emails
-      # @return [String] Link to the agent's hero.
+      # @return [String] Link to the agent's hero. Hero must be an image file with dimensions 1440x448px.
       attr_reader :hero_url
-      # @return [String] Link to the agent's icon.
+      # @return [String] Link to the agent's icon. Icon must be an image file with dimensions 224x224px.
       attr_reader :icon_url
       # @return [String] Name of the agent.
       attr_reader :name
@@ -37,8 +37,8 @@ module Pinnacle
       # @param color [String] Color of the agent's buttons.
       # @param description [String] Description of the agent.
       # @param emails [Array<Pinnacle::Types::RcsCampaignSchemaExtraAgentEmailsItem>] List of emails.
-      # @param hero_url [String] Link to the agent's hero.
-      # @param icon_url [String] Link to the agent's icon.
+      # @param hero_url [String] Link to the agent's hero. Hero must be an image file with dimensions 1440x448px.
+      # @param icon_url [String] Link to the agent's icon. Icon must be an image file with dimensions 224x224px.
       # @param name [String] Name of the agent.
       # @param phones [Array<Pinnacle::Types::RcsCampaignSchemaExtraAgentPhonesItem>] List of phone numbers.
       # @param websites [Array<Pinnacle::Types::RcsCampaignSchemaExtraAgentWebsitesItem>] List of urls.

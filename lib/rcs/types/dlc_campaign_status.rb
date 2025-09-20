@@ -22,7 +22,7 @@ module Pinnacle
       #  `FAILED`: Issues and errors related to the campaign's details. See
       #  [error](dlc-campaign#response.body.error) for these potential issues.
       attr_reader :status
-      # @return [Pinnacle::Types::GetDlcCampaignStatusResponseUpdates] Status of toll free numbers that are being attached to this campaign. <br>
+      # @return [Pinnacle::Types::GetDlcCampaignStatusResponseUpdates] Status of local long code numbers that are being attached to this campaign. <br>
       #  Note that phone numbers can only be attached to `VERIFIED` campaigns via the
       #  [attach campaign endpoint](../phone-numbers/attach-campaign).
       attr_reader :updates
@@ -44,7 +44,7 @@ module Pinnacle
       #  `VERIFIED`: Approved and ready to send messages.<br>
       #  `FAILED`: Issues and errors related to the campaign's details. See
       #  [error](dlc-campaign#response.body.error) for these potential issues.
-      # @param updates [Pinnacle::Types::GetDlcCampaignStatusResponseUpdates] Status of toll free numbers that are being attached to this campaign. <br>
+      # @param updates [Pinnacle::Types::GetDlcCampaignStatusResponseUpdates] Status of local long code numbers that are being attached to this campaign. <br>
       #  Note that phone numbers can only be attached to `VERIFIED` campaigns via the
       #  [attach campaign endpoint](../phone-numbers/attach-campaign).
       # @param additional_properties [OpenStruct] Additional properties unmapped to the current class definition

@@ -58,9 +58,9 @@ module Pinnacle
         Pinnacle::Types::AutofillDlcCampaignResponse.from_json(json_object: response.body)
       end
 
-      # Retrieve DLC campaign.
+      # Retrieve 10DLC campaign.
       #
-      # @param campaign_id [Integer] Unique identifier of the DLC campaign.
+      # @param campaign_id [Integer] Unique identifier of the 10DLC campaign.
       # @param request_options [Pinnacle::RequestOptions]
       # @return [Pinnacle::Types::DlcCampaignWithExtendedBrandAndStatus]
       # @example
@@ -90,9 +90,9 @@ module Pinnacle
         Pinnacle::Types::DlcCampaignWithExtendedBrandAndStatus.from_json(json_object: response.body)
       end
 
-      # Submit your DLC campaign for approval and activation with carriers.
+      # Submit your 10DLC campaign for approval and activation with carriers.
       #
-      # @param campaign_id [Integer] Unique identifier of the DLC campaign to submit.
+      # @param campaign_id [Integer] Unique identifier of the 10DLC campaign to submit.
       # @param request_options [Pinnacle::RequestOptions]
       # @return [Pinnacle::Types::CampaignSubmissionResult]
       # @example
@@ -122,7 +122,7 @@ module Pinnacle
         Pinnacle::Types::CampaignSubmissionResult.from_json(json_object: response.body)
       end
 
-      # Create a new DLC campaign or updates an existing one. <br>
+      # Create a new 10DLC campaign or updates an existing one. <br>
       #  Omit campaignId to create a campaign.
       #
       # @param auto_renew [Boolean] Whether the campaign renews automatically.
@@ -207,7 +207,7 @@ module Pinnacle
         Pinnacle::Types::DlcCampaignWithExtendedBrandAndStatus.from_json(json_object: response.body)
       end
 
-      # Validate your DLC campaign configuration against carrier requirements and
+      # Validate your 10DLC campaign configuration against carrier requirements and
       #  compliance rules.
       #
       # @param request [Hash] Request of type Pinnacle::Types::ValidateCampaignParams, as a Hash
@@ -286,9 +286,9 @@ module Pinnacle
         end
       end
 
-      # Retrieve DLC campaign.
+      # Retrieve 10DLC campaign.
       #
-      # @param campaign_id [Integer] Unique identifier of the DLC campaign.
+      # @param campaign_id [Integer] Unique identifier of the 10DLC campaign.
       # @param request_options [Pinnacle::RequestOptions]
       # @return [Pinnacle::Types::DlcCampaignWithExtendedBrandAndStatus]
       # @example
@@ -320,9 +320,9 @@ module Pinnacle
         end
       end
 
-      # Submit your DLC campaign for approval and activation with carriers.
+      # Submit your 10DLC campaign for approval and activation with carriers.
       #
-      # @param campaign_id [Integer] Unique identifier of the DLC campaign to submit.
+      # @param campaign_id [Integer] Unique identifier of the 10DLC campaign to submit.
       # @param request_options [Pinnacle::RequestOptions]
       # @return [Pinnacle::Types::CampaignSubmissionResult]
       # @example
@@ -354,7 +354,7 @@ module Pinnacle
         end
       end
 
-      # Create a new DLC campaign or updates an existing one. <br>
+      # Create a new 10DLC campaign or updates an existing one. <br>
       #  Omit campaignId to create a campaign.
       #
       # @param auto_renew [Boolean] Whether the campaign renews automatically.
@@ -441,7 +441,7 @@ module Pinnacle
         end
       end
 
-      # Validate your DLC campaign configuration against carrier requirements and
+      # Validate your 10DLC campaign configuration against carrier requirements and
       #  compliance rules.
       #
       # @param request [Hash] Request of type Pinnacle::Types::ValidateCampaignParams, as a Hash

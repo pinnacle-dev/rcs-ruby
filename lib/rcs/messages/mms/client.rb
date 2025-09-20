@@ -28,7 +28,7 @@ module Pinnacle
       # @param options [Hash] Control how your MMS is processed and delivered.Request of type Pinnacle::Messages::Mms::Types::SendMmsOptions, as a Hash
       #   * :multiple_messages (Boolean)
       #   * :schedule (Hash)
-      #     * :end_date (DateTime)
+      #     * :end_date (String)
       #     * :recurrence (String)
       #     * :send_at (String)
       #     * :timezone (String)
@@ -128,7 +128,7 @@ module Pinnacle
       # @param options [Hash] Control how your MMS is processed and delivered.Request of type Pinnacle::Messages::Mms::Types::SendMmsOptions, as a Hash
       #   * :multiple_messages (Boolean)
       #   * :schedule (Hash)
-      #     * :end_date (DateTime)
+      #     * :end_date (String)
       #     * :recurrence (String)
       #     * :send_at (String)
       #     * :timezone (String)

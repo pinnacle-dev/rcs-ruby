@@ -61,7 +61,7 @@ module Pinnacle
     # @param receiver [String] Receiver's phone number in E.164 format.
     # @param sender [String]
     # @param request_options [Pinnacle::RequestOptions]
-    # @return [Pinnacle::Types::ConversationList]
+    # @return [Pinnacle::Types::ErrorResponse, Pinnacle::Types::RetrievedConversations]
     # @example
     #  api = Pinnacle::Client.new(
     #    base_url: "https://api.example.com",
@@ -191,7 +191,7 @@ module Pinnacle
     # @param receiver [String] Receiver's phone number in E.164 format.
     # @param sender [String]
     # @param request_options [Pinnacle::RequestOptions]
-    # @return [Pinnacle::Types::ConversationList]
+    # @return [Pinnacle::Types::ErrorResponse, Pinnacle::Types::RetrievedConversations]
     # @example
     #  api = Pinnacle::Client.new(
     #    base_url: "https://api.example.com",

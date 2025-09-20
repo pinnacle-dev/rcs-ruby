@@ -24,7 +24,7 @@ module Pinnacle
       # @param from [String] Phone number that sends the message in E.164 format.
       # @param options [Hash] Additional settings to customize SMS delivery.Request of type Pinnacle::Messages::Sms::Types::SendSmsOptions, as a Hash
       #   * :schedule (Hash)
-      #     * :end_date (DateTime)
+      #     * :end_date (String)
       #     * :recurrence (String)
       #     * :send_at (String)
       #     * :timezone (String)
@@ -115,7 +115,7 @@ module Pinnacle
       # @param from [String] Phone number that sends the message in E.164 format.
       # @param options [Hash] Additional settings to customize SMS delivery.Request of type Pinnacle::Messages::Sms::Types::SendSmsOptions, as a Hash
       #   * :schedule (Hash)
-      #     * :end_date (DateTime)
+      #     * :end_date (String)
       #     * :recurrence (String)
       #     * :send_at (String)
       #     * :timezone (String)
