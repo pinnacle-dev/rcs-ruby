@@ -7,6 +7,8 @@ module Pinnacle
   module Types
     # Button that initiates a phone call when tapped by the recipient.
     class RcsButtonCall
+      # @return [String] Optional additional data to attach to this button.
+      attr_reader :metadata
       # @return [String] Phone number to call in E.164 format
       attr_reader :payload
       # @return [String] Display text for the button.
@@ -19,15 +21,19 @@ module Pinnacle
 
       OMIT = Object.new
 
+      # @param metadata [String] Optional additional data to attach to this button.
       # @param payload [String] Phone number to call in E.164 format
       # @param title [String] Display text for the button.
       # @param additional_properties [OpenStruct] Additional properties unmapped to the current class definition
       # @return [Pinnacle::Types::RcsButtonCall]
-      def initialize(payload:, title:, additional_properties: nil)
+      def initialize(payload:, title:, metadata: OMIT, additional_properties: nil)
+        @metadata = metadata if metadata != OMIT
         @payload = payload
         @title = title
         @additional_properties = additional_properties
-        @_field_set = { "payload": payload, "title": title }
+        @_field_set = { "metadata": metadata, "payload": payload, "title": title }.reject do |_k, v|
+          v == OMIT
+        end
       end
 
       # Deserialize a JSON object to an instance of RcsButtonCall
@@ -37,9 +43,11 @@ module Pinnacle
       def self.from_json(json_object:)
         struct = JSON.parse(json_object, object_class: OpenStruct)
         parsed_json = JSON.parse(json_object)
+        metadata = parsed_json["metadata"]
         payload = parsed_json["payload"]
         title = parsed_json["title"]
         new(
+          metadata: metadata,
           payload: payload,
           title: title,
           additional_properties: struct
@@ -60,6 +68,7 @@ module Pinnacle
       # @param obj [Object]
       # @return [Void]
       def self.validate_raw(obj:)
+        obj.metadata&.is_a?(String) != false || raise("Passed value for field obj.metadata is not the expected type, validation failed.")
         obj.payload.is_a?(String) != false || raise("Passed value for field obj.payload is not the expected type, validation failed.")
         obj.title.is_a?(String) != false || raise("Passed value for field obj.title is not the expected type, validation failed.")
       end

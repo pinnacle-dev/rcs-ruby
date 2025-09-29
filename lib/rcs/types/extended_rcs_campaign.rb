@@ -3,6 +3,7 @@
 require_relative "rcs_campaign_schema_extra_agent"
 require_relative "extended_brand"
 require_relative "rcs_campaign_schema_extra_links"
+require_relative "profile_status_enum"
 require_relative "rcs_campaign_schema_extra_opt_in"
 require_relative "rcs_campaign_schema_extra_opt_out"
 require_relative "rcs_campaign_schema_extra_use_case"
@@ -30,6 +31,8 @@ module Pinnacle
       attr_reader :expected_agent_responses
       # @return [Pinnacle::Types::RcsCampaignSchemaExtraLinks] Legal documentation links.
       attr_reader :links
+      # @return [Pinnacle::Types::ProfileStatusEnum]
+      attr_reader :status
       # @return [Pinnacle::Types::RcsCampaignSchemaExtraOptIn] Opt-in configuration.
       attr_reader :opt_in
       # @return [Pinnacle::Types::RcsCampaignSchemaExtraOptOut] Opt-out configuration.
@@ -54,24 +57,26 @@ module Pinnacle
       # @param campaign_id [Integer] Unique identifier for the campaign.
       # @param expected_agent_responses [Array<String>] List of what the agent might say to users.
       # @param links [Pinnacle::Types::RcsCampaignSchemaExtraLinks] Legal documentation links.
+      # @param status [Pinnacle::Types::ProfileStatusEnum]
       # @param opt_in [Pinnacle::Types::RcsCampaignSchemaExtraOptIn] Opt-in configuration.
       # @param opt_out [Pinnacle::Types::RcsCampaignSchemaExtraOptOut] Opt-out configuration.
       # @param use_case [Pinnacle::Types::RcsCampaignSchemaExtraUseCase] Use case classification for the campaign.
       # @param additional_properties [OpenStruct] Additional properties unmapped to the current class definition
       # @return [Pinnacle::Types::ExtendedRcsCampaign]
-      def initialize(agent:, agent_id:, brand:, brand_attestation:, campaign_id:, links:, opt_in:, opt_out:, use_case:, brand_verification_url: OMIT,
-                     expected_agent_responses: OMIT, additional_properties: nil)
+      def initialize(agent:, agent_id:, brand:, brand_attestation:, status:, brand_verification_url: OMIT, campaign_id: OMIT,
+                     expected_agent_responses: OMIT, links: OMIT, opt_in: OMIT, opt_out: OMIT, use_case: OMIT, additional_properties: nil)
         @agent = agent
         @agent_id = agent_id
         @brand = brand
         @brand_verification_url = brand_verification_url if brand_verification_url != OMIT
         @brand_attestation = brand_attestation
-        @campaign_id = campaign_id
+        @campaign_id = campaign_id if campaign_id != OMIT
         @expected_agent_responses = expected_agent_responses if expected_agent_responses != OMIT
-        @links = links
-        @opt_in = opt_in
-        @opt_out = opt_out
-        @use_case = use_case
+        @links = links if links != OMIT
+        @status = status
+        @opt_in = opt_in if opt_in != OMIT
+        @opt_out = opt_out if opt_out != OMIT
+        @use_case = use_case if use_case != OMIT
         @additional_properties = additional_properties
         @_field_set = {
           "agent": agent,
@@ -82,6 +87,7 @@ module Pinnacle
           "campaignId": campaign_id,
           "expectedAgentResponses": expected_agent_responses,
           "links": links,
+          "status": status,
           "optIn": opt_in,
           "optOut": opt_out,
           "useCase": use_case
@@ -120,6 +126,7 @@ module Pinnacle
           links = parsed_json["links"].to_json
           links = Pinnacle::Types::RcsCampaignSchemaExtraLinks.from_json(json_object: links)
         end
+        status = parsed_json["status"]
         if parsed_json["optIn"].nil?
           opt_in = nil
         else
@@ -147,6 +154,7 @@ module Pinnacle
           campaign_id: campaign_id,
           expected_agent_responses: expected_agent_responses,
           links: links,
+          status: status,
           opt_in: opt_in,
           opt_out: opt_out,
           use_case: use_case,
@@ -173,12 +181,13 @@ module Pinnacle
         Pinnacle::Types::ExtendedBrand.validate_raw(obj: obj.brand)
         obj.brand_verification_url&.is_a?(String) != false || raise("Passed value for field obj.brand_verification_url is not the expected type, validation failed.")
         obj.brand_attestation.is_a?(Boolean) != false || raise("Passed value for field obj.brand_attestation is not the expected type, validation failed.")
-        obj.campaign_id.is_a?(Integer) != false || raise("Passed value for field obj.campaign_id is not the expected type, validation failed.")
+        obj.campaign_id&.is_a?(Integer) != false || raise("Passed value for field obj.campaign_id is not the expected type, validation failed.")
         obj.expected_agent_responses&.is_a?(Array) != false || raise("Passed value for field obj.expected_agent_responses is not the expected type, validation failed.")
-        Pinnacle::Types::RcsCampaignSchemaExtraLinks.validate_raw(obj: obj.links)
-        Pinnacle::Types::RcsCampaignSchemaExtraOptIn.validate_raw(obj: obj.opt_in)
-        Pinnacle::Types::RcsCampaignSchemaExtraOptOut.validate_raw(obj: obj.opt_out)
-        Pinnacle::Types::RcsCampaignSchemaExtraUseCase.validate_raw(obj: obj.use_case)
+        obj.links.nil? || Pinnacle::Types::RcsCampaignSchemaExtraLinks.validate_raw(obj: obj.links)
+        obj.status.is_a?(Pinnacle::Types::ProfileStatusEnum) != false || raise("Passed value for field obj.status is not the expected type, validation failed.")
+        obj.opt_in.nil? || Pinnacle::Types::RcsCampaignSchemaExtraOptIn.validate_raw(obj: obj.opt_in)
+        obj.opt_out.nil? || Pinnacle::Types::RcsCampaignSchemaExtraOptOut.validate_raw(obj: obj.opt_out)
+        obj.use_case.nil? || Pinnacle::Types::RcsCampaignSchemaExtraUseCase.validate_raw(obj: obj.use_case)
       end
     end
   end

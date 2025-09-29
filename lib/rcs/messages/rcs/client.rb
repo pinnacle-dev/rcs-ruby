@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require_relative "../../../requests"
-require_relative "../../types/rcs"
+require_relative "../../types/rich_message"
 require_relative "types/rcs_send_response"
 require_relative "../../types/rcs_validate_content"
 require_relative "../../types/rcs_validation_result"

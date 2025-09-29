@@ -35,14 +35,14 @@ module Pinnacle
       # @param number_pooling [Boolean] Whether the campaign uses number pooling.
       # @param additional_properties [OpenStruct] Additional properties unmapped to the current class definition
       # @return [Pinnacle::Types::AutofillDlcResponseOptions]
-      def initialize(affiliate_marketing: OMIT, age_gated: OMIT, direct_lending: OMIT, embedded_link: OMIT,
-                     embedded_phone: OMIT, number_pooling: OMIT, additional_properties: nil)
-        @affiliate_marketing = affiliate_marketing if affiliate_marketing != OMIT
-        @age_gated = age_gated if age_gated != OMIT
-        @direct_lending = direct_lending if direct_lending != OMIT
+      def initialize(affiliate_marketing:, age_gated:, direct_lending:, embedded_phone:, number_pooling:,
+                     embedded_link: OMIT, additional_properties: nil)
+        @affiliate_marketing = affiliate_marketing
+        @age_gated = age_gated
+        @direct_lending = direct_lending
         @embedded_link = embedded_link if embedded_link != OMIT
-        @embedded_phone = embedded_phone if embedded_phone != OMIT
-        @number_pooling = number_pooling if number_pooling != OMIT
+        @embedded_phone = embedded_phone
+        @number_pooling = number_pooling
         @additional_properties = additional_properties
         @_field_set = {
           "affiliateMarketing": affiliate_marketing,
@@ -94,12 +94,12 @@ module Pinnacle
       # @param obj [Object]
       # @return [Void]
       def self.validate_raw(obj:)
-        obj.affiliate_marketing&.is_a?(Boolean) != false || raise("Passed value for field obj.affiliate_marketing is not the expected type, validation failed.")
-        obj.age_gated&.is_a?(Boolean) != false || raise("Passed value for field obj.age_gated is not the expected type, validation failed.")
-        obj.direct_lending&.is_a?(Boolean) != false || raise("Passed value for field obj.direct_lending is not the expected type, validation failed.")
+        obj.affiliate_marketing.is_a?(Boolean) != false || raise("Passed value for field obj.affiliate_marketing is not the expected type, validation failed.")
+        obj.age_gated.is_a?(Boolean) != false || raise("Passed value for field obj.age_gated is not the expected type, validation failed.")
+        obj.direct_lending.is_a?(Boolean) != false || raise("Passed value for field obj.direct_lending is not the expected type, validation failed.")
         obj.embedded_link&.is_a?(String) != false || raise("Passed value for field obj.embedded_link is not the expected type, validation failed.")
-        obj.embedded_phone&.is_a?(Boolean) != false || raise("Passed value for field obj.embedded_phone is not the expected type, validation failed.")
-        obj.number_pooling&.is_a?(Boolean) != false || raise("Passed value for field obj.number_pooling is not the expected type, validation failed.")
+        obj.embedded_phone.is_a?(Boolean) != false || raise("Passed value for field obj.embedded_phone is not the expected type, validation failed.")
+        obj.number_pooling.is_a?(Boolean) != false || raise("Passed value for field obj.number_pooling is not the expected type, validation failed.")
       end
     end
   end

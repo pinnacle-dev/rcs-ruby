@@ -7,11 +7,11 @@ require_relative "rich_cards_message"
 
 module Pinnacle
   module Types
-    class Rcs
-      # Deserialize a JSON object to an instance of Rcs
+    class RichMessage
+      # Deserialize a JSON object to an instance of RichMessage
       #
       # @param json_object [String]
-      # @return [Pinnacle::Types::Rcs]
+      # @return [Pinnacle::Types::RichMessage]
       def self.from_json(json_object:)
         struct = JSON.parse(json_object, object_class: OpenStruct)
         begin

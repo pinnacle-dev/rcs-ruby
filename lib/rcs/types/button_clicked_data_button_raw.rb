@@ -1,21 +1,23 @@
 # frozen_string_literal: true
 
 require "json"
-require_relative "click_action_data_metadata"
+require_relative "rich_button"
 
 module Pinnacle
   module Types
-    # Payload received from the button interaction.
-    class ClickActionData
-      # Deserialize a JSON object to an instance of ClickActionData
+    # Raw button data. Contains the entire button that was clicked by the user. In
+    #  rare cases where we cannot determine the exact button, this will return only the
+    #  button title.
+    class ButtonClickedDataButtonRaw
+      # Deserialize a JSON object to an instance of ButtonClickedDataButtonRaw
       #
       # @param json_object [String]
-      # @return [Pinnacle::Types::ClickActionData]
+      # @return [Pinnacle::Types::ButtonClickedDataButtonRaw]
       def self.from_json(json_object:)
         struct = JSON.parse(json_object, object_class: OpenStruct)
         begin
-          Pinnacle::Types::ClickActionDataMetadata.validate_raw(obj: struct)
-          return Pinnacle::Types::ClickActionDataMetadata.from_json(json_object: struct) unless struct.nil?
+          Pinnacle::Types::RichButton.validate_raw(obj: struct)
+          return Pinnacle::Types::RichButton.from_json(json_object: struct) unless struct.nil?
 
           return nil
         rescue StandardError
@@ -40,7 +42,7 @@ module Pinnacle
       # @return [Void]
       def self.validate_raw(obj:)
         begin
-          return Pinnacle::Types::ClickActionDataMetadata.validate_raw(obj: obj)
+          return Pinnacle::Types::RichButton.validate_raw(obj: obj)
         rescue StandardError
           # noop
         end

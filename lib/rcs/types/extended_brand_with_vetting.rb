@@ -24,10 +24,10 @@ module Pinnacle
       attr_reader :id
       # @return [Boolean] Indicates if this brand is archived.
       attr_reader :is_archived
-      # @return [Pinnacle::Types::BrandStatusEnum] Current review status of the campaign.<br>
-      #  `INCOMPLETE`: Not submitted.<br>
-      #  `IN REVIEW`: Being reviewed by carriers.<br>
-      #  `VERIFIED`: Approved and ready to send messages.<br>
+      # @return [Pinnacle::Types::BrandStatusEnum] Current review status of the campaign. <br>
+      #  `INCOMPLETE`: Not submitted. <br>
+      #  `IN REVIEW`: Being reviewed by carriers. <br>
+      #  `VERIFIED`: Approved and ready to send messages. <br>
       #  `FAILED`: Issues and errors related to the campaign's details.
       attr_reader :status
       # @return [String] ISO 8601 formatted timestamp of when this brand was last updated.
@@ -66,10 +66,10 @@ module Pinnacle
       # @param created_at [String] ISO 8601 formatted timestamp of when this brand was added to our system.
       # @param id [Integer] The brand's ID.
       # @param is_archived [Boolean] Indicates if this brand is archived.
-      # @param status [Pinnacle::Types::BrandStatusEnum] Current review status of the campaign.<br>
-      #  `INCOMPLETE`: Not submitted.<br>
-      #  `IN REVIEW`: Being reviewed by carriers.<br>
-      #  `VERIFIED`: Approved and ready to send messages.<br>
+      # @param status [Pinnacle::Types::BrandStatusEnum] Current review status of the campaign. <br>
+      #  `INCOMPLETE`: Not submitted. <br>
+      #  `IN REVIEW`: Being reviewed by carriers. <br>
+      #  `VERIFIED`: Approved and ready to send messages. <br>
       #  `FAILED`: Issues and errors related to the campaign's details.
       # @param updated_at [String] ISO 8601 formatted timestamp of when this brand was last updated.
       # @param address [String] Primary brand address where this brand is located.

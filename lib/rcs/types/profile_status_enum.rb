@@ -2,10 +2,10 @@
 
 module Pinnacle
   module Types
-    # Current review status of the campaign.
-    #  `INCOMPLETE`: Not submitted.
-    #  `IN REVIEW`: Being reviewed by carriers.
-    #  `VERIFIED`: Approved and ready to send messages.
+    # Current review status of the campaign. <br>
+    #  `INCOMPLETE`: Not submitted. <br>
+    #  `IN REVIEW`: Being reviewed by carriers. <br>
+    #  `VERIFIED`: Approved and ready to send messages.<br>
     #  `FAILED`: Issues and errors related to the campaign's details.
     class ProfileStatusEnum
       INCOMPLETE = "INCOMPLETE"

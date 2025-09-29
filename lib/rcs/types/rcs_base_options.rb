@@ -16,6 +16,9 @@ module Pinnacle
       attr_reader :test_mode
       # @return [Pinnacle::Types::Tracking]
       attr_reader :tracking
+      # @return [Boolean] Media files and card media will be transcoded to a supported RCS format. This
+      #  adds a small delay to sending the message. Ignored for rich text messages.
+      attr_reader :transcode
       # @return [Boolean] Validate your message for any unsupported files. <br>
       #  If failed, errors will be thrown and the message will not send.
       attr_reader :validate
@@ -31,20 +34,25 @@ module Pinnacle
       # @param test_mode [Boolean] Send via the test agent to whitelisted test devices. Useful for development and
       #  debugging.
       # @param tracking [Pinnacle::Types::Tracking]
+      # @param transcode [Boolean] Media files and card media will be transcoded to a supported RCS format. This
+      #  adds a small delay to sending the message. Ignored for rich text messages.
       # @param validate [Boolean] Validate your message for any unsupported files. <br>
       #  If failed, errors will be thrown and the message will not send.
       # @param additional_properties [OpenStruct] Additional properties unmapped to the current class definition
       # @return [Pinnacle::Types::RcsBaseOptions]
-      def initialize(schedule: OMIT, test_mode: OMIT, tracking: OMIT, validate: OMIT, additional_properties: nil)
+      def initialize(schedule: OMIT, test_mode: OMIT, tracking: OMIT, transcode: OMIT, validate: OMIT,
+                     additional_properties: nil)
         @schedule = schedule if schedule != OMIT
         @test_mode = test_mode if test_mode != OMIT
         @tracking = tracking if tracking != OMIT
+        @transcode = transcode if transcode != OMIT
         @validate = validate if validate != OMIT
         @additional_properties = additional_properties
         @_field_set = {
           "schedule": schedule,
           "test_mode": test_mode,
           "tracking": tracking,
+          "transcode": transcode,
           "validate": validate
         }.reject do |_k, v|
           v == OMIT
@@ -66,11 +74,13 @@ module Pinnacle
         end
         test_mode = parsed_json["test_mode"]
         tracking = parsed_json["tracking"]
+        transcode = parsed_json["transcode"]
         validate = parsed_json["validate"]
         new(
           schedule: schedule,
           test_mode: test_mode,
           tracking: tracking,
+          transcode: transcode,
           validate: validate,
           additional_properties: struct
         )
@@ -93,6 +103,7 @@ module Pinnacle
         obj.schedule.nil? || Pinnacle::Types::MessageSchedule.validate_raw(obj: obj.schedule)
         obj.test_mode&.is_a?(Boolean) != false || raise("Passed value for field obj.test_mode is not the expected type, validation failed.")
         obj.tracking&.is_a?(Pinnacle::Types::Tracking) != false || raise("Passed value for field obj.tracking is not the expected type, validation failed.")
+        obj.transcode&.is_a?(Boolean) != false || raise("Passed value for field obj.transcode is not the expected type, validation failed.")
         obj.validate&.is_a?(Boolean) != false || raise("Passed value for field obj.validate is not the expected type, validation failed.")
       end
     end

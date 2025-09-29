@@ -3,6 +3,8 @@
 require_relative "../../../requests"
 require_relative "types/upload_file_options"
 require_relative "../../types/upload_results"
+require_relative "../../types/refreshed_file"
+require "json"
 require "async"
 
 module Pinnacle
@@ -68,6 +70,50 @@ module Pinnacle
         end
         Pinnacle::Types::UploadResults.from_json(json_object: response.body)
       end
+
+      # Refresh expiring presigned URLs for Pinnacle-hosted files to extend their access
+      #  time.
+      #  <Callout type="info">
+      #  This only works for presigned download URLs. At this moment, you cannot
+      #  refresh a presigned upload URL, generate a new one instead.
+      #  </Callout>
+      #
+      # @param uris [Array<String>] Array of file URIs to refresh for extended access. <br>
+      #  Accepted formats:
+      #  - **Full presigned URLs**:
+      #  `https://server.trypinnacle.app/storage/v1/object/sign/...`
+      #  - **Short URIs**: `{BUCKET}/${TEAM_ID}/...` (e.g., `vault/3/document.pdf`)
+      #  Invalid or external URLs will be returned unchanged in the response.
+      # @param request_options [Pinnacle::RequestOptions]
+      # @return [Array<Pinnacle::Types::RefreshedFile>]
+      # @example
+      #  api = Pinnacle::Client.new(
+      #    base_url: "https://api.example.com",
+      #    environment: Pinnacle::Environment::DEFAULT,
+      #    api_key: "YOUR_API_KEY"
+      #  )
+      #  api.tools.file.refresh(uris: ["https://server.trypinnacle.app/storage/v1/object/sign/vault/3/test.jpg?token=oldtoken", "https://server.trypinnacle.app/storage/v1/object/sign/vault/3/document.pdf?token=oldtoken2", "icons/3/test.jpg", "invalid/url", "https://google.com"])
+      def refresh(uris:, request_options: nil)
+        response = @request_client.conn.post do |req|
+          req.options.timeout = request_options.timeout_in_seconds unless request_options&.timeout_in_seconds.nil?
+          req.headers["PINNACLE-API-KEY"] = request_options.api_key unless request_options&.api_key.nil?
+          req.headers = {
+        **(req.headers || {}),
+        **@request_client.get_headers,
+        **(request_options&.additional_headers || {})
+          }.compact
+          unless request_options.nil? || request_options&.additional_query_parameters.nil?
+            req.params = { **(request_options&.additional_query_parameters || {}) }.compact
+          end
+          req.body = { **(request_options&.additional_body_parameters || {}), uris: uris }.compact
+          req.url "#{@request_client.get_url(request_options: request_options)}/tools/files/refresh"
+        end
+        parsed_json = JSON.parse(response.body)
+        parsed_json&.map do |item|
+          item = item.to_json
+          Pinnacle::Types::RefreshedFile.from_json(json_object: item)
+        end
+      end
     end
 
     class AsyncFileClient
@@ -131,6 +177,52 @@ module Pinnacle
             req.url "#{@request_client.get_url(request_options: request_options)}/tools/files/upload"
           end
           Pinnacle::Types::UploadResults.from_json(json_object: response.body)
+        end
+      end
+
+      # Refresh expiring presigned URLs for Pinnacle-hosted files to extend their access
+      #  time.
+      #  <Callout type="info">
+      #  This only works for presigned download URLs. At this moment, you cannot
+      #  refresh a presigned upload URL, generate a new one instead.
+      #  </Callout>
+      #
+      # @param uris [Array<String>] Array of file URIs to refresh for extended access. <br>
+      #  Accepted formats:
+      #  - **Full presigned URLs**:
+      #  `https://server.trypinnacle.app/storage/v1/object/sign/...`
+      #  - **Short URIs**: `{BUCKET}/${TEAM_ID}/...` (e.g., `vault/3/document.pdf`)
+      #  Invalid or external URLs will be returned unchanged in the response.
+      # @param request_options [Pinnacle::RequestOptions]
+      # @return [Array<Pinnacle::Types::RefreshedFile>]
+      # @example
+      #  api = Pinnacle::Client.new(
+      #    base_url: "https://api.example.com",
+      #    environment: Pinnacle::Environment::DEFAULT,
+      #    api_key: "YOUR_API_KEY"
+      #  )
+      #  api.tools.file.refresh(uris: ["https://server.trypinnacle.app/storage/v1/object/sign/vault/3/test.jpg?token=oldtoken", "https://server.trypinnacle.app/storage/v1/object/sign/vault/3/document.pdf?token=oldtoken2", "icons/3/test.jpg", "invalid/url", "https://google.com"])
+      def refresh(uris:, request_options: nil)
+        Async do
+          response = @request_client.conn.post do |req|
+            req.options.timeout = request_options.timeout_in_seconds unless request_options&.timeout_in_seconds.nil?
+            req.headers["PINNACLE-API-KEY"] = request_options.api_key unless request_options&.api_key.nil?
+            req.headers = {
+          **(req.headers || {}),
+          **@request_client.get_headers,
+          **(request_options&.additional_headers || {})
+            }.compact
+            unless request_options.nil? || request_options&.additional_query_parameters.nil?
+              req.params = { **(request_options&.additional_query_parameters || {}) }.compact
+            end
+            req.body = { **(request_options&.additional_body_parameters || {}), uris: uris }.compact
+            req.url "#{@request_client.get_url(request_options: request_options)}/tools/files/refresh"
+          end
+          parsed_json = JSON.parse(response.body)
+          parsed_json&.map do |item|
+            item = item.to_json
+            Pinnacle::Types::RefreshedFile.from_json(json_object: item)
+          end
         end
       end
     end

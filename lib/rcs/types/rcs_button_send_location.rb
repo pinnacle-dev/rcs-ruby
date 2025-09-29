@@ -10,6 +10,8 @@ module Pinnacle
     class RcsButtonSendLocation
       # @return [Pinnacle::Types::RcsButtonSendLocationLatLong] Geographic coordinates of the location to share.
       attr_reader :lat_long
+      # @return [String] Optional additional data to attach to this button.
+      attr_reader :metadata
       # @return [String] Display text for the button.
       attr_reader :title
       # @return [OpenStruct] Additional properties unmapped to the current class definition
@@ -21,14 +23,18 @@ module Pinnacle
       OMIT = Object.new
 
       # @param lat_long [Pinnacle::Types::RcsButtonSendLocationLatLong] Geographic coordinates of the location to share.
+      # @param metadata [String] Optional additional data to attach to this button.
       # @param title [String] Display text for the button.
       # @param additional_properties [OpenStruct] Additional properties unmapped to the current class definition
       # @return [Pinnacle::Types::RcsButtonSendLocation]
-      def initialize(lat_long:, title:, additional_properties: nil)
+      def initialize(lat_long:, title:, metadata: OMIT, additional_properties: nil)
         @lat_long = lat_long
+        @metadata = metadata if metadata != OMIT
         @title = title
         @additional_properties = additional_properties
-        @_field_set = { "latLong": lat_long, "title": title }
+        @_field_set = { "latLong": lat_long, "metadata": metadata, "title": title }.reject do |_k, v|
+          v == OMIT
+        end
       end
 
       # Deserialize a JSON object to an instance of RcsButtonSendLocation
@@ -44,9 +50,11 @@ module Pinnacle
           lat_long = parsed_json["latLong"].to_json
           lat_long = Pinnacle::Types::RcsButtonSendLocationLatLong.from_json(json_object: lat_long)
         end
+        metadata = parsed_json["metadata"]
         title = parsed_json["title"]
         new(
           lat_long: lat_long,
+          metadata: metadata,
           title: title,
           additional_properties: struct
         )
@@ -67,6 +75,7 @@ module Pinnacle
       # @return [Void]
       def self.validate_raw(obj:)
         Pinnacle::Types::RcsButtonSendLocationLatLong.validate_raw(obj: obj.lat_long)
+        obj.metadata&.is_a?(String) != false || raise("Passed value for field obj.metadata is not the expected type, validation failed.")
         obj.title.is_a?(String) != false || raise("Passed value for field obj.title is not the expected type, validation failed.")
       end
     end

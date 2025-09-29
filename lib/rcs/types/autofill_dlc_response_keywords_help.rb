@@ -23,9 +23,9 @@ module Pinnacle
       # @param values [Array<String>] Keywords that trigger help response.
       # @param additional_properties [OpenStruct] Additional properties unmapped to the current class definition
       # @return [Pinnacle::Types::AutofillDlcResponseKeywordsHelp]
-      def initialize(message: OMIT, values: OMIT, additional_properties: nil)
+      def initialize(values:, message: OMIT, additional_properties: nil)
         @message = message if message != OMIT
-        @values = values if values != OMIT
+        @values = values
         @additional_properties = additional_properties
         @_field_set = { "message": message, "values": values }.reject do |_k, v|
           v == OMIT
@@ -63,7 +63,7 @@ module Pinnacle
       # @return [Void]
       def self.validate_raw(obj:)
         obj.message&.is_a?(String) != false || raise("Passed value for field obj.message is not the expected type, validation failed.")
-        obj.values&.is_a?(Array) != false || raise("Passed value for field obj.values is not the expected type, validation failed.")
+        obj.values.is_a?(Array) != false || raise("Passed value for field obj.values is not the expected type, validation failed.")
       end
     end
   end

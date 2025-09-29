@@ -1,21 +1,21 @@
 # frozen_string_literal: true
 
 require "json"
-require_relative "click_action"
+require_relative "button_clicked_data"
 require_relative "location_share_action"
 
 module Pinnacle
   module Types
-    class InboundButton
-      # Deserialize a JSON object to an instance of InboundButton
+    class ButtonClicked
+      # Deserialize a JSON object to an instance of ButtonClicked
       #
       # @param json_object [String]
-      # @return [Pinnacle::Types::InboundButton]
+      # @return [Pinnacle::Types::ButtonClicked]
       def self.from_json(json_object:)
         struct = JSON.parse(json_object, object_class: OpenStruct)
         begin
-          Pinnacle::Types::ClickAction.validate_raw(obj: struct)
-          return Pinnacle::Types::ClickAction.from_json(json_object: struct) unless struct.nil?
+          Pinnacle::Types::ButtonClickedData.validate_raw(obj: struct)
+          return Pinnacle::Types::ButtonClickedData.from_json(json_object: struct) unless struct.nil?
 
           return nil
         rescue StandardError
@@ -40,7 +40,7 @@ module Pinnacle
       # @return [Void]
       def self.validate_raw(obj:)
         begin
-          return Pinnacle::Types::ClickAction.validate_raw(obj: obj)
+          return Pinnacle::Types::ButtonClickedData.validate_raw(obj: obj)
         rescue StandardError
           # noop
         end

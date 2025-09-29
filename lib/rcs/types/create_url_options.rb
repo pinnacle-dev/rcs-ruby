@@ -7,7 +7,8 @@ module Pinnacle
   module Types
     class CreateUrlOptions
       # @return [String] Expiration date in ISO 8601 format for the shortened URL. <br>
-      #  If omitted, then a permalink is generated instead.
+      #  If omitted, then a permalink is generated instead. Short permalinks contain a
+      #  30-digit link id. Short links with an expiration date contain a 8-digit link id.
       attr_reader :expires_at
       # @return [OpenStruct] Additional properties unmapped to the current class definition
       attr_reader :additional_properties
@@ -18,7 +19,8 @@ module Pinnacle
       OMIT = Object.new
 
       # @param expires_at [String] Expiration date in ISO 8601 format for the shortened URL. <br>
-      #  If omitted, then a permalink is generated instead.
+      #  If omitted, then a permalink is generated instead. Short permalinks contain a
+      #  30-digit link id. Short links with an expiration date contain a 8-digit link id.
       # @param additional_properties [OpenStruct] Additional properties unmapped to the current class definition
       # @return [Pinnacle::Types::CreateUrlOptions]
       def initialize(expires_at: OMIT, additional_properties: nil)

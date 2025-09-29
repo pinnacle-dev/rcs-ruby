@@ -12,25 +12,17 @@ require_relative "../types/purchased_number"
 require_relative "types/phone_details_schema_level"
 require_relative "types/retrieve_phone_number_details_options"
 require_relative "types/phone_numbers_get_response"
-require_relative "campaign/client"
-require_relative "webhook/client"
 require "async"
 
 module Pinnacle
   class PhoneNumbersClient
     # @return [Pinnacle::RequestClient]
     attr_reader :request_client
-    # @return [Pinnacle::PhoneNumbers::CampaignClient]
-    attr_reader :campaign
-    # @return [Pinnacle::PhoneNumbers::WebhookClient]
-    attr_reader :webhook
 
     # @param request_client [Pinnacle::RequestClient]
     # @return [Pinnacle::PhoneNumbersClient]
     def initialize(request_client:)
       @request_client = request_client
-      @campaign = Pinnacle::PhoneNumbers::CampaignClient.new(request_client: request_client)
-      @webhook = Pinnacle::PhoneNumbers::WebhookClient.new(request_client: request_client)
     end
 
     # Search for available phone numbers that match your exact criteria.
@@ -187,17 +179,11 @@ module Pinnacle
   class AsyncPhoneNumbersClient
     # @return [Pinnacle::AsyncRequestClient]
     attr_reader :request_client
-    # @return [Pinnacle::PhoneNumbers::AsyncCampaignClient]
-    attr_reader :campaign
-    # @return [Pinnacle::PhoneNumbers::AsyncWebhookClient]
-    attr_reader :webhook
 
     # @param request_client [Pinnacle::AsyncRequestClient]
     # @return [Pinnacle::AsyncPhoneNumbersClient]
     def initialize(request_client:)
       @request_client = request_client
-      @campaign = Pinnacle::PhoneNumbers::AsyncCampaignClient.new(request_client: request_client)
-      @webhook = Pinnacle::PhoneNumbers::AsyncWebhookClient.new(request_client: request_client)
     end
 
     # Search for available phone numbers that match your exact criteria.

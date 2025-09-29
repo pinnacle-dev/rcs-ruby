@@ -8,7 +8,7 @@ module Pinnacle
     # Button that sends custom data back to your application when tapped by the
     #  recipient.
     class RcsButtonTrigger
-      # @return [String] Additional data attached to the button interaction.
+      # @return [String] Optional additional data to attach to this button.
       attr_reader :metadata
       # @return [String] Custom data sent to your webhook when the button is tapped. Use this to identify
       #  the user's choice.
@@ -23,18 +23,20 @@ module Pinnacle
 
       OMIT = Object.new
 
-      # @param metadata [String] Additional data attached to the button interaction.
+      # @param metadata [String] Optional additional data to attach to this button.
       # @param payload [String] Custom data sent to your webhook when the button is tapped. Use this to identify
       #  the user's choice.
       # @param title [String] Display text for the button.
       # @param additional_properties [OpenStruct] Additional properties unmapped to the current class definition
       # @return [Pinnacle::Types::RcsButtonTrigger]
-      def initialize(metadata:, payload:, title:, additional_properties: nil)
-        @metadata = metadata
+      def initialize(payload:, title:, metadata: OMIT, additional_properties: nil)
+        @metadata = metadata if metadata != OMIT
         @payload = payload
         @title = title
         @additional_properties = additional_properties
-        @_field_set = { "metadata": metadata, "payload": payload, "title": title }
+        @_field_set = { "metadata": metadata, "payload": payload, "title": title }.reject do |_k, v|
+          v == OMIT
+        end
       end
 
       # Deserialize a JSON object to an instance of RcsButtonTrigger
@@ -69,7 +71,7 @@ module Pinnacle
       # @param obj [Object]
       # @return [Void]
       def self.validate_raw(obj:)
-        obj.metadata.is_a?(String) != false || raise("Passed value for field obj.metadata is not the expected type, validation failed.")
+        obj.metadata&.is_a?(String) != false || raise("Passed value for field obj.metadata is not the expected type, validation failed.")
         obj.payload.is_a?(String) != false || raise("Passed value for field obj.payload is not the expected type, validation failed.")
         obj.title.is_a?(String) != false || raise("Passed value for field obj.title is not the expected type, validation failed.")
       end

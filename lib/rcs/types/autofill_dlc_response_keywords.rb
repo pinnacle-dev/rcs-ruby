@@ -29,14 +29,12 @@ module Pinnacle
       # @param opt_out [Pinnacle::Types::AutofillDlcResponseKeywordsOptOut] Opt-out keyword settings.
       # @param additional_properties [OpenStruct] Additional properties unmapped to the current class definition
       # @return [Pinnacle::Types::AutofillDlcResponseKeywords]
-      def initialize(help: OMIT, opt_in: OMIT, opt_out: OMIT, additional_properties: nil)
-        @help = help if help != OMIT
-        @opt_in = opt_in if opt_in != OMIT
-        @opt_out = opt_out if opt_out != OMIT
+      def initialize(help:, opt_in:, opt_out:, additional_properties: nil)
+        @help = help
+        @opt_in = opt_in
+        @opt_out = opt_out
         @additional_properties = additional_properties
-        @_field_set = { "HELP": help, "OPT_IN": opt_in, "OPT_OUT": opt_out }.reject do |_k, v|
-          v == OMIT
-        end
+        @_field_set = { "HELP": help, "OPT_IN": opt_in, "OPT_OUT": opt_out }
       end
 
       # Deserialize a JSON object to an instance of AutofillDlcResponseKeywords
@@ -86,9 +84,9 @@ module Pinnacle
       # @param obj [Object]
       # @return [Void]
       def self.validate_raw(obj:)
-        obj.help.nil? || Pinnacle::Types::AutofillDlcResponseKeywordsHelp.validate_raw(obj: obj.help)
-        obj.opt_in.nil? || Pinnacle::Types::AutofillDlcResponseKeywordsOptIn.validate_raw(obj: obj.opt_in)
-        obj.opt_out.nil? || Pinnacle::Types::AutofillDlcResponseKeywordsOptOut.validate_raw(obj: obj.opt_out)
+        Pinnacle::Types::AutofillDlcResponseKeywordsHelp.validate_raw(obj: obj.help)
+        Pinnacle::Types::AutofillDlcResponseKeywordsOptIn.validate_raw(obj: obj.opt_in)
+        Pinnacle::Types::AutofillDlcResponseKeywordsOptOut.validate_raw(obj: obj.opt_out)
       end
     end
   end

@@ -15,6 +15,8 @@ module Pinnacle
       attr_reader :event_start_time
       # @return [String] Title of the event.
       attr_reader :event_title
+      # @return [String] Optional additional data to attach to this button.
+      attr_reader :metadata
       # @return [String] Display text for the button.
       attr_reader :title
       # @return [OpenStruct] Additional properties unmapped to the current class definition
@@ -29,15 +31,17 @@ module Pinnacle
       # @param event_end_time [String] End time in ISO 8601 format.
       # @param event_start_time [String] Starting time in ISO 8601 format.
       # @param event_title [String] Title of the event.
+      # @param metadata [String] Optional additional data to attach to this button.
       # @param title [String] Display text for the button.
       # @param additional_properties [OpenStruct] Additional properties unmapped to the current class definition
       # @return [Pinnacle::Types::RcsButtonScheduleEvent]
-      def initialize(event_end_time:, event_start_time:, event_title:, title:, event_description: OMIT,
+      def initialize(event_end_time:, event_start_time:, event_title:, title:, event_description: OMIT, metadata: OMIT,
                      additional_properties: nil)
         @event_description = event_description if event_description != OMIT
         @event_end_time = event_end_time
         @event_start_time = event_start_time
         @event_title = event_title
+        @metadata = metadata if metadata != OMIT
         @title = title
         @additional_properties = additional_properties
         @_field_set = {
@@ -45,6 +49,7 @@ module Pinnacle
           "eventEndTime": event_end_time,
           "eventStartTime": event_start_time,
           "eventTitle": event_title,
+          "metadata": metadata,
           "title": title
         }.reject do |_k, v|
           v == OMIT
@@ -62,12 +67,14 @@ module Pinnacle
         event_end_time = parsed_json["eventEndTime"]
         event_start_time = parsed_json["eventStartTime"]
         event_title = parsed_json["eventTitle"]
+        metadata = parsed_json["metadata"]
         title = parsed_json["title"]
         new(
           event_description: event_description,
           event_end_time: event_end_time,
           event_start_time: event_start_time,
           event_title: event_title,
+          metadata: metadata,
           title: title,
           additional_properties: struct
         )
@@ -91,6 +98,7 @@ module Pinnacle
         obj.event_end_time.is_a?(String) != false || raise("Passed value for field obj.event_end_time is not the expected type, validation failed.")
         obj.event_start_time.is_a?(String) != false || raise("Passed value for field obj.event_start_time is not the expected type, validation failed.")
         obj.event_title.is_a?(String) != false || raise("Passed value for field obj.event_title is not the expected type, validation failed.")
+        obj.metadata&.is_a?(String) != false || raise("Passed value for field obj.metadata is not the expected type, validation failed.")
         obj.title.is_a?(String) != false || raise("Passed value for field obj.title is not the expected type, validation failed.")
       end
     end

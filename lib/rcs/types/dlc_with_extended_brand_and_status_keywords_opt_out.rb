@@ -23,11 +23,13 @@ module Pinnacle
       # @param values [Array<String>] Keywords that trigger opt-out.
       # @param additional_properties [OpenStruct] Additional properties unmapped to the current class definition
       # @return [Pinnacle::Types::DlcWithExtendedBrandAndStatusKeywordsOptOut]
-      def initialize(message:, values:, additional_properties: nil)
-        @message = message
+      def initialize(values:, message: OMIT, additional_properties: nil)
+        @message = message if message != OMIT
         @values = values
         @additional_properties = additional_properties
-        @_field_set = { "message": message, "values": values }
+        @_field_set = { "message": message, "values": values }.reject do |_k, v|
+          v == OMIT
+        end
       end
 
       # Deserialize a JSON object to an instance of
@@ -62,7 +64,7 @@ module Pinnacle
       # @param obj [Object]
       # @return [Void]
       def self.validate_raw(obj:)
-        obj.message.is_a?(String) != false || raise("Passed value for field obj.message is not the expected type, validation failed.")
+        obj.message&.is_a?(String) != false || raise("Passed value for field obj.message is not the expected type, validation failed.")
         obj.values.is_a?(Array) != false || raise("Passed value for field obj.values is not the expected type, validation failed.")
       end
     end

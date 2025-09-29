@@ -4,7 +4,7 @@ require "json"
 require_relative "sms_content"
 require_relative "mms_content"
 require_relative "rcs_content"
-require_relative "inbound_button"
+require_relative "button_clicked"
 
 module Pinnacle
   module Types
@@ -41,8 +41,8 @@ module Pinnacle
           # noop
         end
         begin
-          Pinnacle::Types::InboundButton.validate_raw(obj: struct)
-          return Pinnacle::Types::InboundButton.from_json(json_object: struct) unless struct.nil?
+          Pinnacle::Types::ButtonClicked.validate_raw(obj: struct)
+          return Pinnacle::Types::ButtonClicked.from_json(json_object: struct) unless struct.nil?
 
           return nil
         rescue StandardError
@@ -74,7 +74,7 @@ module Pinnacle
           # noop
         end
         begin
-          return Pinnacle::Types::InboundButton.validate_raw(obj: obj)
+          return Pinnacle::Types::ButtonClicked.validate_raw(obj: obj)
         rescue StandardError
           # noop
         end

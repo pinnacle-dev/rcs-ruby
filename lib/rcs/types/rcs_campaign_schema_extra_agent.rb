@@ -44,16 +44,16 @@ module Pinnacle
       # @param websites [Array<Pinnacle::Types::RcsCampaignSchemaExtraAgentWebsitesItem>] List of urls.
       # @param additional_properties [OpenStruct] Additional properties unmapped to the current class definition
       # @return [Pinnacle::Types::RcsCampaignSchemaExtraAgent]
-      def initialize(color: OMIT, description: OMIT, emails: OMIT, hero_url: OMIT, icon_url: OMIT, name: OMIT,
-                     phones: OMIT, websites: OMIT, additional_properties: nil)
+      def initialize(emails:, phones:, websites:, color: OMIT, description: OMIT, hero_url: OMIT, icon_url: OMIT,
+                     name: OMIT, additional_properties: nil)
         @color = color if color != OMIT
         @description = description if description != OMIT
-        @emails = emails if emails != OMIT
+        @emails = emails
         @hero_url = hero_url if hero_url != OMIT
         @icon_url = icon_url if icon_url != OMIT
         @name = name if name != OMIT
-        @phones = phones if phones != OMIT
-        @websites = websites if websites != OMIT
+        @phones = phones
+        @websites = websites
         @additional_properties = additional_properties
         @_field_set = {
           "color": color,
@@ -122,12 +122,12 @@ module Pinnacle
       def self.validate_raw(obj:)
         obj.color&.is_a?(String) != false || raise("Passed value for field obj.color is not the expected type, validation failed.")
         obj.description&.is_a?(String) != false || raise("Passed value for field obj.description is not the expected type, validation failed.")
-        obj.emails&.is_a?(Array) != false || raise("Passed value for field obj.emails is not the expected type, validation failed.")
+        obj.emails.is_a?(Array) != false || raise("Passed value for field obj.emails is not the expected type, validation failed.")
         obj.hero_url&.is_a?(String) != false || raise("Passed value for field obj.hero_url is not the expected type, validation failed.")
         obj.icon_url&.is_a?(String) != false || raise("Passed value for field obj.icon_url is not the expected type, validation failed.")
         obj.name&.is_a?(String) != false || raise("Passed value for field obj.name is not the expected type, validation failed.")
-        obj.phones&.is_a?(Array) != false || raise("Passed value for field obj.phones is not the expected type, validation failed.")
-        obj.websites&.is_a?(Array) != false || raise("Passed value for field obj.websites is not the expected type, validation failed.")
+        obj.phones.is_a?(Array) != false || raise("Passed value for field obj.phones is not the expected type, validation failed.")
+        obj.websites.is_a?(Array) != false || raise("Passed value for field obj.websites is not the expected type, validation failed.")
       end
     end
   end

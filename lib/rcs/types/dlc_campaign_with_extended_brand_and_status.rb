@@ -33,11 +33,11 @@ module Pinnacle
       attr_reader :options
       # @return [Array<String>] Example messages for the campaign.
       attr_reader :sample_messages
-      # @return [Pinnacle::Types::ProfileStatusEnum] Current review status of the campaign.<br>
-      #  `INCOMPLETE`: Not submitted.<br>
-      #  `IN REVIEW`: Being reviewed by carriers.<br>
-      #  `VERIFIED`: Approved and ready to send messages.<br>
-      #  `FAILED`: Issues and errors related to the campaign's details.<br>
+      # @return [Pinnacle::Types::ProfileStatusEnum] Current review status of the campaign. <br>
+      #  `INCOMPLETE`: Not submitted. <br>
+      #  `IN REVIEW`: Being reviewed by carriers. <br>
+      #  `VERIFIED`: Approved and ready to send messages. <br>
+      #  `FAILED`: Issues and errors related to the campaign's details.
       attr_reader :status
       # @return [Pinnacle::Types::DlcWithExtendedBrandAndStatusUseCase] Use case for the campaign.
       attr_reader :use_case
@@ -59,25 +59,25 @@ module Pinnacle
       # @param name [String] Display name of the campaign.
       # @param options [Pinnacle::Types::DlcWithExtendedBrandAndStatusOptions] Campaign configuration options.
       # @param sample_messages [Array<String>] Example messages for the campaign.
-      # @param status [Pinnacle::Types::ProfileStatusEnum] Current review status of the campaign.<br>
-      #  `INCOMPLETE`: Not submitted.<br>
-      #  `IN REVIEW`: Being reviewed by carriers.<br>
-      #  `VERIFIED`: Approved and ready to send messages.<br>
-      #  `FAILED`: Issues and errors related to the campaign's details.<br>
+      # @param status [Pinnacle::Types::ProfileStatusEnum] Current review status of the campaign. <br>
+      #  `INCOMPLETE`: Not submitted. <br>
+      #  `IN REVIEW`: Being reviewed by carriers. <br>
+      #  `VERIFIED`: Approved and ready to send messages. <br>
+      #  `FAILED`: Issues and errors related to the campaign's details.
       # @param use_case [Pinnacle::Types::DlcWithExtendedBrandAndStatusUseCase] Use case for the campaign.
       # @param additional_properties [OpenStruct] Additional properties unmapped to the current class definition
       # @return [Pinnacle::Types::DlcCampaignWithExtendedBrandAndStatus]
-      def initialize(auto_renew:, brand:, status:, campaign_id: OMIT, description: OMIT, keywords: OMIT, links: OMIT,
-                     message_flow: OMIT, name: OMIT, options: OMIT, sample_messages: OMIT, use_case: OMIT, additional_properties: nil)
+      def initialize(auto_renew:, brand:, keywords:, options:, status:, campaign_id: OMIT, description: OMIT, links: OMIT,
+                     message_flow: OMIT, name: OMIT, sample_messages: OMIT, use_case: OMIT, additional_properties: nil)
         @auto_renew = auto_renew
         @brand = brand
         @campaign_id = campaign_id if campaign_id != OMIT
         @description = description if description != OMIT
-        @keywords = keywords if keywords != OMIT
+        @keywords = keywords
         @links = links if links != OMIT
         @message_flow = message_flow if message_flow != OMIT
         @name = name if name != OMIT
-        @options = options if options != OMIT
+        @options = options
         @sample_messages = sample_messages if sample_messages != OMIT
         @status = status
         @use_case = use_case if use_case != OMIT
@@ -180,11 +180,11 @@ module Pinnacle
         Pinnacle::Types::ExtendedBrand.validate_raw(obj: obj.brand)
         obj.campaign_id&.is_a?(Integer) != false || raise("Passed value for field obj.campaign_id is not the expected type, validation failed.")
         obj.description&.is_a?(String) != false || raise("Passed value for field obj.description is not the expected type, validation failed.")
-        obj.keywords.nil? || Pinnacle::Types::DlcWithExtendedBrandAndStatusKeywords.validate_raw(obj: obj.keywords)
+        Pinnacle::Types::DlcWithExtendedBrandAndStatusKeywords.validate_raw(obj: obj.keywords)
         obj.links.nil? || Pinnacle::Types::DlcWithExtendedBrandAndStatusLinks.validate_raw(obj: obj.links)
         obj.message_flow&.is_a?(String) != false || raise("Passed value for field obj.message_flow is not the expected type, validation failed.")
         obj.name&.is_a?(String) != false || raise("Passed value for field obj.name is not the expected type, validation failed.")
-        obj.options.nil? || Pinnacle::Types::DlcWithExtendedBrandAndStatusOptions.validate_raw(obj: obj.options)
+        Pinnacle::Types::DlcWithExtendedBrandAndStatusOptions.validate_raw(obj: obj.options)
         obj.sample_messages&.is_a?(Array) != false || raise("Passed value for field obj.sample_messages is not the expected type, validation failed.")
         obj.status.is_a?(Pinnacle::Types::ProfileStatusEnum) != false || raise("Passed value for field obj.status is not the expected type, validation failed.")
         obj.use_case.nil? || Pinnacle::Types::DlcWithExtendedBrandAndStatusUseCase.validate_raw(obj: obj.use_case)
