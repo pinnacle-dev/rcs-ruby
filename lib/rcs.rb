@@ -13,6 +13,8 @@ require_relative "rcs/webhooks/client"
 require_relative "rcs/campaigns/client"
 require_relative "rcs/status/client"
 require_relative "rcs/tools/client"
+require_relative "rcs/wrapper/messages/client"
+require_relative "rcs/wrapper/tools/client"
 
 module Pinnacle
   class Client
@@ -22,7 +24,7 @@ module Pinnacle
     attr_reader :contacts
     # @return [Pinnacle::ConversationsClient]
     attr_reader :conversations
-    # @return [Pinnacle::MessagesClient]
+    # @return [Pinnacle::EnhancedMessagesClient]
     attr_reader :messages
     # @return [Pinnacle::PhoneNumbersClient]
     attr_reader :phone_numbers
@@ -34,7 +36,7 @@ module Pinnacle
     attr_reader :campaigns
     # @return [Pinnacle::Status::Client]
     attr_reader :status
-    # @return [Pinnacle::Tools::Client]
+    # @return [Pinnacle::Tools::EnhancedClient]
     attr_reader :tools
 
     # @param base_url [String]
@@ -55,13 +57,13 @@ module Pinnacle
       @brands = Pinnacle::BrandsClient.new(request_client: @request_client)
       @contacts = Pinnacle::ContactsClient.new(request_client: @request_client)
       @conversations = Pinnacle::ConversationsClient.new(request_client: @request_client)
-      @messages = Pinnacle::MessagesClient.new(request_client: @request_client)
+      @messages = Pinnacle::EnhancedMessagesClient.new(request_client: @request_client)
       @phone_numbers = Pinnacle::PhoneNumbersClient.new(request_client: @request_client)
       @rcs = Pinnacle::RcsClient.new(request_client: @request_client)
       @webhooks = Pinnacle::WebhooksClient.new(request_client: @request_client)
       @campaigns = Pinnacle::Campaigns::Client.new(request_client: @request_client)
       @status = Pinnacle::Status::Client.new(request_client: @request_client)
-      @tools = Pinnacle::Tools::Client.new(request_client: @request_client)
+      @tools = Pinnacle::Tools::EnhancedClient.new(request_client: @request_client)
     end
   end
 
@@ -72,7 +74,7 @@ module Pinnacle
     attr_reader :contacts
     # @return [Pinnacle::AsyncConversationsClient]
     attr_reader :conversations
-    # @return [Pinnacle::AsyncMessagesClient]
+    # @return [Pinnacle::AsyncEnhancedMessagesClient]
     attr_reader :messages
     # @return [Pinnacle::AsyncPhoneNumbersClient]
     attr_reader :phone_numbers
@@ -84,7 +86,7 @@ module Pinnacle
     attr_reader :campaigns
     # @return [Pinnacle::Status::AsyncClient]
     attr_reader :status
-    # @return [Pinnacle::Tools::AsyncClient]
+    # @return [Pinnacle::Tools::AsyncEnhancedClient]
     attr_reader :tools
 
     # @param base_url [String]
@@ -105,13 +107,13 @@ module Pinnacle
       @brands = Pinnacle::AsyncBrandsClient.new(request_client: @async_request_client)
       @contacts = Pinnacle::AsyncContactsClient.new(request_client: @async_request_client)
       @conversations = Pinnacle::AsyncConversationsClient.new(request_client: @async_request_client)
-      @messages = Pinnacle::AsyncMessagesClient.new(request_client: @async_request_client)
+      @messages = Pinnacle::AsyncEnhancedMessagesClient.new(request_client: @async_request_client)
       @phone_numbers = Pinnacle::AsyncPhoneNumbersClient.new(request_client: @async_request_client)
       @rcs = Pinnacle::AsyncRcsClient.new(request_client: @async_request_client)
       @webhooks = Pinnacle::AsyncWebhooksClient.new(request_client: @async_request_client)
       @campaigns = Pinnacle::Campaigns::AsyncClient.new(request_client: @async_request_client)
       @status = Pinnacle::Status::AsyncClient.new(request_client: @async_request_client)
-      @tools = Pinnacle::Tools::AsyncClient.new(request_client: @async_request_client)
+      @tools = Pinnacle::Tools::AsyncEnhancedClient.new(request_client: @async_request_client)
     end
   end
 end
