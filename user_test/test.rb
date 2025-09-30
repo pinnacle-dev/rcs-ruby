@@ -9,7 +9,6 @@ Usage:
 =end
 
 require 'bundler/setup'
-require 'pathname'
 require 'dotenv'
 
 # Load .env from project root (parent directory)
