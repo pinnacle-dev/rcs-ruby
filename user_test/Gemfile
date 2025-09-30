@@ -1,0 +1,12 @@
+# frozen_string_literal: true
+
+source 'https://rubygems.org'
+
+# Use the local RCS SDK gem
+gem 'rcs', path: '..'
+
+# Test dependencies
+gem 'sinatra', '~> 4.0'
+gem 'dotenv', '~> 3.0'
+gem 'rackup', '~> 2.1'
+gem 'puma', '~> 6.0'
