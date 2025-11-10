@@ -7,7 +7,8 @@ module Pinnacle
   module Types
     # Detailed information about the attached webhook.
     class AttachWebhookResponseWebhook
-      # @return [Integer] Unique identifier of the webhook within the account.
+      # @return [String] Unique identifier of the webhook within the account. This identifier is a string
+      #  that always begins with the prefix `wh_`, for example: `wh_1234567890`.
       attr_reader :id
       # @return [String] Name of the webhook.
       attr_reader :name
@@ -24,7 +25,8 @@ module Pinnacle
 
       OMIT = Object.new
 
-      # @param id [Integer] Unique identifier of the webhook within the account.
+      # @param id [String] Unique identifier of the webhook within the account. This identifier is a string
+      #  that always begins with the prefix `wh_`, for example: `wh_1234567890`.
       # @param name [String] Name of the webhook.
       # @param url [String] The HTTPS endpoint URL where webhook events will be sent as HTTP POST requests.
       # @param secret [String] Secret key used to verify the authenticity of incoming webhook requests. <br>
@@ -76,7 +78,7 @@ module Pinnacle
       # @param obj [Object]
       # @return [Void]
       def self.validate_raw(obj:)
-        obj.id.is_a?(Integer) != false || raise("Passed value for field obj.id is not the expected type, validation failed.")
+        obj.id.is_a?(String) != false || raise("Passed value for field obj.id is not the expected type, validation failed.")
         obj.name.is_a?(String) != false || raise("Passed value for field obj.name is not the expected type, validation failed.")
         obj.url.is_a?(String) != false || raise("Passed value for field obj.url is not the expected type, validation failed.")
         obj.secret&.is_a?(String) != false || raise("Passed value for field obj.secret is not the expected type, validation failed.")

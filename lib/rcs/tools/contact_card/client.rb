@@ -25,9 +25,11 @@ module Pinnacle
       end
 
       # Retrieve contact information as a vCard and get a presigned URL to download the
-      #  file.
+      #  file. Contact cards can be sent [via MMS](/api-reference/messages/send-mms) as a
+      #  media file.
       #
-      # @param id [Integer] ID of your contact.
+      # @param id [String] The unique identifier of the contact. This identifier is a string that always
+      #  begins with the prefix `cc_`, for example: `cc_1234567890`.
       # @param options [Hash] Request of type Pinnacle::Tools::ContactCard::Types::GetVCardSchemaOptions, as a Hash
       #   * :expires_at (String)
       # @param request_options [Pinnacle::RequestOptions]
@@ -38,7 +40,7 @@ module Pinnacle
       #    environment: Pinnacle::Environment::DEFAULT,
       #    api_key: "YOUR_API_KEY"
       #  )
-      #  api.tools.contact_card.get(id: 33)
+      #  api.tools.contact_card.get(id: "cc_1234567890")
       def get(id:, options: nil, request_options: nil)
         response = @request_client.conn.post do |req|
           req.options.timeout = request_options.timeout_in_seconds unless request_options&.timeout_in_seconds.nil?
@@ -58,8 +60,11 @@ module Pinnacle
       end
 
       # Create a new contact card or updates an existing one with full vCard data.
+      #  Contact cards can be sent [via MMS](/api-reference/messages/send-mms) as a media
+      #  file.
       #
-      # @param id [Integer] Unique identifier for the contact.
+      # @param id [String] The unique identifier of the contact. This identifier is a string that always
+      #  begins with the prefix `cc_`, for example: `cc_1234567890`.
       # @param formatted_name [String] Full display name for the vCard.
       # @param name [Hash] Structured name components.Request of type Pinnacle::Types::VCardName, as a Hash
       #   * :family_name (String)
@@ -157,9 +162,11 @@ module Pinnacle
       end
 
       # Retrieve contact information as a vCard and get a presigned URL to download the
-      #  file.
+      #  file. Contact cards can be sent [via MMS](/api-reference/messages/send-mms) as a
+      #  media file.
       #
-      # @param id [Integer] ID of your contact.
+      # @param id [String] The unique identifier of the contact. This identifier is a string that always
+      #  begins with the prefix `cc_`, for example: `cc_1234567890`.
       # @param options [Hash] Request of type Pinnacle::Tools::ContactCard::Types::GetVCardSchemaOptions, as a Hash
       #   * :expires_at (String)
       # @param request_options [Pinnacle::RequestOptions]
@@ -170,7 +177,7 @@ module Pinnacle
       #    environment: Pinnacle::Environment::DEFAULT,
       #    api_key: "YOUR_API_KEY"
       #  )
-      #  api.tools.contact_card.get(id: 33)
+      #  api.tools.contact_card.get(id: "cc_1234567890")
       def get(id:, options: nil, request_options: nil)
         Async do
           response = @request_client.conn.post do |req|
@@ -192,8 +199,11 @@ module Pinnacle
       end
 
       # Create a new contact card or updates an existing one with full vCard data.
+      #  Contact cards can be sent [via MMS](/api-reference/messages/send-mms) as a media
+      #  file.
       #
-      # @param id [Integer] Unique identifier for the contact.
+      # @param id [String] The unique identifier of the contact. This identifier is a string that always
+      #  begins with the prefix `cc_`, for example: `cc_1234567890`.
       # @param formatted_name [String] Full display name for the vCard.
       # @param name [Hash] Structured name components.Request of type Pinnacle::Types::VCardName, as a Hash
       #   * :family_name (String)

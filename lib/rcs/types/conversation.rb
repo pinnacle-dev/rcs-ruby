@@ -10,15 +10,19 @@ module Pinnacle
   module Types
     # Conversation that was found.
     class Conversation
-      # @return [Integer] Identifier for the brand associated with this conversation.
+      # @return [String] The unique identifier of the brand associated with this conversation. This
+      #  identifier is a string that always begins with the prefix `b_`, for example:
+      #  `b_1234567890`.
       attr_reader :brand_id
-      # @return [Pinnacle::Types::CampaignQuery] Campaign information if this conversation is part of a marketing campaign.
+      # @return [Pinnacle::Types::CampaignQuery] Campaign information if this conversation is part of a marketing campaign. This
+      #  is an object that contains the campaign ID and type.
       attr_reader :campaign
       # @return [Pinnacle::Types::ConversationContact] Contact information for the recipient in a conversation.
       attr_reader :contact
       # @return [String] ISO 8601 timestamp when the conversation was created.
       attr_reader :created_at
-      # @return [Integer] Unique identifier for the conversation.
+      # @return [String] Unique identifier for the conversation. This identifier is a string that always
+      #  begins with the prefix `conv_`, for example: `conv_1234567890`.
       attr_reader :id
       # @return [String] Free-form notes or comments about the conversation.
       attr_reader :notes
@@ -37,11 +41,15 @@ module Pinnacle
 
       OMIT = Object.new
 
-      # @param brand_id [Integer] Identifier for the brand associated with this conversation.
-      # @param campaign [Pinnacle::Types::CampaignQuery] Campaign information if this conversation is part of a marketing campaign.
+      # @param brand_id [String] The unique identifier of the brand associated with this conversation. This
+      #  identifier is a string that always begins with the prefix `b_`, for example:
+      #  `b_1234567890`.
+      # @param campaign [Pinnacle::Types::CampaignQuery] Campaign information if this conversation is part of a marketing campaign. This
+      #  is an object that contains the campaign ID and type.
       # @param contact [Pinnacle::Types::ConversationContact] Contact information for the recipient in a conversation.
       # @param created_at [String] ISO 8601 timestamp when the conversation was created.
-      # @param id [Integer] Unique identifier for the conversation.
+      # @param id [String] Unique identifier for the conversation. This identifier is a string that always
+      #  begins with the prefix `conv_`, for example: `conv_1234567890`.
       # @param notes [String] Free-form notes or comments about the conversation.
       # @param sender [Pinnacle::Types::ConversationSender] The sender of messages in this conversation. Can be:
       #  - A phone number with its capabilities and metadata
@@ -132,11 +140,11 @@ module Pinnacle
       # @param obj [Object]
       # @return [Void]
       def self.validate_raw(obj:)
-        obj.brand_id&.is_a?(Integer) != false || raise("Passed value for field obj.brand_id is not the expected type, validation failed.")
+        obj.brand_id&.is_a?(String) != false || raise("Passed value for field obj.brand_id is not the expected type, validation failed.")
         obj.campaign.nil? || Pinnacle::Types::CampaignQuery.validate_raw(obj: obj.campaign)
         Pinnacle::Types::ConversationContact.validate_raw(obj: obj.contact)
         obj.created_at.is_a?(String) != false || raise("Passed value for field obj.created_at is not the expected type, validation failed.")
-        obj.id.is_a?(Integer) != false || raise("Passed value for field obj.id is not the expected type, validation failed.")
+        obj.id.is_a?(String) != false || raise("Passed value for field obj.id is not the expected type, validation failed.")
         obj.notes.is_a?(String) != false || raise("Passed value for field obj.notes is not the expected type, validation failed.")
         obj.sender.nil? || Pinnacle::Types::ConversationSender.validate_raw(obj: obj.sender)
         obj.updated_at.is_a?(String) != false || raise("Passed value for field obj.updated_at is not the expected type, validation failed.")

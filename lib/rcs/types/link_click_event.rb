@@ -40,8 +40,6 @@ module Pinnacle
       attr_reader :fingerprint_id
       # @return [String] Google Click Identifier.
       attr_reader :gclid
-      # @return [Integer] Unique identifier for the click event.
-      attr_reader :id
       # @return [String] IP address of the visitor (may be anonymized).
       attr_reader :ip_address
       # @return [Array<String>] Chain of IP addresses for proxied requests.
@@ -52,8 +50,6 @@ module Pinnacle
       attr_reader :latency_ms
       # @return [Float] Geographic latitude.
       attr_reader :latitude
-      # @return [Integer] ID of your shortened URL.
-      attr_reader :link_id
       # @return [Float] Geographic longitude.
       attr_reader :longitude
       # @return [Hash{String => Object}] Additional metadata as JSON object.
@@ -133,13 +129,11 @@ module Pinnacle
       # @param final_url [String] Final resolved URL after redirects.
       # @param fingerprint_id [String] Unique fingerprint identifier for the client.
       # @param gclid [String] Google Click Identifier.
-      # @param id [Integer] Unique identifier for the click event.
       # @param ip_address [String] IP address of the visitor (may be anonymized).
       # @param ip_chain [Array<String>] Chain of IP addresses for proxied requests.
       # @param is_bot [Boolean] Whether the request was identified as coming from a bot.
       # @param latency_ms [Integer] Request latency in milliseconds.
       # @param latitude [Float] Geographic latitude.
-      # @param link_id [Integer] ID of your shortened URL.
       # @param longitude [Float] Geographic longitude.
       # @param metadata [Hash{String => Object}] Additional metadata as JSON object.
       # @param method_ [String] HTTP method used.
@@ -169,7 +163,7 @@ module Pinnacle
       # @param utm_term [String] UTM term.
       # @param additional_properties [OpenStruct] Additional properties unmapped to the current class definition
       # @return [Pinnacle::Types::LinkClickEvent]
-      def initialize(created_at:, id:, link_id:, accept_language: OMIT, accuracy_radius_km: OMIT, asn: OMIT, blocked_reason: OMIT,
+      def initialize(created_at:, accept_language: OMIT, accuracy_radius_km: OMIT, asn: OMIT, blocked_reason: OMIT,
                      ch_ua_brand: OMIT, ch_ua_mobile: OMIT, ch_ua_platform: OMIT, city: OMIT, color_depth: OMIT, connection_type: OMIT, country: OMIT, error_details: OMIT, fbclid: OMIT, final_url: OMIT, fingerprint_id: OMIT, gclid: OMIT, ip_address: OMIT, ip_chain: OMIT, is_bot: OMIT, latency_ms: OMIT, latitude: OMIT, longitude: OMIT, metadata: OMIT, method_: OMIT, metro_code: OMIT, network_downlink: OMIT, network_rtt: OMIT, performance_ttfb_ms: OMIT, postal_code: OMIT, redirect_hops: OMIT, referrer: OMIT, referrer_domain: OMIT, region: OMIT, resolved_at: OMIT, screen_res: OMIT, status_code: OMIT, timezone_offset_min: OMIT, tor_exit_node: OMIT, ua_browser: OMIT, ua_device: OMIT, ua_os: OMIT, ua_version: OMIT, user_agent: OMIT, utm_campaign: OMIT, utm_content: OMIT, utm_medium: OMIT, utm_source: OMIT, utm_term: OMIT, additional_properties: nil)
         @accept_language = accept_language if accept_language != OMIT
         @accuracy_radius_km = accuracy_radius_km if accuracy_radius_km != OMIT
@@ -188,13 +182,11 @@ module Pinnacle
         @final_url = final_url if final_url != OMIT
         @fingerprint_id = fingerprint_id if fingerprint_id != OMIT
         @gclid = gclid if gclid != OMIT
-        @id = id
         @ip_address = ip_address if ip_address != OMIT
         @ip_chain = ip_chain if ip_chain != OMIT
         @is_bot = is_bot if is_bot != OMIT
         @latency_ms = latency_ms if latency_ms != OMIT
         @latitude = latitude if latitude != OMIT
-        @link_id = link_id
         @longitude = longitude if longitude != OMIT
         @metadata = metadata if metadata != OMIT
         @method_ = method_ if method_ != OMIT
@@ -241,13 +233,11 @@ module Pinnacle
           "final_url": final_url,
           "fingerprint_id": fingerprint_id,
           "gclid": gclid,
-          "id": id,
           "ip_address": ip_address,
           "ip_chain": ip_chain,
           "is_bot": is_bot,
           "latency_ms": latency_ms,
           "latitude": latitude,
-          "link_id": link_id,
           "longitude": longitude,
           "metadata": metadata,
           "method": method_,
@@ -304,13 +294,11 @@ module Pinnacle
         final_url = parsed_json["final_url"]
         fingerprint_id = parsed_json["fingerprint_id"]
         gclid = parsed_json["gclid"]
-        id = parsed_json["id"]
         ip_address = parsed_json["ip_address"]
         ip_chain = parsed_json["ip_chain"]
         is_bot = parsed_json["is_bot"]
         latency_ms = parsed_json["latency_ms"]
         latitude = parsed_json["latitude"]
-        link_id = parsed_json["link_id"]
         longitude = parsed_json["longitude"]
         metadata = parsed_json["metadata"]
         method_ = parsed_json["method"]
@@ -356,13 +344,11 @@ module Pinnacle
           final_url: final_url,
           fingerprint_id: fingerprint_id,
           gclid: gclid,
-          id: id,
           ip_address: ip_address,
           ip_chain: ip_chain,
           is_bot: is_bot,
           latency_ms: latency_ms,
           latitude: latitude,
-          link_id: link_id,
           longitude: longitude,
           metadata: metadata,
           method_: method_,
@@ -425,13 +411,11 @@ module Pinnacle
         obj.final_url&.is_a?(String) != false || raise("Passed value for field obj.final_url is not the expected type, validation failed.")
         obj.fingerprint_id&.is_a?(String) != false || raise("Passed value for field obj.fingerprint_id is not the expected type, validation failed.")
         obj.gclid&.is_a?(String) != false || raise("Passed value for field obj.gclid is not the expected type, validation failed.")
-        obj.id.is_a?(Integer) != false || raise("Passed value for field obj.id is not the expected type, validation failed.")
         obj.ip_address&.is_a?(String) != false || raise("Passed value for field obj.ip_address is not the expected type, validation failed.")
         obj.ip_chain&.is_a?(Array) != false || raise("Passed value for field obj.ip_chain is not the expected type, validation failed.")
         obj.is_bot&.is_a?(Boolean) != false || raise("Passed value for field obj.is_bot is not the expected type, validation failed.")
         obj.latency_ms&.is_a?(Integer) != false || raise("Passed value for field obj.latency_ms is not the expected type, validation failed.")
         obj.latitude&.is_a?(Float) != false || raise("Passed value for field obj.latitude is not the expected type, validation failed.")
-        obj.link_id.is_a?(Integer) != false || raise("Passed value for field obj.link_id is not the expected type, validation failed.")
         obj.longitude&.is_a?(Float) != false || raise("Passed value for field obj.longitude is not the expected type, validation failed.")
         obj.metadata&.is_a?(Hash) != false || raise("Passed value for field obj.metadata is not the expected type, validation failed.")
         obj.method_&.is_a?(String) != false || raise("Passed value for field obj.method_ is not the expected type, validation failed.")

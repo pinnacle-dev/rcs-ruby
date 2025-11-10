@@ -4,7 +4,7 @@ require_relative "webhook_event_enum"
 require_relative "message_event_conversation"
 require_relative "message_status_enum"
 require_relative "message_event_direction"
-require_relative "message_event_message"
+require_relative "message_event_content"
 require "ostruct"
 require "json"
 
@@ -29,7 +29,7 @@ module Pinnacle
       # @return [String] Timestamp when the message was delivered in ISO 8601 format.
       #  Null if not yet delivered or for inbound messages.
       attr_reader :delivered_at
-      # @return [Pinnacle::Types::MessageEventMessage] Message details including ID and content.
+      # @return [Pinnacle::Types::MessageEventContent]
       attr_reader :message
       # @return [OpenStruct] Additional properties unmapped to the current class definition
       attr_reader :additional_properties
@@ -49,7 +49,7 @@ module Pinnacle
       # @param sent_at [String] Timestamp when the message was sent in ISO 8601 format.
       # @param delivered_at [String] Timestamp when the message was delivered in ISO 8601 format.
       #  Null if not yet delivered or for inbound messages.
-      # @param message [Pinnacle::Types::MessageEventMessage] Message details including ID and content.
+      # @param message [Pinnacle::Types::MessageEventContent]
       # @param additional_properties [OpenStruct] Additional properties unmapped to the current class definition
       # @return [Pinnacle::Types::MessageEvent]
       def initialize(type:, conversation:, status:, direction:, segments:, sent_at:, message:, delivered_at: OMIT,
@@ -100,7 +100,7 @@ module Pinnacle
           message = nil
         else
           message = parsed_json["message"].to_json
-          message = Pinnacle::Types::MessageEventMessage.from_json(json_object: message)
+          message = Pinnacle::Types::MessageEventContent.from_json(json_object: message)
         end
         new(
           type: type,
@@ -136,7 +136,7 @@ module Pinnacle
         obj.segments.is_a?(Integer) != false || raise("Passed value for field obj.segments is not the expected type, validation failed.")
         obj.sent_at.is_a?(String) != false || raise("Passed value for field obj.sent_at is not the expected type, validation failed.")
         obj.delivered_at&.is_a?(String) != false || raise("Passed value for field obj.delivered_at is not the expected type, validation failed.")
-        Pinnacle::Types::MessageEventMessage.validate_raw(obj: obj.message)
+        Pinnacle::Types::MessageEventContent.validate_raw(obj: obj.message)
       end
     end
   end

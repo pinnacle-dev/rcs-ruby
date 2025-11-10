@@ -12,9 +12,11 @@ module Pinnacle
     class AutofillDlcCampaignResponse
       # @return [Boolean] Whether the campaign renews automatically.
       attr_reader :auto_renew
-      # @return [Integer] Brand id.
+      # @return [String] Brand id. This identifier is a string that always begins with the prefix `b_`,
+      #  for example: `b_1234567890`.
       attr_reader :brand
-      # @return [Integer] Unique identifier for the campaign.
+      # @return [String] Unique identifier for the campaign. This identifier is a string that always
+      #  begins with the prefix `dlc_`, for example: `dlc_1234567890`.
       attr_reader :campaign_id
       # @return [String] Description of the campaign.
       attr_reader :description
@@ -41,8 +43,10 @@ module Pinnacle
       OMIT = Object.new
 
       # @param auto_renew [Boolean] Whether the campaign renews automatically.
-      # @param brand [Integer] Brand id.
-      # @param campaign_id [Integer] Unique identifier for the campaign.
+      # @param brand [String] Brand id. This identifier is a string that always begins with the prefix `b_`,
+      #  for example: `b_1234567890`.
+      # @param campaign_id [String] Unique identifier for the campaign. This identifier is a string that always
+      #  begins with the prefix `dlc_`, for example: `dlc_1234567890`.
       # @param description [String] Description of the campaign.
       # @param keywords [Pinnacle::Types::AutofillDlcResponseKeywords] Keyword response configuration.
       # @param links [Pinnacle::Types::AutofillDlcResponseLinks] Legal documentation links.
@@ -153,8 +157,8 @@ module Pinnacle
       # @return [Void]
       def self.validate_raw(obj:)
         obj.auto_renew.is_a?(Boolean) != false || raise("Passed value for field obj.auto_renew is not the expected type, validation failed.")
-        obj.brand&.is_a?(Integer) != false || raise("Passed value for field obj.brand is not the expected type, validation failed.")
-        obj.campaign_id&.is_a?(Integer) != false || raise("Passed value for field obj.campaign_id is not the expected type, validation failed.")
+        obj.brand&.is_a?(String) != false || raise("Passed value for field obj.brand is not the expected type, validation failed.")
+        obj.campaign_id&.is_a?(String) != false || raise("Passed value for field obj.campaign_id is not the expected type, validation failed.")
         obj.description&.is_a?(String) != false || raise("Passed value for field obj.description is not the expected type, validation failed.")
         obj.keywords.nil? || Pinnacle::Types::AutofillDlcResponseKeywords.validate_raw(obj: obj.keywords)
         obj.links.nil? || Pinnacle::Types::AutofillDlcResponseLinks.validate_raw(obj: obj.links)

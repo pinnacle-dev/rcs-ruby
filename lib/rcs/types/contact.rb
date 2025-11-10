@@ -10,7 +10,8 @@ module Pinnacle
       attr_reader :description
       # @return [String] Contact's email address, if available.
       attr_reader :email
-      # @return [Integer] Unique ID of the contact.
+      # @return [String] Unique ID of the contact. This identifier is a string that always begins with
+      #  the prefix `co_`, for example: `co_1234567890`.
       attr_reader :id
       # @return [String] Full name of the contact, if available.
       attr_reader :name
@@ -28,7 +29,8 @@ module Pinnacle
 
       # @param description [String] Additional information about the contact.
       # @param email [String] Contact's email address, if available.
-      # @param id [Integer] Unique ID of the contact.
+      # @param id [String] Unique ID of the contact. This identifier is a string that always begins with
+      #  the prefix `co_`, for example: `co_1234567890`.
       # @param name [String] Full name of the contact, if available.
       # @param phone_number [String] Contact's phone number in E.164 format.
       # @param tags [Array<String>] List of tags associated with the contact.
@@ -95,7 +97,7 @@ module Pinnacle
       def self.validate_raw(obj:)
         obj.description&.is_a?(String) != false || raise("Passed value for field obj.description is not the expected type, validation failed.")
         obj.email&.is_a?(String) != false || raise("Passed value for field obj.email is not the expected type, validation failed.")
-        obj.id.is_a?(Integer) != false || raise("Passed value for field obj.id is not the expected type, validation failed.")
+        obj.id.is_a?(String) != false || raise("Passed value for field obj.id is not the expected type, validation failed.")
         obj.name&.is_a?(String) != false || raise("Passed value for field obj.name is not the expected type, validation failed.")
         obj.phone_number.is_a?(String) != false || raise("Passed value for field obj.phone_number is not the expected type, validation failed.")
         obj.tags&.is_a?(Array) != false || raise("Passed value for field obj.tags is not the expected type, validation failed.")

@@ -17,7 +17,8 @@ module Pinnacle
       attr_reader :file
       # @return [String] ISO 8601 timestamp of last vCard update.
       attr_reader :revision
-      # @return [Integer] Unique identifier for the contact.
+      # @return [String] The unique identifier of the contact. This identifier is a string that always
+      #  begins with the prefix `cc_`, for example: `cc_1234567890`.
       attr_reader :id
       # @return [String] Full display name for the vCard.
       attr_reader :formatted_name
@@ -59,7 +60,8 @@ module Pinnacle
 
       # @param file [Pinnacle::Types::VCardDataFile] File associated to the contact.
       # @param revision [String] ISO 8601 timestamp of last vCard update.
-      # @param id [Integer] Unique identifier for the contact.
+      # @param id [String] The unique identifier of the contact. This identifier is a string that always
+      #  begins with the prefix `cc_`, for example: `cc_1234567890`.
       # @param formatted_name [String] Full display name for the vCard.
       # @param name [Pinnacle::Types::VCardName] Structured name components.
       # @param nickname [Array<String>] Nicknames or aliases.
@@ -215,7 +217,7 @@ module Pinnacle
       def self.validate_raw(obj:)
         Pinnacle::Types::VCardDataFile.validate_raw(obj: obj.file)
         obj.revision&.is_a?(String) != false || raise("Passed value for field obj.revision is not the expected type, validation failed.")
-        obj.id&.is_a?(Integer) != false || raise("Passed value for field obj.id is not the expected type, validation failed.")
+        obj.id&.is_a?(String) != false || raise("Passed value for field obj.id is not the expected type, validation failed.")
         obj.formatted_name&.is_a?(String) != false || raise("Passed value for field obj.formatted_name is not the expected type, validation failed.")
         obj.name.nil? || Pinnacle::Types::VCardName.validate_raw(obj: obj.name)
         obj.nickname&.is_a?(Array) != false || raise("Passed value for field obj.nickname is not the expected type, validation failed.")

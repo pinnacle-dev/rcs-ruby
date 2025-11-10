@@ -30,7 +30,7 @@ module Pinnacle
       #
       # @param request [Hash] Request of type Pinnacle::Types::AutofillCampaignParams, as a Hash
       #   * :additional_info (String)
-      #   * :campaign_id (Integer)
+      #   * :campaign_id (String)
       # @param request_options [Pinnacle::RequestOptions]
       # @return [Pinnacle::Types::AutofillDlcCampaignResponse]
       # @example
@@ -39,7 +39,7 @@ module Pinnacle
       #    environment: Pinnacle::Environment::DEFAULT,
       #    api_key: "YOUR_API_KEY"
       #  )
-      #  api.campaigns.dlc.autofill(request: { additional_info: "Please autofill missing DLC campaign fields using my brand profile", campaign_id: 161 })
+      #  api.campaigns.dlc.autofill(request: { additional_info: "Please autofill missing campaign fields using my brand profile", campaign_id: "dlc_1234567890" })
       def autofill(request:, request_options: nil)
         response = @request_client.conn.post do |req|
           req.options.timeout = request_options.timeout_in_seconds unless request_options&.timeout_in_seconds.nil?
@@ -60,7 +60,8 @@ module Pinnacle
 
       # Retrieve 10DLC campaign.
       #
-      # @param campaign_id [Integer] Unique identifier of the 10DLC campaign.
+      # @param campaign_id [String] Unique identifier of the 10DLC campaign. This identifier is a string that always
+      #  begins with the prefix `dlc_`, for example: `dlc_1234567890`.
       # @param request_options [Pinnacle::RequestOptions]
       # @return [Pinnacle::Types::DlcCampaignWithExtendedBrandAndStatus]
       # @example
@@ -69,7 +70,7 @@ module Pinnacle
       #    environment: Pinnacle::Environment::DEFAULT,
       #    api_key: "YOUR_API_KEY"
       #  )
-      #  api.campaigns.dlc.get(campaign_id: 28)
+      #  api.campaigns.dlc.get(campaign_id: "dlc_1234567890")
       def get(campaign_id:, request_options: nil)
         response = @request_client.conn.get do |req|
           req.options.timeout = request_options.timeout_in_seconds unless request_options&.timeout_in_seconds.nil?
@@ -92,7 +93,9 @@ module Pinnacle
 
       # Submit your 10DLC campaign for approval and activation with carriers.
       #
-      # @param campaign_id [Integer] Unique identifier of the 10DLC campaign to submit.
+      # @param campaign_id [String] Unique identifier of the 10DLC campaign to submit.
+      #  <br><br> This identifier is a string that always begins with the prefix `dlc_`,
+      #  for example: `dlc_1234567890`.
       # @param request_options [Pinnacle::RequestOptions]
       # @return [Pinnacle::Types::CampaignSubmissionResult]
       # @example
@@ -101,7 +104,7 @@ module Pinnacle
       #    environment: Pinnacle::Environment::DEFAULT,
       #    api_key: "YOUR_API_KEY"
       #  )
-      #  api.campaigns.dlc.submit(campaign_id: 161)
+      #  api.campaigns.dlc.submit(campaign_id: "dlc_1234567890")
       def submit(campaign_id:, request_options: nil)
         response = @request_client.conn.post do |req|
           req.options.timeout = request_options.timeout_in_seconds unless request_options&.timeout_in_seconds.nil?
@@ -126,8 +129,10 @@ module Pinnacle
       #  Omit campaignId to create a campaign.
       #
       # @param auto_renew [Boolean] Whether the campaign renews automatically.
-      # @param brand [Integer] Brand id.
-      # @param campaign_id [Integer] Unique identifier for the campaign.
+      # @param brand [String] Brand id. This identifier is a string that always begins with the prefix `b_`,
+      #  for example: `b_1234567890`.
+      # @param campaign_id [String] Unique identifier for the campaign. This identifier is a string that always
+      #  begins with the prefix `dlc_`, for example: `dlc_1234567890`.
       # @param description [String] Description of the campaign.
       # @param keywords [Hash] Keyword response configuration.Request of type Pinnacle::Campaigns::Dlc::Types::UpsertDlcCampaignKeywords, as a Hash
       #   * :help (Hash)
@@ -165,9 +170,9 @@ module Pinnacle
       #  )
       #  api.campaigns.dlc.upsert(
       #    auto_renew: true,
-      #    brand: 1,
-      #    campaign_id: 161,
-      #    keywords: { help: { message: "Reply HELP for assistance, STOP to opt-out", values: ["HELP", "INFO", "SUPPORT"] }, opt_in: { message: "Welcome! You're now subscribed to Pinnacle.", values: ["JOIN", "START", "SUBSCRIBE"] }, opt_out: { message: "You've been unsubscribed. Reply START to rejoin.", values: ["STOP", "QUIT", "UNSUBSCRIBE"] } },
+      #    brand: "b_1234567890",
+      #    campaign_id: "dlc_1234567890",
+      #    keywords: { help: { message: "Reply HELP for assistance, STOP to opt-out", values: ["HELP", "INFO", "SUPPORT"] }, opt_in: { message: "Welcome. You are now subscribed to Pinnacle.", values: ["JOIN", "START", "SUBSCRIBE"] }, opt_out: { message: "You have been unsubscribed. Reply START to rejoin.", values: ["STOP", "QUIT", "UNSUBSCRIBE"] } },
       #    links: { privacy_policy: "https://www.pinnacle.sh/privacy", terms_of_service: "https://www.pinnacle.sh/terms" },
       #    message_flow: "Customer initiates -> Automated response -> Agent follow-up if needed",
       #    name: "Account Notifications",
@@ -212,7 +217,7 @@ module Pinnacle
       #
       # @param request [Hash] Request of type Pinnacle::Types::ValidateCampaignParams, as a Hash
       #   * :additional_info (String)
-      #   * :campaign_id (Integer)
+      #   * :campaign_id (String)
       # @param request_options [Pinnacle::RequestOptions]
       # @return [Pinnacle::Types::CampaignValidationResult]
       # @example
@@ -221,7 +226,7 @@ module Pinnacle
       #    environment: Pinnacle::Environment::DEFAULT,
       #    api_key: "YOUR_API_KEY"
       #  )
-      #  api.campaigns.dlc.validate(request: { additional_info: "Please validate this DLC campaign for 10DLC compliance", campaign_id: 161 })
+      #  api.campaigns.dlc.validate(request: { additional_info: "Please validate this DLC campaign for 10DLC compliance", campaign_id: "dlc_1234567890" })
       def validate(request:, request_options: nil)
         response = @request_client.conn.post do |req|
           req.options.timeout = request_options.timeout_in_seconds unless request_options&.timeout_in_seconds.nil?
@@ -256,7 +261,7 @@ module Pinnacle
       #
       # @param request [Hash] Request of type Pinnacle::Types::AutofillCampaignParams, as a Hash
       #   * :additional_info (String)
-      #   * :campaign_id (Integer)
+      #   * :campaign_id (String)
       # @param request_options [Pinnacle::RequestOptions]
       # @return [Pinnacle::Types::AutofillDlcCampaignResponse]
       # @example
@@ -265,7 +270,7 @@ module Pinnacle
       #    environment: Pinnacle::Environment::DEFAULT,
       #    api_key: "YOUR_API_KEY"
       #  )
-      #  api.campaigns.dlc.autofill(request: { additional_info: "Please autofill missing DLC campaign fields using my brand profile", campaign_id: 161 })
+      #  api.campaigns.dlc.autofill(request: { additional_info: "Please autofill missing campaign fields using my brand profile", campaign_id: "dlc_1234567890" })
       def autofill(request:, request_options: nil)
         Async do
           response = @request_client.conn.post do |req|
@@ -288,7 +293,8 @@ module Pinnacle
 
       # Retrieve 10DLC campaign.
       #
-      # @param campaign_id [Integer] Unique identifier of the 10DLC campaign.
+      # @param campaign_id [String] Unique identifier of the 10DLC campaign. This identifier is a string that always
+      #  begins with the prefix `dlc_`, for example: `dlc_1234567890`.
       # @param request_options [Pinnacle::RequestOptions]
       # @return [Pinnacle::Types::DlcCampaignWithExtendedBrandAndStatus]
       # @example
@@ -297,7 +303,7 @@ module Pinnacle
       #    environment: Pinnacle::Environment::DEFAULT,
       #    api_key: "YOUR_API_KEY"
       #  )
-      #  api.campaigns.dlc.get(campaign_id: 28)
+      #  api.campaigns.dlc.get(campaign_id: "dlc_1234567890")
       def get(campaign_id:, request_options: nil)
         Async do
           response = @request_client.conn.get do |req|
@@ -322,7 +328,9 @@ module Pinnacle
 
       # Submit your 10DLC campaign for approval and activation with carriers.
       #
-      # @param campaign_id [Integer] Unique identifier of the 10DLC campaign to submit.
+      # @param campaign_id [String] Unique identifier of the 10DLC campaign to submit.
+      #  <br><br> This identifier is a string that always begins with the prefix `dlc_`,
+      #  for example: `dlc_1234567890`.
       # @param request_options [Pinnacle::RequestOptions]
       # @return [Pinnacle::Types::CampaignSubmissionResult]
       # @example
@@ -331,7 +339,7 @@ module Pinnacle
       #    environment: Pinnacle::Environment::DEFAULT,
       #    api_key: "YOUR_API_KEY"
       #  )
-      #  api.campaigns.dlc.submit(campaign_id: 161)
+      #  api.campaigns.dlc.submit(campaign_id: "dlc_1234567890")
       def submit(campaign_id:, request_options: nil)
         Async do
           response = @request_client.conn.post do |req|
@@ -358,8 +366,10 @@ module Pinnacle
       #  Omit campaignId to create a campaign.
       #
       # @param auto_renew [Boolean] Whether the campaign renews automatically.
-      # @param brand [Integer] Brand id.
-      # @param campaign_id [Integer] Unique identifier for the campaign.
+      # @param brand [String] Brand id. This identifier is a string that always begins with the prefix `b_`,
+      #  for example: `b_1234567890`.
+      # @param campaign_id [String] Unique identifier for the campaign. This identifier is a string that always
+      #  begins with the prefix `dlc_`, for example: `dlc_1234567890`.
       # @param description [String] Description of the campaign.
       # @param keywords [Hash] Keyword response configuration.Request of type Pinnacle::Campaigns::Dlc::Types::UpsertDlcCampaignKeywords, as a Hash
       #   * :help (Hash)
@@ -397,9 +407,9 @@ module Pinnacle
       #  )
       #  api.campaigns.dlc.upsert(
       #    auto_renew: true,
-      #    brand: 1,
-      #    campaign_id: 161,
-      #    keywords: { help: { message: "Reply HELP for assistance, STOP to opt-out", values: ["HELP", "INFO", "SUPPORT"] }, opt_in: { message: "Welcome! You're now subscribed to Pinnacle.", values: ["JOIN", "START", "SUBSCRIBE"] }, opt_out: { message: "You've been unsubscribed. Reply START to rejoin.", values: ["STOP", "QUIT", "UNSUBSCRIBE"] } },
+      #    brand: "b_1234567890",
+      #    campaign_id: "dlc_1234567890",
+      #    keywords: { help: { message: "Reply HELP for assistance, STOP to opt-out", values: ["HELP", "INFO", "SUPPORT"] }, opt_in: { message: "Welcome. You are now subscribed to Pinnacle.", values: ["JOIN", "START", "SUBSCRIBE"] }, opt_out: { message: "You have been unsubscribed. Reply START to rejoin.", values: ["STOP", "QUIT", "UNSUBSCRIBE"] } },
       #    links: { privacy_policy: "https://www.pinnacle.sh/privacy", terms_of_service: "https://www.pinnacle.sh/terms" },
       #    message_flow: "Customer initiates -> Automated response -> Agent follow-up if needed",
       #    name: "Account Notifications",
@@ -446,7 +456,7 @@ module Pinnacle
       #
       # @param request [Hash] Request of type Pinnacle::Types::ValidateCampaignParams, as a Hash
       #   * :additional_info (String)
-      #   * :campaign_id (Integer)
+      #   * :campaign_id (String)
       # @param request_options [Pinnacle::RequestOptions]
       # @return [Pinnacle::Types::CampaignValidationResult]
       # @example
@@ -455,7 +465,7 @@ module Pinnacle
       #    environment: Pinnacle::Environment::DEFAULT,
       #    api_key: "YOUR_API_KEY"
       #  )
-      #  api.campaigns.dlc.validate(request: { additional_info: "Please validate this DLC campaign for 10DLC compliance", campaign_id: 161 })
+      #  api.campaigns.dlc.validate(request: { additional_info: "Please validate this DLC campaign for 10DLC compliance", campaign_id: "dlc_1234567890" })
       def validate(request:, request_options: nil)
         Async do
           response = @request_client.conn.post do |req|

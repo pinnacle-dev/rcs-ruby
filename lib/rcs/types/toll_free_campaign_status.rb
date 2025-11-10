@@ -12,7 +12,8 @@ module Pinnacle
       #  These errors may request additional information or point out erroneous and/or
       #  missing fields.
       attr_reader :error
-      # @return [Integer] Id of the toll-free campaign.
+      # @return [String] The unique identifier of the toll-free campaign. This identifier is a string
+      #  that always begins with the prefix `tf_`, for example: `tf_1234567890`.
       attr_reader :id
       # @return [Pinnacle::Types::GetTollFreeCampaignStatusResponseUpdates] Status of phone numbers that are being attached to this campaign. <br>
       #  Note that phone numbers can only be attached to `VERIFIED` campaigns via the
@@ -29,7 +30,8 @@ module Pinnacle
       # @param error [String] Summary of errors related to the verification process. <br>
       #  These errors may request additional information or point out erroneous and/or
       #  missing fields.
-      # @param id [Integer] Id of the toll-free campaign.
+      # @param id [String] The unique identifier of the toll-free campaign. This identifier is a string
+      #  that always begins with the prefix `tf_`, for example: `tf_1234567890`.
       # @param updates [Pinnacle::Types::GetTollFreeCampaignStatusResponseUpdates] Status of phone numbers that are being attached to this campaign. <br>
       #  Note that phone numbers can only be attached to `VERIFIED` campaigns via the
       #  [attach campaign endpoint](../phone-numbers/attach-campaign).
@@ -83,7 +85,7 @@ module Pinnacle
       # @return [Void]
       def self.validate_raw(obj:)
         obj.error&.is_a?(String) != false || raise("Passed value for field obj.error is not the expected type, validation failed.")
-        obj.id.is_a?(Integer) != false || raise("Passed value for field obj.id is not the expected type, validation failed.")
+        obj.id.is_a?(String) != false || raise("Passed value for field obj.id is not the expected type, validation failed.")
         Pinnacle::Types::GetTollFreeCampaignStatusResponseUpdates.validate_raw(obj: obj.updates)
       end
     end

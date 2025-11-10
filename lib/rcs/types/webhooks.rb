@@ -9,7 +9,8 @@ module Pinnacle
     class Webhooks
       # @return [String] URL where webhook events are delivered.
       attr_reader :endpoint
-      # @return [Integer] Unique identifier for the webhook.
+      # @return [String] The unique identifier of the webhook. This identifier is a string that always
+      #  begins with the prefix `wh_`, for example: `wh_1234567890`.
       attr_reader :id
       # @return [String] Name of the webhook.
       attr_reader :name
@@ -22,7 +23,8 @@ module Pinnacle
       OMIT = Object.new
 
       # @param endpoint [String] URL where webhook events are delivered.
-      # @param id [Integer] Unique identifier for the webhook.
+      # @param id [String] The unique identifier of the webhook. This identifier is a string that always
+      #  begins with the prefix `wh_`, for example: `wh_1234567890`.
       # @param name [String] Name of the webhook.
       # @param additional_properties [OpenStruct] Additional properties unmapped to the current class definition
       # @return [Pinnacle::Types::Webhooks]
@@ -67,7 +69,7 @@ module Pinnacle
       # @return [Void]
       def self.validate_raw(obj:)
         obj.endpoint.is_a?(String) != false || raise("Passed value for field obj.endpoint is not the expected type, validation failed.")
-        obj.id.is_a?(Integer) != false || raise("Passed value for field obj.id is not the expected type, validation failed.")
+        obj.id.is_a?(String) != false || raise("Passed value for field obj.id is not the expected type, validation failed.")
         obj.name.is_a?(String) != false || raise("Passed value for field obj.name is not the expected type, validation failed.")
       end
     end

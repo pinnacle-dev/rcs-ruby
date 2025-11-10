@@ -10,8 +10,8 @@ module Pinnacle
     class ButtonClickedData
       # @return [Pinnacle::Types::ButtonClickedDataButton] Information about the button that was clicked.
       attr_reader :button
-      # @return [Integer] ID of the message this button was attached to, or null if not available. To get
-      #  the message details, use the [GET /messages/{id}](/api-reference/messages/get)
+      # @return [String] ID of the message this button was sent in, or null if not available. To get the
+      #  message details, use the [GET /messages/{id}](/api-reference/messages/get)
       #  endpoint.
       attr_reader :message_id
       # @return [OpenStruct] Additional properties unmapped to the current class definition
@@ -23,8 +23,8 @@ module Pinnacle
       OMIT = Object.new
 
       # @param button [Pinnacle::Types::ButtonClickedDataButton] Information about the button that was clicked.
-      # @param message_id [Integer] ID of the message this button was attached to, or null if not available. To get
-      #  the message details, use the [GET /messages/{id}](/api-reference/messages/get)
+      # @param message_id [String] ID of the message this button was sent in, or null if not available. To get the
+      #  message details, use the [GET /messages/{id}](/api-reference/messages/get)
       #  endpoint.
       # @param additional_properties [OpenStruct] Additional properties unmapped to the current class definition
       # @return [Pinnacle::Types::ButtonClickedData]
@@ -73,7 +73,7 @@ module Pinnacle
       # @return [Void]
       def self.validate_raw(obj:)
         Pinnacle::Types::ButtonClickedDataButton.validate_raw(obj: obj.button)
-        obj.message_id&.is_a?(Integer) != false || raise("Passed value for field obj.message_id is not the expected type, validation failed.")
+        obj.message_id&.is_a?(String) != false || raise("Passed value for field obj.message_id is not the expected type, validation failed.")
       end
     end
   end

@@ -31,6 +31,7 @@ module Pinnacle
       # @param size [Integer] Size of your file in bytes. Should be less than 100 MB.
       # @param name [String] Name of your file.
       # @param options [Hash] Additional configurations for your file.Request of type Pinnacle::Tools::File::Types::UploadFileOptions, as a Hash
+      #   * :delete_at (String)
       #   * :download (Hash)
       #     * :expires_at (String)
       # @param request_options [Pinnacle::RequestOptions]
@@ -45,7 +46,7 @@ module Pinnacle
       #    content_type: "image/jpeg",
       #    size: 1024,
       #    name: "test.jpg",
-      #    options: { download: { expires_at: "2025-06-30T12:00:00.000Z" } }
+      #    options: { delete_at: "2025-12-31T23:59:59Z", download: { expires_at: "2025-06-30T12:00:00.000Z" } }
       #  )
       def upload(content_type:, size:, name: nil, options: nil, request_options: nil)
         response = @request_client.conn.post do |req|
@@ -78,12 +79,10 @@ module Pinnacle
       #  refresh a presigned upload URL, generate a new one instead.
       #  </Callout>
       #
-      # @param uris [Array<String>] Array of file URIs to refresh for extended access. <br>
-      #  Accepted formats:
-      #  - **Full presigned URLs**:
-      #  `https://server.trypinnacle.app/storage/v1/object/sign/...`
-      #  - **Short URIs**: `{BUCKET}/${TEAM_ID}/...` (e.g., `vault/3/document.pdf`)
-      #  Invalid or external URLs will be returned unchanged in the response.
+      # @param urls [Array<String>] Array of file URLs to refresh for extended access. Provided URLs must be
+      #  presigned URLs (i.e.
+      #  `https://server.trypinnacle.app/storage/v1/object/sign/...`). Invalid or
+      #  external URLs will be returned unchanged in the response.
       # @param request_options [Pinnacle::RequestOptions]
       # @return [Array<Pinnacle::Types::RefreshedFile>]
       # @example
@@ -92,8 +91,8 @@ module Pinnacle
       #    environment: Pinnacle::Environment::DEFAULT,
       #    api_key: "YOUR_API_KEY"
       #  )
-      #  api.tools.file.refresh(uris: ["https://server.trypinnacle.app/storage/v1/object/sign/vault/3/test.jpg?token=oldtoken", "https://server.trypinnacle.app/storage/v1/object/sign/vault/3/document.pdf?token=oldtoken2", "icons/3/test.jpg", "invalid/url", "https://google.com"])
-      def refresh(uris:, request_options: nil)
+      #  api.tools.file.refresh(urls: ["https://server.trypinnacle.app/storage/v1/object/sign/vault/3/test.jpg?token=oldtoken", "https://server.trypinnacle.app/storage/v1/object/sign/vault/3/document.pdf?token=oldtoken2", "invalid/url", "https://google.com"])
+      def refresh(urls:, request_options: nil)
         response = @request_client.conn.post do |req|
           req.options.timeout = request_options.timeout_in_seconds unless request_options&.timeout_in_seconds.nil?
           req.headers["PINNACLE-API-KEY"] = request_options.api_key unless request_options&.api_key.nil?
@@ -105,7 +104,7 @@ module Pinnacle
           unless request_options.nil? || request_options&.additional_query_parameters.nil?
             req.params = { **(request_options&.additional_query_parameters || {}) }.compact
           end
-          req.body = { **(request_options&.additional_body_parameters || {}), uris: uris }.compact
+          req.body = { **(request_options&.additional_body_parameters || {}), urls: urls }.compact
           req.url "#{@request_client.get_url(request_options: request_options)}/tools/files/refresh"
         end
         parsed_json = JSON.parse(response.body)
@@ -138,6 +137,7 @@ module Pinnacle
       # @param size [Integer] Size of your file in bytes. Should be less than 100 MB.
       # @param name [String] Name of your file.
       # @param options [Hash] Additional configurations for your file.Request of type Pinnacle::Tools::File::Types::UploadFileOptions, as a Hash
+      #   * :delete_at (String)
       #   * :download (Hash)
       #     * :expires_at (String)
       # @param request_options [Pinnacle::RequestOptions]
@@ -152,7 +152,7 @@ module Pinnacle
       #    content_type: "image/jpeg",
       #    size: 1024,
       #    name: "test.jpg",
-      #    options: { download: { expires_at: "2025-06-30T12:00:00.000Z" } }
+      #    options: { delete_at: "2025-12-31T23:59:59Z", download: { expires_at: "2025-06-30T12:00:00.000Z" } }
       #  )
       def upload(content_type:, size:, name: nil, options: nil, request_options: nil)
         Async do
@@ -187,12 +187,10 @@ module Pinnacle
       #  refresh a presigned upload URL, generate a new one instead.
       #  </Callout>
       #
-      # @param uris [Array<String>] Array of file URIs to refresh for extended access. <br>
-      #  Accepted formats:
-      #  - **Full presigned URLs**:
-      #  `https://server.trypinnacle.app/storage/v1/object/sign/...`
-      #  - **Short URIs**: `{BUCKET}/${TEAM_ID}/...` (e.g., `vault/3/document.pdf`)
-      #  Invalid or external URLs will be returned unchanged in the response.
+      # @param urls [Array<String>] Array of file URLs to refresh for extended access. Provided URLs must be
+      #  presigned URLs (i.e.
+      #  `https://server.trypinnacle.app/storage/v1/object/sign/...`). Invalid or
+      #  external URLs will be returned unchanged in the response.
       # @param request_options [Pinnacle::RequestOptions]
       # @return [Array<Pinnacle::Types::RefreshedFile>]
       # @example
@@ -201,8 +199,8 @@ module Pinnacle
       #    environment: Pinnacle::Environment::DEFAULT,
       #    api_key: "YOUR_API_KEY"
       #  )
-      #  api.tools.file.refresh(uris: ["https://server.trypinnacle.app/storage/v1/object/sign/vault/3/test.jpg?token=oldtoken", "https://server.trypinnacle.app/storage/v1/object/sign/vault/3/document.pdf?token=oldtoken2", "icons/3/test.jpg", "invalid/url", "https://google.com"])
-      def refresh(uris:, request_options: nil)
+      #  api.tools.file.refresh(urls: ["https://server.trypinnacle.app/storage/v1/object/sign/vault/3/test.jpg?token=oldtoken", "https://server.trypinnacle.app/storage/v1/object/sign/vault/3/document.pdf?token=oldtoken2", "invalid/url", "https://google.com"])
+      def refresh(urls:, request_options: nil)
         Async do
           response = @request_client.conn.post do |req|
             req.options.timeout = request_options.timeout_in_seconds unless request_options&.timeout_in_seconds.nil?
@@ -215,7 +213,7 @@ module Pinnacle
             unless request_options.nil? || request_options&.additional_query_parameters.nil?
               req.params = { **(request_options&.additional_query_parameters || {}) }.compact
             end
-            req.body = { **(request_options&.additional_body_parameters || {}), uris: uris }.compact
+            req.body = { **(request_options&.additional_body_parameters || {}), urls: urls }.compact
             req.url "#{@request_client.get_url(request_options: request_options)}/tools/files/refresh"
           end
           parsed_json = JSON.parse(response.body)

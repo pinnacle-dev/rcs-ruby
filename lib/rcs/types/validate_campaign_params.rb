@@ -8,7 +8,13 @@ module Pinnacle
     class ValidateCampaignParams
       # @return [String] Any additional information you want to provide.
       attr_reader :additional_info
-      # @return [Integer] Campaign ID.
+      # @return [String] Unique identifier for the campaign.
+      #  - When validating 10DLC campaigns, it must begin with the prefix `dlc_` (e.g.,
+      #  `dlc_1234567890`)
+      #  - When validating toll-free campaigns, it must begin with the prefix `tf_`
+      #  (e.g., `tf_1234567890`)
+      #  - When validating RCS campaigns, it must begin with the prefix `rcs_` (e.g.,
+      #  `rcs_1234567890`)
       attr_reader :campaign_id
       # @return [OpenStruct] Additional properties unmapped to the current class definition
       attr_reader :additional_properties
@@ -19,7 +25,13 @@ module Pinnacle
       OMIT = Object.new
 
       # @param additional_info [String] Any additional information you want to provide.
-      # @param campaign_id [Integer] Campaign ID.
+      # @param campaign_id [String] Unique identifier for the campaign.
+      #  - When validating 10DLC campaigns, it must begin with the prefix `dlc_` (e.g.,
+      #  `dlc_1234567890`)
+      #  - When validating toll-free campaigns, it must begin with the prefix `tf_`
+      #  (e.g., `tf_1234567890`)
+      #  - When validating RCS campaigns, it must begin with the prefix `rcs_` (e.g.,
+      #  `rcs_1234567890`)
       # @param additional_properties [OpenStruct] Additional properties unmapped to the current class definition
       # @return [Pinnacle::Types::ValidateCampaignParams]
       def initialize(campaign_id:, additional_info: OMIT, additional_properties: nil)
@@ -62,7 +74,7 @@ module Pinnacle
       # @return [Void]
       def self.validate_raw(obj:)
         obj.additional_info&.is_a?(String) != false || raise("Passed value for field obj.additional_info is not the expected type, validation failed.")
-        obj.campaign_id.is_a?(Integer) != false || raise("Passed value for field obj.campaign_id is not the expected type, validation failed.")
+        obj.campaign_id.is_a?(String) != false || raise("Passed value for field obj.campaign_id is not the expected type, validation failed.")
       end
     end
   end

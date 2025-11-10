@@ -6,8 +6,9 @@ require "json"
 module Pinnacle
   module Types
     class SentRcsDetails
-      # @return [Float] Unique identifier for the sent MMS messages.
-      attr_reader :message_ids
+      # @return [String] Unique identifier for the sent RCS message. This identifier is a string that
+      #  always begins with the prefix `msg_`, for example: `msg_1234567890`.
+      attr_reader :message_id
       # @return [Integer] Total number of segments used across the message.
       attr_reader :segments
       # @return [Float] Total cost of sending the message.
@@ -26,7 +27,8 @@ module Pinnacle
 
       OMIT = Object.new
 
-      # @param message_ids [Float] Unique identifier for the sent MMS messages.
+      # @param message_id [String] Unique identifier for the sent RCS message. This identifier is a string that
+      #  always begins with the prefix `msg_`, for example: `msg_1234567890`.
       # @param segments [Integer] Total number of segments used across the message.
       # @param total_cost [Float] Total cost of sending the message.
       # @param sender [String] Sender's phone number in E.164 format.
@@ -34,9 +36,8 @@ module Pinnacle
       # @param status [String] Current status of the message.
       # @param additional_properties [OpenStruct] Additional properties unmapped to the current class definition
       # @return [Pinnacle::Types::SentRcsDetails]
-      def initialize(segments:, total_cost:, sender:, recipient:, status:, message_ids: OMIT,
-                     additional_properties: nil)
-        @message_ids = message_ids if message_ids != OMIT
+      def initialize(message_id:, segments:, total_cost:, sender:, recipient:, status:, additional_properties: nil)
+        @message_id = message_id
         @segments = segments
         @total_cost = total_cost
         @sender = sender
@@ -44,15 +45,13 @@ module Pinnacle
         @status = status
         @additional_properties = additional_properties
         @_field_set = {
-          "messageIds": message_ids,
+          "messageId": message_id,
           "segments": segments,
           "totalCost": total_cost,
           "sender": sender,
           "recipient": recipient,
           "status": status
-        }.reject do |_k, v|
-          v == OMIT
-        end
+        }
       end
 
       # Deserialize a JSON object to an instance of SentRcsDetails
@@ -62,14 +61,14 @@ module Pinnacle
       def self.from_json(json_object:)
         struct = JSON.parse(json_object, object_class: OpenStruct)
         parsed_json = JSON.parse(json_object)
-        message_ids = parsed_json["messageIds"]
+        message_id = parsed_json["messageId"]
         segments = parsed_json["segments"]
         total_cost = parsed_json["totalCost"]
         sender = parsed_json["sender"]
         recipient = parsed_json["recipient"]
         status = parsed_json["status"]
         new(
-          message_ids: message_ids,
+          message_id: message_id,
           segments: segments,
           total_cost: total_cost,
           sender: sender,
@@ -93,7 +92,7 @@ module Pinnacle
       # @param obj [Object]
       # @return [Void]
       def self.validate_raw(obj:)
-        obj.message_ids&.is_a?(Float) != false || raise("Passed value for field obj.message_ids is not the expected type, validation failed.")
+        obj.message_id.is_a?(String) != false || raise("Passed value for field obj.message_id is not the expected type, validation failed.")
         obj.segments.is_a?(Integer) != false || raise("Passed value for field obj.segments is not the expected type, validation failed.")
         obj.total_cost.is_a?(Float) != false || raise("Passed value for field obj.total_cost is not the expected type, validation failed.")
         obj.sender.is_a?(String) != false || raise("Passed value for field obj.sender is not the expected type, validation failed.")

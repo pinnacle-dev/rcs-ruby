@@ -19,7 +19,7 @@ module Pinnacle
 
     # Retrieve contact information for a given number.
     #
-    # @param id [Integer] Unique identifier of a specific contact you want to retrieve. <br>
+    # @param id [String] Unique identifier of a specific contact you want to retrieve. <br>
     #  Either this parameter or `phoneNumber` must be provided, but not both.
     # @param phone_number [String] Phone number you want to look up contact information for, provided in
     #  URL-encoded E.164 format with %2B prefix instead of +.
@@ -31,7 +31,7 @@ module Pinnacle
     #    environment: Pinnacle::Environment::DEFAULT,
     #    api_key: "YOUR_API_KEY"
     #  )
-    #  api.contacts.get
+    #  api.contacts.get(id: "co_1234567890")
     def get(id: nil, phone_number: nil, request_options: nil)
       response = @request_client.conn.get do |req|
         req.options.timeout = request_options.timeout_in_seconds unless request_options&.timeout_in_seconds.nil?
@@ -101,7 +101,8 @@ module Pinnacle
     # @param email [String] New email address for your contact.
     # @param name [String] New name for your contact.
     # @param tags [Array<String>] New tags for your contact.
-    # @param id [Integer] ID of the contact you want to update.
+    # @param id [String] ID of the contact you want to update. This identifier is a string that always
+    #  begins with the prefix `co_`, for example: `co_1234567890`.
     # @param request_options [Pinnacle::RequestOptions]
     # @return [Pinnacle::Types::UpdatedContactId]
     # @example
@@ -110,7 +111,7 @@ module Pinnacle
     #    environment: Pinnacle::Environment::DEFAULT,
     #    api_key: "YOUR_API_KEY"
     #  )
-    #  api.contacts.update(id: 137)
+    #  api.contacts.update(id: "co_1234567890")
     def update(id:, description: nil, email: nil, name: nil, tags: nil, request_options: nil)
       response = @request_client.conn.put do |req|
         req.options.timeout = request_options.timeout_in_seconds unless request_options&.timeout_in_seconds.nil?
@@ -149,7 +150,7 @@ module Pinnacle
 
     # Retrieve contact information for a given number.
     #
-    # @param id [Integer] Unique identifier of a specific contact you want to retrieve. <br>
+    # @param id [String] Unique identifier of a specific contact you want to retrieve. <br>
     #  Either this parameter or `phoneNumber` must be provided, but not both.
     # @param phone_number [String] Phone number you want to look up contact information for, provided in
     #  URL-encoded E.164 format with %2B prefix instead of +.
@@ -161,7 +162,7 @@ module Pinnacle
     #    environment: Pinnacle::Environment::DEFAULT,
     #    api_key: "YOUR_API_KEY"
     #  )
-    #  api.contacts.get
+    #  api.contacts.get(id: "co_1234567890")
     def get(id: nil, phone_number: nil, request_options: nil)
       Async do
         response = @request_client.conn.get do |req|
@@ -235,7 +236,8 @@ module Pinnacle
     # @param email [String] New email address for your contact.
     # @param name [String] New name for your contact.
     # @param tags [Array<String>] New tags for your contact.
-    # @param id [Integer] ID of the contact you want to update.
+    # @param id [String] ID of the contact you want to update. This identifier is a string that always
+    #  begins with the prefix `co_`, for example: `co_1234567890`.
     # @param request_options [Pinnacle::RequestOptions]
     # @return [Pinnacle::Types::UpdatedContactId]
     # @example
@@ -244,7 +246,7 @@ module Pinnacle
     #    environment: Pinnacle::Environment::DEFAULT,
     #    api_key: "YOUR_API_KEY"
     #  )
-    #  api.contacts.update(id: 137)
+    #  api.contacts.update(id: "co_1234567890")
     def update(id:, description: nil, email: nil, name: nil, tags: nil, request_options: nil)
       Async do
         response = @request_client.conn.put do |req|

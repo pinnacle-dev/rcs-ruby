@@ -17,7 +17,8 @@ module Pinnacle
       attr_reader :auto_renew
       # @return [Pinnacle::Types::ExtendedBrand] Brand associated with this campaign.
       attr_reader :brand
-      # @return [Integer] Unique identifier for the campaign.
+      # @return [String] Unique identifier for the campaign. This identifier is a string that always
+      #  begins with the prefix `dlc_`, for example: `dlc_1234567890`.
       attr_reader :campaign_id
       # @return [String] Description of the campaign.
       attr_reader :description
@@ -51,7 +52,8 @@ module Pinnacle
 
       # @param auto_renew [Boolean] Whether the campaign renews automatically.
       # @param brand [Pinnacle::Types::ExtendedBrand] Brand associated with this campaign.
-      # @param campaign_id [Integer] Unique identifier for the campaign.
+      # @param campaign_id [String] Unique identifier for the campaign. This identifier is a string that always
+      #  begins with the prefix `dlc_`, for example: `dlc_1234567890`.
       # @param description [String] Description of the campaign.
       # @param keywords [Pinnacle::Types::DlcWithExtendedBrandAndStatusKeywords] Keyword response configuration.
       # @param links [Pinnacle::Types::DlcWithExtendedBrandAndStatusLinks] Legal documentation links.
@@ -178,7 +180,7 @@ module Pinnacle
       def self.validate_raw(obj:)
         obj.auto_renew.is_a?(Boolean) != false || raise("Passed value for field obj.auto_renew is not the expected type, validation failed.")
         Pinnacle::Types::ExtendedBrand.validate_raw(obj: obj.brand)
-        obj.campaign_id&.is_a?(Integer) != false || raise("Passed value for field obj.campaign_id is not the expected type, validation failed.")
+        obj.campaign_id&.is_a?(String) != false || raise("Passed value for field obj.campaign_id is not the expected type, validation failed.")
         obj.description&.is_a?(String) != false || raise("Passed value for field obj.description is not the expected type, validation failed.")
         Pinnacle::Types::DlcWithExtendedBrandAndStatusKeywords.validate_raw(obj: obj.keywords)
         obj.links.nil? || Pinnacle::Types::DlcWithExtendedBrandAndStatusLinks.validate_raw(obj: obj.links)

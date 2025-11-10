@@ -7,7 +7,9 @@ module Pinnacle
   module Types
     # Retrieve conversation information by ID.
     class ConversationByIdParams
-      # @return [Integer] Unique identifier of the conversation you want to retrieve.
+      # @return [String] Unique identifier of the conversation you want to retrieve. This identifier is a
+      #  string that always begins with the prefix `conv_`, for example:
+      #  `conv_1234567890`.
       attr_reader :id
       # @return [OpenStruct] Additional properties unmapped to the current class definition
       attr_reader :additional_properties
@@ -17,7 +19,9 @@ module Pinnacle
 
       OMIT = Object.new
 
-      # @param id [Integer] Unique identifier of the conversation you want to retrieve.
+      # @param id [String] Unique identifier of the conversation you want to retrieve. This identifier is a
+      #  string that always begins with the prefix `conv_`, for example:
+      #  `conv_1234567890`.
       # @param additional_properties [OpenStruct] Additional properties unmapped to the current class definition
       # @return [Pinnacle::Types::ConversationByIdParams]
       def initialize(id:, additional_properties: nil)
@@ -51,7 +55,7 @@ module Pinnacle
       # @param obj [Object]
       # @return [Void]
       def self.validate_raw(obj:)
-        obj.id.is_a?(Integer) != false || raise("Passed value for field obj.id is not the expected type, validation failed.")
+        obj.id.is_a?(String) != false || raise("Passed value for field obj.id is not the expected type, validation failed.")
       end
     end
   end

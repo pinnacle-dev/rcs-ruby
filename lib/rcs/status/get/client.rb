@@ -22,7 +22,9 @@ module Pinnacle
 
       # Retrieve a brand's status.
       #
-      # @param brand_id [Integer] ID of the brand.
+      # @param brand_id [String] The unique identifier of the brand you want to retrieve the status for. This
+      #  identifier is a string that always begins with the prefix `b_`, for example:
+      #  `b_1234567890`.
       # @param request_options [Pinnacle::RequestOptions]
       # @return [Pinnacle::Types::BrandStatus]
       # @example
@@ -31,7 +33,7 @@ module Pinnacle
       #    environment: Pinnacle::Environment::DEFAULT,
       #    api_key: "YOUR_API_KEY"
       #  )
-      #  api.status.get.brand(brand_id: 28)
+      #  api.status.get.brand(brand_id: "b_1234567890")
       def brand(brand_id:, request_options: nil)
         response = @request_client.conn.get do |req|
           req.options.timeout = request_options.timeout_in_seconds unless request_options&.timeout_in_seconds.nil?
@@ -54,7 +56,9 @@ module Pinnacle
 
       # Retrieve a toll-free campaign's status.
       #
-      # @param campaign_id [Integer] ID of the toll-free campaign.
+      # @param campaign_id [String] The unique identifier of the toll-free campaign you want to retrieve the status
+      #  for. This identifier is a string that always begins with the prefix `tf_`, for
+      #  example: `tf_1234567890`.
       # @param request_options [Pinnacle::RequestOptions]
       # @return [Pinnacle::Types::TollFreeCampaignStatus]
       # @example
@@ -63,7 +67,7 @@ module Pinnacle
       #    environment: Pinnacle::Environment::DEFAULT,
       #    api_key: "YOUR_API_KEY"
       #  )
-      #  api.status.get.toll_free(campaign_id: 28)
+      #  api.status.get.toll_free(campaign_id: "tf_1234567890")
       def toll_free(campaign_id:, request_options: nil)
         response = @request_client.conn.get do |req|
           req.options.timeout = request_options.timeout_in_seconds unless request_options&.timeout_in_seconds.nil?
@@ -86,7 +90,9 @@ module Pinnacle
 
       # Retrieve a 10DLC campaign's status.
       #
-      # @param campaign_id [Integer] ID of the 10DLC campaign.
+      # @param campaign_id [String] The unique identifier of the 10DLC campaign you want to retrieve the status for.
+      #  This identifier is a string that always begins with the prefix `dlc_`, for
+      #  example: `dlc_1234567890`.
       # @param request_options [Pinnacle::RequestOptions]
       # @return [Pinnacle::Types::DlcCampaignStatus]
       # @example
@@ -95,7 +101,7 @@ module Pinnacle
       #    environment: Pinnacle::Environment::DEFAULT,
       #    api_key: "YOUR_API_KEY"
       #  )
-      #  api.status.get.dlc(campaign_id: 28)
+      #  api.status.get.dlc(campaign_id: "dlc_1234567890")
       def dlc(campaign_id:, request_options: nil)
         response = @request_client.conn.get do |req|
           req.options.timeout = request_options.timeout_in_seconds unless request_options&.timeout_in_seconds.nil?
@@ -118,7 +124,9 @@ module Pinnacle
 
       # Retrieve a RCS campaign's status.
       #
-      # @param campaign_id [Integer] ID of the campaign.
+      # @param campaign_id [String] The unique identifier of the RCS campaign you want to retrieve the status for.
+      #  This identifier is a string that always begins with the prefix `rcs_`, for
+      #  example: `rcs_1234567890`.
       # @param request_options [Pinnacle::RequestOptions]
       # @return [Pinnacle::Types::RcsCampaignStatus]
       # @example
@@ -127,7 +135,7 @@ module Pinnacle
       #    environment: Pinnacle::Environment::DEFAULT,
       #    api_key: "YOUR_API_KEY"
       #  )
-      #  api.status.get.rcs(campaign_id: 28)
+      #  api.status.get.rcs(campaign_id: "rcs_1234567890")
       def rcs(campaign_id:, request_options: nil)
         response = @request_client.conn.get do |req|
           req.options.timeout = request_options.timeout_in_seconds unless request_options&.timeout_in_seconds.nil?
@@ -194,7 +202,9 @@ module Pinnacle
 
       # Retrieve a brand's status.
       #
-      # @param brand_id [Integer] ID of the brand.
+      # @param brand_id [String] The unique identifier of the brand you want to retrieve the status for. This
+      #  identifier is a string that always begins with the prefix `b_`, for example:
+      #  `b_1234567890`.
       # @param request_options [Pinnacle::RequestOptions]
       # @return [Pinnacle::Types::BrandStatus]
       # @example
@@ -203,7 +213,7 @@ module Pinnacle
       #    environment: Pinnacle::Environment::DEFAULT,
       #    api_key: "YOUR_API_KEY"
       #  )
-      #  api.status.get.brand(brand_id: 28)
+      #  api.status.get.brand(brand_id: "b_1234567890")
       def brand(brand_id:, request_options: nil)
         Async do
           response = @request_client.conn.get do |req|
@@ -228,7 +238,9 @@ module Pinnacle
 
       # Retrieve a toll-free campaign's status.
       #
-      # @param campaign_id [Integer] ID of the toll-free campaign.
+      # @param campaign_id [String] The unique identifier of the toll-free campaign you want to retrieve the status
+      #  for. This identifier is a string that always begins with the prefix `tf_`, for
+      #  example: `tf_1234567890`.
       # @param request_options [Pinnacle::RequestOptions]
       # @return [Pinnacle::Types::TollFreeCampaignStatus]
       # @example
@@ -237,7 +249,7 @@ module Pinnacle
       #    environment: Pinnacle::Environment::DEFAULT,
       #    api_key: "YOUR_API_KEY"
       #  )
-      #  api.status.get.toll_free(campaign_id: 28)
+      #  api.status.get.toll_free(campaign_id: "tf_1234567890")
       def toll_free(campaign_id:, request_options: nil)
         Async do
           response = @request_client.conn.get do |req|
@@ -262,7 +274,9 @@ module Pinnacle
 
       # Retrieve a 10DLC campaign's status.
       #
-      # @param campaign_id [Integer] ID of the 10DLC campaign.
+      # @param campaign_id [String] The unique identifier of the 10DLC campaign you want to retrieve the status for.
+      #  This identifier is a string that always begins with the prefix `dlc_`, for
+      #  example: `dlc_1234567890`.
       # @param request_options [Pinnacle::RequestOptions]
       # @return [Pinnacle::Types::DlcCampaignStatus]
       # @example
@@ -271,7 +285,7 @@ module Pinnacle
       #    environment: Pinnacle::Environment::DEFAULT,
       #    api_key: "YOUR_API_KEY"
       #  )
-      #  api.status.get.dlc(campaign_id: 28)
+      #  api.status.get.dlc(campaign_id: "dlc_1234567890")
       def dlc(campaign_id:, request_options: nil)
         Async do
           response = @request_client.conn.get do |req|
@@ -296,7 +310,9 @@ module Pinnacle
 
       # Retrieve a RCS campaign's status.
       #
-      # @param campaign_id [Integer] ID of the campaign.
+      # @param campaign_id [String] The unique identifier of the RCS campaign you want to retrieve the status for.
+      #  This identifier is a string that always begins with the prefix `rcs_`, for
+      #  example: `rcs_1234567890`.
       # @param request_options [Pinnacle::RequestOptions]
       # @return [Pinnacle::Types::RcsCampaignStatus]
       # @example
@@ -305,7 +321,7 @@ module Pinnacle
       #    environment: Pinnacle::Environment::DEFAULT,
       #    api_key: "YOUR_API_KEY"
       #  )
-      #  api.status.get.rcs(campaign_id: 28)
+      #  api.status.get.rcs(campaign_id: "rcs_1234567890")
       def rcs(campaign_id:, request_options: nil)
         Async do
           response = @request_client.conn.get do |req|

@@ -13,7 +13,7 @@ module Pinnacle
     class RcsCampaign
       # @return [Pinnacle::Types::RcsCampaignSchemaAgent] Agent configured to the campaign.
       attr_reader :agent
-      # @return [Integer] Unique identifier for the campaign.
+      # @return [String] Unique identifier for the campaign.
       attr_reader :campaign_id
       # @return [String] Link to document verifying the brand's name. This may be the certificate of
       #  incorporation, business license, or other relevant document. You can typically
@@ -38,7 +38,7 @@ module Pinnacle
       OMIT = Object.new
 
       # @param agent [Pinnacle::Types::RcsCampaignSchemaAgent] Agent configured to the campaign.
-      # @param campaign_id [Integer] Unique identifier for the campaign.
+      # @param campaign_id [String] Unique identifier for the campaign.
       # @param brand_verification_url [String] Link to document verifying the brand's name. This may be the certificate of
       #  incorporation, business license, or other relevant document. You can typically
       #  find this on the Secretary of State website.
@@ -142,7 +142,7 @@ module Pinnacle
       # @return [Void]
       def self.validate_raw(obj:)
         obj.agent.nil? || Pinnacle::Types::RcsCampaignSchemaAgent.validate_raw(obj: obj.agent)
-        obj.campaign_id&.is_a?(Integer) != false || raise("Passed value for field obj.campaign_id is not the expected type, validation failed.")
+        obj.campaign_id&.is_a?(String) != false || raise("Passed value for field obj.campaign_id is not the expected type, validation failed.")
         obj.brand_verification_url&.is_a?(String) != false || raise("Passed value for field obj.brand_verification_url is not the expected type, validation failed.")
         obj.expected_agent_responses&.is_a?(Array) != false || raise("Passed value for field obj.expected_agent_responses is not the expected type, validation failed.")
         obj.links.nil? || Pinnacle::Types::RcsCampaignSchemaLinks.validate_raw(obj: obj.links)

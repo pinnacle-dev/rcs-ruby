@@ -11,9 +11,9 @@ module Pinnacle
     module TollFree
       module Types
         class TollFreeAutofillResponse
-          # @return [Integer]
+          # @return [String]
           attr_reader :brand
-          # @return [Integer] Unique identifier for the campaign.
+          # @return [String] Unique identifier for the campaign. Must begin with the prefix `tf_`.
           attr_reader :campaign_id
           # @return [Pinnacle::Types::MessageVolumeEnum]
           attr_reader :monthly_volume
@@ -33,8 +33,8 @@ module Pinnacle
 
           OMIT = Object.new
 
-          # @param brand [Integer]
-          # @param campaign_id [Integer] Unique identifier for the campaign.
+          # @param brand [String]
+          # @param campaign_id [String] Unique identifier for the campaign. Must begin with the prefix `tf_`.
           # @param monthly_volume [Pinnacle::Types::MessageVolumeEnum]
           # @param name [String] Display name of the campaign.
           # @param opt_in [Pinnacle::Types::UpsertTollFreeCampaignOptIn] Opt-in keyword settings.
@@ -115,8 +115,8 @@ module Pinnacle
           # @param obj [Object]
           # @return [Void]
           def self.validate_raw(obj:)
-            obj.brand&.is_a?(Integer) != false || raise("Passed value for field obj.brand is not the expected type, validation failed.")
-            obj.campaign_id&.is_a?(Integer) != false || raise("Passed value for field obj.campaign_id is not the expected type, validation failed.")
+            obj.brand&.is_a?(String) != false || raise("Passed value for field obj.brand is not the expected type, validation failed.")
+            obj.campaign_id&.is_a?(String) != false || raise("Passed value for field obj.campaign_id is not the expected type, validation failed.")
             obj.monthly_volume&.is_a?(Pinnacle::Types::MessageVolumeEnum) != false || raise("Passed value for field obj.monthly_volume is not the expected type, validation failed.")
             obj.name&.is_a?(String) != false || raise("Passed value for field obj.name is not the expected type, validation failed.")
             obj.opt_in.nil? || Pinnacle::Types::UpsertTollFreeCampaignOptIn.validate_raw(obj: obj.opt_in)

@@ -5,8 +5,8 @@ require "json"
 
 module Pinnacle
   module Types
-    class ErrorResponse
-      # @return [String] Description of the error that occurred.
+    class NotFoundErrorBody
+      # @return [String]
       attr_reader :error
       # @return [OpenStruct] Additional properties unmapped to the current class definition
       attr_reader :additional_properties
@@ -16,9 +16,9 @@ module Pinnacle
 
       OMIT = Object.new
 
-      # @param error [String] Description of the error that occurred.
+      # @param error [String]
       # @param additional_properties [OpenStruct] Additional properties unmapped to the current class definition
-      # @return [Pinnacle::Types::ErrorResponse]
+      # @return [Pinnacle::Types::NotFoundErrorBody]
       def initialize(error: OMIT, additional_properties: nil)
         @error = error if error != OMIT
         @additional_properties = additional_properties
@@ -27,10 +27,10 @@ module Pinnacle
         end
       end
 
-      # Deserialize a JSON object to an instance of ErrorResponse
+      # Deserialize a JSON object to an instance of NotFoundErrorBody
       #
       # @param json_object [String]
-      # @return [Pinnacle::Types::ErrorResponse]
+      # @return [Pinnacle::Types::NotFoundErrorBody]
       def self.from_json(json_object:)
         struct = JSON.parse(json_object, object_class: OpenStruct)
         parsed_json = JSON.parse(json_object)
@@ -38,7 +38,7 @@ module Pinnacle
         new(error: error, additional_properties: struct)
       end
 
-      # Serialize an instance of ErrorResponse to a JSON object
+      # Serialize an instance of NotFoundErrorBody to a JSON object
       #
       # @return [String]
       def to_json(*_args)

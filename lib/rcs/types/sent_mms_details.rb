@@ -6,7 +6,8 @@ require "json"
 module Pinnacle
   module Types
     class SentMmsDetails
-      # @return [Array<Integer>] Array of unique identifiers for the sent MMS messages.
+      # @return [Array<String>] Array of unique identifiers for the sent MMS messages. This identifiers are
+      #  strings that always begin with the prefix `msg_`, for example: `msg_1234567890`.
       attr_reader :message_ids
       # @return [Float] Total number of segments used across the message.
       attr_reader :segments
@@ -26,7 +27,8 @@ module Pinnacle
 
       OMIT = Object.new
 
-      # @param message_ids [Array<Integer>] Array of unique identifiers for the sent MMS messages.
+      # @param message_ids [Array<String>] Array of unique identifiers for the sent MMS messages. This identifiers are
+      #  strings that always begin with the prefix `msg_`, for example: `msg_1234567890`.
       # @param segments [Float] Total number of segments used across the message.
       # @param total_cost [Float] Total cost of sending the message.
       # @param sender [String] Sender's phone number in E.164 format.

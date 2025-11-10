@@ -10,7 +10,8 @@ module Pinnacle
     class BrandStatus
       # @return [Array<String>] List of errors that occurred.
       attr_reader :errors
-      # @return [Integer] Id of the brand.
+      # @return [String] The unique identifier of the brand. This identifier is a string that always
+      #  begins with the prefix `b_`, for example: `b_1234567890`.
       attr_reader :id
       # @return [Pinnacle::Types::BrandStatusEnum] Current review status of the brand. <br>
       #  `INCOMPLETE`: Has not been submitted. Use the [submit
@@ -31,7 +32,8 @@ module Pinnacle
       OMIT = Object.new
 
       # @param errors [Array<String>] List of errors that occurred.
-      # @param id [Integer] Id of the brand.
+      # @param id [String] The unique identifier of the brand. This identifier is a string that always
+      #  begins with the prefix `b_`, for example: `b_1234567890`.
       # @param status [Pinnacle::Types::BrandStatusEnum] Current review status of the brand. <br>
       #  `INCOMPLETE`: Has not been submitted. Use the [submit
       #  endpoint](../brands/submit). <br>
@@ -84,7 +86,7 @@ module Pinnacle
       # @return [Void]
       def self.validate_raw(obj:)
         obj.errors.is_a?(Array) != false || raise("Passed value for field obj.errors is not the expected type, validation failed.")
-        obj.id.is_a?(Integer) != false || raise("Passed value for field obj.id is not the expected type, validation failed.")
+        obj.id.is_a?(String) != false || raise("Passed value for field obj.id is not the expected type, validation failed.")
         obj.status.is_a?(Pinnacle::Types::BrandStatusEnum) != false || raise("Passed value for field obj.status is not the expected type, validation failed.")
       end
     end

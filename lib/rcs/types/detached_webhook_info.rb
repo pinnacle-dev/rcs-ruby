@@ -8,7 +8,8 @@ module Pinnacle
     class DetachedWebhookInfo
       # @return [String] Confirmation message.
       attr_reader :message
-      # @return [Integer] ID of the detached webhook.
+      # @return [String] Unique identifier of the webhook within the account. This identifier is a string
+      #  that always begins with the prefix `wh_`, for example: `wh_1234567890`.
       attr_reader :webhook_id
       # @return [String] Phone number the webhook was detached from in E.164 format.
       attr_reader :phone_number
@@ -21,7 +22,8 @@ module Pinnacle
       OMIT = Object.new
 
       # @param message [String] Confirmation message.
-      # @param webhook_id [Integer] ID of the detached webhook.
+      # @param webhook_id [String] Unique identifier of the webhook within the account. This identifier is a string
+      #  that always begins with the prefix `wh_`, for example: `wh_1234567890`.
       # @param phone_number [String] Phone number the webhook was detached from in E.164 format.
       # @param additional_properties [OpenStruct] Additional properties unmapped to the current class definition
       # @return [Pinnacle::Types::DetachedWebhookInfo]
@@ -66,7 +68,7 @@ module Pinnacle
       # @return [Void]
       def self.validate_raw(obj:)
         obj.message.is_a?(String) != false || raise("Passed value for field obj.message is not the expected type, validation failed.")
-        obj.webhook_id.is_a?(Integer) != false || raise("Passed value for field obj.webhook_id is not the expected type, validation failed.")
+        obj.webhook_id.is_a?(String) != false || raise("Passed value for field obj.webhook_id is not the expected type, validation failed.")
         obj.phone_number.is_a?(String) != false || raise("Passed value for field obj.phone_number is not the expected type, validation failed.")
       end
     end

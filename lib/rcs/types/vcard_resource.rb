@@ -6,7 +6,8 @@ require "json"
 module Pinnacle
   module Types
     class VcardResource
-      # @return [Integer] Contact's id
+      # @return [String] The unique identifier of the contact. This identifier is a string that always
+      #  begins with the prefix `cc_`, for example: `cc_1234567890`.
       attr_reader :id
       # @return [String] Presigned download url to download vCard data. <br>
       #  This link will expire in one hour.
@@ -19,7 +20,8 @@ module Pinnacle
 
       OMIT = Object.new
 
-      # @param id [Integer] Contact's id
+      # @param id [String] The unique identifier of the contact. This identifier is a string that always
+      #  begins with the prefix `cc_`, for example: `cc_1234567890`.
       # @param download_url [String] Presigned download url to download vCard data. <br>
       #  This link will expire in one hour.
       # @param additional_properties [OpenStruct] Additional properties unmapped to the current class definition
@@ -63,7 +65,7 @@ module Pinnacle
       # @param obj [Object]
       # @return [Void]
       def self.validate_raw(obj:)
-        obj.id&.is_a?(Integer) != false || raise("Passed value for field obj.id is not the expected type, validation failed.")
+        obj.id&.is_a?(String) != false || raise("Passed value for field obj.id is not the expected type, validation failed.")
         obj.download_url&.is_a?(String) != false || raise("Passed value for field obj.download_url is not the expected type, validation failed.")
       end
     end

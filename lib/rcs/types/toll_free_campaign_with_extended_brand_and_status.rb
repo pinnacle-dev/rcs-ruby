@@ -17,11 +17,10 @@ module Pinnacle
       #  `INCOMPLETE`: Has not been submitted.<br>
       #  `PENDING`: Currently being reviewed.<br>
       #  `VERIFIED`: Verified and good to go.<br>
-      #  `UNVERIFIED`: No longer verified due to an update in the brand details.<br>
       #  `VETTED`: Brand has been vetted by an external provider and has received vetting
       #  scores.
       attr_reader :status
-      # @return [Integer] Unique identifier for the campaign.
+      # @return [String] Unique identifier for the campaign. Must begin with the prefix `tf_`.
       attr_reader :campaign_id
       # @return [Pinnacle::Types::MessageVolumeEnum]
       attr_reader :monthly_volume
@@ -46,10 +45,9 @@ module Pinnacle
       #  `INCOMPLETE`: Has not been submitted.<br>
       #  `PENDING`: Currently being reviewed.<br>
       #  `VERIFIED`: Verified and good to go.<br>
-      #  `UNVERIFIED`: No longer verified due to an update in the brand details.<br>
       #  `VETTED`: Brand has been vetted by an external provider and has received vetting
       #  scores.
-      # @param campaign_id [Integer] Unique identifier for the campaign.
+      # @param campaign_id [String] Unique identifier for the campaign. Must begin with the prefix `tf_`.
       # @param monthly_volume [Pinnacle::Types::MessageVolumeEnum]
       # @param name [String] Display name of the campaign.
       # @param opt_in [Pinnacle::Types::UpsertTollFreeCampaignOptIn] Opt-in keyword settings.
@@ -143,7 +141,7 @@ module Pinnacle
       def self.validate_raw(obj:)
         Pinnacle::Types::ExtendedBrand.validate_raw(obj: obj.brand)
         obj.status.is_a?(Pinnacle::Types::ProfileStatusEnum) != false || raise("Passed value for field obj.status is not the expected type, validation failed.")
-        obj.campaign_id&.is_a?(Integer) != false || raise("Passed value for field obj.campaign_id is not the expected type, validation failed.")
+        obj.campaign_id&.is_a?(String) != false || raise("Passed value for field obj.campaign_id is not the expected type, validation failed.")
         obj.monthly_volume&.is_a?(Pinnacle::Types::MessageVolumeEnum) != false || raise("Passed value for field obj.monthly_volume is not the expected type, validation failed.")
         obj.name&.is_a?(String) != false || raise("Passed value for field obj.name is not the expected type, validation failed.")
         obj.opt_in.nil? || Pinnacle::Types::UpsertTollFreeCampaignOptIn.validate_raw(obj: obj.opt_in)

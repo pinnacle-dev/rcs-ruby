@@ -83,8 +83,9 @@ module Pinnacle
     # @param description [String] Brief description of what the brand does.
     # @param ein [String] Brand's Employer Identification Number (EIN) assigned by the IRS.
     # @param email [String] Main contact email address for the brand.
-    # @param id [Integer] Brand ID - include only when updating an existing brand, omit to create a new
-    #  one.
+    # @param id [String] The unique identifier of the brand you want to update.
+    #  <br><br> This identifier is a string that always begins with the prefix `b_`,
+    #  for example: `b_1234567890`.
     # @param name [String] Legal name of the brand as registered.
     # @param sector [Pinnacle::Types::CompanySectorEnum] Industry the brand operates in.
     # @param type [Pinnacle::Types::CompanyTypeEnum] Legal structure of the brand.
@@ -104,7 +105,7 @@ module Pinnacle
     #    description: "A developer-friendly, compliant API for SMS, MMS, and RCS, built to scale real conversations.",
     #    ein: "88-1234567",
     #    email: "founders@trypinnacle.app",
-    #    id: 1,
+    #    id: "b_1234567890",
     #    name: "Pinnacle",
     #    sector: TECHNOLOGY,
     #    type: PRIVATE_PROFIT,
@@ -144,7 +145,9 @@ module Pinnacle
 
     # Retrieve detailed information for a specific brand in your account by ID.
     #
-    # @param id [Integer] ID of an existing brand in your account that you want to retrieve.
+    # @param id [String] The unique identifier of the brand you want to retrieve from your account.
+    #  <br><br> This identifier is a string that always begins with the prefix `b_`,
+    #  for example: `b_1234567890`.
     # @param hide_ein [Boolean] Optional flag to mask the Employer Identification Number in the response for
     #  security purposes.<br>
     #  When you set this to true, the EIN value will be replaced with a masked
@@ -157,7 +160,7 @@ module Pinnacle
     #    environment: Pinnacle::Environment::DEFAULT,
     #    api_key: "YOUR_API_KEY"
     #  )
-    #  api.brands.get(id: 1)
+    #  api.brands.get(id: "b_1234567890")
     def get(id:, hide_ein: nil, request_options: nil)
       response = @request_client.conn.get do |req|
         req.options.timeout = request_options.timeout_in_seconds unless request_options&.timeout_in_seconds.nil?
@@ -178,9 +181,10 @@ module Pinnacle
 
     # Submit your brand for review and approval by the compliance team.
     #
-    # @param brand_id [Integer] The unique identifier of the brand you want to submit for review. <br>
-    #  Must correspond to an existing brand in your account that is ready for
-    #  submission.
+    # @param brand_id [String] The unique identifier of the brand you want to submit for review. <br><br>
+    #  This identifier is a string that always begins with the prefix `b_`, for
+    #  example: `b_1234567890` and must correspond to an existing brand in your account
+    #  that is ready for submission.
     # @param request_options [Pinnacle::RequestOptions]
     # @return [Pinnacle::Types::SubmissionResults]
     # @example
@@ -189,7 +193,7 @@ module Pinnacle
     #    environment: Pinnacle::Environment::DEFAULT,
     #    api_key: "YOUR_API_KEY"
     #  )
-    #  api.brands.submit(brand_id: 1)
+    #  api.brands.submit(brand_id: "b_1234567890")
     def submit(brand_id:, request_options: nil)
       response = @request_client.conn.post do |req|
         req.options.timeout = request_options.timeout_in_seconds unless request_options&.timeout_in_seconds.nil?
@@ -281,8 +285,10 @@ module Pinnacle
     # Submit a brand for external vetting verification to enhance your brand's trust
     #  score and improved message delivery rates.
     #
-    # @param brand_id [Integer] The unique identifier of the brand to vet. <br>
-    #  The brand must be already registered before it can be vetted.
+    # @param brand_id [String] The unique identifier of the brand to vet. <br>
+    #  This identifier is a string that always begins with the prefix `b_`, for
+    #  example: `b_1234567890` and must correspond to an existing brand in your account
+    #  that is ready for vetting.
     # @param request_options [Pinnacle::RequestOptions]
     # @return [Pinnacle::Types::VettingResults]
     # @example
@@ -291,7 +297,7 @@ module Pinnacle
     #    environment: Pinnacle::Environment::DEFAULT,
     #    api_key: "YOUR_API_KEY"
     #  )
-    #  api.brands.vet(brand_id: 1)
+    #  api.brands.vet(brand_id: "b_1234567890")
     def vet(brand_id:, request_options: nil)
       response = @request_client.conn.post do |req|
         req.options.timeout = request_options.timeout_in_seconds unless request_options&.timeout_in_seconds.nil?
@@ -386,8 +392,9 @@ module Pinnacle
     # @param description [String] Brief description of what the brand does.
     # @param ein [String] Brand's Employer Identification Number (EIN) assigned by the IRS.
     # @param email [String] Main contact email address for the brand.
-    # @param id [Integer] Brand ID - include only when updating an existing brand, omit to create a new
-    #  one.
+    # @param id [String] The unique identifier of the brand you want to update.
+    #  <br><br> This identifier is a string that always begins with the prefix `b_`,
+    #  for example: `b_1234567890`.
     # @param name [String] Legal name of the brand as registered.
     # @param sector [Pinnacle::Types::CompanySectorEnum] Industry the brand operates in.
     # @param type [Pinnacle::Types::CompanyTypeEnum] Legal structure of the brand.
@@ -407,7 +414,7 @@ module Pinnacle
     #    description: "A developer-friendly, compliant API for SMS, MMS, and RCS, built to scale real conversations.",
     #    ein: "88-1234567",
     #    email: "founders@trypinnacle.app",
-    #    id: 1,
+    #    id: "b_1234567890",
     #    name: "Pinnacle",
     #    sector: TECHNOLOGY,
     #    type: PRIVATE_PROFIT,
@@ -449,7 +456,9 @@ module Pinnacle
 
     # Retrieve detailed information for a specific brand in your account by ID.
     #
-    # @param id [Integer] ID of an existing brand in your account that you want to retrieve.
+    # @param id [String] The unique identifier of the brand you want to retrieve from your account.
+    #  <br><br> This identifier is a string that always begins with the prefix `b_`,
+    #  for example: `b_1234567890`.
     # @param hide_ein [Boolean] Optional flag to mask the Employer Identification Number in the response for
     #  security purposes.<br>
     #  When you set this to true, the EIN value will be replaced with a masked
@@ -462,7 +471,7 @@ module Pinnacle
     #    environment: Pinnacle::Environment::DEFAULT,
     #    api_key: "YOUR_API_KEY"
     #  )
-    #  api.brands.get(id: 1)
+    #  api.brands.get(id: "b_1234567890")
     def get(id:, hide_ein: nil, request_options: nil)
       Async do
         response = @request_client.conn.get do |req|
@@ -485,9 +494,10 @@ module Pinnacle
 
     # Submit your brand for review and approval by the compliance team.
     #
-    # @param brand_id [Integer] The unique identifier of the brand you want to submit for review. <br>
-    #  Must correspond to an existing brand in your account that is ready for
-    #  submission.
+    # @param brand_id [String] The unique identifier of the brand you want to submit for review. <br><br>
+    #  This identifier is a string that always begins with the prefix `b_`, for
+    #  example: `b_1234567890` and must correspond to an existing brand in your account
+    #  that is ready for submission.
     # @param request_options [Pinnacle::RequestOptions]
     # @return [Pinnacle::Types::SubmissionResults]
     # @example
@@ -496,7 +506,7 @@ module Pinnacle
     #    environment: Pinnacle::Environment::DEFAULT,
     #    api_key: "YOUR_API_KEY"
     #  )
-    #  api.brands.submit(brand_id: 1)
+    #  api.brands.submit(brand_id: "b_1234567890")
     def submit(brand_id:, request_options: nil)
       Async do
         response = @request_client.conn.post do |req|
@@ -592,8 +602,10 @@ module Pinnacle
     # Submit a brand for external vetting verification to enhance your brand's trust
     #  score and improved message delivery rates.
     #
-    # @param brand_id [Integer] The unique identifier of the brand to vet. <br>
-    #  The brand must be already registered before it can be vetted.
+    # @param brand_id [String] The unique identifier of the brand to vet. <br>
+    #  This identifier is a string that always begins with the prefix `b_`, for
+    #  example: `b_1234567890` and must correspond to an existing brand in your account
+    #  that is ready for vetting.
     # @param request_options [Pinnacle::RequestOptions]
     # @return [Pinnacle::Types::VettingResults]
     # @example
@@ -602,7 +614,7 @@ module Pinnacle
     #    environment: Pinnacle::Environment::DEFAULT,
     #    api_key: "YOUR_API_KEY"
     #  )
-    #  api.brands.vet(brand_id: 1)
+    #  api.brands.vet(brand_id: "b_1234567890")
     def vet(brand_id:, request_options: nil)
       Async do
         response = @request_client.conn.post do |req|

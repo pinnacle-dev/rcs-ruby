@@ -10,7 +10,8 @@ module Pinnacle
     class RcsCampaignStatus
       # @return [Array<String>] List of errors that occured.
       attr_reader :errors
-      # @return [Integer] Id of the RCS campaign.
+      # @return [String] The unique identifier of the RCS campaign. This identifier is a string that
+      #  always begins with the prefix `rcs_`, for example: `rcs_1234567890`.
       attr_reader :id
       # @return [Pinnacle::Types::ProfileStatusEnum] Current review status of the RCS campaign. <br>
       #  `INCOMPLETE`: Not submitted.<br>
@@ -28,7 +29,8 @@ module Pinnacle
       OMIT = Object.new
 
       # @param errors [Array<String>] List of errors that occured.
-      # @param id [Integer] Id of the RCS campaign.
+      # @param id [String] The unique identifier of the RCS campaign. This identifier is a string that
+      #  always begins with the prefix `rcs_`, for example: `rcs_1234567890`.
       # @param status [Pinnacle::Types::ProfileStatusEnum] Current review status of the RCS campaign. <br>
       #  `INCOMPLETE`: Not submitted.<br>
       #  `IN REVIEW`: Being reviewed by carriers.<br>
@@ -78,7 +80,7 @@ module Pinnacle
       # @return [Void]
       def self.validate_raw(obj:)
         obj.errors.is_a?(Array) != false || raise("Passed value for field obj.errors is not the expected type, validation failed.")
-        obj.id.is_a?(Integer) != false || raise("Passed value for field obj.id is not the expected type, validation failed.")
+        obj.id.is_a?(String) != false || raise("Passed value for field obj.id is not the expected type, validation failed.")
         obj.status.is_a?(Pinnacle::Types::ProfileStatusEnum) != false || raise("Passed value for field obj.status is not the expected type, validation failed.")
       end
     end

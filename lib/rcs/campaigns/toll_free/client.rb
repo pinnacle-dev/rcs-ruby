@@ -29,7 +29,7 @@ module Pinnacle
       #
       # @param request [Hash] Request of type Pinnacle::Types::AutofillCampaignParams, as a Hash
       #   * :additional_info (String)
-      #   * :campaign_id (Integer)
+      #   * :campaign_id (String)
       # @param request_options [Pinnacle::RequestOptions]
       # @return [Pinnacle::Campaigns::TollFree::Types::TollFreeAutofillResponse]
       # @example
@@ -38,7 +38,7 @@ module Pinnacle
       #    environment: Pinnacle::Environment::DEFAULT,
       #    api_key: "YOUR_API_KEY"
       #  )
-      #  api.campaigns.toll_free.autofill(request: { additional_info: "Please autofill missing DLC campaign fields using my brand profile", campaign_id: 161 })
+      #  api.campaigns.toll_free.autofill(request: { additional_info: "Please autofill missing campaign fields using my brand profile", campaign_id: "dlc_1234567890" })
       def autofill(request:, request_options: nil)
         response = @request_client.conn.post do |req|
           req.options.timeout = request_options.timeout_in_seconds unless request_options&.timeout_in_seconds.nil?
@@ -59,7 +59,7 @@ module Pinnacle
 
       # Retrieve Toll-Free campaign.
       #
-      # @param campaign_id [Integer] Unique identifier of toll-free campaign.
+      # @param campaign_id [String] Unique identifier of toll-free campaign. Must begin with the prefix `tf_`.
       # @param request_options [Pinnacle::RequestOptions]
       # @return [Pinnacle::Types::TollFreeCampaignWithExtendedBrandAndStatus]
       # @example
@@ -68,7 +68,7 @@ module Pinnacle
       #    environment: Pinnacle::Environment::DEFAULT,
       #    api_key: "YOUR_API_KEY"
       #  )
-      #  api.campaigns.toll_free.get(campaign_id: 161)
+      #  api.campaigns.toll_free.get(campaign_id: "tf_1234567890")
       def get(campaign_id:, request_options: nil)
         response = @request_client.conn.get do |req|
           req.options.timeout = request_options.timeout_in_seconds unless request_options&.timeout_in_seconds.nil?
@@ -91,7 +91,8 @@ module Pinnacle
 
       # Submit your toll-free campaign for approval and activation with carriers.
       #
-      # @param campaign_id [Integer] Unique identifier of the toll-free campaign to submit.
+      # @param campaign_id [String] Unique identifier of the toll-free campaign to submit. Must begin with the
+      #  prefix `tf_`.
       # @param request_options [Pinnacle::RequestOptions]
       # @return [Pinnacle::Types::CampaignSubmissionResult]
       # @example
@@ -100,7 +101,7 @@ module Pinnacle
       #    environment: Pinnacle::Environment::DEFAULT,
       #    api_key: "YOUR_API_KEY"
       #  )
-      #  api.campaigns.toll_free.submit(campaign_id: 161)
+      #  api.campaigns.toll_free.submit(campaign_id: "tf_1234567890")
       def submit(campaign_id:, request_options: nil)
         response = @request_client.conn.post do |req|
           req.options.timeout = request_options.timeout_in_seconds unless request_options&.timeout_in_seconds.nil?
@@ -124,8 +125,10 @@ module Pinnacle
       # Create a new toll-free campaign or updates an existing one.<br>
       #  Omit campaignId to create a campaign.
       #
-      # @param brand [Integer] Brand id.
-      # @param campaign_id [Integer] Unique identifier for the campaign.
+      # @param brand [String] Brand id. This identifier is a string that always begins with the prefix `b_`,
+      #  for example: `b_1234567890`.
+      # @param campaign_id [String] Unique identifier for the campaign. This identifier is a string that always
+      #  begins with the prefix `tf_`, for example: `tf_1234567890`.
       # @param monthly_volume [Pinnacle::Types::MessageVolumeEnum]
       # @param name [String] Display name of the campaign.
       # @param opt_in [Hash] Opt-in keyword settings.Request of type Pinnacle::Campaigns::TollFree::Types::UpsertTollFreeSchemaOptIn, as a Hash
@@ -145,12 +148,12 @@ module Pinnacle
       #    api_key: "YOUR_API_KEY"
       #  )
       #  api.campaigns.toll_free.upsert(
-      #    brand: 2,
-      #    campaign_id: 161,
+      #    brand: "b_1234567890",
+      #    campaign_id: "tf_1234567890",
       #    monthly_volume: ONE_000,
       #    name: "Pinnacle",
       #    opt_in: { method_: DIGITAL, url: "https://www.pinnacle.sh/", workflow_description: "Visit https://www.pinnacle.sh/" },
-      #    production_message_content: "Join Pinnacle's workshop tomorrow and send your first RCS!",
+      #    production_message_content: "Join the Pinnacle workshop tomorrow and send your first RCS!",
       #    use_case: { summary: "Alerts clients about any Pinnacle hosted workshops.", value: WORKSHOP_ALERTS }
       #  )
       def upsert(brand: nil, campaign_id: nil, monthly_volume: nil, name: nil, opt_in: nil,
@@ -186,7 +189,7 @@ module Pinnacle
       #
       # @param request [Hash] Request of type Pinnacle::Types::ValidateCampaignParams, as a Hash
       #   * :additional_info (String)
-      #   * :campaign_id (Integer)
+      #   * :campaign_id (String)
       # @param request_options [Pinnacle::RequestOptions]
       # @return [Pinnacle::Types::CampaignValidationResult]
       # @example
@@ -195,7 +198,7 @@ module Pinnacle
       #    environment: Pinnacle::Environment::DEFAULT,
       #    api_key: "YOUR_API_KEY"
       #  )
-      #  api.campaigns.toll_free.validate(request: { additional_info: "Please validate this DLC campaign for 10DLC compliance", campaign_id: 161 })
+      #  api.campaigns.toll_free.validate(request: { additional_info: "Please validate this DLC campaign for 10DLC compliance", campaign_id: "dlc_1234567890" })
       def validate(request:, request_options: nil)
         response = @request_client.conn.post do |req|
           req.options.timeout = request_options.timeout_in_seconds unless request_options&.timeout_in_seconds.nil?
@@ -230,7 +233,7 @@ module Pinnacle
       #
       # @param request [Hash] Request of type Pinnacle::Types::AutofillCampaignParams, as a Hash
       #   * :additional_info (String)
-      #   * :campaign_id (Integer)
+      #   * :campaign_id (String)
       # @param request_options [Pinnacle::RequestOptions]
       # @return [Pinnacle::Campaigns::TollFree::Types::TollFreeAutofillResponse]
       # @example
@@ -239,7 +242,7 @@ module Pinnacle
       #    environment: Pinnacle::Environment::DEFAULT,
       #    api_key: "YOUR_API_KEY"
       #  )
-      #  api.campaigns.toll_free.autofill(request: { additional_info: "Please autofill missing DLC campaign fields using my brand profile", campaign_id: 161 })
+      #  api.campaigns.toll_free.autofill(request: { additional_info: "Please autofill missing campaign fields using my brand profile", campaign_id: "dlc_1234567890" })
       def autofill(request:, request_options: nil)
         Async do
           response = @request_client.conn.post do |req|
@@ -262,7 +265,7 @@ module Pinnacle
 
       # Retrieve Toll-Free campaign.
       #
-      # @param campaign_id [Integer] Unique identifier of toll-free campaign.
+      # @param campaign_id [String] Unique identifier of toll-free campaign. Must begin with the prefix `tf_`.
       # @param request_options [Pinnacle::RequestOptions]
       # @return [Pinnacle::Types::TollFreeCampaignWithExtendedBrandAndStatus]
       # @example
@@ -271,7 +274,7 @@ module Pinnacle
       #    environment: Pinnacle::Environment::DEFAULT,
       #    api_key: "YOUR_API_KEY"
       #  )
-      #  api.campaigns.toll_free.get(campaign_id: 161)
+      #  api.campaigns.toll_free.get(campaign_id: "tf_1234567890")
       def get(campaign_id:, request_options: nil)
         Async do
           response = @request_client.conn.get do |req|
@@ -296,7 +299,8 @@ module Pinnacle
 
       # Submit your toll-free campaign for approval and activation with carriers.
       #
-      # @param campaign_id [Integer] Unique identifier of the toll-free campaign to submit.
+      # @param campaign_id [String] Unique identifier of the toll-free campaign to submit. Must begin with the
+      #  prefix `tf_`.
       # @param request_options [Pinnacle::RequestOptions]
       # @return [Pinnacle::Types::CampaignSubmissionResult]
       # @example
@@ -305,7 +309,7 @@ module Pinnacle
       #    environment: Pinnacle::Environment::DEFAULT,
       #    api_key: "YOUR_API_KEY"
       #  )
-      #  api.campaigns.toll_free.submit(campaign_id: 161)
+      #  api.campaigns.toll_free.submit(campaign_id: "tf_1234567890")
       def submit(campaign_id:, request_options: nil)
         Async do
           response = @request_client.conn.post do |req|
@@ -331,8 +335,10 @@ module Pinnacle
       # Create a new toll-free campaign or updates an existing one.<br>
       #  Omit campaignId to create a campaign.
       #
-      # @param brand [Integer] Brand id.
-      # @param campaign_id [Integer] Unique identifier for the campaign.
+      # @param brand [String] Brand id. This identifier is a string that always begins with the prefix `b_`,
+      #  for example: `b_1234567890`.
+      # @param campaign_id [String] Unique identifier for the campaign. This identifier is a string that always
+      #  begins with the prefix `tf_`, for example: `tf_1234567890`.
       # @param monthly_volume [Pinnacle::Types::MessageVolumeEnum]
       # @param name [String] Display name of the campaign.
       # @param opt_in [Hash] Opt-in keyword settings.Request of type Pinnacle::Campaigns::TollFree::Types::UpsertTollFreeSchemaOptIn, as a Hash
@@ -352,12 +358,12 @@ module Pinnacle
       #    api_key: "YOUR_API_KEY"
       #  )
       #  api.campaigns.toll_free.upsert(
-      #    brand: 2,
-      #    campaign_id: 161,
+      #    brand: "b_1234567890",
+      #    campaign_id: "tf_1234567890",
       #    monthly_volume: ONE_000,
       #    name: "Pinnacle",
       #    opt_in: { method_: DIGITAL, url: "https://www.pinnacle.sh/", workflow_description: "Visit https://www.pinnacle.sh/" },
-      #    production_message_content: "Join Pinnacle's workshop tomorrow and send your first RCS!",
+      #    production_message_content: "Join the Pinnacle workshop tomorrow and send your first RCS!",
       #    use_case: { summary: "Alerts clients about any Pinnacle hosted workshops.", value: WORKSHOP_ALERTS }
       #  )
       def upsert(brand: nil, campaign_id: nil, monthly_volume: nil, name: nil, opt_in: nil,
@@ -395,7 +401,7 @@ module Pinnacle
       #
       # @param request [Hash] Request of type Pinnacle::Types::ValidateCampaignParams, as a Hash
       #   * :additional_info (String)
-      #   * :campaign_id (Integer)
+      #   * :campaign_id (String)
       # @param request_options [Pinnacle::RequestOptions]
       # @return [Pinnacle::Types::CampaignValidationResult]
       # @example
@@ -404,7 +410,7 @@ module Pinnacle
       #    environment: Pinnacle::Environment::DEFAULT,
       #    api_key: "YOUR_API_KEY"
       #  )
-      #  api.campaigns.toll_free.validate(request: { additional_info: "Please validate this DLC campaign for 10DLC compliance", campaign_id: 161 })
+      #  api.campaigns.toll_free.validate(request: { additional_info: "Please validate this DLC campaign for 10DLC compliance", campaign_id: "dlc_1234567890" })
       def validate(request:, request_options: nil)
         Async do
           response = @request_client.conn.post do |req|

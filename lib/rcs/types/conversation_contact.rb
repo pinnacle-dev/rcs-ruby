@@ -7,7 +7,8 @@ module Pinnacle
   module Types
     # Contact information for the recipient in a conversation.
     class ConversationContact
-      # @return [Integer] Unique identifier for the contact.
+      # @return [String] Unique ID of the contact. This identifier is a string that always begins with
+      #  the prefix `co_`, for example: `co_1234567890`.
       attr_reader :id
       # @return [String] The contact's phone number in E.164 format.
       attr_reader :phone_number
@@ -19,7 +20,8 @@ module Pinnacle
 
       OMIT = Object.new
 
-      # @param id [Integer] Unique identifier for the contact.
+      # @param id [String] Unique ID of the contact. This identifier is a string that always begins with
+      #  the prefix `co_`, for example: `co_1234567890`.
       # @param phone_number [String] The contact's phone number in E.164 format.
       # @param additional_properties [OpenStruct] Additional properties unmapped to the current class definition
       # @return [Pinnacle::Types::ConversationContact]
@@ -60,7 +62,7 @@ module Pinnacle
       # @param obj [Object]
       # @return [Void]
       def self.validate_raw(obj:)
-        obj.id.is_a?(Integer) != false || raise("Passed value for field obj.id is not the expected type, validation failed.")
+        obj.id.is_a?(String) != false || raise("Passed value for field obj.id is not the expected type, validation failed.")
         obj.phone_number.is_a?(String) != false || raise("Passed value for field obj.phone_number is not the expected type, validation failed.")
       end
     end

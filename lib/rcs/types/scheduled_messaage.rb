@@ -7,7 +7,8 @@ require "json"
 module Pinnacle
   module Types
     class ScheduledMessaage
-      # @return [Integer] Unique identifier for the scheduled send.
+      # @return [String] Unique identifier for the scheduled send. This identifier is a string that
+      #  always begins with the prefix `msg_sched_`, for example: `msg_sched_1234567890`.
       attr_reader :schedule_id
       # @return [Pinnacle::Types::ScheduledSendResponseConfig] Configuration for the scheduled message.
       attr_reader :config
@@ -19,7 +20,8 @@ module Pinnacle
 
       OMIT = Object.new
 
-      # @param schedule_id [Integer] Unique identifier for the scheduled send.
+      # @param schedule_id [String] Unique identifier for the scheduled send. This identifier is a string that
+      #  always begins with the prefix `msg_sched_`, for example: `msg_sched_1234567890`.
       # @param config [Pinnacle::Types::ScheduledSendResponseConfig] Configuration for the scheduled message.
       # @param additional_properties [OpenStruct] Additional properties unmapped to the current class definition
       # @return [Pinnacle::Types::ScheduledMessaage]
@@ -65,7 +67,7 @@ module Pinnacle
       # @param obj [Object]
       # @return [Void]
       def self.validate_raw(obj:)
-        obj.schedule_id.is_a?(Integer) != false || raise("Passed value for field obj.schedule_id is not the expected type, validation failed.")
+        obj.schedule_id.is_a?(String) != false || raise("Passed value for field obj.schedule_id is not the expected type, validation failed.")
         Pinnacle::Types::ScheduledSendResponseConfig.validate_raw(obj: obj.config)
       end
     end

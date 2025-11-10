@@ -8,8 +8,10 @@ module Pinnacle
     # Conversation metadata containing the conversation ID, sender, and recipient
     #  information.
     class MessageEventConversation
-      # @return [Integer] Unique identifier for the conversation. To get more conversation details, use
-      #  the [POST /conversations/get](/api-reference/conversations/get) endpoint.
+      # @return [String] Unique identifier for the conversation. This identifier is a string that always
+      #  begins with the prefix `conv_`, for example: `conv_1234567890`. <br><br>
+      #  To get more conversation details, use the [POST
+      #  /conversations/get](/api-reference/conversations/get) endpoint.
       attr_reader :id
       # @return [String] Sender's phone number or agent ID.
       attr_reader :from
@@ -23,8 +25,10 @@ module Pinnacle
 
       OMIT = Object.new
 
-      # @param id [Integer] Unique identifier for the conversation. To get more conversation details, use
-      #  the [POST /conversations/get](/api-reference/conversations/get) endpoint.
+      # @param id [String] Unique identifier for the conversation. This identifier is a string that always
+      #  begins with the prefix `conv_`, for example: `conv_1234567890`. <br><br>
+      #  To get more conversation details, use the [POST
+      #  /conversations/get](/api-reference/conversations/get) endpoint.
       # @param from [String] Sender's phone number or agent ID.
       # @param to [String] Recipient's phone number.
       # @param additional_properties [OpenStruct] Additional properties unmapped to the current class definition
@@ -69,7 +73,7 @@ module Pinnacle
       # @param obj [Object]
       # @return [Void]
       def self.validate_raw(obj:)
-        obj.id.is_a?(Integer) != false || raise("Passed value for field obj.id is not the expected type, validation failed.")
+        obj.id.is_a?(String) != false || raise("Passed value for field obj.id is not the expected type, validation failed.")
         obj.from.is_a?(String) != false || raise("Passed value for field obj.from is not the expected type, validation failed.")
         obj.to.is_a?(String) != false || raise("Passed value for field obj.to is not the expected type, validation failed.")
       end

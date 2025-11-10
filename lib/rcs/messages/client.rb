@@ -19,7 +19,8 @@ module Pinnacle
 
     # Retrieve a previously sent message.
     #
-    # @param id [Integer] Unique identifier of the message.
+    # @param id [String] Unique identifier of the message. This identifier is a string that always begins
+    #  with the prefix `msg_`, for example: `msg_1234567890`.
     # @param request_options [Pinnacle::RequestOptions]
     # @return [Pinnacle::Types::Message]
     # @example
@@ -28,7 +29,7 @@ module Pinnacle
     #    environment: Pinnacle::Environment::DEFAULT,
     #    api_key: "YOUR_API_KEY"
     #  )
-    #  api.messages.get(id: 1240)
+    #  api.messages.get(id: "msg_1234567890")
     def get(id:, request_options: nil)
       response = @request_client.conn.get do |req|
         req.options.timeout = request_options.timeout_in_seconds unless request_options&.timeout_in_seconds.nil?
@@ -51,7 +52,8 @@ module Pinnacle
 
     # Add or remove an emoji reaction to a previously sent message.
     #
-    # @param message_id [Integer] Unique identifier of the message.
+    # @param message_id [String] Unique identifier of the message. This identifier is a string that always begins
+    #  with the prefix `msg_`, for example: `msg_1234567890`.
     # @param options [Hash] Request of type Pinnacle::Messages::Types::ReactMessageOptions, as a Hash
     #   * :force (Boolean)
     # @param reaction [String] Unicode emoji to add. <br>
@@ -65,7 +67,7 @@ module Pinnacle
     #    api_key: "YOUR_API_KEY"
     #  )
     #  api.messages.react(
-    #    message_id: 1410,
+    #    message_id: "msg_1234567890",
     #    options: { force: true },
     #    reaction: "👍"
     #  )
@@ -105,7 +107,8 @@ module Pinnacle
 
     # Retrieve a previously sent message.
     #
-    # @param id [Integer] Unique identifier of the message.
+    # @param id [String] Unique identifier of the message. This identifier is a string that always begins
+    #  with the prefix `msg_`, for example: `msg_1234567890`.
     # @param request_options [Pinnacle::RequestOptions]
     # @return [Pinnacle::Types::Message]
     # @example
@@ -114,7 +117,7 @@ module Pinnacle
     #    environment: Pinnacle::Environment::DEFAULT,
     #    api_key: "YOUR_API_KEY"
     #  )
-    #  api.messages.get(id: 1240)
+    #  api.messages.get(id: "msg_1234567890")
     def get(id:, request_options: nil)
       Async do
         response = @request_client.conn.get do |req|
@@ -139,7 +142,8 @@ module Pinnacle
 
     # Add or remove an emoji reaction to a previously sent message.
     #
-    # @param message_id [Integer] Unique identifier of the message.
+    # @param message_id [String] Unique identifier of the message. This identifier is a string that always begins
+    #  with the prefix `msg_`, for example: `msg_1234567890`.
     # @param options [Hash] Request of type Pinnacle::Messages::Types::ReactMessageOptions, as a Hash
     #   * :force (Boolean)
     # @param reaction [String] Unicode emoji to add. <br>
@@ -153,7 +157,7 @@ module Pinnacle
     #    api_key: "YOUR_API_KEY"
     #  )
     #  api.messages.react(
-    #    message_id: 1410,
+    #    message_id: "msg_1234567890",
     #    options: { force: true },
     #    reaction: "👍"
     #  )

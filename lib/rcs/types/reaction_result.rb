@@ -6,9 +6,11 @@ require "json"
 module Pinnacle
   module Types
     class ReactionResult
-      # @return [Integer] ID of the message.
+      # @return [String] Unique identifier of the message. This identifier is a string that always begins
+      #  with the prefix `msg_`, for example: `msg_1234567890`.
       attr_reader :message_id
-      # @return [Integer] Unique identifier for the reaction.
+      # @return [String] Unique identifier of the message with the reaction. This identifier is a string
+      #  that always begins with the prefix `msg_`, for example: `msg_1234567890`.
       attr_reader :reaction_message_id
       # @return [OpenStruct] Additional properties unmapped to the current class definition
       attr_reader :additional_properties
@@ -18,8 +20,10 @@ module Pinnacle
 
       OMIT = Object.new
 
-      # @param message_id [Integer] ID of the message.
-      # @param reaction_message_id [Integer] Unique identifier for the reaction.
+      # @param message_id [String] Unique identifier of the message. This identifier is a string that always begins
+      #  with the prefix `msg_`, for example: `msg_1234567890`.
+      # @param reaction_message_id [String] Unique identifier of the message with the reaction. This identifier is a string
+      #  that always begins with the prefix `msg_`, for example: `msg_1234567890`.
       # @param additional_properties [OpenStruct] Additional properties unmapped to the current class definition
       # @return [Pinnacle::Types::ReactionResult]
       def initialize(message_id:, reaction_message_id:, additional_properties: nil)
@@ -59,8 +63,8 @@ module Pinnacle
       # @param obj [Object]
       # @return [Void]
       def self.validate_raw(obj:)
-        obj.message_id.is_a?(Integer) != false || raise("Passed value for field obj.message_id is not the expected type, validation failed.")
-        obj.reaction_message_id.is_a?(Integer) != false || raise("Passed value for field obj.reaction_message_id is not the expected type, validation failed.")
+        obj.message_id.is_a?(String) != false || raise("Passed value for field obj.message_id is not the expected type, validation failed.")
+        obj.reaction_message_id.is_a?(String) != false || raise("Passed value for field obj.reaction_message_id is not the expected type, validation failed.")
       end
     end
   end

@@ -20,15 +20,21 @@ module Pinnacle
       attr_reader :vetting_history
       # @return [String] ISO 8601 formatted timestamp of when this brand was added to our system.
       attr_reader :created_at
-      # @return [Integer] The brand's ID.
+      # @return [String] The brand's ID. This identifier is a string that always begins with the prefix
+      #  `b_`, for example: `b_1234567890`.
       attr_reader :id
       # @return [Boolean] Indicates if this brand is archived.
       attr_reader :is_archived
-      # @return [Pinnacle::Types::BrandStatusEnum] Current review status of the campaign. <br>
+      # @return [Pinnacle::Types::BrandStatusEnum] Current review status of the brand. <br>
       #  `INCOMPLETE`: Not submitted. <br>
       #  `IN REVIEW`: Being reviewed by carriers. <br>
       #  `VERIFIED`: Approved and ready to send messages. <br>
-      #  `FAILED`: Issues and errors related to the campaign's details.
+      #  `FAILED`: Issues and errors related to the campaign's details. <br>
+      #  `VETTED`: Has undergone additional vetting by a third party service post the
+      #  brand being verified. Your brand will be assigned a trust score, with higher
+      #  trust scores having higher message volumes. <br>
+      #  `UNVERIFIED`: Brand details have been updated, and the brand will need to
+      #  undergo re-verification.
       attr_reader :status
       # @return [String] ISO 8601 formatted timestamp of when this brand was last updated.
       attr_reader :updated_at
@@ -64,13 +70,19 @@ module Pinnacle
       # @param tcr_feedback [Array<Pinnacle::Types::VettingFeedback>] Feedback from The Campaign Registry if TCR vetting was performed.
       # @param vetting_history [Array<Pinnacle::Types::VettingHistory>] History of all external vetting attempts for this brand.
       # @param created_at [String] ISO 8601 formatted timestamp of when this brand was added to our system.
-      # @param id [Integer] The brand's ID.
+      # @param id [String] The brand's ID. This identifier is a string that always begins with the prefix
+      #  `b_`, for example: `b_1234567890`.
       # @param is_archived [Boolean] Indicates if this brand is archived.
-      # @param status [Pinnacle::Types::BrandStatusEnum] Current review status of the campaign. <br>
+      # @param status [Pinnacle::Types::BrandStatusEnum] Current review status of the brand. <br>
       #  `INCOMPLETE`: Not submitted. <br>
       #  `IN REVIEW`: Being reviewed by carriers. <br>
       #  `VERIFIED`: Approved and ready to send messages. <br>
-      #  `FAILED`: Issues and errors related to the campaign's details.
+      #  `FAILED`: Issues and errors related to the campaign's details. <br>
+      #  `VETTED`: Has undergone additional vetting by a third party service post the
+      #  brand being verified. Your brand will be assigned a trust score, with higher
+      #  trust scores having higher message volumes. <br>
+      #  `UNVERIFIED`: Brand details have been updated, and the brand will need to
+      #  undergo re-verification.
       # @param updated_at [String] ISO 8601 formatted timestamp of when this brand was last updated.
       # @param address [String] Primary brand address where this brand is located.
       # @param contact [Pinnacle::Types::OptionalContacts]
@@ -206,7 +218,7 @@ module Pinnacle
         obj.tcr_feedback&.is_a?(Array) != false || raise("Passed value for field obj.tcr_feedback is not the expected type, validation failed.")
         obj.vetting_history.is_a?(Array) != false || raise("Passed value for field obj.vetting_history is not the expected type, validation failed.")
         obj.created_at.is_a?(String) != false || raise("Passed value for field obj.created_at is not the expected type, validation failed.")
-        obj.id.is_a?(Integer) != false || raise("Passed value for field obj.id is not the expected type, validation failed.")
+        obj.id.is_a?(String) != false || raise("Passed value for field obj.id is not the expected type, validation failed.")
         obj.is_archived.is_a?(Boolean) != false || raise("Passed value for field obj.is_archived is not the expected type, validation failed.")
         obj.status.is_a?(Pinnacle::Types::BrandStatusEnum) != false || raise("Passed value for field obj.status is not the expected type, validation failed.")
         obj.updated_at.is_a?(String) != false || raise("Passed value for field obj.updated_at is not the expected type, validation failed.")

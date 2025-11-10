@@ -8,7 +8,9 @@ module Pinnacle
   module Types
     # Campaign that the phone is now detached from.
     class PhoneNumberCampaignDetachPhoneNumbersItemCampaign
-      # @return [Integer] Id of the campaign.
+      # @return [String] Id of the campaign. For `TOLL_FREE` campaigns, it will begin with the prefix
+      #  `tf_`, for example: `tf_1234567890`. For `10DLC` campaigns, it will begin with
+      #  the prefix `dlc_`, for example: `dlc_1234567890`.
       attr_reader :id
       # @return [String] Campaign's name.
       attr_reader :name
@@ -22,7 +24,9 @@ module Pinnacle
 
       OMIT = Object.new
 
-      # @param id [Integer] Id of the campaign.
+      # @param id [String] Id of the campaign. For `TOLL_FREE` campaigns, it will begin with the prefix
+      #  `tf_`, for example: `tf_1234567890`. For `10DLC` campaigns, it will begin with
+      #  the prefix `dlc_`, for example: `dlc_1234567890`.
       # @param name [String] Campaign's name.
       # @param type [Pinnacle::Types::MessagingProfileEnum]
       # @param additional_properties [OpenStruct] Additional properties unmapped to the current class definition
@@ -69,7 +73,7 @@ module Pinnacle
       # @param obj [Object]
       # @return [Void]
       def self.validate_raw(obj:)
-        obj.id.is_a?(Integer) != false || raise("Passed value for field obj.id is not the expected type, validation failed.")
+        obj.id.is_a?(String) != false || raise("Passed value for field obj.id is not the expected type, validation failed.")
         obj.name.is_a?(String) != false || raise("Passed value for field obj.name is not the expected type, validation failed.")
         obj.type.is_a?(Pinnacle::Types::MessagingProfileEnum) != false || raise("Passed value for field obj.type is not the expected type, validation failed.")
       end

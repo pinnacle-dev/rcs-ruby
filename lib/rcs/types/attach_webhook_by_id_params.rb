@@ -8,8 +8,8 @@ module Pinnacle
   module Types
     # Attach a webhook you’ve already created in your account to this phone number.
     class AttachWebhookByIdParams
-      # @return [Integer] The unique ID of the webhook you want to attach.<br>
-      #  Make sure this webhook is active and able to receive event notifications.
+      # @return [String] The unique ID of the webhook you want to attach. This identifier is a string
+      #  that always begins with the prefix `wh_`, for example: `wh_1234567890`.
       attr_reader :webhook_id
       # @return [Pinnacle::Types::WebhookEventEnum] Select the event type that will trigger this webhook. <br>
       #  Set to null if you want to listen to all event types for this phone number. <br>
@@ -23,8 +23,8 @@ module Pinnacle
 
       OMIT = Object.new
 
-      # @param webhook_id [Integer] The unique ID of the webhook you want to attach.<br>
-      #  Make sure this webhook is active and able to receive event notifications.
+      # @param webhook_id [String] The unique ID of the webhook you want to attach. This identifier is a string
+      #  that always begins with the prefix `wh_`, for example: `wh_1234567890`.
       # @param event [Pinnacle::Types::WebhookEventEnum] Select the event type that will trigger this webhook. <br>
       #  Set to null if you want to listen to all event types for this phone number. <br>
       #  Defaults to null.
@@ -69,7 +69,7 @@ module Pinnacle
       # @param obj [Object]
       # @return [Void]
       def self.validate_raw(obj:)
-        obj.webhook_id.is_a?(Integer) != false || raise("Passed value for field obj.webhook_id is not the expected type, validation failed.")
+        obj.webhook_id.is_a?(String) != false || raise("Passed value for field obj.webhook_id is not the expected type, validation failed.")
         obj.event&.is_a?(Pinnacle::Types::WebhookEventEnum) != false || raise("Passed value for field obj.event is not the expected type, validation failed.")
       end
     end

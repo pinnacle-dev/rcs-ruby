@@ -18,11 +18,18 @@ module Pinnacle
         @request_client = request_client
       end
 
-      # Link a phone number to a specific campaign.
+      # Link a phone number to a specific campaign. Phone numbers must be linked to a
+      #  campaign to send messages.
       #
       # @param phones [Array<String>] List of phone number (E.164 format).
       # @param campaign_type [Pinnacle::Types::MessagingProfileEnum]
-      # @param campaign_id [Integer] Campaign's identifier.
+      # @param campaign_id [String] Unique identifier for the campaign. <br>
+      #  - **TOLL_FREE** campaigns:
+      #  - Must begin with the prefix `tf_`
+      #  - Example: `tf_1234567890`
+      #  - **10DLC** campaigns:
+      #  - Must begin with the prefix `dlc_`
+      #  - Example: `dlc_1234567890`
       # @param request_options [Pinnacle::RequestOptions]
       # @return [Pinnacle::Types::AttachedPhoneNumberResult]
       # @example
@@ -34,7 +41,7 @@ module Pinnacle
       #  api.phone_numbers.campaign.attach(
       #    phones: ["+14155550123", "+14155559876", "+14155550111"],
       #    campaign_type: TOLL_FREE,
-      #    campaign_id: 101
+      #    campaign_id: "tf_1234567890"
       #  )
       def attach(phones:, campaign_type:, campaign_id:, request_options: nil)
         response = @request_client.conn.post do |req|
@@ -100,11 +107,18 @@ module Pinnacle
         @request_client = request_client
       end
 
-      # Link a phone number to a specific campaign.
+      # Link a phone number to a specific campaign. Phone numbers must be linked to a
+      #  campaign to send messages.
       #
       # @param phones [Array<String>] List of phone number (E.164 format).
       # @param campaign_type [Pinnacle::Types::MessagingProfileEnum]
-      # @param campaign_id [Integer] Campaign's identifier.
+      # @param campaign_id [String] Unique identifier for the campaign. <br>
+      #  - **TOLL_FREE** campaigns:
+      #  - Must begin with the prefix `tf_`
+      #  - Example: `tf_1234567890`
+      #  - **10DLC** campaigns:
+      #  - Must begin with the prefix `dlc_`
+      #  - Example: `dlc_1234567890`
       # @param request_options [Pinnacle::RequestOptions]
       # @return [Pinnacle::Types::AttachedPhoneNumberResult]
       # @example
@@ -116,7 +130,7 @@ module Pinnacle
       #  api.phone_numbers.campaign.attach(
       #    phones: ["+14155550123", "+14155559876", "+14155550111"],
       #    campaign_type: TOLL_FREE,
-      #    campaign_id: 101
+      #    campaign_id: "tf_1234567890"
       #  )
       def attach(phones:, campaign_type:, campaign_id:, request_options: nil)
         Async do

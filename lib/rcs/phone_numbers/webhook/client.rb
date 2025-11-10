@@ -24,7 +24,7 @@ module Pinnacle
       # @param phone [String] The phone number you want to attach the webhook to in E.164 format. Make sure it
       #  is url encoded (i.e. replace the leading + with %2B). <br>
       #  Must be a phone number that you own and have already [purchased](./buy) through
-      #  the API.
+      #  the API. A phone number can have multiple webhooks attached to it.
       # @param request [Pinnacle::Types::AttachWebhookByIdParams, Pinnacle::Types::CreateAndAttachWebhookByUrlParams]
       # @param request_options [Pinnacle::RequestOptions]
       # @return [Pinnacle::Types::ConfiguredWebhook]
@@ -34,7 +34,7 @@ module Pinnacle
       #    environment: Pinnacle::Environment::DEFAULT,
       #    api_key: "YOUR_API_KEY"
       #  )
-      #  api.phone_numbers.webhook.attach(phone: "%2B14155551234", request: { webhook_id: 1 })
+      #  api.phone_numbers.webhook.attach(phone: "%2B14155551234", request: { webhook_id: "wh_1234567890", event: MESSAGE_STATUS })
       def attach(phone:, request:, request_options: nil)
         response = @request_client.conn.post do |req|
           req.options.timeout = request_options.timeout_in_seconds unless request_options&.timeout_in_seconds.nil?
@@ -62,10 +62,11 @@ module Pinnacle
       #  is url encoded (i.e. replace the leading + with %2B). <br>
       #  Must be a phone number that you own and currently has the specified webhook
       #  attached.
-      # @param webhook_id [Integer] The unique identifier of the webhook you want to detach from the phone number.
+      # @param webhook_id [String] The unique identifier of the webhook you want to detach from the phone number.
       #  <br>
       #  This must be a valid webhook ID that is currently attached to the specified
-      #  phone number.
+      #  phone number. This identifier is a string that always begins with the prefix
+      #  `wh_`, for example: `wh_1234567890`.
       # @param request_options [Pinnacle::RequestOptions]
       # @return [Pinnacle::Types::DetachedWebhookInfo]
       # @example
@@ -74,7 +75,7 @@ module Pinnacle
       #    environment: Pinnacle::Environment::DEFAULT,
       #    api_key: "YOUR_API_KEY"
       #  )
-      #  api.phone_numbers.webhook.detach(phone: "+14155551234", webhook_id: 123)
+      #  api.phone_numbers.webhook.detach(phone: "+14155551234", webhook_id: "wh_1234567890")
       def detach(phone:, webhook_id:, request_options: nil)
         response = @request_client.conn.delete do |req|
           req.options.timeout = request_options.timeout_in_seconds unless request_options&.timeout_in_seconds.nil?
@@ -112,7 +113,7 @@ module Pinnacle
       # @param phone [String] The phone number you want to attach the webhook to in E.164 format. Make sure it
       #  is url encoded (i.e. replace the leading + with %2B). <br>
       #  Must be a phone number that you own and have already [purchased](./buy) through
-      #  the API.
+      #  the API. A phone number can have multiple webhooks attached to it.
       # @param request [Pinnacle::Types::AttachWebhookByIdParams, Pinnacle::Types::CreateAndAttachWebhookByUrlParams]
       # @param request_options [Pinnacle::RequestOptions]
       # @return [Pinnacle::Types::ConfiguredWebhook]
@@ -122,7 +123,7 @@ module Pinnacle
       #    environment: Pinnacle::Environment::DEFAULT,
       #    api_key: "YOUR_API_KEY"
       #  )
-      #  api.phone_numbers.webhook.attach(phone: "%2B14155551234", request: { webhook_id: 1 })
+      #  api.phone_numbers.webhook.attach(phone: "%2B14155551234", request: { webhook_id: "wh_1234567890", event: MESSAGE_STATUS })
       def attach(phone:, request:, request_options: nil)
         Async do
           response = @request_client.conn.post do |req|
@@ -152,10 +153,11 @@ module Pinnacle
       #  is url encoded (i.e. replace the leading + with %2B). <br>
       #  Must be a phone number that you own and currently has the specified webhook
       #  attached.
-      # @param webhook_id [Integer] The unique identifier of the webhook you want to detach from the phone number.
+      # @param webhook_id [String] The unique identifier of the webhook you want to detach from the phone number.
       #  <br>
       #  This must be a valid webhook ID that is currently attached to the specified
-      #  phone number.
+      #  phone number. This identifier is a string that always begins with the prefix
+      #  `wh_`, for example: `wh_1234567890`.
       # @param request_options [Pinnacle::RequestOptions]
       # @return [Pinnacle::Types::DetachedWebhookInfo]
       # @example
@@ -164,7 +166,7 @@ module Pinnacle
       #    environment: Pinnacle::Environment::DEFAULT,
       #    api_key: "YOUR_API_KEY"
       #  )
-      #  api.phone_numbers.webhook.detach(phone: "+14155551234", webhook_id: 123)
+      #  api.phone_numbers.webhook.detach(phone: "+14155551234", webhook_id: "wh_1234567890")
       def detach(phone:, webhook_id:, request_options: nil)
         Async do
           response = @request_client.conn.delete do |req|

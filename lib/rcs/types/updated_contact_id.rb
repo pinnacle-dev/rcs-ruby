@@ -6,7 +6,8 @@ require "json"
 module Pinnacle
   module Types
     class UpdatedContactId
-      # @return [Integer] Unique ID of the updated contact.
+      # @return [String] Unique ID of the updated contact. This identifier is a string that always begins
+      #  with the prefix `co_`, for example: `co_1234567890`.
       attr_reader :id
       # @return [OpenStruct] Additional properties unmapped to the current class definition
       attr_reader :additional_properties
@@ -16,7 +17,8 @@ module Pinnacle
 
       OMIT = Object.new
 
-      # @param id [Integer] Unique ID of the updated contact.
+      # @param id [String] Unique ID of the updated contact. This identifier is a string that always begins
+      #  with the prefix `co_`, for example: `co_1234567890`.
       # @param additional_properties [OpenStruct] Additional properties unmapped to the current class definition
       # @return [Pinnacle::Types::UpdatedContactId]
       def initialize(id:, additional_properties: nil)
@@ -50,7 +52,7 @@ module Pinnacle
       # @param obj [Object]
       # @return [Void]
       def self.validate_raw(obj:)
-        obj.id.is_a?(Integer) != false || raise("Passed value for field obj.id is not the expected type, validation failed.")
+        obj.id.is_a?(String) != false || raise("Passed value for field obj.id is not the expected type, validation failed.")
       end
     end
   end

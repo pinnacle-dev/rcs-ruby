@@ -31,7 +31,7 @@ module Pinnacle
       #
       # @param request [Hash] Request of type Pinnacle::Types::AutofillCampaignParams, as a Hash
       #   * :additional_info (String)
-      #   * :campaign_id (Integer)
+      #   * :campaign_id (String)
       # @param request_options [Pinnacle::RequestOptions]
       # @return [Pinnacle::Campaigns::Rcs::Types::RcsAutofillResponse]
       # @example
@@ -40,7 +40,7 @@ module Pinnacle
       #    environment: Pinnacle::Environment::DEFAULT,
       #    api_key: "YOUR_API_KEY"
       #  )
-      #  api.campaigns.rcs.autofill(request: { additional_info: "Please autofill missing DLC campaign fields using my brand profile", campaign_id: 161 })
+      #  api.campaigns.rcs.autofill(request: { additional_info: "Please autofill missing campaign fields using my brand profile", campaign_id: "dlc_1234567890" })
       def autofill(request:, request_options: nil)
         response = @request_client.conn.post do |req|
           req.options.timeout = request_options.timeout_in_seconds unless request_options&.timeout_in_seconds.nil?
@@ -61,7 +61,7 @@ module Pinnacle
 
       # Retrieve RCS campaign.
       #
-      # @param campaign_id [Integer] Unique identifier of the RCS campaign.
+      # @param campaign_id [String] Unique identifier of the RCS campaign. Must begin with the prefix `rcs_`.
       # @param request_options [Pinnacle::RequestOptions]
       # @return [Pinnacle::Types::ExtendedRcsCampaign]
       # @example
@@ -70,7 +70,7 @@ module Pinnacle
       #    environment: Pinnacle::Environment::DEFAULT,
       #    api_key: "YOUR_API_KEY"
       #  )
-      #  api.campaigns.rcs.get(campaign_id: 161)
+      #  api.campaigns.rcs.get(campaign_id: "rcs_1234567890")
       def get(campaign_id:, request_options: nil)
         response = @request_client.conn.get do |req|
           req.options.timeout = request_options.timeout_in_seconds unless request_options&.timeout_in_seconds.nil?
@@ -93,7 +93,8 @@ module Pinnacle
 
       # Submit your RCS campaign for approval and activation with carriers.
       #
-      # @param campaign_id [Integer] Unique identifier of the RCS campaign to retrieve.
+      # @param campaign_id [String] Unique identifier of the RCS campaign to retrieve. Must begin with the prefix
+      #  `rcs_`.
       # @param request_options [Pinnacle::RequestOptions]
       # @return [Pinnacle::Types::CampaignSubmissionResult]
       # @example
@@ -102,7 +103,7 @@ module Pinnacle
       #    environment: Pinnacle::Environment::DEFAULT,
       #    api_key: "YOUR_API_KEY"
       #  )
-      #  api.campaigns.rcs.submit(campaign_id: 161)
+      #  api.campaigns.rcs.submit(campaign_id: "rcs_1234567890")
       def submit(campaign_id:, request_options: nil)
         response = @request_client.conn.post do |req|
           req.options.timeout = request_options.timeout_in_seconds unless request_options&.timeout_in_seconds.nil?
@@ -138,8 +139,8 @@ module Pinnacle
       # @param brand_verification_url [String] Link to document verifying the brand's name. This may be the certificate of
       #  incorporation, business license, or other relevant document. You can typically
       #  find this on the Secretary of State website.
-      # @param brand [Integer] Unique identifier for the brand.
-      # @param campaign_id [Integer] Unique identifier for the campaign.
+      # @param brand [String] Unique identifier for the brand.
+      # @param campaign_id [String] Unique identifier for the campaign.
       # @param expected_agent_responses [Array<String>] List of what the agent might say to users (1-5 required).
       # @param links [Hash] Legal documentation links.Request of type Pinnacle::Campaigns::Rcs::Types::UpsertRcsLinks, as a Hash
       #   * :privacy_policy (String)
@@ -164,7 +165,8 @@ module Pinnacle
       #  api.campaigns.rcs.upsert(
       #    agent: { color: "#000000", description: "Engaging campaigns with RBM – next-gen SMS marketing with rich content and better analytics.", emails: [{ email: "founders@trypinnacle.app", label: "Email Us" }], hero_url: "https://agent-logos.storage.googleapis.com/_/m0bk9mmw7kfynqiKSPfsaoc6", icon_url: "https://agent-logos.storage.googleapis.com/_/m0bk9gvlDunZEw1krfruZmw3", name: "Pinnacle Software Development", phones: [{ label: "Contact us directly", phone: "+14154467821" }], websites: [{ label: "Get started with Pinnacle", url: "https://www.trypinnacle.app/" }] },
       #    brand_verification_url: "https://www.pinnacle.sh/articles-of-incorporation.pdf",
-      #    brand: 2,
+      #    brand: "b_1234567890",
+      #    campaign_id: "rcs_1234567890",
       #    expected_agent_responses: ["Here are the things I can help you with.", "I can assist you with booking an appointment, or you may choose to book manually.", "Here are the available times to connect with a representative tomorrow.", "Your appointment has been scheduled."],
       #    links: { privacy_policy: "https://www.trypinnacle.app/privacy", terms_of_service: "https://www.trypinnacle.app/terms" },
       #    opt_in: { method_: WEBSITE, terms_and_conditions: "Would you like to subscribe to Pinnacle?" },
@@ -206,7 +208,7 @@ module Pinnacle
       #
       # @param request [Hash] Request of type Pinnacle::Types::ValidateCampaignParams, as a Hash
       #   * :additional_info (String)
-      #   * :campaign_id (Integer)
+      #   * :campaign_id (String)
       # @param request_options [Pinnacle::RequestOptions]
       # @return [Pinnacle::Types::CampaignValidationResult]
       # @example
@@ -215,7 +217,7 @@ module Pinnacle
       #    environment: Pinnacle::Environment::DEFAULT,
       #    api_key: "YOUR_API_KEY"
       #  )
-      #  api.campaigns.rcs.validate(request: { additional_info: "Please validate this DLC campaign for 10DLC compliance", campaign_id: 161 })
+      #  api.campaigns.rcs.validate(request: { additional_info: "Please validate this DLC campaign for 10DLC compliance", campaign_id: "dlc_1234567890" })
       def validate(request:, request_options: nil)
         response = @request_client.conn.post do |req|
           req.options.timeout = request_options.timeout_in_seconds unless request_options&.timeout_in_seconds.nil?
@@ -250,7 +252,7 @@ module Pinnacle
       #
       # @param request [Hash] Request of type Pinnacle::Types::AutofillCampaignParams, as a Hash
       #   * :additional_info (String)
-      #   * :campaign_id (Integer)
+      #   * :campaign_id (String)
       # @param request_options [Pinnacle::RequestOptions]
       # @return [Pinnacle::Campaigns::Rcs::Types::RcsAutofillResponse]
       # @example
@@ -259,7 +261,7 @@ module Pinnacle
       #    environment: Pinnacle::Environment::DEFAULT,
       #    api_key: "YOUR_API_KEY"
       #  )
-      #  api.campaigns.rcs.autofill(request: { additional_info: "Please autofill missing DLC campaign fields using my brand profile", campaign_id: 161 })
+      #  api.campaigns.rcs.autofill(request: { additional_info: "Please autofill missing campaign fields using my brand profile", campaign_id: "dlc_1234567890" })
       def autofill(request:, request_options: nil)
         Async do
           response = @request_client.conn.post do |req|
@@ -282,7 +284,7 @@ module Pinnacle
 
       # Retrieve RCS campaign.
       #
-      # @param campaign_id [Integer] Unique identifier of the RCS campaign.
+      # @param campaign_id [String] Unique identifier of the RCS campaign. Must begin with the prefix `rcs_`.
       # @param request_options [Pinnacle::RequestOptions]
       # @return [Pinnacle::Types::ExtendedRcsCampaign]
       # @example
@@ -291,7 +293,7 @@ module Pinnacle
       #    environment: Pinnacle::Environment::DEFAULT,
       #    api_key: "YOUR_API_KEY"
       #  )
-      #  api.campaigns.rcs.get(campaign_id: 161)
+      #  api.campaigns.rcs.get(campaign_id: "rcs_1234567890")
       def get(campaign_id:, request_options: nil)
         Async do
           response = @request_client.conn.get do |req|
@@ -316,7 +318,8 @@ module Pinnacle
 
       # Submit your RCS campaign for approval and activation with carriers.
       #
-      # @param campaign_id [Integer] Unique identifier of the RCS campaign to retrieve.
+      # @param campaign_id [String] Unique identifier of the RCS campaign to retrieve. Must begin with the prefix
+      #  `rcs_`.
       # @param request_options [Pinnacle::RequestOptions]
       # @return [Pinnacle::Types::CampaignSubmissionResult]
       # @example
@@ -325,7 +328,7 @@ module Pinnacle
       #    environment: Pinnacle::Environment::DEFAULT,
       #    api_key: "YOUR_API_KEY"
       #  )
-      #  api.campaigns.rcs.submit(campaign_id: 161)
+      #  api.campaigns.rcs.submit(campaign_id: "rcs_1234567890")
       def submit(campaign_id:, request_options: nil)
         Async do
           response = @request_client.conn.post do |req|
@@ -363,8 +366,8 @@ module Pinnacle
       # @param brand_verification_url [String] Link to document verifying the brand's name. This may be the certificate of
       #  incorporation, business license, or other relevant document. You can typically
       #  find this on the Secretary of State website.
-      # @param brand [Integer] Unique identifier for the brand.
-      # @param campaign_id [Integer] Unique identifier for the campaign.
+      # @param brand [String] Unique identifier for the brand.
+      # @param campaign_id [String] Unique identifier for the campaign.
       # @param expected_agent_responses [Array<String>] List of what the agent might say to users (1-5 required).
       # @param links [Hash] Legal documentation links.Request of type Pinnacle::Campaigns::Rcs::Types::UpsertRcsLinks, as a Hash
       #   * :privacy_policy (String)
@@ -389,7 +392,8 @@ module Pinnacle
       #  api.campaigns.rcs.upsert(
       #    agent: { color: "#000000", description: "Engaging campaigns with RBM – next-gen SMS marketing with rich content and better analytics.", emails: [{ email: "founders@trypinnacle.app", label: "Email Us" }], hero_url: "https://agent-logos.storage.googleapis.com/_/m0bk9mmw7kfynqiKSPfsaoc6", icon_url: "https://agent-logos.storage.googleapis.com/_/m0bk9gvlDunZEw1krfruZmw3", name: "Pinnacle Software Development", phones: [{ label: "Contact us directly", phone: "+14154467821" }], websites: [{ label: "Get started with Pinnacle", url: "https://www.trypinnacle.app/" }] },
       #    brand_verification_url: "https://www.pinnacle.sh/articles-of-incorporation.pdf",
-      #    brand: 2,
+      #    brand: "b_1234567890",
+      #    campaign_id: "rcs_1234567890",
       #    expected_agent_responses: ["Here are the things I can help you with.", "I can assist you with booking an appointment, or you may choose to book manually.", "Here are the available times to connect with a representative tomorrow.", "Your appointment has been scheduled."],
       #    links: { privacy_policy: "https://www.trypinnacle.app/privacy", terms_of_service: "https://www.trypinnacle.app/terms" },
       #    opt_in: { method_: WEBSITE, terms_and_conditions: "Would you like to subscribe to Pinnacle?" },
@@ -433,7 +437,7 @@ module Pinnacle
       #
       # @param request [Hash] Request of type Pinnacle::Types::ValidateCampaignParams, as a Hash
       #   * :additional_info (String)
-      #   * :campaign_id (Integer)
+      #   * :campaign_id (String)
       # @param request_options [Pinnacle::RequestOptions]
       # @return [Pinnacle::Types::CampaignValidationResult]
       # @example
@@ -442,7 +446,7 @@ module Pinnacle
       #    environment: Pinnacle::Environment::DEFAULT,
       #    api_key: "YOUR_API_KEY"
       #  )
-      #  api.campaigns.rcs.validate(request: { additional_info: "Please validate this DLC campaign for 10DLC compliance", campaign_id: 161 })
+      #  api.campaigns.rcs.validate(request: { additional_info: "Please validate this DLC campaign for 10DLC compliance", campaign_id: "dlc_1234567890" })
       def validate(request:, request_options: nil)
         Async do
           response = @request_client.conn.post do |req|

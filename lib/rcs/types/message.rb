@@ -23,7 +23,8 @@ module Pinnacle
       #  <br>
       #  Null indicates no errors.
       attr_reader :error
-      # @return [Integer] Unique identifier of the message.
+      # @return [String] Unique identifier of the message. This identifier is a string that always begins
+      #  with the prefix `msg_`, for example: `msg_1234567890`.
       attr_reader :id
       # @return [Pinnacle::Types::MessageMethodEnum]
       attr_reader :method_
@@ -57,7 +58,8 @@ module Pinnacle
       # @param error [String] Detailed explanation of any errors that occurred while delivering the message.
       #  <br>
       #  Null indicates no errors.
-      # @param id [Integer] Unique identifier of the message.
+      # @param id [String] Unique identifier of the message. This identifier is a string that always begins
+      #  with the prefix `msg_`, for example: `msg_1234567890`.
       # @param method_ [Pinnacle::Types::MessageMethodEnum]
       # @param num_segments [Integer] Number of segments the message was split into for delivery.
       # @param receiver [String] Phone number that received the message in E.164 format.
@@ -160,7 +162,7 @@ module Pinnacle
         obj.cost&.is_a?(Float) != false || raise("Passed value for field obj.cost is not the expected type, validation failed.")
         obj.delivered_at&.is_a?(String) != false || raise("Passed value for field obj.delivered_at is not the expected type, validation failed.")
         obj.error&.is_a?(String) != false || raise("Passed value for field obj.error is not the expected type, validation failed.")
-        obj.id.is_a?(Integer) != false || raise("Passed value for field obj.id is not the expected type, validation failed.")
+        obj.id.is_a?(String) != false || raise("Passed value for field obj.id is not the expected type, validation failed.")
         obj.method_.is_a?(Pinnacle::Types::MessageMethodEnum) != false || raise("Passed value for field obj.method_ is not the expected type, validation failed.")
         obj.num_segments.is_a?(Integer) != false || raise("Passed value for field obj.num_segments is not the expected type, validation failed.")
         obj.receiver.is_a?(String) != false || raise("Passed value for field obj.receiver is not the expected type, validation failed.")

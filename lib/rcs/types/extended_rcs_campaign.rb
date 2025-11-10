@@ -25,7 +25,8 @@ module Pinnacle
       attr_reader :brand_verification_url
       # @return [Boolean] Indicates whether the brand has provided an attestation.
       attr_reader :brand_attestation
-      # @return [Integer] Unique identifier for the campaign.
+      # @return [String] Unique identifier for the campaign. This identifier is a string that always
+      #  begins with the prefix `rcs_`, for example: `rcs_1234567890`.
       attr_reader :campaign_id
       # @return [Array<String>] List of what the agent might say to users.
       attr_reader :expected_agent_responses
@@ -54,7 +55,8 @@ module Pinnacle
       #  incorporation, business license, or other relevant document. You can typically
       #  find this on the Secretary of State website.
       # @param brand_attestation [Boolean] Indicates whether the brand has provided an attestation.
-      # @param campaign_id [Integer] Unique identifier for the campaign.
+      # @param campaign_id [String] Unique identifier for the campaign. This identifier is a string that always
+      #  begins with the prefix `rcs_`, for example: `rcs_1234567890`.
       # @param expected_agent_responses [Array<String>] List of what the agent might say to users.
       # @param links [Pinnacle::Types::RcsCampaignSchemaExtraLinks] Legal documentation links.
       # @param status [Pinnacle::Types::ProfileStatusEnum]
@@ -181,7 +183,7 @@ module Pinnacle
         Pinnacle::Types::ExtendedBrand.validate_raw(obj: obj.brand)
         obj.brand_verification_url&.is_a?(String) != false || raise("Passed value for field obj.brand_verification_url is not the expected type, validation failed.")
         obj.brand_attestation.is_a?(Boolean) != false || raise("Passed value for field obj.brand_attestation is not the expected type, validation failed.")
-        obj.campaign_id&.is_a?(Integer) != false || raise("Passed value for field obj.campaign_id is not the expected type, validation failed.")
+        obj.campaign_id&.is_a?(String) != false || raise("Passed value for field obj.campaign_id is not the expected type, validation failed.")
         obj.expected_agent_responses&.is_a?(Array) != false || raise("Passed value for field obj.expected_agent_responses is not the expected type, validation failed.")
         obj.links.nil? || Pinnacle::Types::RcsCampaignSchemaExtraLinks.validate_raw(obj: obj.links)
         obj.status.is_a?(Pinnacle::Types::ProfileStatusEnum) != false || raise("Passed value for field obj.status is not the expected type, validation failed.")

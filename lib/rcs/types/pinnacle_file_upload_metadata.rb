@@ -14,6 +14,12 @@ module Pinnacle
       #  Null indicates that `download.expiresAt` was not provided and the expiration
       #  time is defaulted to one hour after uploading.
       attr_reader :expires_at
+      # @return [String] Deletion date for the file in ISO 8601 format. After this date, the file will be
+      #  automatically deleted from our storage.<br>
+      #  If this field is not provided, the file will not be deleted. You can still
+      #  schedule deletion or delete the file manually in the Storage page in the
+      #  dashboard.
+      attr_reader :delete_at
       # @return [OpenStruct] Additional properties unmapped to the current class definition
       attr_reader :additional_properties
       # @return [Object]
@@ -27,17 +33,24 @@ module Pinnacle
       # @param expires_at [String] Expiration date in ISO 8601 format for file download access.<br>
       #  Null indicates that `download.expiresAt` was not provided and the expiration
       #  time is defaulted to one hour after uploading.
+      # @param delete_at [String] Deletion date for the file in ISO 8601 format. After this date, the file will be
+      #  automatically deleted from our storage.<br>
+      #  If this field is not provided, the file will not be deleted. You can still
+      #  schedule deletion or delete the file manually in the Storage page in the
+      #  dashboard.
       # @param additional_properties [OpenStruct] Additional properties unmapped to the current class definition
       # @return [Pinnacle::Types::PinnacleFileUploadMetadata]
-      def initialize(file_name:, content_type:, expires_at: OMIT, additional_properties: nil)
+      def initialize(file_name:, content_type:, expires_at: OMIT, delete_at: OMIT, additional_properties: nil)
         @file_name = file_name
         @content_type = content_type
         @expires_at = expires_at if expires_at != OMIT
+        @delete_at = delete_at if delete_at != OMIT
         @additional_properties = additional_properties
         @_field_set = {
           "fileName": file_name,
           "contentType": content_type,
-          "expiresAt": expires_at
+          "expiresAt": expires_at,
+          "deleteAt": delete_at
         }.reject do |_k, v|
           v == OMIT
         end
@@ -53,10 +66,12 @@ module Pinnacle
         file_name = parsed_json["fileName"]
         content_type = parsed_json["contentType"]
         expires_at = parsed_json["expiresAt"]
+        delete_at = parsed_json["deleteAt"]
         new(
           file_name: file_name,
           content_type: content_type,
           expires_at: expires_at,
+          delete_at: delete_at,
           additional_properties: struct
         )
       end
@@ -78,6 +93,7 @@ module Pinnacle
         obj.file_name.is_a?(String) != false || raise("Passed value for field obj.file_name is not the expected type, validation failed.")
         obj.content_type.is_a?(String) != false || raise("Passed value for field obj.content_type is not the expected type, validation failed.")
         obj.expires_at&.is_a?(String) != false || raise("Passed value for field obj.expires_at is not the expected type, validation failed.")
+        obj.delete_at&.is_a?(String) != false || raise("Passed value for field obj.delete_at is not the expected type, validation failed.")
       end
     end
   end
