@@ -4,6 +4,7 @@ require_relative "environment"
 require_relative "types_export"
 require_relative "requests"
 require_relative "rcs/brands/client"
+require_relative "rcs/audiences/client"
 require_relative "rcs/contacts/client"
 require_relative "rcs/conversations/client"
 require_relative "rcs/messages/client"
@@ -18,6 +19,8 @@ module Pinnacle
   class Client
     # @return [Pinnacle::BrandsClient]
     attr_reader :brands
+    # @return [Pinnacle::AudiencesClient]
+    attr_reader :audiences
     # @return [Pinnacle::ContactsClient]
     attr_reader :contacts
     # @return [Pinnacle::ConversationsClient]
@@ -53,6 +56,7 @@ module Pinnacle
         api_key: api_key
       )
       @brands = Pinnacle::BrandsClient.new(request_client: @request_client)
+      @audiences = Pinnacle::AudiencesClient.new(request_client: @request_client)
       @contacts = Pinnacle::ContactsClient.new(request_client: @request_client)
       @conversations = Pinnacle::ConversationsClient.new(request_client: @request_client)
       @messages = Pinnacle::MessagesClient.new(request_client: @request_client)
@@ -68,6 +72,8 @@ module Pinnacle
   class AsyncClient
     # @return [Pinnacle::AsyncBrandsClient]
     attr_reader :brands
+    # @return [Pinnacle::AsyncAudiencesClient]
+    attr_reader :audiences
     # @return [Pinnacle::AsyncContactsClient]
     attr_reader :contacts
     # @return [Pinnacle::AsyncConversationsClient]
@@ -103,6 +109,7 @@ module Pinnacle
         api_key: api_key
       )
       @brands = Pinnacle::AsyncBrandsClient.new(request_client: @async_request_client)
+      @audiences = Pinnacle::AsyncAudiencesClient.new(request_client: @async_request_client)
       @contacts = Pinnacle::AsyncContactsClient.new(request_client: @async_request_client)
       @conversations = Pinnacle::AsyncConversationsClient.new(request_client: @async_request_client)
       @messages = Pinnacle::AsyncMessagesClient.new(request_client: @async_request_client)
