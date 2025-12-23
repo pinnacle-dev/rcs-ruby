@@ -5,10 +5,10 @@ require_relative "../../types/autofill_campaign_params"
 require_relative "../../types/autofill_dlc_campaign_response"
 require_relative "../../types/dlc_campaign_with_extended_brand_and_status"
 require_relative "../../types/campaign_submission_result"
-require_relative "types/upsert_dlc_campaign_keywords"
-require_relative "types/upsert_dlc_campaign_links"
-require_relative "types/upsert_dlc_campaign_options"
-require_relative "types/upsert_dlc_campaign_use_case"
+require_relative "types/dlc_campaign_keywords"
+require_relative "types/dlc_campaign_links"
+require_relative "types/dlc_campaign_options"
+require_relative "types/dlc_campaign_use_case"
 require_relative "../../types/validate_campaign_params"
 require_relative "../../types/campaign_validation_result"
 require "async"
@@ -134,7 +134,7 @@ module Pinnacle
       # @param campaign_id [String] Unique identifier for the campaign. This identifier is a string that always
       #  begins with the prefix `dlc_`, for example: `dlc_1234567890`.
       # @param description [String] Description of the campaign.
-      # @param keywords [Hash] Keyword response configuration.Request of type Pinnacle::Campaigns::Dlc::Types::UpsertDlcCampaignKeywords, as a Hash
+      # @param keywords [Hash] Keyword response configuration.Request of type Pinnacle::Campaigns::Dlc::Types::DlcCampaignKeywords, as a Hash
       #   * :help (Hash)
       #     * :message (String)
       #     * :values (Array<String>)
@@ -144,12 +144,12 @@ module Pinnacle
       #   * :opt_out (Hash)
       #     * :message (String)
       #     * :values (Array<String>)
-      # @param links [Hash] Legal documentation links.Request of type Pinnacle::Campaigns::Dlc::Types::UpsertDlcCampaignLinks, as a Hash
+      # @param links [Hash] Legal documentation links.Request of type Pinnacle::Campaigns::Dlc::Types::DlcCampaignLinks, as a Hash
       #   * :privacy_policy (String)
       #   * :terms_of_service (String)
       # @param message_flow [String] Describe the flow of how users will opt in to this campaign.
       # @param name [String] Display name of the campaign.
-      # @param options [Hash] Campaign configuration options.Request of type Pinnacle::Campaigns::Dlc::Types::UpsertDlcCampaignOptions, as a Hash
+      # @param options [Hash] Campaign configuration options.Request of type Pinnacle::Campaigns::Dlc::Types::DlcCampaignOptions, as a Hash
       #   * :affiliate_marketing (Boolean)
       #   * :age_gated (Boolean)
       #   * :direct_lending (Boolean)
@@ -157,7 +157,7 @@ module Pinnacle
       #   * :embedded_phone (Boolean)
       #   * :number_pooling (Boolean)
       # @param sample_messages [Array<String>] Example messages for the campaign.
-      # @param use_case [Hash] Use case for the campaign.Request of type Pinnacle::Campaigns::Dlc::Types::UpsertDlcCampaignUseCase, as a Hash
+      # @param use_case [Hash] Use case for the campaign.Request of type Pinnacle::Campaigns::Dlc::Types::DlcCampaignUseCase, as a Hash
       #   * :sub (Array<Pinnacle::Types::SubUseCaseEnum>)
       #   * :value (Pinnacle::Types::DlcCampaignUseCaseEnum)
       # @param request_options [Pinnacle::RequestOptions]
@@ -371,7 +371,7 @@ module Pinnacle
       # @param campaign_id [String] Unique identifier for the campaign. This identifier is a string that always
       #  begins with the prefix `dlc_`, for example: `dlc_1234567890`.
       # @param description [String] Description of the campaign.
-      # @param keywords [Hash] Keyword response configuration.Request of type Pinnacle::Campaigns::Dlc::Types::UpsertDlcCampaignKeywords, as a Hash
+      # @param keywords [Hash] Keyword response configuration.Request of type Pinnacle::Campaigns::Dlc::Types::DlcCampaignKeywords, as a Hash
       #   * :help (Hash)
       #     * :message (String)
       #     * :values (Array<String>)
@@ -381,12 +381,12 @@ module Pinnacle
       #   * :opt_out (Hash)
       #     * :message (String)
       #     * :values (Array<String>)
-      # @param links [Hash] Legal documentation links.Request of type Pinnacle::Campaigns::Dlc::Types::UpsertDlcCampaignLinks, as a Hash
+      # @param links [Hash] Legal documentation links.Request of type Pinnacle::Campaigns::Dlc::Types::DlcCampaignLinks, as a Hash
       #   * :privacy_policy (String)
       #   * :terms_of_service (String)
       # @param message_flow [String] Describe the flow of how users will opt in to this campaign.
       # @param name [String] Display name of the campaign.
-      # @param options [Hash] Campaign configuration options.Request of type Pinnacle::Campaigns::Dlc::Types::UpsertDlcCampaignOptions, as a Hash
+      # @param options [Hash] Campaign configuration options.Request of type Pinnacle::Campaigns::Dlc::Types::DlcCampaignOptions, as a Hash
       #   * :affiliate_marketing (Boolean)
       #   * :age_gated (Boolean)
       #   * :direct_lending (Boolean)
@@ -394,7 +394,7 @@ module Pinnacle
       #   * :embedded_phone (Boolean)
       #   * :number_pooling (Boolean)
       # @param sample_messages [Array<String>] Example messages for the campaign.
-      # @param use_case [Hash] Use case for the campaign.Request of type Pinnacle::Campaigns::Dlc::Types::UpsertDlcCampaignUseCase, as a Hash
+      # @param use_case [Hash] Use case for the campaign.Request of type Pinnacle::Campaigns::Dlc::Types::DlcCampaignUseCase, as a Hash
       #   * :sub (Array<Pinnacle::Types::SubUseCaseEnum>)
       #   * :value (Pinnacle::Types::DlcCampaignUseCaseEnum)
       # @param request_options [Pinnacle::RequestOptions]

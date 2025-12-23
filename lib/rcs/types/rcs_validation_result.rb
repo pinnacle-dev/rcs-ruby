@@ -11,6 +11,8 @@ module Pinnacle
       attr_reader :total
       # @return [Float] Cost per message.
       attr_reader :unit
+      # @return [Integer] Total number of segments used across the message.
+      attr_reader :segments
       # @return [Array<String>] List of unsupported media file names or URLs.
       attr_reader :unsupported_files
       # @return [OpenStruct] Additional properties unmapped to the current class definition
@@ -24,15 +26,17 @@ module Pinnacle
       # @param total [Float] Total price of this message. Calculated by multiplying the number of messages by
       #  the unit cost.
       # @param unit [Float] Cost per message.
+      # @param segments [Integer] Total number of segments used across the message.
       # @param unsupported_files [Array<String>] List of unsupported media file names or URLs.
       # @param additional_properties [OpenStruct] Additional properties unmapped to the current class definition
       # @return [Pinnacle::Types::RcsValidationResult]
-      def initialize(total:, unit:, unsupported_files:, additional_properties: nil)
+      def initialize(total:, unit:, segments:, unsupported_files:, additional_properties: nil)
         @total = total
         @unit = unit
+        @segments = segments
         @unsupported_files = unsupported_files
         @additional_properties = additional_properties
-        @_field_set = { "total": total, "unit": unit, "unsupportedFiles": unsupported_files }
+        @_field_set = { "total": total, "unit": unit, "segments": segments, "unsupportedFiles": unsupported_files }
       end
 
       # Deserialize a JSON object to an instance of RcsValidationResult
@@ -44,10 +48,12 @@ module Pinnacle
         parsed_json = JSON.parse(json_object)
         total = parsed_json["total"]
         unit = parsed_json["unit"]
+        segments = parsed_json["segments"]
         unsupported_files = parsed_json["unsupportedFiles"]
         new(
           total: total,
           unit: unit,
+          segments: segments,
           unsupported_files: unsupported_files,
           additional_properties: struct
         )
@@ -69,6 +75,7 @@ module Pinnacle
       def self.validate_raw(obj:)
         obj.total.is_a?(Float) != false || raise("Passed value for field obj.total is not the expected type, validation failed.")
         obj.unit.is_a?(Float) != false || raise("Passed value for field obj.unit is not the expected type, validation failed.")
+        obj.segments.is_a?(Integer) != false || raise("Passed value for field obj.segments is not the expected type, validation failed.")
         obj.unsupported_files.is_a?(Array) != false || raise("Passed value for field obj.unsupported_files is not the expected type, validation failed.")
       end
     end

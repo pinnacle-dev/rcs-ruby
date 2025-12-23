@@ -8,7 +8,7 @@ module Pinnacle
   module Types
     # Use case classification for the campaign.
     class RcsCampaignSchemaUseCase
-      # @return [String] Summary of the use case.
+      # @return [String] Detailed summary of what the brand is and how this agent will be used.
       attr_reader :behavior
       # @return [Pinnacle::Types::RcsCampaignUseCaseEnum]
       attr_reader :value
@@ -20,7 +20,7 @@ module Pinnacle
 
       OMIT = Object.new
 
-      # @param behavior [String] Summary of the use case.
+      # @param behavior [String] Detailed summary of what the brand is and how this agent will be used.
       # @param value [Pinnacle::Types::RcsCampaignUseCaseEnum]
       # @param additional_properties [OpenStruct] Additional properties unmapped to the current class definition
       # @return [Pinnacle::Types::RcsCampaignSchemaUseCase]

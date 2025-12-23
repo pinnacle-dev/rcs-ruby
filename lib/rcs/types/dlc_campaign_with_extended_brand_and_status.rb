@@ -6,6 +6,8 @@ require_relative "dlc_with_extended_brand_and_status_links"
 require_relative "dlc_with_extended_brand_and_status_options"
 require_relative "profile_status_enum"
 require_relative "dlc_with_extended_brand_and_status_use_case"
+require_relative "dlc_with_extended_brand_and_status_mno_brand_tier"
+require_relative "dlc_with_extended_brand_and_status_mno_tcr_tier"
 require "ostruct"
 require "json"
 
@@ -42,6 +44,15 @@ module Pinnacle
       attr_reader :status
       # @return [Pinnacle::Types::DlcWithExtendedBrandAndStatusUseCase] Use case for the campaign.
       attr_reader :use_case
+      # @return [Pinnacle::Types::DlcWithExtendedBrandAndStatusMnoBrandTier] The MNO brand tier for T-Mobile rate limits. Tiers range from `TOP` (highest) to
+      #  `LOW` (lowest), based on your brand's vetting score.
+      #  See [SMS Rate Limits](/guides/messages/rate-limits) for details.
+      attr_reader :mno_brand_tier
+      # @return [Pinnacle::Types::DlcWithExtendedBrandAndStatusMnoTcrTier] The MNO TCR message class for AT&T, Verizon, and other carriers. Classes `A`-`G`
+      #  are standard (based on vetting score), while `T`, `N`, and `S` are for special
+      #  use cases.
+      #  See [SMS Rate Limits](/guides/messages/rate-limits) for details.
+      attr_reader :mno_tcr_tier
       # @return [OpenStruct] Additional properties unmapped to the current class definition
       attr_reader :additional_properties
       # @return [Object]
@@ -67,10 +78,17 @@ module Pinnacle
       #  `VERIFIED`: Approved and ready to send messages. <br>
       #  `FAILED`: Issues and errors related to the campaign's details.
       # @param use_case [Pinnacle::Types::DlcWithExtendedBrandAndStatusUseCase] Use case for the campaign.
+      # @param mno_brand_tier [Pinnacle::Types::DlcWithExtendedBrandAndStatusMnoBrandTier] The MNO brand tier for T-Mobile rate limits. Tiers range from `TOP` (highest) to
+      #  `LOW` (lowest), based on your brand's vetting score.
+      #  See [SMS Rate Limits](/guides/messages/rate-limits) for details.
+      # @param mno_tcr_tier [Pinnacle::Types::DlcWithExtendedBrandAndStatusMnoTcrTier] The MNO TCR message class for AT&T, Verizon, and other carriers. Classes `A`-`G`
+      #  are standard (based on vetting score), while `T`, `N`, and `S` are for special
+      #  use cases.
+      #  See [SMS Rate Limits](/guides/messages/rate-limits) for details.
       # @param additional_properties [OpenStruct] Additional properties unmapped to the current class definition
       # @return [Pinnacle::Types::DlcCampaignWithExtendedBrandAndStatus]
       def initialize(auto_renew:, brand:, keywords:, options:, status:, campaign_id: OMIT, description: OMIT, links: OMIT,
-                     message_flow: OMIT, name: OMIT, sample_messages: OMIT, use_case: OMIT, additional_properties: nil)
+                     message_flow: OMIT, name: OMIT, sample_messages: OMIT, use_case: OMIT, mno_brand_tier: OMIT, mno_tcr_tier: OMIT, additional_properties: nil)
         @auto_renew = auto_renew
         @brand = brand
         @campaign_id = campaign_id if campaign_id != OMIT
@@ -83,6 +101,8 @@ module Pinnacle
         @sample_messages = sample_messages if sample_messages != OMIT
         @status = status
         @use_case = use_case if use_case != OMIT
+        @mno_brand_tier = mno_brand_tier if mno_brand_tier != OMIT
+        @mno_tcr_tier = mno_tcr_tier if mno_tcr_tier != OMIT
         @additional_properties = additional_properties
         @_field_set = {
           "autoRenew": auto_renew,
@@ -96,7 +116,9 @@ module Pinnacle
           "options": options,
           "sampleMessages": sample_messages,
           "status": status,
-          "useCase": use_case
+          "useCase": use_case,
+          "mnoBrandTier": mno_brand_tier,
+          "mnoTcrTier": mno_tcr_tier
         }.reject do |_k, v|
           v == OMIT
         end
@@ -147,6 +169,8 @@ module Pinnacle
           use_case = parsed_json["useCase"].to_json
           use_case = Pinnacle::Types::DlcWithExtendedBrandAndStatusUseCase.from_json(json_object: use_case)
         end
+        mno_brand_tier = parsed_json["mnoBrandTier"]
+        mno_tcr_tier = parsed_json["mnoTcrTier"]
         new(
           auto_renew: auto_renew,
           brand: brand,
@@ -160,6 +184,8 @@ module Pinnacle
           sample_messages: sample_messages,
           status: status,
           use_case: use_case,
+          mno_brand_tier: mno_brand_tier,
+          mno_tcr_tier: mno_tcr_tier,
           additional_properties: struct
         )
       end
@@ -190,6 +216,8 @@ module Pinnacle
         obj.sample_messages&.is_a?(Array) != false || raise("Passed value for field obj.sample_messages is not the expected type, validation failed.")
         obj.status.is_a?(Pinnacle::Types::ProfileStatusEnum) != false || raise("Passed value for field obj.status is not the expected type, validation failed.")
         obj.use_case.nil? || Pinnacle::Types::DlcWithExtendedBrandAndStatusUseCase.validate_raw(obj: obj.use_case)
+        obj.mno_brand_tier&.is_a?(Pinnacle::Types::DlcWithExtendedBrandAndStatusMnoBrandTier) != false || raise("Passed value for field obj.mno_brand_tier is not the expected type, validation failed.")
+        obj.mno_tcr_tier&.is_a?(Pinnacle::Types::DlcWithExtendedBrandAndStatusMnoTcrTier) != false || raise("Passed value for field obj.mno_tcr_tier is not the expected type, validation failed.")
       end
     end
   end

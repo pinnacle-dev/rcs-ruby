@@ -4,9 +4,10 @@ require_relative "rcs_campaign_schema_extra_agent"
 require_relative "extended_brand"
 require_relative "rcs_campaign_schema_extra_links"
 require_relative "profile_status_enum"
-require_relative "rcs_campaign_schema_extra_opt_in"
-require_relative "rcs_campaign_schema_extra_opt_out"
 require_relative "rcs_campaign_schema_extra_use_case"
+require_relative "rcs_messaging_type_enum"
+require_relative "rcs_campaign_schema_extra_keywords"
+require_relative "rcs_campaign_schema_extra_traffic"
 require "ostruct"
 require "json"
 
@@ -19,12 +20,6 @@ module Pinnacle
       attr_reader :agent_id
       # @return [Pinnacle::Types::ExtendedBrand] Brand associated with this campaign.
       attr_reader :brand
-      # @return [String] Link to document verifying the brand's name. This may be the certificate of
-      #  incorporation, business license, or other relevant document. You can typically
-      #  find this on the Secretary of State website.
-      attr_reader :brand_verification_url
-      # @return [Boolean] Indicates whether the brand has provided an attestation.
-      attr_reader :brand_attestation
       # @return [String] Unique identifier for the campaign. This identifier is a string that always
       #  begins with the prefix `rcs_`, for example: `rcs_1234567890`.
       attr_reader :campaign_id
@@ -34,12 +29,41 @@ module Pinnacle
       attr_reader :links
       # @return [Pinnacle::Types::ProfileStatusEnum]
       attr_reader :status
-      # @return [Pinnacle::Types::RcsCampaignSchemaExtraOptIn] Opt-in configuration.
-      attr_reader :opt_in
-      # @return [Pinnacle::Types::RcsCampaignSchemaExtraOptOut] Opt-out configuration.
-      attr_reader :opt_out
       # @return [Pinnacle::Types::RcsCampaignSchemaExtraUseCase] Use case classification for the campaign.
       attr_reader :use_case
+      # @return [String] Details on how opt-in is acquired. If it is done through a website or app,
+      #  provide the link.
+      attr_reader :opt_in_terms_and_conditions
+      # @return [Pinnacle::Types::RcsMessagingTypeEnum]
+      attr_reader :messaging_type
+      # @return [String] Description of the agent's purpose, shown to carriers for approval.
+      attr_reader :carrier_description
+      # @return [Pinnacle::Types::RcsCampaignSchemaExtraKeywords]
+      attr_reader :keywords
+      # @return [Pinnacle::Types::RcsCampaignSchemaExtraTraffic]
+      attr_reader :traffic
+      # @return [String] Explanation of how the agent is triggered. This includes how the first message
+      #  is delivered, whether messages follow a schedule or triggered by user actions,
+      #  and any external triggers.
+      attr_reader :agent_triggers
+      # @return [String] Description of all agent interactions.
+      attr_reader :interaction_description
+      # @return [Boolean] Whether the agent supports conversational flows or respond to P2A messages from
+      #  the users. Set to false for one-way messages from agent to user.
+      attr_reader :is_conversational
+      # @return [String] Required text that appears next to the opt-in checkbox for your opt-in form.
+      #  This checkbox has to be unchecked by default. The text should meet the US CTIA
+      #  requirements and is usually in the following format: <br>
+      #  [Program description of the company sending the messages and what type of
+      #  messages are being sent]. Msg&data rates may apply. [Message frequency: How
+      #  frequently messages are sent]. [Privacy statement or link to privacy policy].
+      #  [Link to full mobile
+      #  T&Cs page].
+      attr_reader :cta_language
+      # @return [String] Instructions on how an external reviewer can trigger messages and an example
+      #  flow from the agent. This is usually an inbound text message to the agent that
+      #  will start a flow of messages between the agent and the user.
+      attr_reader :demo_trigger
       # @return [OpenStruct] Additional properties unmapped to the current class definition
       attr_reader :additional_properties
       # @return [Object]
@@ -51,48 +75,77 @@ module Pinnacle
       # @param agent [Pinnacle::Types::RcsCampaignSchemaExtraAgent] Agent configured to the campaign.
       # @param agent_id [String] Agent's unique identifier.
       # @param brand [Pinnacle::Types::ExtendedBrand] Brand associated with this campaign.
-      # @param brand_verification_url [String] Link to document verifying the brand's name. This may be the certificate of
-      #  incorporation, business license, or other relevant document. You can typically
-      #  find this on the Secretary of State website.
-      # @param brand_attestation [Boolean] Indicates whether the brand has provided an attestation.
       # @param campaign_id [String] Unique identifier for the campaign. This identifier is a string that always
       #  begins with the prefix `rcs_`, for example: `rcs_1234567890`.
       # @param expected_agent_responses [Array<String>] List of what the agent might say to users.
       # @param links [Pinnacle::Types::RcsCampaignSchemaExtraLinks] Legal documentation links.
       # @param status [Pinnacle::Types::ProfileStatusEnum]
-      # @param opt_in [Pinnacle::Types::RcsCampaignSchemaExtraOptIn] Opt-in configuration.
-      # @param opt_out [Pinnacle::Types::RcsCampaignSchemaExtraOptOut] Opt-out configuration.
       # @param use_case [Pinnacle::Types::RcsCampaignSchemaExtraUseCase] Use case classification for the campaign.
+      # @param opt_in_terms_and_conditions [String] Details on how opt-in is acquired. If it is done through a website or app,
+      #  provide the link.
+      # @param messaging_type [Pinnacle::Types::RcsMessagingTypeEnum]
+      # @param carrier_description [String] Description of the agent's purpose, shown to carriers for approval.
+      # @param keywords [Pinnacle::Types::RcsCampaignSchemaExtraKeywords]
+      # @param traffic [Pinnacle::Types::RcsCampaignSchemaExtraTraffic]
+      # @param agent_triggers [String] Explanation of how the agent is triggered. This includes how the first message
+      #  is delivered, whether messages follow a schedule or triggered by user actions,
+      #  and any external triggers.
+      # @param interaction_description [String] Description of all agent interactions.
+      # @param is_conversational [Boolean] Whether the agent supports conversational flows or respond to P2A messages from
+      #  the users. Set to false for one-way messages from agent to user.
+      # @param cta_language [String] Required text that appears next to the opt-in checkbox for your opt-in form.
+      #  This checkbox has to be unchecked by default. The text should meet the US CTIA
+      #  requirements and is usually in the following format: <br>
+      #  [Program description of the company sending the messages and what type of
+      #  messages are being sent]. Msg&data rates may apply. [Message frequency: How
+      #  frequently messages are sent]. [Privacy statement or link to privacy policy].
+      #  [Link to full mobile
+      #  T&Cs page].
+      # @param demo_trigger [String] Instructions on how an external reviewer can trigger messages and an example
+      #  flow from the agent. This is usually an inbound text message to the agent that
+      #  will start a flow of messages between the agent and the user.
       # @param additional_properties [OpenStruct] Additional properties unmapped to the current class definition
       # @return [Pinnacle::Types::ExtendedRcsCampaign]
-      def initialize(agent:, agent_id:, brand:, brand_attestation:, status:, brand_verification_url: OMIT, campaign_id: OMIT,
-                     expected_agent_responses: OMIT, links: OMIT, opt_in: OMIT, opt_out: OMIT, use_case: OMIT, additional_properties: nil)
+      def initialize(agent:, agent_id:, brand:, status:, campaign_id: OMIT, expected_agent_responses: OMIT,
+                     links: OMIT, use_case: OMIT, opt_in_terms_and_conditions: OMIT, messaging_type: OMIT, carrier_description: OMIT, keywords: OMIT, traffic: OMIT, agent_triggers: OMIT, interaction_description: OMIT, is_conversational: OMIT, cta_language: OMIT, demo_trigger: OMIT, additional_properties: nil)
         @agent = agent
         @agent_id = agent_id
         @brand = brand
-        @brand_verification_url = brand_verification_url if brand_verification_url != OMIT
-        @brand_attestation = brand_attestation
         @campaign_id = campaign_id if campaign_id != OMIT
         @expected_agent_responses = expected_agent_responses if expected_agent_responses != OMIT
         @links = links if links != OMIT
         @status = status
-        @opt_in = opt_in if opt_in != OMIT
-        @opt_out = opt_out if opt_out != OMIT
         @use_case = use_case if use_case != OMIT
+        @opt_in_terms_and_conditions = opt_in_terms_and_conditions if opt_in_terms_and_conditions != OMIT
+        @messaging_type = messaging_type if messaging_type != OMIT
+        @carrier_description = carrier_description if carrier_description != OMIT
+        @keywords = keywords if keywords != OMIT
+        @traffic = traffic if traffic != OMIT
+        @agent_triggers = agent_triggers if agent_triggers != OMIT
+        @interaction_description = interaction_description if interaction_description != OMIT
+        @is_conversational = is_conversational if is_conversational != OMIT
+        @cta_language = cta_language if cta_language != OMIT
+        @demo_trigger = demo_trigger if demo_trigger != OMIT
         @additional_properties = additional_properties
         @_field_set = {
           "agent": agent,
           "agentId": agent_id,
           "brand": brand,
-          "brandVerificationUrl": brand_verification_url,
-          "brandAttestation": brand_attestation,
           "campaignId": campaign_id,
           "expectedAgentResponses": expected_agent_responses,
           "links": links,
           "status": status,
-          "optIn": opt_in,
-          "optOut": opt_out,
-          "useCase": use_case
+          "useCase": use_case,
+          "optInTermsAndConditions": opt_in_terms_and_conditions,
+          "messagingType": messaging_type,
+          "carrierDescription": carrier_description,
+          "keywords": keywords,
+          "traffic": traffic,
+          "agentTriggers": agent_triggers,
+          "interactionDescription": interaction_description,
+          "isConversational": is_conversational,
+          "ctaLanguage": cta_language,
+          "demoTrigger": demo_trigger
         }.reject do |_k, v|
           v == OMIT
         end
@@ -118,8 +171,6 @@ module Pinnacle
           brand = parsed_json["brand"].to_json
           brand = Pinnacle::Types::ExtendedBrand.from_json(json_object: brand)
         end
-        brand_verification_url = parsed_json["brandVerificationUrl"]
-        brand_attestation = parsed_json["brandAttestation"]
         campaign_id = parsed_json["campaignId"]
         expected_agent_responses = parsed_json["expectedAgentResponses"]
         if parsed_json["links"].nil?
@@ -129,37 +180,51 @@ module Pinnacle
           links = Pinnacle::Types::RcsCampaignSchemaExtraLinks.from_json(json_object: links)
         end
         status = parsed_json["status"]
-        if parsed_json["optIn"].nil?
-          opt_in = nil
-        else
-          opt_in = parsed_json["optIn"].to_json
-          opt_in = Pinnacle::Types::RcsCampaignSchemaExtraOptIn.from_json(json_object: opt_in)
-        end
-        if parsed_json["optOut"].nil?
-          opt_out = nil
-        else
-          opt_out = parsed_json["optOut"].to_json
-          opt_out = Pinnacle::Types::RcsCampaignSchemaExtraOptOut.from_json(json_object: opt_out)
-        end
         if parsed_json["useCase"].nil?
           use_case = nil
         else
           use_case = parsed_json["useCase"].to_json
           use_case = Pinnacle::Types::RcsCampaignSchemaExtraUseCase.from_json(json_object: use_case)
         end
+        opt_in_terms_and_conditions = parsed_json["optInTermsAndConditions"]
+        messaging_type = parsed_json["messagingType"]
+        carrier_description = parsed_json["carrierDescription"]
+        if parsed_json["keywords"].nil?
+          keywords = nil
+        else
+          keywords = parsed_json["keywords"].to_json
+          keywords = Pinnacle::Types::RcsCampaignSchemaExtraKeywords.from_json(json_object: keywords)
+        end
+        if parsed_json["traffic"].nil?
+          traffic = nil
+        else
+          traffic = parsed_json["traffic"].to_json
+          traffic = Pinnacle::Types::RcsCampaignSchemaExtraTraffic.from_json(json_object: traffic)
+        end
+        agent_triggers = parsed_json["agentTriggers"]
+        interaction_description = parsed_json["interactionDescription"]
+        is_conversational = parsed_json["isConversational"]
+        cta_language = parsed_json["ctaLanguage"]
+        demo_trigger = parsed_json["demoTrigger"]
         new(
           agent: agent,
           agent_id: agent_id,
           brand: brand,
-          brand_verification_url: brand_verification_url,
-          brand_attestation: brand_attestation,
           campaign_id: campaign_id,
           expected_agent_responses: expected_agent_responses,
           links: links,
           status: status,
-          opt_in: opt_in,
-          opt_out: opt_out,
           use_case: use_case,
+          opt_in_terms_and_conditions: opt_in_terms_and_conditions,
+          messaging_type: messaging_type,
+          carrier_description: carrier_description,
+          keywords: keywords,
+          traffic: traffic,
+          agent_triggers: agent_triggers,
+          interaction_description: interaction_description,
+          is_conversational: is_conversational,
+          cta_language: cta_language,
+          demo_trigger: demo_trigger,
           additional_properties: struct
         )
       end
@@ -181,15 +246,21 @@ module Pinnacle
         Pinnacle::Types::RcsCampaignSchemaExtraAgent.validate_raw(obj: obj.agent)
         obj.agent_id.is_a?(String) != false || raise("Passed value for field obj.agent_id is not the expected type, validation failed.")
         Pinnacle::Types::ExtendedBrand.validate_raw(obj: obj.brand)
-        obj.brand_verification_url&.is_a?(String) != false || raise("Passed value for field obj.brand_verification_url is not the expected type, validation failed.")
-        obj.brand_attestation.is_a?(Boolean) != false || raise("Passed value for field obj.brand_attestation is not the expected type, validation failed.")
         obj.campaign_id&.is_a?(String) != false || raise("Passed value for field obj.campaign_id is not the expected type, validation failed.")
         obj.expected_agent_responses&.is_a?(Array) != false || raise("Passed value for field obj.expected_agent_responses is not the expected type, validation failed.")
         obj.links.nil? || Pinnacle::Types::RcsCampaignSchemaExtraLinks.validate_raw(obj: obj.links)
         obj.status.is_a?(Pinnacle::Types::ProfileStatusEnum) != false || raise("Passed value for field obj.status is not the expected type, validation failed.")
-        obj.opt_in.nil? || Pinnacle::Types::RcsCampaignSchemaExtraOptIn.validate_raw(obj: obj.opt_in)
-        obj.opt_out.nil? || Pinnacle::Types::RcsCampaignSchemaExtraOptOut.validate_raw(obj: obj.opt_out)
         obj.use_case.nil? || Pinnacle::Types::RcsCampaignSchemaExtraUseCase.validate_raw(obj: obj.use_case)
+        obj.opt_in_terms_and_conditions&.is_a?(String) != false || raise("Passed value for field obj.opt_in_terms_and_conditions is not the expected type, validation failed.")
+        obj.messaging_type&.is_a?(Pinnacle::Types::RcsMessagingTypeEnum) != false || raise("Passed value for field obj.messaging_type is not the expected type, validation failed.")
+        obj.carrier_description&.is_a?(String) != false || raise("Passed value for field obj.carrier_description is not the expected type, validation failed.")
+        obj.keywords.nil? || Pinnacle::Types::RcsCampaignSchemaExtraKeywords.validate_raw(obj: obj.keywords)
+        obj.traffic.nil? || Pinnacle::Types::RcsCampaignSchemaExtraTraffic.validate_raw(obj: obj.traffic)
+        obj.agent_triggers&.is_a?(String) != false || raise("Passed value for field obj.agent_triggers is not the expected type, validation failed.")
+        obj.interaction_description&.is_a?(String) != false || raise("Passed value for field obj.interaction_description is not the expected type, validation failed.")
+        obj.is_conversational&.is_a?(Boolean) != false || raise("Passed value for field obj.is_conversational is not the expected type, validation failed.")
+        obj.cta_language&.is_a?(String) != false || raise("Passed value for field obj.cta_language is not the expected type, validation failed.")
+        obj.demo_trigger&.is_a?(String) != false || raise("Passed value for field obj.demo_trigger is not the expected type, validation failed.")
       end
     end
   end

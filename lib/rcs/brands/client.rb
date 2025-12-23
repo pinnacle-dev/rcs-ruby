@@ -6,6 +6,7 @@ require_relative "../types/optional_brand_info"
 require_relative "../types/upsert_contact"
 require_relative "../types/company_sector_enum"
 require_relative "../types/company_type_enum"
+require_relative "../types/company_entity_type_enum"
 require_relative "../types/extended_brand"
 require_relative "../types/extended_brand_with_vetting"
 require_relative "../types/submission_results"
@@ -89,6 +90,7 @@ module Pinnacle
     # @param name [String] Legal name of the brand as registered.
     # @param sector [Pinnacle::Types::CompanySectorEnum] Industry the brand operates in.
     # @param type [Pinnacle::Types::CompanyTypeEnum] Legal structure of the brand.
+    # @param entity_type [Pinnacle::Types::CompanyEntityTypeEnum] Legal entity type of the brand.
     # @param website [String] Brand website URL.
     # @param request_options [Pinnacle::RequestOptions]
     # @return [Pinnacle::Types::ExtendedBrand]
@@ -109,10 +111,11 @@ module Pinnacle
     #    name: "Pinnacle",
     #    sector: TECHNOLOGY,
     #    type: PRIVATE_PROFIT,
+    #    entity_type: LLC,
     #    website: "https://www.pinnacle.sh"
     #  )
     def upsert(address: nil, contact: nil, dba: nil, description: nil, ein: nil, email: nil, id: nil, name: nil,
-               sector: nil, type: nil, website: nil, request_options: nil)
+               sector: nil, type: nil, entity_type: nil, website: nil, request_options: nil)
       response = @request_client.conn.post do |req|
         req.options.timeout = request_options.timeout_in_seconds unless request_options&.timeout_in_seconds.nil?
         req.headers["PINNACLE-API-KEY"] = request_options.api_key unless request_options&.api_key.nil?
@@ -136,6 +139,7 @@ module Pinnacle
           name: name,
           sector: sector,
           type: type,
+          entityType: entity_type,
           website: website
         }.compact
         req.url "#{@request_client.get_url(request_options: request_options)}/brands"
@@ -230,6 +234,7 @@ module Pinnacle
     # @param name [String] Legal name of the brand as registered.
     # @param sector [Pinnacle::Types::CompanySectorEnum]
     # @param type [Pinnacle::Types::CompanyTypeEnum]
+    # @param entity_type [Pinnacle::Types::CompanyEntityTypeEnum] Legal entity type of the brand.
     # @param website [String] Brand website URL.
     # @param request_options [Pinnacle::RequestOptions]
     # @return [Pinnacle::Types::ValidationResults]
@@ -249,10 +254,11 @@ module Pinnacle
     #    name: "Pinnacle",
     #    sector: TECHNOLOGY,
     #    type: PRIVATE_PROFIT,
+    #    entity_type: LLC,
     #    website: "https://www.pinnacle.sh"
     #  )
-    def validate(address:, contact:, description:, email:, name:, sector:, type:, website:, dba: nil, ein: nil,
-                 request_options: nil)
+    def validate(address:, contact:, description:, email:, name:, sector:, type:, entity_type:, website:, dba: nil,
+                 ein: nil, request_options: nil)
       response = @request_client.conn.post do |req|
         req.options.timeout = request_options.timeout_in_seconds unless request_options&.timeout_in_seconds.nil?
         req.headers["PINNACLE-API-KEY"] = request_options.api_key unless request_options&.api_key.nil?
@@ -275,6 +281,7 @@ module Pinnacle
           name: name,
           sector: sector,
           type: type,
+          entityType: entity_type,
           website: website
         }.compact
         req.url "#{@request_client.get_url(request_options: request_options)}/brands/validate"
@@ -398,6 +405,7 @@ module Pinnacle
     # @param name [String] Legal name of the brand as registered.
     # @param sector [Pinnacle::Types::CompanySectorEnum] Industry the brand operates in.
     # @param type [Pinnacle::Types::CompanyTypeEnum] Legal structure of the brand.
+    # @param entity_type [Pinnacle::Types::CompanyEntityTypeEnum] Legal entity type of the brand.
     # @param website [String] Brand website URL.
     # @param request_options [Pinnacle::RequestOptions]
     # @return [Pinnacle::Types::ExtendedBrand]
@@ -418,10 +426,11 @@ module Pinnacle
     #    name: "Pinnacle",
     #    sector: TECHNOLOGY,
     #    type: PRIVATE_PROFIT,
+    #    entity_type: LLC,
     #    website: "https://www.pinnacle.sh"
     #  )
     def upsert(address: nil, contact: nil, dba: nil, description: nil, ein: nil, email: nil, id: nil, name: nil,
-               sector: nil, type: nil, website: nil, request_options: nil)
+               sector: nil, type: nil, entity_type: nil, website: nil, request_options: nil)
       Async do
         response = @request_client.conn.post do |req|
           req.options.timeout = request_options.timeout_in_seconds unless request_options&.timeout_in_seconds.nil?
@@ -446,6 +455,7 @@ module Pinnacle
             name: name,
             sector: sector,
             type: type,
+            entityType: entity_type,
             website: website
           }.compact
           req.url "#{@request_client.get_url(request_options: request_options)}/brands"
@@ -545,6 +555,7 @@ module Pinnacle
     # @param name [String] Legal name of the brand as registered.
     # @param sector [Pinnacle::Types::CompanySectorEnum]
     # @param type [Pinnacle::Types::CompanyTypeEnum]
+    # @param entity_type [Pinnacle::Types::CompanyEntityTypeEnum] Legal entity type of the brand.
     # @param website [String] Brand website URL.
     # @param request_options [Pinnacle::RequestOptions]
     # @return [Pinnacle::Types::ValidationResults]
@@ -564,10 +575,11 @@ module Pinnacle
     #    name: "Pinnacle",
     #    sector: TECHNOLOGY,
     #    type: PRIVATE_PROFIT,
+    #    entity_type: LLC,
     #    website: "https://www.pinnacle.sh"
     #  )
-    def validate(address:, contact:, description:, email:, name:, sector:, type:, website:, dba: nil, ein: nil,
-                 request_options: nil)
+    def validate(address:, contact:, description:, email:, name:, sector:, type:, entity_type:, website:, dba: nil,
+                 ein: nil, request_options: nil)
       Async do
         response = @request_client.conn.post do |req|
           req.options.timeout = request_options.timeout_in_seconds unless request_options&.timeout_in_seconds.nil?
@@ -591,6 +603,7 @@ module Pinnacle
             name: name,
             sector: sector,
             type: type,
+            entityType: entity_type,
             website: website
           }.compact
           req.url "#{@request_client.get_url(request_options: request_options)}/brands/validate"

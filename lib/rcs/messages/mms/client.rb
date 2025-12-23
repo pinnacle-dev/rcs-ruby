@@ -28,16 +28,16 @@ module Pinnacle
       # @param options [Hash] Control how your MMS is processed and delivered.Request of type Pinnacle::Messages::Mms::Types::SendMmsOptions, as a Hash
       #   * :multiple_messages (Boolean)
       #   * :schedule (Hash)
-      #     * :end_date (String)
-      #     * :recurrence (String)
       #     * :send_at (String)
+      #     * :recurrence (String)
       #     * :timezone (String)
+      #     * :end_date (String)
       #   * :tracking (Pinnacle::Types::Tracking)
       #   * :validate (Boolean)
       # @param text [String] Message text to accompany the media.
       # @param to [String] Recipient's phone number in E.164 format.
       # @param request_options [Pinnacle::RequestOptions]
-      # @return [Pinnacle::Types::SentMmsDetails, Pinnacle::Types::ScheduledMessaage]
+      # @return [Pinnacle::Types::SentMmsDetails, Pinnacle::Types::ScheduledMessage]
       # @example
       #  api = Pinnacle::Client.new(
       #    base_url: "https://api.example.com",
@@ -128,16 +128,16 @@ module Pinnacle
       # @param options [Hash] Control how your MMS is processed and delivered.Request of type Pinnacle::Messages::Mms::Types::SendMmsOptions, as a Hash
       #   * :multiple_messages (Boolean)
       #   * :schedule (Hash)
-      #     * :end_date (String)
-      #     * :recurrence (String)
       #     * :send_at (String)
+      #     * :recurrence (String)
       #     * :timezone (String)
+      #     * :end_date (String)
       #   * :tracking (Pinnacle::Types::Tracking)
       #   * :validate (Boolean)
       # @param text [String] Message text to accompany the media.
       # @param to [String] Recipient's phone number in E.164 format.
       # @param request_options [Pinnacle::RequestOptions]
-      # @return [Pinnacle::Types::SentMmsDetails, Pinnacle::Types::ScheduledMessaage]
+      # @return [Pinnacle::Types::SentMmsDetails, Pinnacle::Types::ScheduledMessage]
       # @example
       #  api = Pinnacle::Client.new(
       #    base_url: "https://api.example.com",

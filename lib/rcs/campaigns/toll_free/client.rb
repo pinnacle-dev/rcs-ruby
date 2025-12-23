@@ -5,9 +5,12 @@ require_relative "../../types/autofill_campaign_params"
 require_relative "types/toll_free_autofill_response"
 require_relative "../../types/toll_free_campaign_with_extended_brand_and_status"
 require_relative "../../types/campaign_submission_result"
+require_relative "types/toll_free_campaign_keywords"
+require_relative "types/toll_free_campaign_links"
 require_relative "../../types/message_volume_enum"
-require_relative "types/upsert_toll_free_schema_opt_in"
-require_relative "types/upsert_toll_free_schema_use_case"
+require_relative "types/toll_free_campaign_opt_in"
+require_relative "types/toll_free_campaign_options"
+require_relative "types/toll_free_campaign_use_case"
 require_relative "../../types/validate_campaign_params"
 require_relative "../../types/campaign_validation_result"
 require "async"
@@ -129,14 +132,25 @@ module Pinnacle
       #  for example: `b_1234567890`.
       # @param campaign_id [String] Unique identifier for the campaign. This identifier is a string that always
       #  begins with the prefix `tf_`, for example: `tf_1234567890`.
+      # @param keywords [Hash] Keyword response configuration.Request of type Pinnacle::Campaigns::TollFree::Types::TollFreeCampaignKeywords, as a Hash
+      #   * :help (Hash)
+      #     * :message (String)
+      #   * :opt_in (Hash)
+      #     * :message (String)
+      #     * :keywords (Array<String>)
+      # @param links [Hash] Legal documentation links.Request of type Pinnacle::Campaigns::TollFree::Types::TollFreeCampaignLinks, as a Hash
+      #   * :privacy_policy (String)
+      #   * :terms_of_service (String)
       # @param monthly_volume [Pinnacle::Types::MessageVolumeEnum]
       # @param name [String] Display name of the campaign.
-      # @param opt_in [Hash] Opt-in keyword settings.Request of type Pinnacle::Campaigns::TollFree::Types::UpsertTollFreeSchemaOptIn, as a Hash
+      # @param opt_in [Hash] Opt-in keyword settings.Request of type Pinnacle::Campaigns::TollFree::Types::TollFreeCampaignOptIn, as a Hash
       #   * :method_ (Pinnacle::Types::OptInMethodEnum)
       #   * :url (String)
       #   * :workflow_description (String)
+      # @param options [Hash] Campaign configuration options.Request of type Pinnacle::Campaigns::TollFree::Types::TollFreeCampaignOptions, as a Hash
+      #   * :age_gated (Boolean)
       # @param production_message_content [String] Explain message that would be sent.
-      # @param use_case [Hash] Use case classification for the campaign.Request of type Pinnacle::Campaigns::TollFree::Types::UpsertTollFreeSchemaUseCase, as a Hash
+      # @param use_case [Hash] Use case classification for the campaign.Request of type Pinnacle::Campaigns::TollFree::Types::TollFreeCampaignUseCase, as a Hash
       #   * :summary (String)
       #   * :value (Pinnacle::Types::TollFreeCampaignUseCaseEnum)
       # @param request_options [Pinnacle::RequestOptions]
@@ -150,14 +164,20 @@ module Pinnacle
       #  api.campaigns.toll_free.upsert(
       #    brand: "b_1234567890",
       #    campaign_id: "tf_1234567890",
+      #    keywords: { help: { message: "Email founders@trypinnacle.app for support." }, opt_in: { message: "Welcome back to Pinnacle!<br>
+      #  🔔 You're now subscribed to Pinnacle and will continue receiving important updates and news. Feel free to contact this us at any time for help.<br>
+      #  Reply STOP to opt out and HELP for support. Message & rates may apply.
+      #  ", keywords: ["START", "SUBSCRIBE"] } },
+      #    links: { privacy_policy: "https://www.pinnacle.sh/privacy", terms_of_service: "https://www.pinnacle.sh/terms" },
       #    monthly_volume: ONE_000,
       #    name: "Pinnacle",
       #    opt_in: { method_: DIGITAL, url: "https://www.pinnacle.sh/", workflow_description: "Visit https://www.pinnacle.sh/" },
+      #    options: { age_gated: false },
       #    production_message_content: "Join the Pinnacle workshop tomorrow and send your first RCS!",
       #    use_case: { summary: "Alerts clients about any Pinnacle hosted workshops.", value: WORKSHOP_ALERTS }
       #  )
-      def upsert(brand: nil, campaign_id: nil, monthly_volume: nil, name: nil, opt_in: nil,
-                 production_message_content: nil, use_case: nil, request_options: nil)
+      def upsert(brand: nil, campaign_id: nil, keywords: nil, links: nil, monthly_volume: nil, name: nil, opt_in: nil,
+                 options: nil, production_message_content: nil, use_case: nil, request_options: nil)
         response = @request_client.conn.post do |req|
           req.options.timeout = request_options.timeout_in_seconds unless request_options&.timeout_in_seconds.nil?
           req.headers["PINNACLE-API-KEY"] = request_options.api_key unless request_options&.api_key.nil?
@@ -173,9 +193,12 @@ module Pinnacle
             **(request_options&.additional_body_parameters || {}),
             brand: brand,
             campaignId: campaign_id,
+            keywords: keywords,
+            links: links,
             monthlyVolume: monthly_volume,
             name: name,
             optIn: opt_in,
+            options: options,
             productionMessageContent: production_message_content,
             useCase: use_case
           }.compact
@@ -339,14 +362,25 @@ module Pinnacle
       #  for example: `b_1234567890`.
       # @param campaign_id [String] Unique identifier for the campaign. This identifier is a string that always
       #  begins with the prefix `tf_`, for example: `tf_1234567890`.
+      # @param keywords [Hash] Keyword response configuration.Request of type Pinnacle::Campaigns::TollFree::Types::TollFreeCampaignKeywords, as a Hash
+      #   * :help (Hash)
+      #     * :message (String)
+      #   * :opt_in (Hash)
+      #     * :message (String)
+      #     * :keywords (Array<String>)
+      # @param links [Hash] Legal documentation links.Request of type Pinnacle::Campaigns::TollFree::Types::TollFreeCampaignLinks, as a Hash
+      #   * :privacy_policy (String)
+      #   * :terms_of_service (String)
       # @param monthly_volume [Pinnacle::Types::MessageVolumeEnum]
       # @param name [String] Display name of the campaign.
-      # @param opt_in [Hash] Opt-in keyword settings.Request of type Pinnacle::Campaigns::TollFree::Types::UpsertTollFreeSchemaOptIn, as a Hash
+      # @param opt_in [Hash] Opt-in keyword settings.Request of type Pinnacle::Campaigns::TollFree::Types::TollFreeCampaignOptIn, as a Hash
       #   * :method_ (Pinnacle::Types::OptInMethodEnum)
       #   * :url (String)
       #   * :workflow_description (String)
+      # @param options [Hash] Campaign configuration options.Request of type Pinnacle::Campaigns::TollFree::Types::TollFreeCampaignOptions, as a Hash
+      #   * :age_gated (Boolean)
       # @param production_message_content [String] Explain message that would be sent.
-      # @param use_case [Hash] Use case classification for the campaign.Request of type Pinnacle::Campaigns::TollFree::Types::UpsertTollFreeSchemaUseCase, as a Hash
+      # @param use_case [Hash] Use case classification for the campaign.Request of type Pinnacle::Campaigns::TollFree::Types::TollFreeCampaignUseCase, as a Hash
       #   * :summary (String)
       #   * :value (Pinnacle::Types::TollFreeCampaignUseCaseEnum)
       # @param request_options [Pinnacle::RequestOptions]
@@ -360,14 +394,20 @@ module Pinnacle
       #  api.campaigns.toll_free.upsert(
       #    brand: "b_1234567890",
       #    campaign_id: "tf_1234567890",
+      #    keywords: { help: { message: "Email founders@trypinnacle.app for support." }, opt_in: { message: "Welcome back to Pinnacle!<br>
+      #  🔔 You're now subscribed to Pinnacle and will continue receiving important updates and news. Feel free to contact this us at any time for help.<br>
+      #  Reply STOP to opt out and HELP for support. Message & rates may apply.
+      #  ", keywords: ["START", "SUBSCRIBE"] } },
+      #    links: { privacy_policy: "https://www.pinnacle.sh/privacy", terms_of_service: "https://www.pinnacle.sh/terms" },
       #    monthly_volume: ONE_000,
       #    name: "Pinnacle",
       #    opt_in: { method_: DIGITAL, url: "https://www.pinnacle.sh/", workflow_description: "Visit https://www.pinnacle.sh/" },
+      #    options: { age_gated: false },
       #    production_message_content: "Join the Pinnacle workshop tomorrow and send your first RCS!",
       #    use_case: { summary: "Alerts clients about any Pinnacle hosted workshops.", value: WORKSHOP_ALERTS }
       #  )
-      def upsert(brand: nil, campaign_id: nil, monthly_volume: nil, name: nil, opt_in: nil,
-                 production_message_content: nil, use_case: nil, request_options: nil)
+      def upsert(brand: nil, campaign_id: nil, keywords: nil, links: nil, monthly_volume: nil, name: nil, opt_in: nil,
+                 options: nil, production_message_content: nil, use_case: nil, request_options: nil)
         Async do
           response = @request_client.conn.post do |req|
             req.options.timeout = request_options.timeout_in_seconds unless request_options&.timeout_in_seconds.nil?
@@ -384,9 +424,12 @@ module Pinnacle
               **(request_options&.additional_body_parameters || {}),
               brand: brand,
               campaignId: campaign_id,
+              keywords: keywords,
+              links: links,
               monthlyVolume: monthly_volume,
               name: name,
               optIn: opt_in,
+              options: options,
               productionMessageContent: production_message_content,
               useCase: use_case
             }.compact

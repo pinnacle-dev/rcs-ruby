@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require_relative "send_rcs_card_options"
-require_relative "rcs_cards_cards_item"
+require_relative "send_rich_cards_options"
+require_relative "rich_card"
 require_relative "rich_button"
 require "ostruct"
 require "json"
@@ -9,13 +9,13 @@ require "json"
 module Pinnacle
   module Types
     class RichCardsMessage
-      # @return [Pinnacle::Types::SendRcsCardOptions]
+      # @return [Pinnacle::Types::SendRichCardsOptions]
       attr_reader :options
       # @return [String] Your RCS agent ID which must be prefixed with 'agent_'.
       attr_reader :from
       # @return [String] Recipient's phone number in E.164 format.
       attr_reader :to
-      # @return [Array<Pinnacle::Types::RcsCardsCardsItem>] Collection of cards attached to the message.
+      # @return [Array<Pinnacle::Types::RichCard>] Collection of cards attached to the message.
       attr_reader :cards
       # @return [Array<Pinnacle::Types::RichButton>] List of interactive quick reply buttons in the message.
       attr_reader :quick_replies
@@ -27,10 +27,10 @@ module Pinnacle
 
       OMIT = Object.new
 
-      # @param options [Pinnacle::Types::SendRcsCardOptions]
+      # @param options [Pinnacle::Types::SendRichCardsOptions]
       # @param from [String] Your RCS agent ID which must be prefixed with 'agent_'.
       # @param to [String] Recipient's phone number in E.164 format.
-      # @param cards [Array<Pinnacle::Types::RcsCardsCardsItem>] Collection of cards attached to the message.
+      # @param cards [Array<Pinnacle::Types::RichCard>] Collection of cards attached to the message.
       # @param quick_replies [Array<Pinnacle::Types::RichButton>] List of interactive quick reply buttons in the message.
       # @param additional_properties [OpenStruct] Additional properties unmapped to the current class definition
       # @return [Pinnacle::Types::RichCardsMessage]
@@ -63,13 +63,13 @@ module Pinnacle
           options = nil
         else
           options = parsed_json["options"].to_json
-          options = Pinnacle::Types::SendRcsCardOptions.from_json(json_object: options)
+          options = Pinnacle::Types::SendRichCardsOptions.from_json(json_object: options)
         end
         from = parsed_json["from"]
         to = parsed_json["to"]
         cards = parsed_json["cards"]&.map do |item|
           item = item.to_json
-          Pinnacle::Types::RcsCardsCardsItem.from_json(json_object: item)
+          Pinnacle::Types::RichCard.from_json(json_object: item)
         end
         quick_replies = parsed_json["quickReplies"]&.map do |item|
           item = item.to_json
@@ -99,7 +99,7 @@ module Pinnacle
       # @param obj [Object]
       # @return [Void]
       def self.validate_raw(obj:)
-        obj.options.nil? || Pinnacle::Types::SendRcsCardOptions.validate_raw(obj: obj.options)
+        obj.options.nil? || Pinnacle::Types::SendRichCardsOptions.validate_raw(obj: obj.options)
         obj.from.is_a?(String) != false || raise("Passed value for field obj.from is not the expected type, validation failed.")
         obj.to.is_a?(String) != false || raise("Passed value for field obj.to is not the expected type, validation failed.")
         obj.cards.is_a?(Array) != false || raise("Passed value for field obj.cards is not the expected type, validation failed.")

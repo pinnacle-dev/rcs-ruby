@@ -2,7 +2,7 @@
 
 require "json"
 require_relative "../../../types/sent_mms_details"
-require_relative "../../../types/scheduled_messaage"
+require_relative "../../../types/scheduled_message"
 
 module Pinnacle
   module Messages
@@ -24,8 +24,8 @@ module Pinnacle
               # noop
             end
             begin
-              Pinnacle::Types::ScheduledMessaage.validate_raw(obj: struct)
-              return Pinnacle::Types::ScheduledMessaage.from_json(json_object: struct) unless struct.nil?
+              Pinnacle::Types::ScheduledMessage.validate_raw(obj: struct)
+              return Pinnacle::Types::ScheduledMessage.from_json(json_object: struct) unless struct.nil?
 
               return nil
             rescue StandardError
@@ -47,7 +47,7 @@ module Pinnacle
               # noop
             end
             begin
-              return Pinnacle::Types::ScheduledMessaage.validate_raw(obj: obj)
+              return Pinnacle::Types::ScheduledMessage.validate_raw(obj: obj)
             rescue StandardError
               # noop
             end

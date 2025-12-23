@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require_relative "rich_button"
-require_relative "rcs_base_options"
+require_relative "send_rich_message_options"
 require "ostruct"
 require "json"
 
@@ -16,7 +16,7 @@ module Pinnacle
       attr_reader :quick_replies
       # @return [String] Your RCS agent ID which must be prefixed with 'agent_'.
       attr_reader :from
-      # @return [Pinnacle::Types::RcsBaseOptions] Configure how your RCS message is sent and tracked.
+      # @return [Pinnacle::Types::SendRichMessageOptions] Configure how your RCS message is sent and tracked.
       attr_reader :options
       # @return [String] Recipient's phone number in E.164 format.
       attr_reader :to
@@ -33,7 +33,7 @@ module Pinnacle
       #  types](https://app.pinnacle.sh/supported-file-types?type=RCS-MEDIA).
       # @param quick_replies [Array<Pinnacle::Types::RichButton>] List of interactive quick reply buttons in the message.
       # @param from [String] Your RCS agent ID which must be prefixed with 'agent_'.
-      # @param options [Pinnacle::Types::RcsBaseOptions] Configure how your RCS message is sent and tracked.
+      # @param options [Pinnacle::Types::SendRichMessageOptions] Configure how your RCS message is sent and tracked.
       # @param to [String] Recipient's phone number in E.164 format.
       # @param additional_properties [OpenStruct] Additional properties unmapped to the current class definition
       # @return [Pinnacle::Types::RichMediaMessage]
@@ -72,7 +72,7 @@ module Pinnacle
           options = nil
         else
           options = parsed_json["options"].to_json
-          options = Pinnacle::Types::RcsBaseOptions.from_json(json_object: options)
+          options = Pinnacle::Types::SendRichMessageOptions.from_json(json_object: options)
         end
         to = parsed_json["to"]
         new(
@@ -102,7 +102,7 @@ module Pinnacle
         obj.media.is_a?(String) != false || raise("Passed value for field obj.media is not the expected type, validation failed.")
         obj.quick_replies.is_a?(Array) != false || raise("Passed value for field obj.quick_replies is not the expected type, validation failed.")
         obj.from.is_a?(String) != false || raise("Passed value for field obj.from is not the expected type, validation failed.")
-        obj.options.nil? || Pinnacle::Types::RcsBaseOptions.validate_raw(obj: obj.options)
+        obj.options.nil? || Pinnacle::Types::SendRichMessageOptions.validate_raw(obj: obj.options)
         obj.to.is_a?(String) != false || raise("Passed value for field obj.to is not the expected type, validation failed.")
       end
     end

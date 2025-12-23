@@ -2,7 +2,7 @@
 
 require_relative "../../../requests"
 require_relative "../../types/rich_message"
-require_relative "types/rcs_send_response"
+require_relative "types/send_rich_message_response"
 require_relative "types/send_typing_indicator_schema_options"
 require_relative "../../types/send_typing_indicator_response"
 require_relative "../../types/rcs_validate_content"
@@ -27,7 +27,7 @@ module Pinnacle
       #
       # @param request [Pinnacle::Types::RichTextMessage, Pinnacle::Types::RichMediaMessage, Pinnacle::Types::RichCardsMessage]
       # @param request_options [Pinnacle::RequestOptions]
-      # @return [Pinnacle::Types::SentRcsDetails, Pinnacle::Types::ScheduledMessaage]
+      # @return [Pinnacle::Types::SentRichMessage, Pinnacle::Types::ScheduledMessage]
       # @example
       #  api = Pinnacle::Client.new(
       #    base_url: "https://api.example.com",
@@ -50,7 +50,7 @@ module Pinnacle
           req.body = { **(request || {}), **(request_options&.additional_body_parameters || {}) }.compact
           req.url "#{@request_client.get_url(request_options: request_options)}/messages/send/rcs"
         end
-        Pinnacle::Messages::Rcs::Types::RcsSendResponse.from_json(json_object: response.body)
+        Pinnacle::Messages::Rcs::Types::SendRichMessageResponse.from_json(json_object: response.body)
       end
 
       # Send a typing indicator from an RCS agent to a recipient.
@@ -115,7 +115,7 @@ module Pinnacle
 
       # Validate RCS message content without sending it.
       #
-      # @param request [Pinnacle::Types::RcsTextContent, Pinnacle::Types::RcsValidateContentMedia, Pinnacle::Types::RcsCards]
+      # @param request [Pinnacle::Types::RichText, Pinnacle::Types::RcsValidateContentMedia, Pinnacle::Types::RichCards]
       # @param request_options [Pinnacle::RequestOptions]
       # @return [Pinnacle::Types::RcsValidationResult]
       # @example
@@ -160,7 +160,7 @@ module Pinnacle
       #
       # @param request [Pinnacle::Types::RichTextMessage, Pinnacle::Types::RichMediaMessage, Pinnacle::Types::RichCardsMessage]
       # @param request_options [Pinnacle::RequestOptions]
-      # @return [Pinnacle::Types::SentRcsDetails, Pinnacle::Types::ScheduledMessaage]
+      # @return [Pinnacle::Types::SentRichMessage, Pinnacle::Types::ScheduledMessage]
       # @example
       #  api = Pinnacle::Client.new(
       #    base_url: "https://api.example.com",
@@ -184,7 +184,7 @@ module Pinnacle
             req.body = { **(request || {}), **(request_options&.additional_body_parameters || {}) }.compact
             req.url "#{@request_client.get_url(request_options: request_options)}/messages/send/rcs"
           end
-          Pinnacle::Messages::Rcs::Types::RcsSendResponse.from_json(json_object: response.body)
+          Pinnacle::Messages::Rcs::Types::SendRichMessageResponse.from_json(json_object: response.body)
         end
       end
 
@@ -252,7 +252,7 @@ module Pinnacle
 
       # Validate RCS message content without sending it.
       #
-      # @param request [Pinnacle::Types::RcsTextContent, Pinnacle::Types::RcsValidateContentMedia, Pinnacle::Types::RcsCards]
+      # @param request [Pinnacle::Types::RichText, Pinnacle::Types::RcsValidateContentMedia, Pinnacle::Types::RichCards]
       # @param request_options [Pinnacle::RequestOptions]
       # @return [Pinnacle::Types::RcsValidationResult]
       # @example

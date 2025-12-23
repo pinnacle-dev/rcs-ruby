@@ -6,6 +6,7 @@ require_relative "brand_status_enum"
 require_relative "optional_contacts"
 require_relative "company_sector_enum"
 require_relative "company_type_enum"
+require_relative "company_entity_type_enum"
 require "ostruct"
 require "json"
 
@@ -56,6 +57,8 @@ module Pinnacle
       attr_reader :sector
       # @return [Pinnacle::Types::CompanyTypeEnum]
       attr_reader :type
+      # @return [Pinnacle::Types::CompanyEntityTypeEnum] Legal entity type of the brand.
+      attr_reader :entity_type
       # @return [String] Brand website URL.
       attr_reader :website
       # @return [OpenStruct] Additional properties unmapped to the current class definition
@@ -93,11 +96,12 @@ module Pinnacle
       # @param name [String] Legal name of the brand as registered.
       # @param sector [Pinnacle::Types::CompanySectorEnum]
       # @param type [Pinnacle::Types::CompanyTypeEnum]
+      # @param entity_type [Pinnacle::Types::CompanyEntityTypeEnum] Legal entity type of the brand.
       # @param website [String] Brand website URL.
       # @param additional_properties [OpenStruct] Additional properties unmapped to the current class definition
       # @return [Pinnacle::Types::ExtendedBrandWithVetting]
       def initialize(vetting_history:, created_at:, id:, is_archived:, status:, updated_at:,
-                     last_tcr_vetting_date: OMIT, tcr_feedback: OMIT, address: OMIT, contact: OMIT, dba: OMIT, description: OMIT, ein: OMIT, email: OMIT, name: OMIT, sector: OMIT, type: OMIT, website: OMIT, additional_properties: nil)
+                     last_tcr_vetting_date: OMIT, tcr_feedback: OMIT, address: OMIT, contact: OMIT, dba: OMIT, description: OMIT, ein: OMIT, email: OMIT, name: OMIT, sector: OMIT, type: OMIT, entity_type: OMIT, website: OMIT, additional_properties: nil)
         @last_tcr_vetting_date = last_tcr_vetting_date if last_tcr_vetting_date != OMIT
         @tcr_feedback = tcr_feedback if tcr_feedback != OMIT
         @vetting_history = vetting_history
@@ -115,6 +119,7 @@ module Pinnacle
         @name = name if name != OMIT
         @sector = sector if sector != OMIT
         @type = type if type != OMIT
+        @entity_type = entity_type if entity_type != OMIT
         @website = website if website != OMIT
         @additional_properties = additional_properties
         @_field_set = {
@@ -135,6 +140,7 @@ module Pinnacle
           "name": name,
           "sector": sector,
           "type": type,
+          "entityType": entity_type,
           "website": website
         }.reject do |_k, v|
           v == OMIT
@@ -176,6 +182,7 @@ module Pinnacle
         name = parsed_json["name"]
         sector = parsed_json["sector"]
         type = parsed_json["type"]
+        entity_type = parsed_json["entityType"]
         website = parsed_json["website"]
         new(
           last_tcr_vetting_date: last_tcr_vetting_date,
@@ -195,6 +202,7 @@ module Pinnacle
           name: name,
           sector: sector,
           type: type,
+          entity_type: entity_type,
           website: website,
           additional_properties: struct
         )
@@ -231,6 +239,7 @@ module Pinnacle
         obj.name&.is_a?(String) != false || raise("Passed value for field obj.name is not the expected type, validation failed.")
         obj.sector&.is_a?(Pinnacle::Types::CompanySectorEnum) != false || raise("Passed value for field obj.sector is not the expected type, validation failed.")
         obj.type&.is_a?(Pinnacle::Types::CompanyTypeEnum) != false || raise("Passed value for field obj.type is not the expected type, validation failed.")
+        obj.entity_type&.is_a?(Pinnacle::Types::CompanyEntityTypeEnum) != false || raise("Passed value for field obj.entity_type is not the expected type, validation failed.")
         obj.website&.is_a?(String) != false || raise("Passed value for field obj.website is not the expected type, validation failed.")
       end
     end

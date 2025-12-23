@@ -4,6 +4,7 @@ module Pinnacle
   module Types
     # Current status of the message.
     class MessageStatusEnum
+      QUEUED = "QUEUED"
       PENDING = "PENDING"
       SENT = "SENT"
       SEND_FAILED = "SEND_FAILED"

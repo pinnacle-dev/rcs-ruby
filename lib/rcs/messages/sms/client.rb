@@ -24,15 +24,15 @@ module Pinnacle
       # @param from [String] Phone number that sends the message in E.164 format.
       # @param options [Hash] Additional settings to customize SMS delivery.Request of type Pinnacle::Messages::Sms::Types::SendSmsOptions, as a Hash
       #   * :schedule (Hash)
-      #     * :end_date (String)
-      #     * :recurrence (String)
       #     * :send_at (String)
+      #     * :recurrence (String)
       #     * :timezone (String)
+      #     * :end_date (String)
       #   * :tracking (Pinnacle::Types::Tracking)
       # @param text [String] Message content.
       # @param to [String] Recipient's phone number in E.164 format.
       # @param request_options [Pinnacle::RequestOptions]
-      # @return [Pinnacle::Types::SentSmsDetails, Pinnacle::Types::ScheduledMessaage]
+      # @return [Pinnacle::Types::SentSmsDetails, Pinnacle::Types::ScheduledMessage]
       # @example
       #  api = Pinnacle::Client.new(
       #    base_url: "https://api.example.com",
@@ -115,15 +115,15 @@ module Pinnacle
       # @param from [String] Phone number that sends the message in E.164 format.
       # @param options [Hash] Additional settings to customize SMS delivery.Request of type Pinnacle::Messages::Sms::Types::SendSmsOptions, as a Hash
       #   * :schedule (Hash)
-      #     * :end_date (String)
-      #     * :recurrence (String)
       #     * :send_at (String)
+      #     * :recurrence (String)
       #     * :timezone (String)
+      #     * :end_date (String)
       #   * :tracking (Pinnacle::Types::Tracking)
       # @param text [String] Message content.
       # @param to [String] Recipient's phone number in E.164 format.
       # @param request_options [Pinnacle::RequestOptions]
-      # @return [Pinnacle::Types::SentSmsDetails, Pinnacle::Types::ScheduledMessaage]
+      # @return [Pinnacle::Types::SentSmsDetails, Pinnacle::Types::ScheduledMessage]
       # @example
       #  api = Pinnacle::Client.new(
       #    base_url: "https://api.example.com",

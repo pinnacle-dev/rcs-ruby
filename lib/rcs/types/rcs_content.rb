@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require "json"
-require_relative "rcs_text_content"
+require_relative "rich_text"
 require_relative "rcs_media_content"
 require_relative "rcs_cards_content"
 
@@ -17,8 +17,8 @@ module Pinnacle
       def self.from_json(json_object:)
         struct = JSON.parse(json_object, object_class: OpenStruct)
         begin
-          Pinnacle::Types::RcsTextContent.validate_raw(obj: struct)
-          return Pinnacle::Types::RcsTextContent.from_json(json_object: struct) unless struct.nil?
+          Pinnacle::Types::RichText.validate_raw(obj: struct)
+          return Pinnacle::Types::RichText.from_json(json_object: struct) unless struct.nil?
 
           return nil
         rescue StandardError
@@ -51,7 +51,7 @@ module Pinnacle
       # @return [Void]
       def self.validate_raw(obj:)
         begin
-          return Pinnacle::Types::RcsTextContent.validate_raw(obj: obj)
+          return Pinnacle::Types::RichText.validate_raw(obj: obj)
         rescue StandardError
           # noop
         end
