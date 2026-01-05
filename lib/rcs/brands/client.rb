@@ -3,14 +3,13 @@
 require_relative "../../requests"
 require_relative "types/autofill_brand_options"
 require_relative "../types/optional_brand_info"
-require_relative "../types/upsert_contact"
-require_relative "../types/company_sector_enum"
-require_relative "../types/company_type_enum"
-require_relative "../types/company_entity_type_enum"
+require_relative "types/upsert_brand_schema_contact"
+require_relative "types/upsert_brand_schema_sector"
+require_relative "types/upsert_brand_schema_type"
+require_relative "types/upsert_brand_schema_entity_type"
 require_relative "../types/extended_brand"
 require_relative "../types/extended_brand_with_vetting"
 require_relative "../types/submission_results"
-require_relative "types/brand_contact"
 require_relative "../types/validation_results"
 require_relative "../types/vetting_results"
 require "async"
@@ -75,7 +74,7 @@ module Pinnacle
     # Create a new brand or update an existing brand by with the provided information.
     #
     # @param address [String] Primary brand address where the company is located.
-    # @param contact [Hash] Contact information for the brand.Request of type Pinnacle::Types::UpsertContact, as a Hash
+    # @param contact [Hash] Contact information for the brand.Request of type Pinnacle::Brands::Types::UpsertBrandSchemaContact, as a Hash
     #   * :email (String)
     #   * :name (String)
     #   * :phone (String)
@@ -88,9 +87,9 @@ module Pinnacle
     #  <br><br> This identifier is a string that always begins with the prefix `b_`,
     #  for example: `b_1234567890`.
     # @param name [String] Legal name of the brand as registered.
-    # @param sector [Pinnacle::Types::CompanySectorEnum] Industry the brand operates in.
-    # @param type [Pinnacle::Types::CompanyTypeEnum] Legal structure of the brand.
-    # @param entity_type [Pinnacle::Types::CompanyEntityTypeEnum] Legal entity type of the brand.
+    # @param sector [Pinnacle::Brands::Types::UpsertBrandSchemaSector] Industry the brand operates in.
+    # @param type [Pinnacle::Brands::Types::UpsertBrandSchemaType] Legal structure of the brand.
+    # @param entity_type [Pinnacle::Brands::Types::UpsertBrandSchemaEntityType] Legal entity type of the brand.
     # @param website [String] Brand website URL.
     # @param request_options [Pinnacle::RequestOptions]
     # @return [Pinnacle::Types::ExtendedBrand]
@@ -221,21 +220,22 @@ module Pinnacle
     # Validate your brand information for compliance and correctness before submission
     #  or storage.
     #
-    # @param address [String] Primary brand address where the brand is located.
-    # @param contact [Hash] Contact information for the primary brand representative.Request of type Pinnacle::Brands::Types::BrandContact, as a Hash
+    # @param request [Hash] Request of type Pinnacle::Types::OptionalBrandInfo, as a Hash
+    #   * :address (String)
+    #   * :contact (Hash)
+    #     * :email (String)
+    #     * :name (String)
+    #     * :phone (String)
+    #     * :title (String)
+    #   * :dba (String)
+    #   * :description (String)
+    #   * :ein (String)
     #   * :email (String)
     #   * :name (String)
-    #   * :phone (String)
-    #   * :title (String)
-    # @param dba [String] "Doing Business As" name - the public name the brand operates under.
-    # @param description [String] Brief description of what the brand does.
-    # @param ein [String] Employer Identification Number (EIN) assigned by the IRS.
-    # @param email [String] Main contact email address for the brand.
-    # @param name [String] Legal name of the brand as registered.
-    # @param sector [Pinnacle::Types::CompanySectorEnum]
-    # @param type [Pinnacle::Types::CompanyTypeEnum]
-    # @param entity_type [Pinnacle::Types::CompanyEntityTypeEnum] Legal entity type of the brand.
-    # @param website [String] Brand website URL.
+    #   * :sector (Pinnacle::Types::CompanySectorEnum)
+    #   * :type (Pinnacle::Types::CompanyTypeEnum)
+    #   * :entity_type (Pinnacle::Types::CompanyEntityTypeEnum)
+    #   * :website (String)
     # @param request_options [Pinnacle::RequestOptions]
     # @return [Pinnacle::Types::ValidationResults]
     # @example
@@ -244,21 +244,8 @@ module Pinnacle
     #    environment: Pinnacle::Environment::DEFAULT,
     #    api_key: "YOUR_API_KEY"
     #  )
-    #  api.brands.validate(
-    #    address: "500 Folsom St, San Francisco, CA 94105",
-    #    contact: { email: "michael.chen@trypinnacle.app", name: "Michael Chen", phone: "+14155551234", title: "Customer Support Representative" },
-    #    dba: "Pinnacle Messaging",
-    #    description: "Pinnacle is an SMS, MMS, and RCS API for scaling conversations with customers you value.",
-    #    ein: "88-1234567",
-    #    email: "founders@trypinnacle.app",
-    #    name: "Pinnacle",
-    #    sector: TECHNOLOGY,
-    #    type: PRIVATE_PROFIT,
-    #    entity_type: LLC,
-    #    website: "https://www.pinnacle.sh"
-    #  )
-    def validate(address:, contact:, description:, email:, name:, sector:, type:, entity_type:, website:, dba: nil,
-                 ein: nil, request_options: nil)
+    #  api.brands.validate(request: {  })
+    def validate(request:, request_options: nil)
       response = @request_client.conn.post do |req|
         req.options.timeout = request_options.timeout_in_seconds unless request_options&.timeout_in_seconds.nil?
         req.headers["PINNACLE-API-KEY"] = request_options.api_key unless request_options&.api_key.nil?
@@ -270,20 +257,7 @@ module Pinnacle
         unless request_options.nil? || request_options&.additional_query_parameters.nil?
           req.params = { **(request_options&.additional_query_parameters || {}) }.compact
         end
-        req.body = {
-          **(request_options&.additional_body_parameters || {}),
-          address: address,
-          contact: contact,
-          dba: dba,
-          description: description,
-          ein: ein,
-          email: email,
-          name: name,
-          sector: sector,
-          type: type,
-          entityType: entity_type,
-          website: website
-        }.compact
+        req.body = { **(request || {}), **(request_options&.additional_body_parameters || {}) }.compact
         req.url "#{@request_client.get_url(request_options: request_options)}/brands/validate"
       end
       Pinnacle::Types::ValidationResults.from_json(json_object: response.body)
@@ -390,7 +364,7 @@ module Pinnacle
     # Create a new brand or update an existing brand by with the provided information.
     #
     # @param address [String] Primary brand address where the company is located.
-    # @param contact [Hash] Contact information for the brand.Request of type Pinnacle::Types::UpsertContact, as a Hash
+    # @param contact [Hash] Contact information for the brand.Request of type Pinnacle::Brands::Types::UpsertBrandSchemaContact, as a Hash
     #   * :email (String)
     #   * :name (String)
     #   * :phone (String)
@@ -403,9 +377,9 @@ module Pinnacle
     #  <br><br> This identifier is a string that always begins with the prefix `b_`,
     #  for example: `b_1234567890`.
     # @param name [String] Legal name of the brand as registered.
-    # @param sector [Pinnacle::Types::CompanySectorEnum] Industry the brand operates in.
-    # @param type [Pinnacle::Types::CompanyTypeEnum] Legal structure of the brand.
-    # @param entity_type [Pinnacle::Types::CompanyEntityTypeEnum] Legal entity type of the brand.
+    # @param sector [Pinnacle::Brands::Types::UpsertBrandSchemaSector] Industry the brand operates in.
+    # @param type [Pinnacle::Brands::Types::UpsertBrandSchemaType] Legal structure of the brand.
+    # @param entity_type [Pinnacle::Brands::Types::UpsertBrandSchemaEntityType] Legal entity type of the brand.
     # @param website [String] Brand website URL.
     # @param request_options [Pinnacle::RequestOptions]
     # @return [Pinnacle::Types::ExtendedBrand]
@@ -542,21 +516,22 @@ module Pinnacle
     # Validate your brand information for compliance and correctness before submission
     #  or storage.
     #
-    # @param address [String] Primary brand address where the brand is located.
-    # @param contact [Hash] Contact information for the primary brand representative.Request of type Pinnacle::Brands::Types::BrandContact, as a Hash
+    # @param request [Hash] Request of type Pinnacle::Types::OptionalBrandInfo, as a Hash
+    #   * :address (String)
+    #   * :contact (Hash)
+    #     * :email (String)
+    #     * :name (String)
+    #     * :phone (String)
+    #     * :title (String)
+    #   * :dba (String)
+    #   * :description (String)
+    #   * :ein (String)
     #   * :email (String)
     #   * :name (String)
-    #   * :phone (String)
-    #   * :title (String)
-    # @param dba [String] "Doing Business As" name - the public name the brand operates under.
-    # @param description [String] Brief description of what the brand does.
-    # @param ein [String] Employer Identification Number (EIN) assigned by the IRS.
-    # @param email [String] Main contact email address for the brand.
-    # @param name [String] Legal name of the brand as registered.
-    # @param sector [Pinnacle::Types::CompanySectorEnum]
-    # @param type [Pinnacle::Types::CompanyTypeEnum]
-    # @param entity_type [Pinnacle::Types::CompanyEntityTypeEnum] Legal entity type of the brand.
-    # @param website [String] Brand website URL.
+    #   * :sector (Pinnacle::Types::CompanySectorEnum)
+    #   * :type (Pinnacle::Types::CompanyTypeEnum)
+    #   * :entity_type (Pinnacle::Types::CompanyEntityTypeEnum)
+    #   * :website (String)
     # @param request_options [Pinnacle::RequestOptions]
     # @return [Pinnacle::Types::ValidationResults]
     # @example
@@ -565,21 +540,8 @@ module Pinnacle
     #    environment: Pinnacle::Environment::DEFAULT,
     #    api_key: "YOUR_API_KEY"
     #  )
-    #  api.brands.validate(
-    #    address: "500 Folsom St, San Francisco, CA 94105",
-    #    contact: { email: "michael.chen@trypinnacle.app", name: "Michael Chen", phone: "+14155551234", title: "Customer Support Representative" },
-    #    dba: "Pinnacle Messaging",
-    #    description: "Pinnacle is an SMS, MMS, and RCS API for scaling conversations with customers you value.",
-    #    ein: "88-1234567",
-    #    email: "founders@trypinnacle.app",
-    #    name: "Pinnacle",
-    #    sector: TECHNOLOGY,
-    #    type: PRIVATE_PROFIT,
-    #    entity_type: LLC,
-    #    website: "https://www.pinnacle.sh"
-    #  )
-    def validate(address:, contact:, description:, email:, name:, sector:, type:, entity_type:, website:, dba: nil,
-                 ein: nil, request_options: nil)
+    #  api.brands.validate(request: {  })
+    def validate(request:, request_options: nil)
       Async do
         response = @request_client.conn.post do |req|
           req.options.timeout = request_options.timeout_in_seconds unless request_options&.timeout_in_seconds.nil?
@@ -592,20 +554,7 @@ module Pinnacle
           unless request_options.nil? || request_options&.additional_query_parameters.nil?
             req.params = { **(request_options&.additional_query_parameters || {}) }.compact
           end
-          req.body = {
-            **(request_options&.additional_body_parameters || {}),
-            address: address,
-            contact: contact,
-            dba: dba,
-            description: description,
-            ein: ein,
-            email: email,
-            name: name,
-            sector: sector,
-            type: type,
-            entityType: entity_type,
-            website: website
-          }.compact
+          req.body = { **(request || {}), **(request_options&.additional_body_parameters || {}) }.compact
           req.url "#{@request_client.get_url(request_options: request_options)}/brands/validate"
         end
         Pinnacle::Types::ValidationResults.from_json(json_object: response.body)
