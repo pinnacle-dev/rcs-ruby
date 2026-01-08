@@ -23,7 +23,8 @@ module Pinnacle
     #  supported
     #  on specific phone numbers before sending RCS messages to them.
     #
-    # @param phone_numbers [Array<String>] List of phone numbers to check RCS capabilities for (E.164 format)
+    # @param phone_numbers [Array<String>] List of phone numbers to check RCS capabilities for (E.164 format). <br><br>
+    #  **Limit:** 1 min
     # @param request_options [Pinnacle::RequestOptions]
     # @return [Pinnacle::Types::RCS_CAPABILITIES_RESULT]
     # @example
@@ -180,7 +181,8 @@ module Pinnacle
     #  supported
     #  on specific phone numbers before sending RCS messages to them.
     #
-    # @param phone_numbers [Array<String>] List of phone numbers to check RCS capabilities for (E.164 format)
+    # @param phone_numbers [Array<String>] List of phone numbers to check RCS capabilities for (E.164 format). <br><br>
+    #  **Limit:** 1 min
     # @param request_options [Pinnacle::RequestOptions]
     # @return [Pinnacle::Types::RCS_CAPABILITIES_RESULT]
     # @example

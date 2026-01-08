@@ -14,7 +14,8 @@ module Pinnacle
     class RcsMediaContent
       # @return [Pinnacle::Types::RcsMediaDetailsContent]
       attr_reader :media
-      # @return [Array<Pinnacle::Types::RichButton>] List of interactive quick reply buttons in the message.
+      # @return [Array<Pinnacle::Types::RichButton>] List of interactive quick reply buttons in the message. <br><br>
+      #  **Limit:** 10 max
       attr_reader :quick_replies
       # @return [OpenStruct] Additional properties unmapped to the current class definition
       attr_reader :additional_properties
@@ -25,7 +26,8 @@ module Pinnacle
       OMIT = Object.new
 
       # @param media [Pinnacle::Types::RcsMediaDetailsContent]
-      # @param quick_replies [Array<Pinnacle::Types::RichButton>] List of interactive quick reply buttons in the message.
+      # @param quick_replies [Array<Pinnacle::Types::RichButton>] List of interactive quick reply buttons in the message. <br><br>
+      #  **Limit:** 10 max
       # @param additional_properties [OpenStruct] Additional properties unmapped to the current class definition
       # @return [Pinnacle::Types::RcsMediaContent]
       def initialize(media:, quick_replies:, additional_properties: nil)

@@ -14,7 +14,8 @@ module Pinnacle
       attr_reader :options
       # @return [String] Recipient's phone number in E.164 format.
       attr_reader :to
-      # @return [Array<Pinnacle::Types::RichButton>] List of interactive quick reply buttons in the message.
+      # @return [Array<Pinnacle::Types::RichButton>] List of interactive quick reply buttons in the message. <br><br>
+      #  **Limit:** 10 max
       attr_reader :quick_replies
       # @return [String] Text content of the RCS message.
       attr_reader :text
@@ -29,7 +30,8 @@ module Pinnacle
       # @param from [String] Your RCS agent ID which must be prefixed with 'agent_'.
       # @param options [Pinnacle::Types::SendRichMessageOptions] Configure how your RCS message is sent and tracked.
       # @param to [String] Recipient's phone number in E.164 format.
-      # @param quick_replies [Array<Pinnacle::Types::RichButton>] List of interactive quick reply buttons in the message.
+      # @param quick_replies [Array<Pinnacle::Types::RichButton>] List of interactive quick reply buttons in the message. <br><br>
+      #  **Limit:** 10 max
       # @param text [String] Text content of the RCS message.
       # @param additional_properties [OpenStruct] Additional properties unmapped to the current class definition
       # @return [Pinnacle::Types::RichTextMessage]

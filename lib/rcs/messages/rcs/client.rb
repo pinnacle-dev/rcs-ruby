@@ -108,7 +108,7 @@ module Pinnacle
             to: to,
             options: options
           }.compact
-          req.url "#{@request_client.get_url(request_options: request_options)}/messages/typing"
+          req.url "#{@request_client.get_url(request_options: request_options)}/messages/send/typing"
         end
         Pinnacle::Types::SendTypingIndicatorResponse.from_json(json_object: response.body)
       end
@@ -244,7 +244,7 @@ module Pinnacle
               to: to,
               options: options
             }.compact
-            req.url "#{@request_client.get_url(request_options: request_options)}/messages/typing"
+            req.url "#{@request_client.get_url(request_options: request_options)}/messages/send/typing"
           end
           Pinnacle::Types::SendTypingIndicatorResponse.from_json(json_object: response.body)
         end

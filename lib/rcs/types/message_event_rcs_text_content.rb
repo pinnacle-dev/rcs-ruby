@@ -15,7 +15,8 @@ module Pinnacle
       #  To get the message details, use the [GET
       #  /messages/{id}](/api-reference/messages/get) endpoint.
       attr_reader :id
-      # @return [Array<Pinnacle::Types::RichButton>] List of interactive quick reply buttons in the message.
+      # @return [Array<Pinnacle::Types::RichButton>] List of interactive quick reply buttons in the message. <br><br>
+      #  **Limit:** 10 max
       attr_reader :quick_replies
       # @return [String] Text content of the RCS message.
       attr_reader :text
@@ -32,7 +33,8 @@ module Pinnacle
       #  with the prefix `msg_`, for example: `msg_1234567890`. <br><br>
       #  To get the message details, use the [GET
       #  /messages/{id}](/api-reference/messages/get) endpoint.
-      # @param quick_replies [Array<Pinnacle::Types::RichButton>] List of interactive quick reply buttons in the message.
+      # @param quick_replies [Array<Pinnacle::Types::RichButton>] List of interactive quick reply buttons in the message. <br><br>
+      #  **Limit:** 10 max
       # @param text [String] Text content of the RCS message.
       # @param additional_properties [OpenStruct] Additional properties unmapped to the current class definition
       # @return [Pinnacle::Types::MessageEventRcsTextContent]

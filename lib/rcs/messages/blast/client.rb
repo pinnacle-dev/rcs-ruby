@@ -38,6 +38,7 @@ module Pinnacle
       # @param senders [Array<String>] Array of phone numbers to send from in E.164 format. <br>
       #  Messages will be distributed evenly across these senders.
       #  > **Note:** Sandbox numbers cannot be used for blasts.
+      #  **Limit:** 1 min
       # @param message [Hash] Request of type Pinnacle::Types::SmsContent, as a Hash
       #   * :text (String)
       # @param options [Hash] Additional settings to customize SMS blast delivery.Request of type Pinnacle::Messages::Blast::Types::BlastSmsOptions, as a Hash
@@ -97,6 +98,7 @@ module Pinnacle
       # @param senders [Array<String>] Array of phone numbers to send from in E.164 format. <br>
       #  Messages will be distributed evenly across these senders.
       #  > **Note:** Sandbox numbers cannot be used for blasts.
+      #  **Limit:** 1 min
       # @param message [Hash] Request of type Pinnacle::Types::MmsContent, as a Hash
       #   * :media_urls (Array<String>)
       #   * :text (String)
@@ -161,6 +163,7 @@ module Pinnacle
       # @param senders [Array<String>] Array of RCS agent IDs to send from. Each must be prefixed with `agent_`. <br>
       #  Messages will be evenly distributed across these agents.
       #  > **Note:** Test agents cannot be used for blasts.
+      #  **Limit:** 1 min
       # @param message [Pinnacle::Types::RichText, Pinnacle::Types::RcsValidateContentMedia, Pinnacle::Types::RichCards]
       # @param options [Hash] Configure how your RCS blast is sent and tracked.Request of type Pinnacle::Messages::Blast::Types::BlastRcsOptions, as a Hash
       #   * :transcode (Boolean)
@@ -236,6 +239,7 @@ module Pinnacle
       # @param senders [Array<String>] Array of phone numbers to send from in E.164 format. <br>
       #  Messages will be distributed evenly across these senders.
       #  > **Note:** Sandbox numbers cannot be used for blasts.
+      #  **Limit:** 1 min
       # @param message [Hash] Request of type Pinnacle::Types::SmsContent, as a Hash
       #   * :text (String)
       # @param options [Hash] Additional settings to customize SMS blast delivery.Request of type Pinnacle::Messages::Blast::Types::BlastSmsOptions, as a Hash
@@ -297,6 +301,7 @@ module Pinnacle
       # @param senders [Array<String>] Array of phone numbers to send from in E.164 format. <br>
       #  Messages will be distributed evenly across these senders.
       #  > **Note:** Sandbox numbers cannot be used for blasts.
+      #  **Limit:** 1 min
       # @param message [Hash] Request of type Pinnacle::Types::MmsContent, as a Hash
       #   * :media_urls (Array<String>)
       #   * :text (String)
@@ -363,6 +368,7 @@ module Pinnacle
       # @param senders [Array<String>] Array of RCS agent IDs to send from. Each must be prefixed with `agent_`. <br>
       #  Messages will be evenly distributed across these agents.
       #  > **Note:** Test agents cannot be used for blasts.
+      #  **Limit:** 1 min
       # @param message [Pinnacle::Types::RichText, Pinnacle::Types::RcsValidateContentMedia, Pinnacle::Types::RichCards]
       # @param options [Hash] Configure how your RCS blast is sent and tracked.Request of type Pinnacle::Messages::Blast::Types::BlastRcsOptions, as a Hash
       #   * :transcode (Boolean)

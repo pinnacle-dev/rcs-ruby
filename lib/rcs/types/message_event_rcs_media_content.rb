@@ -19,7 +19,8 @@ module Pinnacle
       attr_reader :id
       # @return [String] URL of the media file.
       attr_reader :media
-      # @return [Array<Pinnacle::Types::RichButton>] List of interactive quick reply buttons in the message.
+      # @return [Array<Pinnacle::Types::RichButton>] List of interactive quick reply buttons in the message. <br><br>
+      #  **Limit:** 10 max
       attr_reader :quick_replies
       # @return [OpenStruct] Additional properties unmapped to the current class definition
       attr_reader :additional_properties
@@ -35,7 +36,8 @@ module Pinnacle
       #  To get the message details, use the [GET
       #  /messages/{id}](/api-reference/messages/get) endpoint.
       # @param media [String] URL of the media file.
-      # @param quick_replies [Array<Pinnacle::Types::RichButton>] List of interactive quick reply buttons in the message.
+      # @param quick_replies [Array<Pinnacle::Types::RichButton>] List of interactive quick reply buttons in the message. <br><br>
+      #  **Limit:** 10 max
       # @param additional_properties [OpenStruct] Additional properties unmapped to the current class definition
       # @return [Pinnacle::Types::MessageEventRcsMediaContent]
       def initialize(type:, id:, media:, quick_replies:, additional_properties: nil)

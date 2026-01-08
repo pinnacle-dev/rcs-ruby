@@ -139,7 +139,8 @@ module Pinnacle
       #   * :websites (Array<Pinnacle::Campaigns::Rcs::Types::RcsAgentWebsite>)
       # @param brand [String] Unique identifier for the brand.
       # @param campaign_id [String] Unique identifier for the campaign.
-      # @param expected_agent_responses [Array<String>] List of what the agent might say to users (1-5 required).
+      # @param expected_agent_responses [Array<String>] List of what the agent might say to users. <br><br>
+      #  **Limit:** 1 to 5
       # @param links [Hash] Legal documentation links.Request of type Pinnacle::Campaigns::Rcs::Types::RcsLinks, as a Hash
       #   * :privacy_policy (String)
       #   * :terms_of_service (String)
@@ -412,7 +413,8 @@ module Pinnacle
       #   * :websites (Array<Pinnacle::Campaigns::Rcs::Types::RcsAgentWebsite>)
       # @param brand [String] Unique identifier for the brand.
       # @param campaign_id [String] Unique identifier for the campaign.
-      # @param expected_agent_responses [Array<String>] List of what the agent might say to users (1-5 required).
+      # @param expected_agent_responses [Array<String>] List of what the agent might say to users. <br><br>
+      #  **Limit:** 1 to 5
       # @param links [Hash] Legal documentation links.Request of type Pinnacle::Campaigns::Rcs::Types::RcsLinks, as a Hash
       #   * :privacy_policy (String)
       #   * :terms_of_service (String)

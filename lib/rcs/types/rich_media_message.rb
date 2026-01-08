@@ -12,7 +12,8 @@ module Pinnacle
       #  See [supported media
       #  types](https://app.pinnacle.sh/supported-file-types?type=RCS-MEDIA).
       attr_reader :media
-      # @return [Array<Pinnacle::Types::RichButton>] List of interactive quick reply buttons in the message.
+      # @return [Array<Pinnacle::Types::RichButton>] List of interactive quick reply buttons in the message. <br>
+      #  `≤10`
       attr_reader :quick_replies
       # @return [String] Your RCS agent ID which must be prefixed with 'agent_'.
       attr_reader :from
@@ -31,7 +32,8 @@ module Pinnacle
       # @param media [String] Media file URLs to send. <br>
       #  See [supported media
       #  types](https://app.pinnacle.sh/supported-file-types?type=RCS-MEDIA).
-      # @param quick_replies [Array<Pinnacle::Types::RichButton>] List of interactive quick reply buttons in the message.
+      # @param quick_replies [Array<Pinnacle::Types::RichButton>] List of interactive quick reply buttons in the message. <br>
+      #  `≤10`
       # @param from [String] Your RCS agent ID which must be prefixed with 'agent_'.
       # @param options [Pinnacle::Types::SendRichMessageOptions] Configure how your RCS message is sent and tracked.
       # @param to [String] Recipient's phone number in E.164 format.

@@ -19,7 +19,8 @@ module Pinnacle
           #  Be clear, concise, user-focused, and highlight what the agent does and the
           #  benefits it provides for the user.
           attr_reader :description
-          # @return [Array<Pinnacle::Campaigns::Rcs::Types::RcsAgentEmail>] List of emails (1-3 required).
+          # @return [Array<Pinnacle::Campaigns::Rcs::Types::RcsAgentEmail>] List of emails. <br><br>
+          #  **Limit:** 1 to 3
           attr_reader :emails
           # @return [String] Link to the agent's hero. Hero must be an image file with dimensions 1440x448px.
           attr_reader :hero_url
@@ -28,9 +29,11 @@ module Pinnacle
           # @return [String] Name of the agent. <br>
           #  Recommended format: [Brand Name] - [1-2 word description of purpose]
           attr_reader :name
-          # @return [Array<Pinnacle::Campaigns::Rcs::Types::RcsAgentPhone>] List of phone numbers (1-3 required).
+          # @return [Array<Pinnacle::Campaigns::Rcs::Types::RcsAgentPhone>] List of phone numbers. <br><br>
+          #  **Limit:** 1 to 3
           attr_reader :phones
-          # @return [Array<Pinnacle::Campaigns::Rcs::Types::RcsAgentWebsite>] List of urls (1-3 required).
+          # @return [Array<Pinnacle::Campaigns::Rcs::Types::RcsAgentWebsite>] List of urls. <br><br>
+          #  **Limit:** 1 to 3
           attr_reader :websites
           # @return [OpenStruct] Additional properties unmapped to the current class definition
           attr_reader :additional_properties
@@ -45,13 +48,16 @@ module Pinnacle
           # @param description [String] Description of the agent. <br>
           #  Be clear, concise, user-focused, and highlight what the agent does and the
           #  benefits it provides for the user.
-          # @param emails [Array<Pinnacle::Campaigns::Rcs::Types::RcsAgentEmail>] List of emails (1-3 required).
+          # @param emails [Array<Pinnacle::Campaigns::Rcs::Types::RcsAgentEmail>] List of emails. <br><br>
+          #  **Limit:** 1 to 3
           # @param hero_url [String] Link to the agent's hero. Hero must be an image file with dimensions 1440x448px.
           # @param icon_url [String] Link to the agent's icon. Icon must be an image file with dimensions 224x224px.
           # @param name [String] Name of the agent. <br>
           #  Recommended format: [Brand Name] - [1-2 word description of purpose]
-          # @param phones [Array<Pinnacle::Campaigns::Rcs::Types::RcsAgentPhone>] List of phone numbers (1-3 required).
-          # @param websites [Array<Pinnacle::Campaigns::Rcs::Types::RcsAgentWebsite>] List of urls (1-3 required).
+          # @param phones [Array<Pinnacle::Campaigns::Rcs::Types::RcsAgentPhone>] List of phone numbers. <br><br>
+          #  **Limit:** 1 to 3
+          # @param websites [Array<Pinnacle::Campaigns::Rcs::Types::RcsAgentWebsite>] List of urls. <br><br>
+          #  **Limit:** 1 to 3
           # @param additional_properties [OpenStruct] Additional properties unmapped to the current class definition
           # @return [Pinnacle::Campaigns::Rcs::Types::RcsAgent]
           def initialize(color: OMIT, description: OMIT, emails: OMIT, hero_url: OMIT, icon_url: OMIT, name: OMIT,

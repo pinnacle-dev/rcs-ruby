@@ -19,6 +19,8 @@ module Pinnacle
     #  phone numbers.
     #
     # @param identifiers [Array<String>] List of URLs or phone numbers in E.164 format that the webhook is attached to.
+    #  <br><br>
+    #  **Limit:** 1 min
     # @param request_options [Pinnacle::RequestOptions]
     # @return [Pinnacle::Types::WebhookResult]
     # @example
@@ -61,6 +63,8 @@ module Pinnacle
     #  phone numbers.
     #
     # @param identifiers [Array<String>] List of URLs or phone numbers in E.164 format that the webhook is attached to.
+    #  <br><br>
+    #  **Limit:** 1 min
     # @param request_options [Pinnacle::RequestOptions]
     # @return [Pinnacle::Types::WebhookResult]
     # @example

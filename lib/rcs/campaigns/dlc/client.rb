@@ -156,7 +156,8 @@ module Pinnacle
       #   * :embedded_link (String)
       #   * :embedded_phone (Boolean)
       #   * :number_pooling (Boolean)
-      # @param sample_messages [Array<String>] Example messages for the campaign.
+      # @param sample_messages [Array<String>] Example messages for the campaign. <br><br>
+      #  **Limit:** 1 to 5
       # @param use_case [Hash] Use case for the campaign.Request of type Pinnacle::Campaigns::Dlc::Types::DlcCampaignUseCase, as a Hash
       #   * :sub (Array<Pinnacle::Types::SubUseCaseEnum>)
       #   * :value (Pinnacle::Types::DlcCampaignUseCaseEnum)
@@ -393,7 +394,8 @@ module Pinnacle
       #   * :embedded_link (String)
       #   * :embedded_phone (Boolean)
       #   * :number_pooling (Boolean)
-      # @param sample_messages [Array<String>] Example messages for the campaign.
+      # @param sample_messages [Array<String>] Example messages for the campaign. <br><br>
+      #  **Limit:** 1 to 5
       # @param use_case [Hash] Use case for the campaign.Request of type Pinnacle::Campaigns::Dlc::Types::DlcCampaignUseCase, as a Hash
       #   * :sub (Array<Pinnacle::Types::SubUseCaseEnum>)
       #   * :value (Pinnacle::Types::DlcCampaignUseCaseEnum)

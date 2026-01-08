@@ -21,7 +21,8 @@ module Pinnacle
       # Link a phone number to a specific campaign. Phone numbers must be linked to a
       #  campaign to send messages.
       #
-      # @param phones [Array<String>] List of phone number (E.164 format).
+      # @param phones [Array<String>] List of phone number (E.164 format). <br><br>
+      #  **Limit:** 1 to 10
       # @param campaign_type [Pinnacle::Types::MessagingProfileEnum]
       # @param campaign_id [String] Unique identifier for the campaign. <br>
       #  - **TOLL_FREE** campaigns:
@@ -68,7 +69,8 @@ module Pinnacle
 
       # Remove the association between a phone number and its attached campaign.
       #
-      # @param phones [Array<String>] List of phone numbers (E.164 format).
+      # @param phones [Array<String>] List of phone numbers (E.164 format). <br><br>
+      #  **Limit:** 1 to 10
       # @param request_options [Pinnacle::RequestOptions]
       # @return [Pinnacle::Types::DetachedPhoneNumberResult]
       # @example
@@ -110,7 +112,8 @@ module Pinnacle
       # Link a phone number to a specific campaign. Phone numbers must be linked to a
       #  campaign to send messages.
       #
-      # @param phones [Array<String>] List of phone number (E.164 format).
+      # @param phones [Array<String>] List of phone number (E.164 format). <br><br>
+      #  **Limit:** 1 to 10
       # @param campaign_type [Pinnacle::Types::MessagingProfileEnum]
       # @param campaign_id [String] Unique identifier for the campaign. <br>
       #  - **TOLL_FREE** campaigns:
@@ -159,7 +162,8 @@ module Pinnacle
 
       # Remove the association between a phone number and its attached campaign.
       #
-      # @param phones [Array<String>] List of phone numbers (E.164 format).
+      # @param phones [Array<String>] List of phone numbers (E.164 format). <br><br>
+      #  **Limit:** 1 to 10
       # @param request_options [Pinnacle::RequestOptions]
       # @return [Pinnacle::Types::DetachedPhoneNumberResult]
       # @example

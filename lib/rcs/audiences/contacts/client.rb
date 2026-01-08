@@ -22,7 +22,8 @@ module Pinnacle
       #
       # @param id [String] Audience ID. This identifier is a string that always begins with the prefix
       #  `aud_`, for example: `aud_abc123`.
-      # @param contacts [Array<String>] Array of phone numbers (E.164 format) or contact IDs (minimum 1 item).
+      # @param contacts [Array<String>] Array of phone numbers (E.164 format) or contact IDs. <br><br>
+      #  **Limit:** 1 min
       # @param request_options [Pinnacle::RequestOptions]
       # @return [Pinnacle::Types::AudienceCountOnly]
       # @example
@@ -57,7 +58,8 @@ module Pinnacle
       #
       # @param id [String] Audience ID. This identifier is a string that always begins with the prefix
       #  `aud_`, for example: `aud_abc123`.
-      # @param contacts [Array<String>] Array of phone numbers (E.164 format) or contact IDs (minimum 1 item).
+      # @param contacts [Array<String>] Array of phone numbers (E.164 format) or contact IDs. <br><br>
+      #  **Limit:** 1 min
       # @param request_options [Pinnacle::RequestOptions]
       # @return [Pinnacle::Types::AudienceCountOnly]
       # @example
@@ -102,7 +104,8 @@ module Pinnacle
       #
       # @param id [String] Audience ID. This identifier is a string that always begins with the prefix
       #  `aud_`, for example: `aud_abc123`.
-      # @param contacts [Array<String>] Array of phone numbers (E.164 format) or contact IDs (minimum 1 item).
+      # @param contacts [Array<String>] Array of phone numbers (E.164 format) or contact IDs. <br><br>
+      #  **Limit:** 1 min
       # @param request_options [Pinnacle::RequestOptions]
       # @return [Pinnacle::Types::AudienceCountOnly]
       # @example
@@ -139,7 +142,8 @@ module Pinnacle
       #
       # @param id [String] Audience ID. This identifier is a string that always begins with the prefix
       #  `aud_`, for example: `aud_abc123`.
-      # @param contacts [Array<String>] Array of phone numbers (E.164 format) or contact IDs (minimum 1 item).
+      # @param contacts [Array<String>] Array of phone numbers (E.164 format) or contact IDs. <br><br>
+      #  **Limit:** 1 min
       # @param request_options [Pinnacle::RequestOptions]
       # @return [Pinnacle::Types::AudienceCountOnly]
       # @example

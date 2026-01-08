@@ -12,9 +12,11 @@ module Pinnacle
     #  See (supported file
     #  types)[https://app.pinnacle.sh/supported-file-types?type=RCS-CARD].
     class RcsCardsContent
-      # @return [Array<Pinnacle::Types::RcsCardsContentCardsItem>] Collection of cards attached to the message.
+      # @return [Array<Pinnacle::Types::RcsCardsContentCardsItem>] Collection of cards attached to the message. <br><br>
+      #  **Limit:** 1 to 10
       attr_reader :cards
-      # @return [Array<Pinnacle::Types::RichButton>] List of interactive quick reply buttons in the message.
+      # @return [Array<Pinnacle::Types::RichButton>] List of interactive quick reply buttons in the message. <br><br>
+      #  **Limit:** 10 max
       attr_reader :quick_replies
       # @return [OpenStruct] Additional properties unmapped to the current class definition
       attr_reader :additional_properties
@@ -24,8 +26,10 @@ module Pinnacle
 
       OMIT = Object.new
 
-      # @param cards [Array<Pinnacle::Types::RcsCardsContentCardsItem>] Collection of cards attached to the message.
-      # @param quick_replies [Array<Pinnacle::Types::RichButton>] List of interactive quick reply buttons in the message.
+      # @param cards [Array<Pinnacle::Types::RcsCardsContentCardsItem>] Collection of cards attached to the message. <br><br>
+      #  **Limit:** 1 to 10
+      # @param quick_replies [Array<Pinnacle::Types::RichButton>] List of interactive quick reply buttons in the message. <br><br>
+      #  **Limit:** 10 max
       # @param additional_properties [OpenStruct] Additional properties unmapped to the current class definition
       # @return [Pinnacle::Types::RcsCardsContent]
       def initialize(cards:, quick_replies:, additional_properties: nil)

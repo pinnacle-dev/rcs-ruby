@@ -10,7 +10,8 @@ module Pinnacle
     # Individual card containing title, optional media, and action buttons.
     class RcsCardsContentCardsItem
       # @return [Array<Pinnacle::Types::RichButton>] While buttons resemble quick replies, they remain on screen after being clicked
-      #  and are card-specific.
+      #  and are card-specific. <br><br>
+      #  **Limit:** 4 max
       attr_reader :buttons
       # @return [Pinnacle::Types::RcsMediaDetailsContent]
       attr_reader :media
@@ -27,7 +28,8 @@ module Pinnacle
       OMIT = Object.new
 
       # @param buttons [Array<Pinnacle::Types::RichButton>] While buttons resemble quick replies, they remain on screen after being clicked
-      #  and are card-specific.
+      #  and are card-specific. <br><br>
+      #  **Limit:** 4 max
       # @param media [Pinnacle::Types::RcsMediaDetailsContent]
       # @param subtitle [String] Secondary text displayed below the title for additional context.
       # @param title [String] Title displayed on the card.
