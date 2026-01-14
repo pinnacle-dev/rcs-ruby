@@ -1,65 +1,66 @@
 # frozen_string_literal: true
 
-require 'net/http'
-require 'uri'
-require 'set'
+require "net/http"
+require "uri"
 
 module Pinnacle
   module Wrapper
     module Tools
       class FileUploader < Pinnacle::Tools::File::Client
-        SUPPORTED_MIME_TYPES = Set.new([
-          'audio/mpeg', 'audio/mp4', 'audio/ogg', 'audio/aac',
-          'audio/webm', 'audio/wav', 'audio/3gpp', 'audio/amr',
-          'video/mp4', 'video/mpeg', 'video/quicktime', 'video/webm',
-          'video/3gpp', 'video/H264', 'video/x-m4v',
-          'image/jpeg', 'image/png', 'image/gif', 'image/bmp',
-          'image/tiff', 'image/webp',
-          'application/pdf', 'text/csv', 'application/rtf',
-          'text/vcard', 'text/calendar'
-        ]).freeze
+        SUPPORTED_MIME_TYPES = Set.new(
+          [
+            "audio/mpeg", "audio/mp4", "audio/ogg", "audio/aac",
+            "audio/webm", "audio/wav", "audio/3gpp", "audio/amr",
+            "video/mp4", "video/mpeg", "video/quicktime", "video/webm",
+            "video/3gpp", "video/H264", "video/x-m4v",
+            "image/jpeg", "image/png", "image/gif", "image/bmp",
+            "image/tiff", "image/webp",
+            "application/pdf", "text/csv", "application/rtf",
+            "text/vcard", "text/calendar"
+          ]
+        ).freeze
 
         MIME_TYPES = {
-          '.mp3' => 'audio/mpeg',
-          '.mp4' => 'video/mp4',
-          '.ogg' => 'audio/ogg',
-          '.aac' => 'audio/aac',
-          '.webm' => 'video/webm',
-          '.wav' => 'audio/wav',
-          '.3gp' => 'video/3gpp',
-          '.3gpp' => 'video/3gpp',
-          '.amr' => 'audio/amr',
-          '.mpeg' => 'video/mpeg',
-          '.mpg' => 'video/mpeg',
-          '.mov' => 'video/quicktime',
-          '.m4v' => 'video/x-m4v',
-          '.jpg' => 'image/jpeg',
-          '.jpeg' => 'image/jpeg',
-          '.png' => 'image/png',
-          '.gif' => 'image/gif',
-          '.bmp' => 'image/bmp',
-          '.tiff' => 'image/tiff',
-          '.tif' => 'image/tiff',
-          '.webp' => 'image/webp',
-          '.pdf' => 'application/pdf',
-          '.csv' => 'text/csv',
-          '.rtf' => 'application/rtf',
-          '.vcf' => 'text/vcard',
-          '.vcard' => 'text/vcard',
-          '.ics' => 'text/calendar'
+          ".mp3" => "audio/mpeg",
+          ".mp4" => "video/mp4",
+          ".ogg" => "audio/ogg",
+          ".aac" => "audio/aac",
+          ".webm" => "video/webm",
+          ".wav" => "audio/wav",
+          ".3gp" => "video/3gpp",
+          ".3gpp" => "video/3gpp",
+          ".amr" => "audio/amr",
+          ".mpeg" => "video/mpeg",
+          ".mpg" => "video/mpeg",
+          ".mov" => "video/quicktime",
+          ".m4v" => "video/x-m4v",
+          ".jpg" => "image/jpeg",
+          ".jpeg" => "image/jpeg",
+          ".png" => "image/png",
+          ".gif" => "image/gif",
+          ".bmp" => "image/bmp",
+          ".tiff" => "image/tiff",
+          ".tif" => "image/tiff",
+          ".webp" => "image/webp",
+          ".pdf" => "application/pdf",
+          ".csv" => "text/csv",
+          ".rtf" => "application/rtf",
+          ".vcf" => "text/vcard",
+          ".vcard" => "text/vcard",
+          ".ics" => "text/calendar"
         }.freeze
 
         # Upload a file from local filesystem.
         #
         # @example Upload a file
-        #   client = Pinnacle::Client.new(api_key: 'your-api-key')
-        #   url = client.tools.file.upload_from_path('/path/to/image.png')
+        #   client = Pinnacle::Client.new(api_key: "your-api-key")
+        #   url = client.tools.file.upload_from_path("/path/to/image.png")
         #   puts url # => "https://..."
         #
         # @example Upload with custom name
         #   url = client.tools.file.upload_from_path(
-        #     '/path/to/image.png',
-        #     name: 'my-custom-name.png'
+        #     "/path/to/image.png",
+        #     name: "my-custom-name.png"
         #   )
         #
         # @param file_path [String] Path to the file
@@ -103,10 +104,10 @@ module Pinnacle
             file_content = ::File.binread(file_path)
 
             http = Net::HTTP.new(uri.host, uri.port)
-            http.use_ssl = uri.scheme == 'https'
+            http.use_ssl = uri.scheme == "https"
 
             request = Net::HTTP::Put.new(uri.request_uri)
-            request['Content-Type'] = content_type
+            request["Content-Type"] = content_type
             request.body = file_content
 
             response = http.request(request)
@@ -128,17 +129,17 @@ module Pinnacle
           ext = ::File.extname(file_path).downcase
           mime_type = MIME_TYPES[ext]
 
-          return 'application/octet-stream' unless mime_type
+          return "application/octet-stream" unless mime_type
 
           if SUPPORTED_MIME_TYPES.include?(mime_type)
             mime_type
           else
-            base_type = mime_type.split('/').first
+            base_type = mime_type.split("/").first
             if %w[audio video image].include?(base_type)
               warn "MIME type #{mime_type} may not be fully supported. Proceeding anyway."
               mime_type
             else
-              'application/octet-stream'
+              "application/octet-stream"
             end
           end
         end
