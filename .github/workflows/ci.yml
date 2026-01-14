@@ -48,6 +48,13 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Checkout main branch
+        run: |
+          git checkout main || git checkout -b main
+          git reset --hard ${{ github.sha }}
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
