@@ -3,3 +3,4 @@ README.md
 lib/pinnacle/wrapper
 lib/pinnacle/client.rb
 lib/pinnacle.rb
+custom.gemspec.rb

@@ -7,10 +7,7 @@
 # need to add it to the .fernignore file to prevent your changes from being overwritten.
 
 def add_custom_gemspec_data(spec)
-  # Example custom configurations (uncomment and modify as needed)
-
-  # spec.authors = ["Your name"]
-  # spec.email = ["your.email@example.com"]
-  # spec.homepage = "https://github.com/your-org/pinnacle-ruby"
-  # spec.license = "Your license"
+  spec.name = "rcs"
+  spec.homepage = "https://github.com/pinnacle-dev/rcs-ruby"
+  spec.license = "MIT"
 end
