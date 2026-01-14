@@ -4,9 +4,9 @@
   "generatorVersion": "1.0.0-rc78",
   "generatorConfig": {
     "flattenModuleStructure": true,
-    "clientClassName": "PinnacleBaseClient",
+    "clientModuleName": "PinnacleBaseClient",
     "useProvidedDefaults": true,
     "enableWireTests": true
   },
-  "sdkVersion": "2.0.5-rc.1"
+  "sdkVersion": "2.0.6-rc.1"
 }
