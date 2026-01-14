@@ -1,14 +1,12 @@
 # frozen_string_literal: true
 
-require_relative "client"
 require_relative "wrapper/messages/client"
 require_relative "wrapper/tools/file_uploader"
 require_relative "wrapper/tools/client"
 
 module Pinnacle
-  # Enhanced Pinnacle client with custom methods for webhook processing and file uploads.
-  # This client extends the Fern-generated PinnacleBaseClient.
-  class Client < PinnacleBaseClient
+  # Reopen the Client class to add custom methods for webhook processing and file uploads.
+  class Client
     # Returns an enhanced messages client with webhook processing support.
     #
     # @return [Pinnacle::Wrapper::Messages::Client]

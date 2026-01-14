@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    pinnacle (2.0.6.pre.rc.1)
+    rcs (2.0.7)
 
 GEM
   remote: https://rubygems.org/
@@ -74,7 +74,7 @@ PLATFORMS
 DEPENDENCIES
   minitest (~> 5.16)
   minitest-rg
-  pinnacle!
+  rcs!
   pry
   rake (~> 13.0)
   rubocop (~> 1.21)

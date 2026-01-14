@@ -4,6 +4,7 @@ require "json"
 require "net/http"
 require "securerandom"
 
+require_relative "pinnacle/version"
 require_relative "pinnacle/internal/json/serializable"
 require_relative "pinnacle/internal/types/type"
 require_relative "pinnacle/internal/types/utils"
@@ -444,3 +445,6 @@ require_relative "pinnacle/tools/contact_card/client"
 require_relative "pinnacle/tools/contact_card/types/get_vcard_params"
 require_relative "pinnacle/tools/contact_card/types/upsert_vcard_params"
 require_relative "pinnacle/environment"
+
+# Custom client with enhanced methods (reopens Client class to add process and upload_from_path)
+require_relative "pinnacle/pinnacle_client"
