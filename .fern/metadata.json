@@ -1,7 +1,7 @@
 {
   "cliVersion": "3.40.1",
   "generatorName": "fernapi/fern-ruby-sdk",
-  "generatorVersion": "1.0.0-rc73",
+  "generatorVersion": "1.0.0-rc78",
   "generatorConfig": {
     "flattenModuleStructure": true,
     "clientClassName": "PinnacleBaseClient",
