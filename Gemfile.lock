@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    rcs (2.0.5.pre.rc.1)
+    rcs (2.0.6)
 
 GEM
   remote: https://rubygems.org/
