@@ -2,26 +2,26 @@
 
 require "test_helper"
 
-describe Pinnacle::Internal::Types::Utils do
-  Utils = Pinnacle::Internal::Types::Utils
+describe Rcs::Internal::Types::Utils do
+  Utils = Rcs::Internal::Types::Utils
 
   module TestUtils
-    class M < Pinnacle::Internal::Types::Model
+    class M < Rcs::Internal::Types::Model
       field :value, String
     end
 
-    class UnionMemberA < Pinnacle::Internal::Types::Model
+    class UnionMemberA < Rcs::Internal::Types::Model
       literal :type, "A"
       field :only_on_a, String
     end
 
-    class UnionMemberB < Pinnacle::Internal::Types::Model
+    class UnionMemberB < Rcs::Internal::Types::Model
       literal :type, "B"
       field :only_on_b, String
     end
 
     module U
-      extend Pinnacle::Internal::Types::Union
+      extend Rcs::Internal::Types::Union
 
       discriminant :type
 
@@ -29,8 +29,8 @@ describe Pinnacle::Internal::Types::Utils do
       member -> { UnionMemberB }, key: "B"
     end
 
-    SymbolStringHash = Pinnacle::Internal::Types::Hash[Symbol, String]
-    SymbolModelHash = -> { Pinnacle::Internal::Types::Hash[Symbol, TestUtils::M] }
+    SymbolStringHash = Rcs::Internal::Types::Hash[Symbol, String]
+    SymbolModelHash = -> { Rcs::Internal::Types::Hash[Symbol, TestUtils::M] }
   end
 
   describe ".coerce" do
@@ -58,7 +58,7 @@ describe Pinnacle::Internal::Types::Utils do
       end
 
       it "raises an error if value cannot be coerced and strict" do
-        assert_raises Pinnacle::Internal::Errors::TypeError do
+        assert_raises Rcs::Internal::Errors::TypeError do
           Utils.coerce(String, Object.new, strict: true)
         end
       end
@@ -77,7 +77,7 @@ describe Pinnacle::Internal::Types::Utils do
       end
 
       it "raises an error if value cannot be coerced and strict" do
-        assert_raises Pinnacle::Internal::Errors::TypeError do
+        assert_raises Rcs::Internal::Errors::TypeError do
           Utils.coerce(Symbol, Object.new, strict: true)
         end
       end
@@ -100,7 +100,7 @@ describe Pinnacle::Internal::Types::Utils do
       end
 
       it "raises an error if value cannot be coerced and strict" do
-        assert_raises Pinnacle::Internal::Errors::TypeError do
+        assert_raises Rcs::Internal::Errors::TypeError do
           Utils.coerce(Integer, Object.new, strict: true)
         end
       end
@@ -122,7 +122,7 @@ describe Pinnacle::Internal::Types::Utils do
       end
 
       it "raises an error if value cannot be coerced and strict" do
-        assert_raises Pinnacle::Internal::Errors::TypeError do
+        assert_raises Rcs::Internal::Errors::TypeError do
           Utils.coerce(Float, Object.new, strict: true)
         end
       end
@@ -150,7 +150,7 @@ describe Pinnacle::Internal::Types::Utils do
 
     describe "Enum" do
       module ExampleEnum
-        extend Pinnacle::Internal::Types::Enum
+        extend Rcs::Internal::Types::Enum
 
         FOO = :FOO
         BAR = :BAR
@@ -168,9 +168,9 @@ describe Pinnacle::Internal::Types::Utils do
     end
 
     describe "Array" do
-      StringArray = Pinnacle::Internal::Types::Array[String]
-      ModelArray = -> { Pinnacle::Internal::Types::Array[TestUtils::M] }
-      UnionArray = -> { Pinnacle::Internal::Types::Array[TestUtils::U] }
+      StringArray = Rcs::Internal::Types::Array[String]
+      ModelArray = -> { Rcs::Internal::Types::Array[TestUtils::M] }
+      UnionArray = -> { Rcs::Internal::Types::Array[TestUtils::U] }
 
       it "coerces an array of literals" do
         assert_equal %w[a b c], Utils.coerce(StringArray, %w[a b c])

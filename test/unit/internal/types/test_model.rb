@@ -2,15 +2,15 @@
 
 require "test_helper"
 
-describe Pinnacle::Internal::Types::Model do
+describe Rcs::Internal::Types::Model do
   module StringInteger
-    extend Pinnacle::Internal::Types::Union
+    extend Rcs::Internal::Types::Union
 
     member String
     member Integer
   end
 
-  class ExampleModel < Pinnacle::Internal::Types::Model
+  class ExampleModel < Rcs::Internal::Types::Model
     field :name, String
     field :rating, StringInteger, optional: true
     field :year, Integer, optional: true, nullable: true, api_name: "yearOfRelease"
@@ -24,11 +24,11 @@ describe Pinnacle::Internal::Types::Model do
     field :type, String, default: "example"
   end
 
-  class ExampleChild < Pinnacle::Internal::Types::Model
+  class ExampleChild < Rcs::Internal::Types::Model
     field :value, String
   end
 
-  class ExampleParent < Pinnacle::Internal::Types::Model
+  class ExampleParent < Rcs::Internal::Types::Model
     field :child, ExampleChild
   end
 
@@ -113,7 +113,7 @@ describe Pinnacle::Internal::Types::Model do
   end
 
   describe "#inspect" do
-    class SensitiveModel < Pinnacle::Internal::Types::Model
+    class SensitiveModel < Rcs::Internal::Types::Model
       field :username, String
       field :password, String
       field :client_secret, String

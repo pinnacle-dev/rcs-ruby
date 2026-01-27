@@ -1,6 +1,6 @@
 # Reference
 ## Brands
-<details><summary><code>client.brands.<a href="/lib/pinnacle/brands/client.rb">autofill</a>(request) -> Pinnacle::Types::OptionalBrandInfo</code></summary>
+<details><summary><code>client.brands.<a href="/lib/rcs/brands/client.rb">autofill</a>(request) -> Rcs::Types::OptionalBrandInfo</code></summary>
 <dl>
 <dd>
 
@@ -65,7 +65,7 @@ client.brands.autofill(
 <dl>
 <dd>
 
-**options:** `Pinnacle::Brands::Types::AutofillBrandOptions` 
+**options:** `Rcs::Brands::Types::AutofillBrandOptions` 
     
 </dd>
 </dl>
@@ -81,7 +81,7 @@ client.brands.autofill(
 <dl>
 <dd>
 
-**request_options:** `Pinnacle::Brands::RequestOptions` 
+**request_options:** `Rcs::Brands::RequestOptions` 
     
 </dd>
 </dl>
@@ -93,7 +93,7 @@ client.brands.autofill(
 </dl>
 </details>
 
-<details><summary><code>client.brands.<a href="/lib/pinnacle/brands/client.rb">upsert</a>(request) -> Pinnacle::Types::ExtendedBrand</code></summary>
+<details><summary><code>client.brands.<a href="/lib/rcs/brands/client.rb">upsert</a>(request) -> Rcs::Types::ExtendedBrand</code></summary>
 <dl>
 <dd>
 
@@ -167,7 +167,7 @@ client.brands.upsert(
 <dl>
 <dd>
 
-**contact:** `Pinnacle::Brands::Types::UpsertBrandSchemaContact` — Contact information for the brand.
+**contact:** `Rcs::Brands::Types::UpsertBrandSchemaContact` — Contact information for the brand.
     
 </dd>
 </dl>
@@ -226,7 +226,7 @@ The unique identifier of the brand you want to update.
 <dl>
 <dd>
 
-**sector:** `Pinnacle::Brands::Types::UpsertBrandSchemaSector` — Industry the brand operates in.
+**sector:** `Rcs::Brands::Types::UpsertBrandSchemaSector` — Industry the brand operates in.
     
 </dd>
 </dl>
@@ -234,7 +234,7 @@ The unique identifier of the brand you want to update.
 <dl>
 <dd>
 
-**type:** `Pinnacle::Brands::Types::UpsertBrandSchemaType` — Legal structure of the brand.
+**type:** `Rcs::Brands::Types::UpsertBrandSchemaType` — Legal structure of the brand.
     
 </dd>
 </dl>
@@ -242,7 +242,7 @@ The unique identifier of the brand you want to update.
 <dl>
 <dd>
 
-**entity_type:** `Pinnacle::Brands::Types::UpsertBrandSchemaEntityType` — Legal entity type of the brand.
+**entity_type:** `Rcs::Brands::Types::UpsertBrandSchemaEntityType` — Legal entity type of the brand.
     
 </dd>
 </dl>
@@ -258,7 +258,7 @@ The unique identifier of the brand you want to update.
 <dl>
 <dd>
 
-**request_options:** `Pinnacle::Brands::RequestOptions` 
+**request_options:** `Rcs::Brands::RequestOptions` 
     
 </dd>
 </dl>
@@ -270,7 +270,7 @@ The unique identifier of the brand you want to update.
 </dl>
 </details>
 
-<details><summary><code>client.brands.<a href="/lib/pinnacle/brands/client.rb">get</a>(id) -> Pinnacle::Types::ExtendedBrandWithVetting</code></summary>
+<details><summary><code>client.brands.<a href="/lib/rcs/brands/client.rb">get</a>(id) -> Rcs::Types::ExtendedBrandWithVetting</code></summary>
 <dl>
 <dd>
 
@@ -335,7 +335,7 @@ When you set this to true, the EIN value will be replaced with a masked placehol
 <dl>
 <dd>
 
-**request_options:** `Pinnacle::Brands::RequestOptions` 
+**request_options:** `Rcs::Brands::RequestOptions` 
     
 </dd>
 </dl>
@@ -347,7 +347,7 @@ When you set this to true, the EIN value will be replaced with a masked placehol
 </dl>
 </details>
 
-<details><summary><code>client.brands.<a href="/lib/pinnacle/brands/client.rb">submit</a>(brand_id) -> Pinnacle::Types::SubmissionResults</code></summary>
+<details><summary><code>client.brands.<a href="/lib/rcs/brands/client.rb">submit</a>(brand_id) -> Rcs::Types::SubmissionResults</code></summary>
 <dl>
 <dd>
 
@@ -400,7 +400,7 @@ This identifier is a string that always begins with the prefix `b_`, for example
 <dl>
 <dd>
 
-**request_options:** `Pinnacle::Brands::RequestOptions` 
+**request_options:** `Rcs::Brands::RequestOptions` 
     
 </dd>
 </dl>
@@ -412,7 +412,7 @@ This identifier is a string that always begins with the prefix `b_`, for example
 </dl>
 </details>
 
-<details><summary><code>client.brands.<a href="/lib/pinnacle/brands/client.rb">validate</a>(request) -> Pinnacle::Types::ValidationResults</code></summary>
+<details><summary><code>client.brands.<a href="/lib/rcs/brands/client.rb">validate</a>(request) -> Rcs::Types::ValidationResults</code></summary>
 <dl>
 <dd>
 
@@ -454,7 +454,7 @@ client.brands.validate();
 <dl>
 <dd>
 
-**request:** `Pinnacle::Types::OptionalBrandInfo` 
+**request:** `Rcs::Types::OptionalBrandInfo` 
     
 </dd>
 </dl>
@@ -462,7 +462,7 @@ client.brands.validate();
 <dl>
 <dd>
 
-**request_options:** `Pinnacle::Brands::RequestOptions` 
+**request_options:** `Rcs::Brands::RequestOptions` 
     
 </dd>
 </dl>
@@ -474,7 +474,7 @@ client.brands.validate();
 </dl>
 </details>
 
-<details><summary><code>client.brands.<a href="/lib/pinnacle/brands/client.rb">vet</a>(brand_id, request) -> Pinnacle::Types::VettingResults</code></summary>
+<details><summary><code>client.brands.<a href="/lib/rcs/brands/client.rb">vet</a>(brand_id, request) -> Rcs::Types::VettingResults</code></summary>
 <dl>
 <dd>
 
@@ -557,7 +557,7 @@ This identifier is a string that always begins with the prefix `b_`, for example
 <dl>
 <dd>
 
-**request_options:** `Pinnacle::Brands::RequestOptions` 
+**request_options:** `Rcs::Brands::RequestOptions` 
     
 </dd>
 </dl>
@@ -570,7 +570,7 @@ This identifier is a string that always begins with the prefix `b_`, for example
 </details>
 
 ## Audiences
-<details><summary><code>client.audiences.<a href="/lib/pinnacle/audiences/client.rb">get</a>() -> Pinnacle::Audiences::Types::AudiencesGetResponse</code></summary>
+<details><summary><code>client.audiences.<a href="/lib/rcs/audiences/client.rb">get</a>() -> Rcs::Audiences::Types::AudiencesGetResponse</code></summary>
 <dl>
 <dd>
 
@@ -636,7 +636,7 @@ client.audiences.get(id: 'aud_abc123');
 <dl>
 <dd>
 
-**request_options:** `Pinnacle::Audiences::RequestOptions` 
+**request_options:** `Rcs::Audiences::RequestOptions` 
     
 </dd>
 </dl>
@@ -648,7 +648,7 @@ client.audiences.get(id: 'aud_abc123');
 </dl>
 </details>
 
-<details><summary><code>client.audiences.<a href="/lib/pinnacle/audiences/client.rb">create</a>(request) -> Pinnacle::Types::AudienceCountOnly</code></summary>
+<details><summary><code>client.audiences.<a href="/lib/rcs/audiences/client.rb">create</a>(request) -> Rcs::Types::AudienceCountOnly</code></summary>
 <dl>
 <dd>
 
@@ -717,7 +717,7 @@ client.audiences.create(
 <dl>
 <dd>
 
-**request_options:** `Pinnacle::Audiences::RequestOptions` 
+**request_options:** `Rcs::Audiences::RequestOptions` 
     
 </dd>
 </dl>
@@ -729,7 +729,7 @@ client.audiences.create(
 </dl>
 </details>
 
-<details><summary><code>client.audiences.<a href="/lib/pinnacle/audiences/client.rb">delete</a>() -> Pinnacle::Types::DeleteAudienceResponse</code></summary>
+<details><summary><code>client.audiences.<a href="/lib/rcs/audiences/client.rb">delete</a>() -> Rcs::Types::DeleteAudienceResponse</code></summary>
 <dl>
 <dd>
 
@@ -781,7 +781,7 @@ client.audiences.delete(id: 'aud_abc123');
 <dl>
 <dd>
 
-**request_options:** `Pinnacle::Audiences::RequestOptions` 
+**request_options:** `Rcs::Audiences::RequestOptions` 
     
 </dd>
 </dl>
@@ -793,7 +793,7 @@ client.audiences.delete(id: 'aud_abc123');
 </dl>
 </details>
 
-<details><summary><code>client.audiences.<a href="/lib/pinnacle/audiences/client.rb">update</a>(request) -> Pinnacle::Types::AudienceCountOnly</code></summary>
+<details><summary><code>client.audiences.<a href="/lib/rcs/audiences/client.rb">update</a>(request) -> Rcs::Types::AudienceCountOnly</code></summary>
 <dl>
 <dd>
 
@@ -865,7 +865,7 @@ client.audiences.update(
 <dl>
 <dd>
 
-**request_options:** `Pinnacle::Audiences::RequestOptions` 
+**request_options:** `Rcs::Audiences::RequestOptions` 
     
 </dd>
 </dl>
@@ -878,7 +878,7 @@ client.audiences.update(
 </details>
 
 ## Contacts
-<details><summary><code>client.contacts.<a href="/lib/pinnacle/contacts/client.rb">get</a>() -> Pinnacle::Types::Contact</code></summary>
+<details><summary><code>client.contacts.<a href="/lib/rcs/contacts/client.rb">get</a>() -> Rcs::Types::Contact</code></summary>
 <dl>
 <dd>
 
@@ -940,7 +940,7 @@ Either this parameter or `phoneNumber` must be provided, but not both.
 <dl>
 <dd>
 
-**request_options:** `Pinnacle::Contacts::RequestOptions` 
+**request_options:** `Rcs::Contacts::RequestOptions` 
     
 </dd>
 </dl>
@@ -952,7 +952,7 @@ Either this parameter or `phoneNumber` must be provided, but not both.
 </dl>
 </details>
 
-<details><summary><code>client.contacts.<a href="/lib/pinnacle/contacts/client.rb">create</a>(request) -> Pinnacle::Types::ContactId</code></summary>
+<details><summary><code>client.contacts.<a href="/lib/rcs/contacts/client.rb">create</a>(request) -> Rcs::Types::ContactId</code></summary>
 <dl>
 <dd>
 
@@ -1002,7 +1002,7 @@ client.contacts.create(phone_number: 'phoneNumber');
 <dl>
 <dd>
 
-**request_options:** `Pinnacle::Contacts::RequestOptions` 
+**request_options:** `Rcs::Contacts::RequestOptions` 
     
 </dd>
 </dl>
@@ -1014,7 +1014,7 @@ client.contacts.create(phone_number: 'phoneNumber');
 </dl>
 </details>
 
-<details><summary><code>client.contacts.<a href="/lib/pinnacle/contacts/client.rb">update</a>(request) -> Pinnacle::Types::UpdatedContactId</code></summary>
+<details><summary><code>client.contacts.<a href="/lib/rcs/contacts/client.rb">update</a>(request) -> Rcs::Types::UpdatedContactId</code></summary>
 <dl>
 <dd>
 
@@ -1070,7 +1070,7 @@ client.contacts.update(
 <dl>
 <dd>
 
-**request_options:** `Pinnacle::Contacts::RequestOptions` 
+**request_options:** `Rcs::Contacts::RequestOptions` 
     
 </dd>
 </dl>
@@ -1083,7 +1083,7 @@ client.contacts.update(
 </details>
 
 ## Conversations
-<details><summary><code>client.conversations.<a href="/lib/pinnacle/conversations/client.rb">get</a>(request) -> Pinnacle::Types::Conversation</code></summary>
+<details><summary><code>client.conversations.<a href="/lib/rcs/conversations/client.rb">get</a>(request) -> Rcs::Types::Conversation</code></summary>
 <dl>
 <dd>
 
@@ -1125,7 +1125,7 @@ client.conversations.get(id: 'conv_1234567890');
 <dl>
 <dd>
 
-**request:** `Pinnacle::Types::GetConversationParams` 
+**request:** `Rcs::Types::GetConversationParams` 
     
 </dd>
 </dl>
@@ -1133,7 +1133,7 @@ client.conversations.get(id: 'conv_1234567890');
 <dl>
 <dd>
 
-**request_options:** `Pinnacle::Conversations::RequestOptions` 
+**request_options:** `Rcs::Conversations::RequestOptions` 
     
 </dd>
 </dl>
@@ -1145,7 +1145,7 @@ client.conversations.get(id: 'conv_1234567890');
 </dl>
 </details>
 
-<details><summary><code>client.conversations.<a href="/lib/pinnacle/conversations/client.rb">list</a>(request) -> Pinnacle::Types::ConversationList</code></summary>
+<details><summary><code>client.conversations.<a href="/lib/rcs/conversations/client.rb">list</a>(request) -> Rcs::Types::ConversationList</code></summary>
 <dl>
 <dd>
 
@@ -1216,7 +1216,7 @@ The unique identifier of the campaign to filter conversations. This identifier i
 <dl>
 <dd>
 
-**campaign_type:** `Pinnacle::Types::CampaignEnum` 
+**campaign_type:** `Rcs::Types::CampaignEnum` 
     
 </dd>
 </dl>
@@ -1256,7 +1256,7 @@ The unique identifier of the campaign to filter conversations. This identifier i
 <dl>
 <dd>
 
-**request_options:** `Pinnacle::Conversations::RequestOptions` 
+**request_options:** `Rcs::Conversations::RequestOptions` 
     
 </dd>
 </dl>
@@ -1268,7 +1268,7 @@ The unique identifier of the campaign to filter conversations. This identifier i
 </dl>
 </details>
 
-<details><summary><code>client.conversations.<a href="/lib/pinnacle/conversations/client.rb">update</a>(request) -> Pinnacle::Types::SuccessfulConversationUpdate</code></summary>
+<details><summary><code>client.conversations.<a href="/lib/rcs/conversations/client.rb">update</a>(request) -> Rcs::Types::SuccessfulConversationUpdate</code></summary>
 <dl>
 <dd>
 
@@ -1329,7 +1329,7 @@ client.conversations.update(
 <dl>
 <dd>
 
-**request_options:** `Pinnacle::Conversations::RequestOptions` 
+**request_options:** `Rcs::Conversations::RequestOptions` 
     
 </dd>
 </dl>
@@ -1341,7 +1341,7 @@ client.conversations.update(
 </dl>
 </details>
 
-<details><summary><code>client.conversations.<a href="/lib/pinnacle/conversations/client.rb">list_messages</a>(id) -> Pinnacle::Types::MessageList</code></summary>
+<details><summary><code>client.conversations.<a href="/lib/rcs/conversations/client.rb">list_messages</a>(id) -> Rcs::Types::MessageList</code></summary>
 <dl>
 <dd>
 
@@ -1407,7 +1407,7 @@ client.conversations.list_messages(id: 'id');
 <dl>
 <dd>
 
-**sort_order:** `Pinnacle::Conversations::Types::ConversationsListMessagesRequestSortOrder` 
+**sort_order:** `Rcs::Conversations::Types::ConversationsListMessagesRequestSortOrder` 
 
 Sort order for messages. <br>
 
@@ -1420,7 +1420,7 @@ Sort order for messages. <br>
 <dl>
 <dd>
 
-**direction:** `Pinnacle::Conversations::Types::ConversationsListMessagesRequestDirection` 
+**direction:** `Rcs::Conversations::Types::ConversationsListMessagesRequestDirection` 
 
 Filter messages by direction. <br>
 
@@ -1433,7 +1433,7 @@ Filter messages by direction. <br>
 <dl>
 <dd>
 
-**status:** `Pinnacle::Conversations::Types::ConversationsListMessagesRequestStatus` — Filter messages by delivery status.
+**status:** `Rcs::Conversations::Types::ConversationsListMessagesRequestStatus` — Filter messages by delivery status.
     
 </dd>
 </dl>
@@ -1441,7 +1441,7 @@ Filter messages by direction. <br>
 <dl>
 <dd>
 
-**type:** `Pinnacle::Conversations::Types::ConversationsListMessagesRequestType` — Filter messages by protocol type.
+**type:** `Rcs::Conversations::Types::ConversationsListMessagesRequestType` — Filter messages by protocol type.
     
 </dd>
 </dl>
@@ -1465,7 +1465,7 @@ Filter messages by direction. <br>
 <dl>
 <dd>
 
-**request_options:** `Pinnacle::Conversations::RequestOptions` 
+**request_options:** `Rcs::Conversations::RequestOptions` 
     
 </dd>
 </dl>
@@ -1478,7 +1478,7 @@ Filter messages by direction. <br>
 </details>
 
 ## Messages
-<details><summary><code>client.messages.<a href="/lib/pinnacle/messages/client.rb">get</a>(id) -> Pinnacle::Types::Message</code></summary>
+<details><summary><code>client.messages.<a href="/lib/rcs/messages/client.rb">get</a>(id) -> Rcs::Types::Message</code></summary>
 <dl>
 <dd>
 
@@ -1528,7 +1528,7 @@ client.messages.get(id: 'msg_1234567890');
 <dl>
 <dd>
 
-**request_options:** `Pinnacle::Messages::RequestOptions` 
+**request_options:** `Rcs::Messages::RequestOptions` 
     
 </dd>
 </dl>
@@ -1540,7 +1540,7 @@ client.messages.get(id: 'msg_1234567890');
 </dl>
 </details>
 
-<details><summary><code>client.messages.<a href="/lib/pinnacle/messages/client.rb">react</a>(request) -> Pinnacle::Types::ReactionResult</code></summary>
+<details><summary><code>client.messages.<a href="/lib/rcs/messages/client.rb">react</a>(request) -> Rcs::Types::ReactionResult</code></summary>
 <dl>
 <dd>
 
@@ -1596,7 +1596,7 @@ client.messages.react(
 <dl>
 <dd>
 
-**options:** `Pinnacle::Messages::Types::ReactMessageOptions` 
+**options:** `Rcs::Messages::Types::ReactMessageOptions` 
     
 </dd>
 </dl>
@@ -1616,7 +1616,7 @@ Use `null` to remove existing reaction.
 <dl>
 <dd>
 
-**request_options:** `Pinnacle::Messages::RequestOptions` 
+**request_options:** `Rcs::Messages::RequestOptions` 
     
 </dd>
 </dl>
@@ -1629,7 +1629,7 @@ Use `null` to remove existing reaction.
 </details>
 
 ## PhoneNumbers
-<details><summary><code>client.phone_numbers.<a href="/lib/pinnacle/phone_numbers/client.rb">search</a>(request) -> Internal::Types::Array[Pinnacle::Types::PhoneNumberDetails]</code></summary>
+<details><summary><code>client.phone_numbers.<a href="/lib/rcs/phone_numbers/client.rb">search</a>(request) -> Internal::Types::Array[Rcs::Types::PhoneNumberDetails]</code></summary>
 <dl>
 <dd>
 
@@ -1685,7 +1685,7 @@ client.phone_numbers.search(
 <dl>
 <dd>
 
-**features:** `Internal::Types::Array[Pinnacle::Types::PhoneFeatureEnum]` 
+**features:** `Internal::Types::Array[Rcs::Types::PhoneFeatureEnum]` 
     
 </dd>
 </dl>
@@ -1693,7 +1693,7 @@ client.phone_numbers.search(
 <dl>
 <dd>
 
-**location:** `Pinnacle::PhoneNumbers::Types::SearchPhoneNumberByLocation` 
+**location:** `Rcs::PhoneNumbers::Types::SearchPhoneNumberByLocation` 
 
 Filter your search by geographic location to find numbers in specific regions. <br>
 
@@ -1705,7 +1705,7 @@ Toll-free numbers ignore city and state filters.
 <dl>
 <dd>
 
-**number:** `Pinnacle::PhoneNumbers::Types::SearchPhoneNumberByDigits` — Filter your search by digit pattern.
+**number:** `Rcs::PhoneNumbers::Types::SearchPhoneNumberByDigits` — Filter your search by digit pattern.
     
 </dd>
 </dl>
@@ -1713,7 +1713,7 @@ Toll-free numbers ignore city and state filters.
 <dl>
 <dd>
 
-**options:** `Pinnacle::PhoneNumbers::Types::SearchPhoneNumberOptions` — Extra search settings to control how many results you get.
+**options:** `Rcs::PhoneNumbers::Types::SearchPhoneNumberOptions` — Extra search settings to control how many results you get.
     
 </dd>
 </dl>
@@ -1721,7 +1721,7 @@ Toll-free numbers ignore city and state filters.
 <dl>
 <dd>
 
-**type:** `Internal::Types::Array[Pinnacle::Types::PhoneEnum]` — Types of phone numbers to return in your search.
+**type:** `Internal::Types::Array[Rcs::Types::PhoneEnum]` — Types of phone numbers to return in your search.
     
 </dd>
 </dl>
@@ -1729,7 +1729,7 @@ Toll-free numbers ignore city and state filters.
 <dl>
 <dd>
 
-**request_options:** `Pinnacle::PhoneNumbers::RequestOptions` 
+**request_options:** `Rcs::PhoneNumbers::RequestOptions` 
     
 </dd>
 </dl>
@@ -1741,7 +1741,7 @@ Toll-free numbers ignore city and state filters.
 </dl>
 </details>
 
-<details><summary><code>client.phone_numbers.<a href="/lib/pinnacle/phone_numbers/client.rb">buy</a>(request) -> Internal::Types::Array[Pinnacle::Types::PurchasedNumber]</code></summary>
+<details><summary><code>client.phone_numbers.<a href="/lib/rcs/phone_numbers/client.rb">buy</a>(request) -> Internal::Types::Array[Rcs::Types::PurchasedNumber]</code></summary>
 <dl>
 <dd>
 
@@ -1799,7 +1799,7 @@ If any number in the request is unavailable or invalid, no purchases will be mad
 <dl>
 <dd>
 
-**request_options:** `Pinnacle::PhoneNumbers::RequestOptions` 
+**request_options:** `Rcs::PhoneNumbers::RequestOptions` 
     
 </dd>
 </dl>
@@ -1811,7 +1811,7 @@ If any number in the request is unavailable or invalid, no purchases will be mad
 </dl>
 </details>
 
-<details><summary><code>client.phone_numbers.<a href="/lib/pinnacle/phone_numbers/client.rb">get</a>(request) -> Pinnacle::PhoneNumbers::Types::PhoneNumbersGetResponse</code></summary>
+<details><summary><code>client.phone_numbers.<a href="/lib/rcs/phone_numbers/client.rb">get</a>(request) -> Rcs::PhoneNumbers::Types::PhoneNumbersGetResponse</code></summary>
 <dl>
 <dd>
 
@@ -1870,7 +1870,7 @@ client.phone_numbers.get(
 <dl>
 <dd>
 
-**level:** `Pinnacle::PhoneNumbers::Types::PhoneDetailsSchemaLevel` 
+**level:** `Rcs::PhoneNumbers::Types::PhoneDetailsSchemaLevel` 
 
 Choose how much detail you want in your results:
 - `basic`: Receive essential info like carrier, location, and format.
@@ -1882,7 +1882,7 @@ Choose how much detail you want in your results:
 <dl>
 <dd>
 
-**options:** `Pinnacle::PhoneNumbers::Types::RetrievePhoneNumberDetailsOptions` — Customize your lookup with additional options.
+**options:** `Rcs::PhoneNumbers::Types::RetrievePhoneNumberDetailsOptions` — Customize your lookup with additional options.
     
 </dd>
 </dl>
@@ -1890,7 +1890,7 @@ Choose how much detail you want in your results:
 <dl>
 <dd>
 
-**request_options:** `Pinnacle::PhoneNumbers::RequestOptions` 
+**request_options:** `Rcs::PhoneNumbers::RequestOptions` 
     
 </dd>
 </dl>
@@ -1903,7 +1903,7 @@ Choose how much detail you want in your results:
 </details>
 
 ## RCS
-<details><summary><code>client.rcs.<a href="/lib/pinnacle/rcs/client.rb">get_capabilities</a>(request) -> Internal::Types::Hash[String, Pinnacle::Types::RcsCapability]</code></summary>
+<details><summary><code>client.rcs.<a href="/lib/rcs/rcs/client.rb">get_capabilities</a>(request) -> Internal::Types::Hash[String, Rcs::Types::RcsCapability]</code></summary>
 <dl>
 <dd>
 
@@ -1959,7 +1959,7 @@ List of phone numbers to check RCS capabilities for (E.164 format). <br><br>
 <dl>
 <dd>
 
-**request_options:** `Pinnacle::Rcs::RequestOptions` 
+**request_options:** `Rcs::Rcs::RequestOptions` 
     
 </dd>
 </dl>
@@ -1971,7 +1971,7 @@ List of phone numbers to check RCS capabilities for (E.164 format). <br><br>
 </dl>
 </details>
 
-<details><summary><code>client.rcs.<a href="/lib/pinnacle/rcs/client.rb">whitelist</a>(request) -> Pinnacle::Types::RcsWhitelistResponse</code></summary>
+<details><summary><code>client.rcs.<a href="/lib/rcs/rcs/client.rb">whitelist</a>(request) -> Rcs::Types::RcsWhitelistResponse</code></summary>
 <dl>
 <dd>
 
@@ -2056,7 +2056,7 @@ client.rcs.whitelist(
 <dl>
 <dd>
 
-**request_options:** `Pinnacle::Rcs::RequestOptions` 
+**request_options:** `Rcs::Rcs::RequestOptions` 
     
 </dd>
 </dl>
@@ -2068,7 +2068,7 @@ client.rcs.whitelist(
 </dl>
 </details>
 
-<details><summary><code>client.rcs.<a href="/lib/pinnacle/rcs/client.rb">get_link</a>(request) -> Pinnacle::Types::RcsLinkResult</code></summary>
+<details><summary><code>client.rcs.<a href="/lib/rcs/rcs/client.rb">get_link</a>(request) -> Rcs::Types::RcsLinkResult</code></summary>
 <dl>
 <dd>
 
@@ -2150,7 +2150,7 @@ client.rcs.get_link(
 <dl>
 <dd>
 
-**request_options:** `Pinnacle::Rcs::RequestOptions` 
+**request_options:** `Rcs::Rcs::RequestOptions` 
     
 </dd>
 </dl>
@@ -2163,7 +2163,7 @@ client.rcs.get_link(
 </details>
 
 ## Webhooks
-<details><summary><code>client.webhooks.<a href="/lib/pinnacle/webhooks/client.rb">get</a>(request) -> Pinnacle::Types::WebhookResult</code></summary>
+<details><summary><code>client.webhooks.<a href="/lib/rcs/webhooks/client.rb">get</a>(request) -> Rcs::Types::WebhookResult</code></summary>
 <dl>
 <dd>
 
@@ -2216,7 +2216,7 @@ List of URLs or phone numbers in E.164 format that the webhook is attached to. <
 <dl>
 <dd>
 
-**request_options:** `Pinnacle::Webhooks::RequestOptions` 
+**request_options:** `Rcs::Webhooks::RequestOptions` 
     
 </dd>
 </dl>
@@ -2229,7 +2229,7 @@ List of URLs or phone numbers in E.164 format that the webhook is attached to. <
 </details>
 
 ## Audiences Contacts
-<details><summary><code>client.audiences.contacts.<a href="/lib/pinnacle/audiences/contacts/client.rb">remove</a>(request) -> Pinnacle::Types::AudienceCountOnly</code></summary>
+<details><summary><code>client.audiences.contacts.<a href="/lib/rcs/audiences/contacts/client.rb">remove</a>(request) -> Rcs::Types::AudienceCountOnly</code></summary>
 <dl>
 <dd>
 
@@ -2296,7 +2296,7 @@ Array of phone numbers (E.164 format) or contact IDs. <br><br>
 <dl>
 <dd>
 
-**request_options:** `Pinnacle::Audiences::Contacts::RequestOptions` 
+**request_options:** `Rcs::Audiences::Contacts::RequestOptions` 
     
 </dd>
 </dl>
@@ -2308,7 +2308,7 @@ Array of phone numbers (E.164 format) or contact IDs. <br><br>
 </dl>
 </details>
 
-<details><summary><code>client.audiences.contacts.<a href="/lib/pinnacle/audiences/contacts/client.rb">add</a>(request) -> Pinnacle::Types::AudienceCountOnly</code></summary>
+<details><summary><code>client.audiences.contacts.<a href="/lib/rcs/audiences/contacts/client.rb">add</a>(request) -> Rcs::Types::AudienceCountOnly</code></summary>
 <dl>
 <dd>
 
@@ -2376,7 +2376,7 @@ Array of phone numbers (E.164 format) or contact IDs. <br><br>
 <dl>
 <dd>
 
-**request_options:** `Pinnacle::Audiences::Contacts::RequestOptions` 
+**request_options:** `Rcs::Audiences::Contacts::RequestOptions` 
     
 </dd>
 </dl>
@@ -2389,7 +2389,7 @@ Array of phone numbers (E.164 format) or contact IDs. <br><br>
 </details>
 
 ## Campaigns Dlc
-<details><summary><code>client.campaigns.dlc.<a href="/lib/pinnacle/campaigns/dlc/client.rb">autofill</a>(request) -> Pinnacle::Types::AutofillDlcCampaignResponse</code></summary>
+<details><summary><code>client.campaigns.dlc.<a href="/lib/rcs/campaigns/dlc/client.rb">autofill</a>(request) -> Rcs::Types::AutofillDlcCampaignResponse</code></summary>
 <dl>
 <dd>
 
@@ -2434,7 +2434,7 @@ client.campaigns.dlc.autofill(
 <dl>
 <dd>
 
-**request:** `Pinnacle::Types::AutofillCampaignParams` 
+**request:** `Rcs::Types::AutofillCampaignParams` 
     
 </dd>
 </dl>
@@ -2442,7 +2442,7 @@ client.campaigns.dlc.autofill(
 <dl>
 <dd>
 
-**request_options:** `Pinnacle::Campaigns::Dlc::RequestOptions` 
+**request_options:** `Rcs::Campaigns::Dlc::RequestOptions` 
     
 </dd>
 </dl>
@@ -2454,7 +2454,7 @@ client.campaigns.dlc.autofill(
 </dl>
 </details>
 
-<details><summary><code>client.campaigns.dlc.<a href="/lib/pinnacle/campaigns/dlc/client.rb">get</a>(campaign_id) -> Pinnacle::Types::DlcCampaignWithExtendedBrandAndStatus</code></summary>
+<details><summary><code>client.campaigns.dlc.<a href="/lib/rcs/campaigns/dlc/client.rb">get</a>(campaign_id) -> Rcs::Types::DlcCampaignWithExtendedBrandAndStatus</code></summary>
 <dl>
 <dd>
 
@@ -2504,7 +2504,7 @@ client.campaigns.dlc.get(campaign_id: 'dlc_1234567890');
 <dl>
 <dd>
 
-**request_options:** `Pinnacle::Campaigns::Dlc::RequestOptions` 
+**request_options:** `Rcs::Campaigns::Dlc::RequestOptions` 
     
 </dd>
 </dl>
@@ -2516,7 +2516,7 @@ client.campaigns.dlc.get(campaign_id: 'dlc_1234567890');
 </dl>
 </details>
 
-<details><summary><code>client.campaigns.dlc.<a href="/lib/pinnacle/campaigns/dlc/client.rb">submit</a>(campaign_id) -> Pinnacle::Types::CampaignSubmissionResult</code></summary>
+<details><summary><code>client.campaigns.dlc.<a href="/lib/rcs/campaigns/dlc/client.rb">submit</a>(campaign_id) -> Rcs::Types::CampaignSubmissionResult</code></summary>
 <dl>
 <dd>
 
@@ -2569,7 +2569,7 @@ Unique identifier of the 10DLC campaign to submit.
 <dl>
 <dd>
 
-**request_options:** `Pinnacle::Campaigns::Dlc::RequestOptions` 
+**request_options:** `Rcs::Campaigns::Dlc::RequestOptions` 
     
 </dd>
 </dl>
@@ -2581,7 +2581,7 @@ Unique identifier of the 10DLC campaign to submit.
 </dl>
 </details>
 
-<details><summary><code>client.campaigns.dlc.<a href="/lib/pinnacle/campaigns/dlc/client.rb">upsert</a>(request) -> Pinnacle::Types::DlcCampaignWithExtendedBrandAndStatus</code></summary>
+<details><summary><code>client.campaigns.dlc.<a href="/lib/rcs/campaigns/dlc/client.rb">upsert</a>(request) -> Rcs::Types::DlcCampaignWithExtendedBrandAndStatus</code></summary>
 <dl>
 <dd>
 
@@ -2706,7 +2706,7 @@ Description of the campaign. Explain the purpose, use case, and types of message
 <dl>
 <dd>
 
-**keywords:** `Pinnacle::Campaigns::Dlc::Types::DlcCampaignKeywords` — Keyword response configuration.
+**keywords:** `Rcs::Campaigns::Dlc::Types::DlcCampaignKeywords` — Keyword response configuration.
     
 </dd>
 </dl>
@@ -2714,7 +2714,7 @@ Description of the campaign. Explain the purpose, use case, and types of message
 <dl>
 <dd>
 
-**links:** `Pinnacle::Campaigns::Dlc::Types::DlcCampaignLinks` — Legal documentation links.
+**links:** `Rcs::Campaigns::Dlc::Types::DlcCampaignLinks` — Legal documentation links.
     
 </dd>
 </dl>
@@ -2738,7 +2738,7 @@ Description of the campaign. Explain the purpose, use case, and types of message
 <dl>
 <dd>
 
-**options:** `Pinnacle::Campaigns::Dlc::Types::DlcCampaignOptions` — Campaign configuration options.
+**options:** `Rcs::Campaigns::Dlc::Types::DlcCampaignOptions` — Campaign configuration options.
     
 </dd>
 </dl>
@@ -2754,7 +2754,7 @@ Description of the campaign. Explain the purpose, use case, and types of message
 <dl>
 <dd>
 
-**use_case:** `Pinnacle::Campaigns::Dlc::Types::DlcCampaignUseCase` — Use case for the campaign.
+**use_case:** `Rcs::Campaigns::Dlc::Types::DlcCampaignUseCase` — Use case for the campaign.
     
 </dd>
 </dl>
@@ -2762,7 +2762,7 @@ Description of the campaign. Explain the purpose, use case, and types of message
 <dl>
 <dd>
 
-**request_options:** `Pinnacle::Campaigns::Dlc::RequestOptions` 
+**request_options:** `Rcs::Campaigns::Dlc::RequestOptions` 
     
 </dd>
 </dl>
@@ -2774,7 +2774,7 @@ Description of the campaign. Explain the purpose, use case, and types of message
 </dl>
 </details>
 
-<details><summary><code>client.campaigns.dlc.<a href="/lib/pinnacle/campaigns/dlc/client.rb">validate</a>(request) -> Pinnacle::Types::CampaignValidationResult</code></summary>
+<details><summary><code>client.campaigns.dlc.<a href="/lib/rcs/campaigns/dlc/client.rb">validate</a>(request) -> Rcs::Types::CampaignValidationResult</code></summary>
 <dl>
 <dd>
 
@@ -2819,7 +2819,7 @@ client.campaigns.dlc.validate(
 <dl>
 <dd>
 
-**request:** `Pinnacle::Types::ValidateCampaignParams` 
+**request:** `Rcs::Types::ValidateCampaignParams` 
     
 </dd>
 </dl>
@@ -2827,7 +2827,7 @@ client.campaigns.dlc.validate(
 <dl>
 <dd>
 
-**request_options:** `Pinnacle::Campaigns::Dlc::RequestOptions` 
+**request_options:** `Rcs::Campaigns::Dlc::RequestOptions` 
     
 </dd>
 </dl>
@@ -2840,7 +2840,7 @@ client.campaigns.dlc.validate(
 </details>
 
 ## Campaigns TollFree
-<details><summary><code>client.campaigns.toll_free.<a href="/lib/pinnacle/campaigns/toll_free/client.rb">autofill</a>(request) -> Pinnacle::Campaigns::TollFree::Types::TollFreeAutofillResponse</code></summary>
+<details><summary><code>client.campaigns.toll_free.<a href="/lib/rcs/campaigns/toll_free/client.rb">autofill</a>(request) -> Rcs::Campaigns::TollFree::Types::TollFreeAutofillResponse</code></summary>
 <dl>
 <dd>
 
@@ -2885,7 +2885,7 @@ client.campaigns.toll_free.autofill(
 <dl>
 <dd>
 
-**request:** `Pinnacle::Types::AutofillCampaignParams` 
+**request:** `Rcs::Types::AutofillCampaignParams` 
     
 </dd>
 </dl>
@@ -2893,7 +2893,7 @@ client.campaigns.toll_free.autofill(
 <dl>
 <dd>
 
-**request_options:** `Pinnacle::Campaigns::TollFree::RequestOptions` 
+**request_options:** `Rcs::Campaigns::TollFree::RequestOptions` 
     
 </dd>
 </dl>
@@ -2905,7 +2905,7 @@ client.campaigns.toll_free.autofill(
 </dl>
 </details>
 
-<details><summary><code>client.campaigns.toll_free.<a href="/lib/pinnacle/campaigns/toll_free/client.rb">get</a>(campaign_id) -> Pinnacle::Types::TollFreeCampaignWithExtendedBrandAndStatus</code></summary>
+<details><summary><code>client.campaigns.toll_free.<a href="/lib/rcs/campaigns/toll_free/client.rb">get</a>(campaign_id) -> Rcs::Types::TollFreeCampaignWithExtendedBrandAndStatus</code></summary>
 <dl>
 <dd>
 
@@ -2955,7 +2955,7 @@ client.campaigns.toll_free.get(campaign_id: 'tf_1234567890');
 <dl>
 <dd>
 
-**request_options:** `Pinnacle::Campaigns::TollFree::RequestOptions` 
+**request_options:** `Rcs::Campaigns::TollFree::RequestOptions` 
     
 </dd>
 </dl>
@@ -2967,7 +2967,7 @@ client.campaigns.toll_free.get(campaign_id: 'tf_1234567890');
 </dl>
 </details>
 
-<details><summary><code>client.campaigns.toll_free.<a href="/lib/pinnacle/campaigns/toll_free/client.rb">submit</a>(campaign_id) -> Pinnacle::Types::CampaignSubmissionResult</code></summary>
+<details><summary><code>client.campaigns.toll_free.<a href="/lib/rcs/campaigns/toll_free/client.rb">submit</a>(campaign_id) -> Rcs::Types::CampaignSubmissionResult</code></summary>
 <dl>
 <dd>
 
@@ -3017,7 +3017,7 @@ client.campaigns.toll_free.submit(campaign_id: 'tf_1234567890');
 <dl>
 <dd>
 
-**request_options:** `Pinnacle::Campaigns::TollFree::RequestOptions` 
+**request_options:** `Rcs::Campaigns::TollFree::RequestOptions` 
     
 </dd>
 </dl>
@@ -3029,7 +3029,7 @@ client.campaigns.toll_free.submit(campaign_id: 'tf_1234567890');
 </dl>
 </details>
 
-<details><summary><code>client.campaigns.toll_free.<a href="/lib/pinnacle/campaigns/toll_free/client.rb">upsert</a>(request) -> Pinnacle::Types::TollFreeCampaignWithExtendedBrandAndStatus</code></summary>
+<details><summary><code>client.campaigns.toll_free.<a href="/lib/rcs/campaigns/toll_free/client.rb">upsert</a>(request) -> Rcs::Types::TollFreeCampaignWithExtendedBrandAndStatus</code></summary>
 <dl>
 <dd>
 
@@ -3128,7 +3128,7 @@ client.campaigns.toll_free.upsert(
 <dl>
 <dd>
 
-**keywords:** `Pinnacle::Campaigns::TollFree::Types::TollFreeCampaignKeywords` — Keyword response configuration.
+**keywords:** `Rcs::Campaigns::TollFree::Types::TollFreeCampaignKeywords` — Keyword response configuration.
     
 </dd>
 </dl>
@@ -3136,7 +3136,7 @@ client.campaigns.toll_free.upsert(
 <dl>
 <dd>
 
-**links:** `Pinnacle::Campaigns::TollFree::Types::TollFreeCampaignLinks` — Legal documentation links.
+**links:** `Rcs::Campaigns::TollFree::Types::TollFreeCampaignLinks` — Legal documentation links.
     
 </dd>
 </dl>
@@ -3144,7 +3144,7 @@ client.campaigns.toll_free.upsert(
 <dl>
 <dd>
 
-**monthly_volume:** `Pinnacle::Types::MessageVolumeEnum` 
+**monthly_volume:** `Rcs::Types::MessageVolumeEnum` 
     
 </dd>
 </dl>
@@ -3160,7 +3160,7 @@ client.campaigns.toll_free.upsert(
 <dl>
 <dd>
 
-**opt_in:** `Pinnacle::Campaigns::TollFree::Types::TollFreeCampaignOptIn` — Opt-in method and workflow.
+**opt_in:** `Rcs::Campaigns::TollFree::Types::TollFreeCampaignOptIn` — Opt-in method and workflow.
     
 </dd>
 </dl>
@@ -3168,7 +3168,7 @@ client.campaigns.toll_free.upsert(
 <dl>
 <dd>
 
-**options:** `Pinnacle::Campaigns::TollFree::Types::TollFreeCampaignOptions` — Campaign configuration options.
+**options:** `Rcs::Campaigns::TollFree::Types::TollFreeCampaignOptions` — Campaign configuration options.
     
 </dd>
 </dl>
@@ -3184,7 +3184,7 @@ client.campaigns.toll_free.upsert(
 <dl>
 <dd>
 
-**use_case:** `Pinnacle::Campaigns::TollFree::Types::TollFreeCampaignUseCase` — Use case classification for the campaign.
+**use_case:** `Rcs::Campaigns::TollFree::Types::TollFreeCampaignUseCase` — Use case classification for the campaign.
     
 </dd>
 </dl>
@@ -3192,7 +3192,7 @@ client.campaigns.toll_free.upsert(
 <dl>
 <dd>
 
-**request_options:** `Pinnacle::Campaigns::TollFree::RequestOptions` 
+**request_options:** `Rcs::Campaigns::TollFree::RequestOptions` 
     
 </dd>
 </dl>
@@ -3204,7 +3204,7 @@ client.campaigns.toll_free.upsert(
 </dl>
 </details>
 
-<details><summary><code>client.campaigns.toll_free.<a href="/lib/pinnacle/campaigns/toll_free/client.rb">validate</a>(request) -> Pinnacle::Types::CampaignValidationResult</code></summary>
+<details><summary><code>client.campaigns.toll_free.<a href="/lib/rcs/campaigns/toll_free/client.rb">validate</a>(request) -> Rcs::Types::CampaignValidationResult</code></summary>
 <dl>
 <dd>
 
@@ -3249,7 +3249,7 @@ client.campaigns.toll_free.validate(
 <dl>
 <dd>
 
-**request:** `Pinnacle::Types::ValidateCampaignParams` 
+**request:** `Rcs::Types::ValidateCampaignParams` 
     
 </dd>
 </dl>
@@ -3257,7 +3257,7 @@ client.campaigns.toll_free.validate(
 <dl>
 <dd>
 
-**request_options:** `Pinnacle::Campaigns::TollFree::RequestOptions` 
+**request_options:** `Rcs::Campaigns::TollFree::RequestOptions` 
     
 </dd>
 </dl>
@@ -3270,7 +3270,7 @@ client.campaigns.toll_free.validate(
 </details>
 
 ## Campaigns Rcs
-<details><summary><code>client.campaigns.rcs.<a href="/lib/pinnacle/campaigns/rcs/client.rb">autofill</a>(request) -> Pinnacle::Campaigns::Rcs::Types::RcsAutofillResponse</code></summary>
+<details><summary><code>client.campaigns.rcs.<a href="/lib/rcs/campaigns/rcs/client.rb">autofill</a>(request) -> Rcs::Campaigns::Rcs::Types::RcsAutofillResponse</code></summary>
 <dl>
 <dd>
 
@@ -3315,7 +3315,7 @@ client.campaigns.rcs.autofill(
 <dl>
 <dd>
 
-**request:** `Pinnacle::Types::AutofillCampaignParams` 
+**request:** `Rcs::Types::AutofillCampaignParams` 
     
 </dd>
 </dl>
@@ -3323,7 +3323,7 @@ client.campaigns.rcs.autofill(
 <dl>
 <dd>
 
-**request_options:** `Pinnacle::Campaigns::Rcs::RequestOptions` 
+**request_options:** `Rcs::Campaigns::Rcs::RequestOptions` 
     
 </dd>
 </dl>
@@ -3335,7 +3335,7 @@ client.campaigns.rcs.autofill(
 </dl>
 </details>
 
-<details><summary><code>client.campaigns.rcs.<a href="/lib/pinnacle/campaigns/rcs/client.rb">get</a>(campaign_id) -> Pinnacle::Types::ExtendedRcsCampaign</code></summary>
+<details><summary><code>client.campaigns.rcs.<a href="/lib/rcs/campaigns/rcs/client.rb">get</a>(campaign_id) -> Rcs::Types::ExtendedRcsCampaign</code></summary>
 <dl>
 <dd>
 
@@ -3385,7 +3385,7 @@ client.campaigns.rcs.get(campaign_id: 'rcs_1234567890');
 <dl>
 <dd>
 
-**request_options:** `Pinnacle::Campaigns::Rcs::RequestOptions` 
+**request_options:** `Rcs::Campaigns::Rcs::RequestOptions` 
     
 </dd>
 </dl>
@@ -3397,7 +3397,7 @@ client.campaigns.rcs.get(campaign_id: 'rcs_1234567890');
 </dl>
 </details>
 
-<details><summary><code>client.campaigns.rcs.<a href="/lib/pinnacle/campaigns/rcs/client.rb">submit</a>(campaign_id) -> Pinnacle::Types::CampaignSubmissionResult</code></summary>
+<details><summary><code>client.campaigns.rcs.<a href="/lib/rcs/campaigns/rcs/client.rb">submit</a>(campaign_id) -> Rcs::Types::CampaignSubmissionResult</code></summary>
 <dl>
 <dd>
 
@@ -3447,7 +3447,7 @@ client.campaigns.rcs.submit(campaign_id: 'rcs_1234567890');
 <dl>
 <dd>
 
-**request_options:** `Pinnacle::Campaigns::Rcs::RequestOptions` 
+**request_options:** `Rcs::Campaigns::Rcs::RequestOptions` 
     
 </dd>
 </dl>
@@ -3459,7 +3459,7 @@ client.campaigns.rcs.submit(campaign_id: 'rcs_1234567890');
 </dl>
 </details>
 
-<details><summary><code>client.campaigns.rcs.<a href="/lib/pinnacle/campaigns/rcs/client.rb">upsert</a>(request) -> Pinnacle::Types::ExtendedRcsCampaign</code></summary>
+<details><summary><code>client.campaigns.rcs.<a href="/lib/rcs/campaigns/rcs/client.rb">upsert</a>(request) -> Rcs::Types::ExtendedRcsCampaign</code></summary>
 <dl>
 <dd>
 
@@ -3574,7 +3574,7 @@ client.campaigns.rcs.upsert(
 <dl>
 <dd>
 
-**agent:** `Pinnacle::Campaigns::Rcs::Types::RcsAgent` — Create an agent for the campaign.
+**agent:** `Rcs::Campaigns::Rcs::Types::RcsAgent` — Create an agent for the campaign.
     
 </dd>
 </dl>
@@ -3609,7 +3609,7 @@ List of what the agent might say to users. See the [Expected Agent Responses](/g
 <dl>
 <dd>
 
-**links:** `Pinnacle::Campaigns::Rcs::Types::RcsLinks` — Legal documentation links.
+**links:** `Rcs::Campaigns::Rcs::Types::RcsLinks` — Legal documentation links.
     
 </dd>
 </dl>
@@ -3617,7 +3617,7 @@ List of what the agent might say to users. See the [Expected Agent Responses](/g
 <dl>
 <dd>
 
-**use_case:** `Pinnacle::Campaigns::Rcs::Types::RcsUseCase` — Use case classification for the campaign.
+**use_case:** `Rcs::Campaigns::Rcs::Types::RcsUseCase` — Use case classification for the campaign.
     
 </dd>
 </dl>
@@ -3633,7 +3633,7 @@ List of what the agent might say to users. See the [Expected Agent Responses](/g
 <dl>
 <dd>
 
-**messaging_type:** `Pinnacle::Types::RcsMessagingTypeEnum` 
+**messaging_type:** `Rcs::Types::RcsMessagingTypeEnum` 
     
 </dd>
 </dl>
@@ -3649,7 +3649,7 @@ List of what the agent might say to users. See the [Expected Agent Responses](/g
 <dl>
 <dd>
 
-**keywords:** `Pinnacle::Campaigns::Rcs::Types::RcsCampaignKeywords` 
+**keywords:** `Rcs::Campaigns::Rcs::Types::RcsCampaignKeywords` 
     
 </dd>
 </dl>
@@ -3657,7 +3657,7 @@ List of what the agent might say to users. See the [Expected Agent Responses](/g
 <dl>
 <dd>
 
-**traffic:** `Pinnacle::Campaigns::Rcs::Types::RcsCampaignTraffic` 
+**traffic:** `Rcs::Campaigns::Rcs::Types::RcsCampaignTraffic` 
     
 </dd>
 </dl>
@@ -3705,7 +3705,7 @@ List of what the agent might say to users. See the [Expected Agent Responses](/g
 <dl>
 <dd>
 
-**request_options:** `Pinnacle::Campaigns::Rcs::RequestOptions` 
+**request_options:** `Rcs::Campaigns::Rcs::RequestOptions` 
     
 </dd>
 </dl>
@@ -3717,7 +3717,7 @@ List of what the agent might say to users. See the [Expected Agent Responses](/g
 </dl>
 </details>
 
-<details><summary><code>client.campaigns.rcs.<a href="/lib/pinnacle/campaigns/rcs/client.rb">validate</a>(request) -> Pinnacle::Types::CampaignValidationResult</code></summary>
+<details><summary><code>client.campaigns.rcs.<a href="/lib/rcs/campaigns/rcs/client.rb">validate</a>(request) -> Rcs::Types::CampaignValidationResult</code></summary>
 <dl>
 <dd>
 
@@ -3762,7 +3762,7 @@ client.campaigns.rcs.validate(
 <dl>
 <dd>
 
-**request:** `Pinnacle::Types::ValidateCampaignParams` 
+**request:** `Rcs::Types::ValidateCampaignParams` 
     
 </dd>
 </dl>
@@ -3770,7 +3770,7 @@ client.campaigns.rcs.validate(
 <dl>
 <dd>
 
-**request_options:** `Pinnacle::Campaigns::Rcs::RequestOptions` 
+**request_options:** `Rcs::Campaigns::Rcs::RequestOptions` 
     
 </dd>
 </dl>
@@ -3783,7 +3783,7 @@ client.campaigns.rcs.validate(
 </details>
 
 ## Messages Sms
-<details><summary><code>client.messages.sms.<a href="/lib/pinnacle/messages/sms/client.rb">send_</a>(request) -> Pinnacle::Messages::Sms::Types::SmsSendResponse</code></summary>
+<details><summary><code>client.messages.sms.<a href="/lib/rcs/messages/sms/client.rb">send_</a>(request) -> Rcs::Messages::Sms::Types::SmsSendResponse</code></summary>
 <dl>
 <dd>
 
@@ -3837,7 +3837,7 @@ client.messages.sms.send_(
 <dl>
 <dd>
 
-**options:** `Pinnacle::Messages::Sms::Types::SendSmsOptions` — Additional settings to customize SMS delivery.
+**options:** `Rcs::Messages::Sms::Types::SendSmsOptions` — Additional settings to customize SMS delivery.
     
 </dd>
 </dl>
@@ -3861,7 +3861,7 @@ client.messages.sms.send_(
 <dl>
 <dd>
 
-**request_options:** `Pinnacle::Messages::Sms::RequestOptions` 
+**request_options:** `Rcs::Messages::Sms::RequestOptions` 
     
 </dd>
 </dl>
@@ -3873,7 +3873,7 @@ client.messages.sms.send_(
 </dl>
 </details>
 
-<details><summary><code>client.messages.sms.<a href="/lib/pinnacle/messages/sms/client.rb">validate</a>(request) -> Pinnacle::Types::SmsValidationResult</code></summary>
+<details><summary><code>client.messages.sms.<a href="/lib/rcs/messages/sms/client.rb">validate</a>(request) -> Rcs::Types::SmsValidationResult</code></summary>
 <dl>
 <dd>
 
@@ -3915,7 +3915,7 @@ client.messages.sms.validate(text: 'Hello from Pinnacle');
 <dl>
 <dd>
 
-**request:** `Pinnacle::Types::SmsContent` 
+**request:** `Rcs::Types::SmsContent` 
     
 </dd>
 </dl>
@@ -3923,7 +3923,7 @@ client.messages.sms.validate(text: 'Hello from Pinnacle');
 <dl>
 <dd>
 
-**request_options:** `Pinnacle::Messages::Sms::RequestOptions` 
+**request_options:** `Rcs::Messages::Sms::RequestOptions` 
     
 </dd>
 </dl>
@@ -3936,7 +3936,7 @@ client.messages.sms.validate(text: 'Hello from Pinnacle');
 </details>
 
 ## Messages Mms
-<details><summary><code>client.messages.mms.<a href="/lib/pinnacle/messages/mms/client.rb">send_</a>(request) -> Pinnacle::Messages::Mms::Types::MmsSendResponse</code></summary>
+<details><summary><code>client.messages.mms.<a href="/lib/rcs/messages/mms/client.rb">send_</a>(request) -> Rcs::Messages::Mms::Types::MmsSendResponse</code></summary>
 <dl>
 <dd>
 
@@ -4007,7 +4007,7 @@ Media file URLs to send.<br>
 <dl>
 <dd>
 
-**options:** `Pinnacle::Messages::Mms::Types::SendMmsOptions` — Control how your MMS is processed and delivered.
+**options:** `Rcs::Messages::Mms::Types::SendMmsOptions` — Control how your MMS is processed and delivered.
     
 </dd>
 </dl>
@@ -4031,7 +4031,7 @@ Media file URLs to send.<br>
 <dl>
 <dd>
 
-**request_options:** `Pinnacle::Messages::Mms::RequestOptions` 
+**request_options:** `Rcs::Messages::Mms::RequestOptions` 
     
 </dd>
 </dl>
@@ -4043,7 +4043,7 @@ Media file URLs to send.<br>
 </dl>
 </details>
 
-<details><summary><code>client.messages.mms.<a href="/lib/pinnacle/messages/mms/client.rb">validate</a>(request) -> Pinnacle::Types::MmsValidationResult</code></summary>
+<details><summary><code>client.messages.mms.<a href="/lib/rcs/messages/mms/client.rb">validate</a>(request) -> Rcs::Types::MmsValidationResult</code></summary>
 <dl>
 <dd>
 
@@ -4088,7 +4088,7 @@ client.messages.mms.validate(
 <dl>
 <dd>
 
-**request:** `Pinnacle::Types::MmsContent` 
+**request:** `Rcs::Types::MmsContent` 
     
 </dd>
 </dl>
@@ -4096,7 +4096,7 @@ client.messages.mms.validate(
 <dl>
 <dd>
 
-**request_options:** `Pinnacle::Messages::Mms::RequestOptions` 
+**request_options:** `Rcs::Messages::Mms::RequestOptions` 
     
 </dd>
 </dl>
@@ -4109,7 +4109,7 @@ client.messages.mms.validate(
 </details>
 
 ## Messages Rcs
-<details><summary><code>client.messages.rcs.<a href="/lib/pinnacle/messages/rcs/client.rb">send_</a>(request) -> Pinnacle::Messages::Rcs::Types::SendRichMessageResponse</code></summary>
+<details><summary><code>client.messages.rcs.<a href="/lib/rcs/messages/rcs/client.rb">send_</a>(request) -> Rcs::Messages::Rcs::Types::SendRichMessageResponse</code></summary>
 <dl>
 <dd>
 
@@ -4158,7 +4158,7 @@ client.messages.rcs.send_(
 <dl>
 <dd>
 
-**request:** `Pinnacle::Types::RichMessage` 
+**request:** `Rcs::Types::RichMessage` 
     
 </dd>
 </dl>
@@ -4166,7 +4166,7 @@ client.messages.rcs.send_(
 <dl>
 <dd>
 
-**request_options:** `Pinnacle::Messages::Rcs::RequestOptions` 
+**request_options:** `Rcs::Messages::Rcs::RequestOptions` 
     
 </dd>
 </dl>
@@ -4178,7 +4178,7 @@ client.messages.rcs.send_(
 </dl>
 </details>
 
-<details><summary><code>client.messages.rcs.<a href="/lib/pinnacle/messages/rcs/client.rb">send_typing</a>(request) -> Pinnacle::Types::SendTypingIndicatorResponse</code></summary>
+<details><summary><code>client.messages.rcs.<a href="/lib/rcs/messages/rcs/client.rb">send_typing</a>(request) -> Rcs::Types::SendTypingIndicatorResponse</code></summary>
 <dl>
 <dd>
 
@@ -4260,7 +4260,7 @@ Must include country code with a leading plus sign (e.g., `+14155551234`).
 <dl>
 <dd>
 
-**options:** `Pinnacle::Messages::Rcs::Types::SendTypingIndicatorSchemaOptions` — Configure how your typing indicator is sent.
+**options:** `Rcs::Messages::Rcs::Types::SendTypingIndicatorSchemaOptions` — Configure how your typing indicator is sent.
     
 </dd>
 </dl>
@@ -4268,7 +4268,7 @@ Must include country code with a leading plus sign (e.g., `+14155551234`).
 <dl>
 <dd>
 
-**request_options:** `Pinnacle::Messages::Rcs::RequestOptions` 
+**request_options:** `Rcs::Messages::Rcs::RequestOptions` 
     
 </dd>
 </dl>
@@ -4280,7 +4280,7 @@ Must include country code with a leading plus sign (e.g., `+14155551234`).
 </dl>
 </details>
 
-<details><summary><code>client.messages.rcs.<a href="/lib/pinnacle/messages/rcs/client.rb">validate</a>(request) -> Pinnacle::Types::RcsValidationResult</code></summary>
+<details><summary><code>client.messages.rcs.<a href="/lib/rcs/messages/rcs/client.rb">validate</a>(request) -> Rcs::Types::RcsValidationResult</code></summary>
 <dl>
 <dd>
 
@@ -4325,7 +4325,7 @@ client.messages.rcs.validate(
 <dl>
 <dd>
 
-**request:** `Pinnacle::Types::RcsValidateContent` 
+**request:** `Rcs::Types::RcsValidateContent` 
     
 </dd>
 </dl>
@@ -4333,7 +4333,7 @@ client.messages.rcs.validate(
 <dl>
 <dd>
 
-**request_options:** `Pinnacle::Messages::Rcs::RequestOptions` 
+**request_options:** `Rcs::Messages::Rcs::RequestOptions` 
     
 </dd>
 </dl>
@@ -4346,7 +4346,7 @@ client.messages.rcs.validate(
 </details>
 
 ## Messages Blast
-<details><summary><code>client.messages.blast.<a href="/lib/pinnacle/messages/blast/client.rb">sms</a>(request) -> Pinnacle::Messages::Blast::Types::BlastSmsResponse</code></summary>
+<details><summary><code>client.messages.blast.<a href="/lib/rcs/messages/blast/client.rb">sms</a>(request) -> Rcs::Messages::Blast::Types::BlastSmsResponse</code></summary>
 <dl>
 <dd>
 
@@ -4426,7 +4426,7 @@ Messages will be distributed evenly across these senders.
 <dl>
 <dd>
 
-**message:** `Pinnacle::Types::SmsContent` 
+**message:** `Rcs::Types::SmsContent` 
     
 </dd>
 </dl>
@@ -4434,7 +4434,7 @@ Messages will be distributed evenly across these senders.
 <dl>
 <dd>
 
-**options:** `Pinnacle::Messages::Blast::Types::BlastSmsOptions` — Additional settings to customize SMS blast delivery.
+**options:** `Rcs::Messages::Blast::Types::BlastSmsOptions` — Additional settings to customize SMS blast delivery.
     
 </dd>
 </dl>
@@ -4442,7 +4442,7 @@ Messages will be distributed evenly across these senders.
 <dl>
 <dd>
 
-**request_options:** `Pinnacle::Messages::Blast::RequestOptions` 
+**request_options:** `Rcs::Messages::Blast::RequestOptions` 
     
 </dd>
 </dl>
@@ -4454,7 +4454,7 @@ Messages will be distributed evenly across these senders.
 </dl>
 </details>
 
-<details><summary><code>client.messages.blast.<a href="/lib/pinnacle/messages/blast/client.rb">mms</a>(request) -> Pinnacle::Messages::Blast::Types::BlastMmsResponse</code></summary>
+<details><summary><code>client.messages.blast.<a href="/lib/rcs/messages/blast/client.rb">mms</a>(request) -> Rcs::Messages::Blast::Types::BlastMmsResponse</code></summary>
 <dl>
 <dd>
 
@@ -4538,7 +4538,7 @@ Messages will be distributed evenly across these senders.
 <dl>
 <dd>
 
-**message:** `Pinnacle::Types::MmsContent` 
+**message:** `Rcs::Types::MmsContent` 
     
 </dd>
 </dl>
@@ -4546,7 +4546,7 @@ Messages will be distributed evenly across these senders.
 <dl>
 <dd>
 
-**options:** `Pinnacle::Messages::Blast::Types::BlastMmsOptions` — Additional settings to customize MMS blast delivery.
+**options:** `Rcs::Messages::Blast::Types::BlastMmsOptions` — Additional settings to customize MMS blast delivery.
     
 </dd>
 </dl>
@@ -4554,7 +4554,7 @@ Messages will be distributed evenly across these senders.
 <dl>
 <dd>
 
-**request_options:** `Pinnacle::Messages::Blast::RequestOptions` 
+**request_options:** `Rcs::Messages::Blast::RequestOptions` 
     
 </dd>
 </dl>
@@ -4566,7 +4566,7 @@ Messages will be distributed evenly across these senders.
 </dl>
 </details>
 
-<details><summary><code>client.messages.blast.<a href="/lib/pinnacle/messages/blast/client.rb">rcs</a>(request) -> Pinnacle::Messages::Blast::Types::BlastRcsResponse</code></summary>
+<details><summary><code>client.messages.blast.<a href="/lib/rcs/messages/blast/client.rb">rcs</a>(request) -> Rcs::Messages::Blast::Types::BlastRcsResponse</code></summary>
 <dl>
 <dd>
 
@@ -4651,7 +4651,7 @@ Messages will be evenly distributed across these agents.
 <dl>
 <dd>
 
-**message:** `Pinnacle::Types::RcsValidateContent` 
+**message:** `Rcs::Types::RcsValidateContent` 
     
 </dd>
 </dl>
@@ -4659,7 +4659,7 @@ Messages will be evenly distributed across these agents.
 <dl>
 <dd>
 
-**options:** `Pinnacle::Messages::Blast::Types::BlastRcsOptions` — Configure how your RCS blast is sent and tracked.
+**options:** `Rcs::Messages::Blast::Types::BlastRcsOptions` — Configure how your RCS blast is sent and tracked.
     
 </dd>
 </dl>
@@ -4667,7 +4667,7 @@ Messages will be evenly distributed across these agents.
 <dl>
 <dd>
 
-**request_options:** `Pinnacle::Messages::Blast::RequestOptions` 
+**request_options:** `Rcs::Messages::Blast::RequestOptions` 
     
 </dd>
 </dl>
@@ -4680,7 +4680,7 @@ Messages will be evenly distributed across these agents.
 </details>
 
 ## Messages Schedule
-<details><summary><code>client.messages.schedule.<a href="/lib/pinnacle/messages/schedule/client.rb">cancel</a>(id) -> Pinnacle::Types::ScheduleCancelResult</code></summary>
+<details><summary><code>client.messages.schedule.<a href="/lib/rcs/messages/schedule/client.rb">cancel</a>(id) -> Rcs::Types::ScheduleCancelResult</code></summary>
 <dl>
 <dd>
 
@@ -4732,7 +4732,7 @@ client.messages.schedule.cancel(id: 'id');
 <dl>
 <dd>
 
-**request_options:** `Pinnacle::Messages::Schedule::RequestOptions` 
+**request_options:** `Rcs::Messages::Schedule::RequestOptions` 
     
 </dd>
 </dl>
@@ -4745,7 +4745,7 @@ client.messages.schedule.cancel(id: 'id');
 </details>
 
 ## PhoneNumbers Webhook
-<details><summary><code>client.phone_numbers.webhook.<a href="/lib/pinnacle/phone_numbers/webhook/client.rb">attach</a>(phone, request) -> Pinnacle::Types::ConfiguredWebhook</code></summary>
+<details><summary><code>client.phone_numbers.webhook.<a href="/lib/rcs/phone_numbers/webhook/client.rb">attach</a>(phone, request) -> Rcs::Types::ConfiguredWebhook</code></summary>
 <dl>
 <dd>
 
@@ -4803,7 +4803,7 @@ Must be a phone number that you own and have already [purchased](./buy) through 
 <dl>
 <dd>
 
-**request:** `Pinnacle::Types::AttachWebhookParams` 
+**request:** `Rcs::Types::AttachWebhookParams` 
     
 </dd>
 </dl>
@@ -4811,7 +4811,7 @@ Must be a phone number that you own and have already [purchased](./buy) through 
 <dl>
 <dd>
 
-**request_options:** `Pinnacle::PhoneNumbers::Webhook::RequestOptions` 
+**request_options:** `Rcs::PhoneNumbers::Webhook::RequestOptions` 
     
 </dd>
 </dl>
@@ -4823,7 +4823,7 @@ Must be a phone number that you own and have already [purchased](./buy) through 
 </dl>
 </details>
 
-<details><summary><code>client.phone_numbers.webhook.<a href="/lib/pinnacle/phone_numbers/webhook/client.rb">detach</a>(phone, webhook_id) -> Pinnacle::Types::DetachedWebhookInfo</code></summary>
+<details><summary><code>client.phone_numbers.webhook.<a href="/lib/rcs/phone_numbers/webhook/client.rb">detach</a>(phone, webhook_id) -> Rcs::Types::DetachedWebhookInfo</code></summary>
 <dl>
 <dd>
 
@@ -4894,7 +4894,7 @@ This must be a valid webhook ID that is currently attached to the specified phon
 <dl>
 <dd>
 
-**request_options:** `Pinnacle::PhoneNumbers::Webhook::RequestOptions` 
+**request_options:** `Rcs::PhoneNumbers::Webhook::RequestOptions` 
     
 </dd>
 </dl>
@@ -4907,7 +4907,7 @@ This must be a valid webhook ID that is currently attached to the specified phon
 </details>
 
 ## PhoneNumbers Campaign
-<details><summary><code>client.phone_numbers.campaign.<a href="/lib/pinnacle/phone_numbers/campaign/client.rb">attach</a>(request) -> Pinnacle::Types::AttachedPhoneNumberResult</code></summary>
+<details><summary><code>client.phone_numbers.campaign.<a href="/lib/rcs/phone_numbers/campaign/client.rb">attach</a>(request) -> Rcs::Types::AttachedPhoneNumberResult</code></summary>
 <dl>
 <dd>
 
@@ -4964,7 +4964,7 @@ List of phone number (E.164 format). <br><br>
 <dl>
 <dd>
 
-**campaign_type:** `Pinnacle::Types::MessagingProfileEnum` 
+**campaign_type:** `Rcs::Types::MessagingProfileEnum` 
     
 </dd>
 </dl>
@@ -4989,7 +4989,7 @@ Unique identifier for the campaign. <br>
 <dl>
 <dd>
 
-**request_options:** `Pinnacle::PhoneNumbers::Campaign::RequestOptions` 
+**request_options:** `Rcs::PhoneNumbers::Campaign::RequestOptions` 
     
 </dd>
 </dl>
@@ -5001,7 +5001,7 @@ Unique identifier for the campaign. <br>
 </dl>
 </details>
 
-<details><summary><code>client.phone_numbers.campaign.<a href="/lib/pinnacle/phone_numbers/campaign/client.rb">detach</a>(request) -> Pinnacle::Types::DetachedPhoneNumberResult</code></summary>
+<details><summary><code>client.phone_numbers.campaign.<a href="/lib/rcs/phone_numbers/campaign/client.rb">detach</a>(request) -> Rcs::Types::DetachedPhoneNumberResult</code></summary>
 <dl>
 <dd>
 
@@ -5054,7 +5054,7 @@ List of phone numbers (E.164 format). <br><br>
 <dl>
 <dd>
 
-**request_options:** `Pinnacle::PhoneNumbers::Campaign::RequestOptions` 
+**request_options:** `Rcs::PhoneNumbers::Campaign::RequestOptions` 
     
 </dd>
 </dl>
@@ -5067,7 +5067,7 @@ List of phone numbers (E.164 format). <br><br>
 </details>
 
 ## Status Get
-<details><summary><code>client.status.get.<a href="/lib/pinnacle/status/get/client.rb">brand</a>(brand_id) -> Pinnacle::Types::BrandStatus</code></summary>
+<details><summary><code>client.status.get.<a href="/lib/rcs/status/get/client.rb">brand</a>(brand_id) -> Rcs::Types::BrandStatus</code></summary>
 <dl>
 <dd>
 
@@ -5117,7 +5117,7 @@ client.status.get.brand(brand_id: 'b_1234567890');
 <dl>
 <dd>
 
-**request_options:** `Pinnacle::Status::Get::RequestOptions` 
+**request_options:** `Rcs::Status::Get::RequestOptions` 
     
 </dd>
 </dl>
@@ -5129,7 +5129,7 @@ client.status.get.brand(brand_id: 'b_1234567890');
 </dl>
 </details>
 
-<details><summary><code>client.status.get.<a href="/lib/pinnacle/status/get/client.rb">toll_free</a>(campaign_id) -> Pinnacle::Types::TollFreeCampaignStatus</code></summary>
+<details><summary><code>client.status.get.<a href="/lib/rcs/status/get/client.rb">toll_free</a>(campaign_id) -> Rcs::Types::TollFreeCampaignStatus</code></summary>
 <dl>
 <dd>
 
@@ -5179,7 +5179,7 @@ client.status.get.toll_free(campaign_id: 'tf_1234567890');
 <dl>
 <dd>
 
-**request_options:** `Pinnacle::Status::Get::RequestOptions` 
+**request_options:** `Rcs::Status::Get::RequestOptions` 
     
 </dd>
 </dl>
@@ -5191,7 +5191,7 @@ client.status.get.toll_free(campaign_id: 'tf_1234567890');
 </dl>
 </details>
 
-<details><summary><code>client.status.get.<a href="/lib/pinnacle/status/get/client.rb">dlc</a>(campaign_id) -> Pinnacle::Types::DlcCampaignStatus</code></summary>
+<details><summary><code>client.status.get.<a href="/lib/rcs/status/get/client.rb">dlc</a>(campaign_id) -> Rcs::Types::DlcCampaignStatus</code></summary>
 <dl>
 <dd>
 
@@ -5241,7 +5241,7 @@ client.status.get.dlc(campaign_id: 'dlc_1234567890');
 <dl>
 <dd>
 
-**request_options:** `Pinnacle::Status::Get::RequestOptions` 
+**request_options:** `Rcs::Status::Get::RequestOptions` 
     
 </dd>
 </dl>
@@ -5253,7 +5253,7 @@ client.status.get.dlc(campaign_id: 'dlc_1234567890');
 </dl>
 </details>
 
-<details><summary><code>client.status.get.<a href="/lib/pinnacle/status/get/client.rb">rcs</a>(campaign_id) -> Pinnacle::Types::RcsCampaignStatus</code></summary>
+<details><summary><code>client.status.get.<a href="/lib/rcs/status/get/client.rb">rcs</a>(campaign_id) -> Rcs::Types::RcsCampaignStatus</code></summary>
 <dl>
 <dd>
 
@@ -5303,7 +5303,7 @@ client.status.get.rcs(campaign_id: 'rcs_1234567890');
 <dl>
 <dd>
 
-**request_options:** `Pinnacle::Status::Get::RequestOptions` 
+**request_options:** `Rcs::Status::Get::RequestOptions` 
     
 </dd>
 </dl>
@@ -5315,7 +5315,7 @@ client.status.get.rcs(campaign_id: 'rcs_1234567890');
 </dl>
 </details>
 
-<details><summary><code>client.status.get.<a href="/lib/pinnacle/status/get/client.rb">phone_number</a>(phone_number) -> Pinnacle::Types::PhoneNumberStatus</code></summary>
+<details><summary><code>client.status.get.<a href="/lib/rcs/status/get/client.rb">phone_number</a>(phone_number) -> Rcs::Types::PhoneNumberStatus</code></summary>
 <dl>
 <dd>
 
@@ -5367,7 +5367,7 @@ client.status.get.phone_number(phone_number: '+14151234567');
 <dl>
 <dd>
 
-**request_options:** `Pinnacle::Status::Get::RequestOptions` 
+**request_options:** `Rcs::Status::Get::RequestOptions` 
     
 </dd>
 </dl>
@@ -5380,7 +5380,7 @@ client.status.get.phone_number(phone_number: '+14151234567');
 </details>
 
 ## Tools Url
-<details><summary><code>client.tools.url.<a href="/lib/pinnacle/tools/url/client.rb">create</a>(request) -> Pinnacle::Types::ShortenedUrl</code></summary>
+<details><summary><code>client.tools.url.<a href="/lib/rcs/tools/url/client.rb">create</a>(request) -> Rcs::Types::ShortenedUrl</code></summary>
 <dl>
 <dd>
 
@@ -5435,7 +5435,7 @@ client.tools.url.create(
 <dl>
 <dd>
 
-**options:** `Pinnacle::Types::CreateUrlOptions` 
+**options:** `Rcs::Types::CreateUrlOptions` 
     
 </dd>
 </dl>
@@ -5443,7 +5443,7 @@ client.tools.url.create(
 <dl>
 <dd>
 
-**request_options:** `Pinnacle::Tools::Url::RequestOptions` 
+**request_options:** `Rcs::Tools::Url::RequestOptions` 
     
 </dd>
 </dl>
@@ -5455,7 +5455,7 @@ client.tools.url.create(
 </dl>
 </details>
 
-<details><summary><code>client.tools.url.<a href="/lib/pinnacle/tools/url/client.rb">get</a>(link_id) -> Pinnacle::Types::ShortenedUrlWithClickData</code></summary>
+<details><summary><code>client.tools.url.<a href="/lib/rcs/tools/url/client.rb">get</a>(link_id) -> Rcs::Types::ShortenedUrlWithClickData</code></summary>
 <dl>
 <dd>
 
@@ -5509,7 +5509,7 @@ See the response of [Create Shortened URL](./create-url) for more information.
 <dl>
 <dd>
 
-**request_options:** `Pinnacle::Tools::Url::RequestOptions` 
+**request_options:** `Rcs::Tools::Url::RequestOptions` 
     
 </dd>
 </dl>
@@ -5521,7 +5521,7 @@ See the response of [Create Shortened URL](./create-url) for more information.
 </dl>
 </details>
 
-<details><summary><code>client.tools.url.<a href="/lib/pinnacle/tools/url/client.rb">update</a>(link_id, request) -> Pinnacle::Types::ShortenedUrl</code></summary>
+<details><summary><code>client.tools.url.<a href="/lib/rcs/tools/url/client.rb">update</a>(link_id, request) -> Rcs::Types::ShortenedUrl</code></summary>
 <dl>
 <dd>
 
@@ -5586,7 +5586,7 @@ See the response of [Create Shortened URL](./create-url) for more information.
 <dl>
 <dd>
 
-**options:** `Pinnacle::Types::CreateUrlOptions` 
+**options:** `Rcs::Types::CreateUrlOptions` 
     
 </dd>
 </dl>
@@ -5594,7 +5594,7 @@ See the response of [Create Shortened URL](./create-url) for more information.
 <dl>
 <dd>
 
-**request_options:** `Pinnacle::Tools::Url::RequestOptions` 
+**request_options:** `Rcs::Tools::Url::RequestOptions` 
     
 </dd>
 </dl>
@@ -5607,7 +5607,7 @@ See the response of [Create Shortened URL](./create-url) for more information.
 </details>
 
 ## Tools File
-<details><summary><code>client.tools.file.<a href="/lib/pinnacle/tools/file/client.rb">upload</a>(request) -> Pinnacle::Types::UploadResults</code></summary>
+<details><summary><code>client.tools.file.<a href="/lib/rcs/tools/file/client.rb">upload</a>(request) -> Rcs::Types::UploadResults</code></summary>
 <dl>
 <dd>
 
@@ -5691,7 +5691,7 @@ Supported file types:
 <dl>
 <dd>
 
-**options:** `Pinnacle::Tools::File::Types::UploadFileOptions` — Additional configurations for your file.
+**options:** `Rcs::Tools::File::Types::UploadFileOptions` — Additional configurations for your file.
     
 </dd>
 </dl>
@@ -5699,7 +5699,7 @@ Supported file types:
 <dl>
 <dd>
 
-**request_options:** `Pinnacle::Tools::File::RequestOptions` 
+**request_options:** `Rcs::Tools::File::RequestOptions` 
     
 </dd>
 </dl>
@@ -5711,7 +5711,7 @@ Supported file types:
 </dl>
 </details>
 
-<details><summary><code>client.tools.file.<a href="/lib/pinnacle/tools/file/client.rb">refresh</a>(request) -> Internal::Types::Array[Pinnacle::Types::RefreshedFile]</code></summary>
+<details><summary><code>client.tools.file.<a href="/lib/rcs/tools/file/client.rb">refresh</a>(request) -> Internal::Types::Array[Rcs::Types::RefreshedFile]</code></summary>
 <dl>
 <dd>
 
@@ -5765,7 +5765,7 @@ client.tools.file.refresh(urls: ['https://server.trypinnacle.app/storage/v1/obje
 <dl>
 <dd>
 
-**request_options:** `Pinnacle::Tools::File::RequestOptions` 
+**request_options:** `Rcs::Tools::File::RequestOptions` 
     
 </dd>
 </dl>
@@ -5778,7 +5778,7 @@ client.tools.file.refresh(urls: ['https://server.trypinnacle.app/storage/v1/obje
 </details>
 
 ## Tools ContactCard
-<details><summary><code>client.tools.contact_card.<a href="/lib/pinnacle/tools/contact_card/client.rb">get</a>(request) -> Pinnacle::Types::VCardData</code></summary>
+<details><summary><code>client.tools.contact_card.<a href="/lib/rcs/tools/contact_card/client.rb">get</a>(request) -> Rcs::Types::VCardData</code></summary>
 <dl>
 <dd>
 
@@ -5828,7 +5828,7 @@ client.tools.contact_card.get(id: 'cc_1234567890');
 <dl>
 <dd>
 
-**options:** `Pinnacle::Tools::ContactCard::Types::GetVCardSchemaOptions` 
+**options:** `Rcs::Tools::ContactCard::Types::GetVCardSchemaOptions` 
     
 </dd>
 </dl>
@@ -5836,7 +5836,7 @@ client.tools.contact_card.get(id: 'cc_1234567890');
 <dl>
 <dd>
 
-**request_options:** `Pinnacle::Tools::ContactCard::RequestOptions` 
+**request_options:** `Rcs::Tools::ContactCard::RequestOptions` 
     
 </dd>
 </dl>
@@ -5848,7 +5848,7 @@ client.tools.contact_card.get(id: 'cc_1234567890');
 </dl>
 </details>
 
-<details><summary><code>client.tools.contact_card.<a href="/lib/pinnacle/tools/contact_card/client.rb">upsert</a>(request) -> Pinnacle::Types::VcardResource</code></summary>
+<details><summary><code>client.tools.contact_card.<a href="/lib/rcs/tools/contact_card/client.rb">upsert</a>(request) -> Rcs::Types::VcardResource</code></summary>
 <dl>
 <dd>
 
@@ -5943,7 +5943,7 @@ client.tools.contact_card.upsert(
 <dl>
 <dd>
 
-**request_options:** `Pinnacle::Tools::ContactCard::RequestOptions` 
+**request_options:** `Rcs::Tools::ContactCard::RequestOptions` 
     
 </dd>
 </dl>
