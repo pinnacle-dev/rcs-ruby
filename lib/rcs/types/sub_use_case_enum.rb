@@ -1,0 +1,20 @@
+# frozen_string_literal: true
+
+module Rcs
+  module Types
+    module SubUseCaseEnum
+      extend Rcs::Internal::Types::Enum
+
+      ACCOUNT_NOTIFICATION = "ACCOUNT_NOTIFICATION"
+      CUSTOMER_CARE = "CUSTOMER_CARE"
+      DELIVERY_NOTIFICATION = "DELIVERY_NOTIFICATION"
+      FRAUD_ALERT = "FRAUD_ALERT"
+      HIGHER_EDUCATION = "HIGHER_EDUCATION"
+      MARKETING = "MARKETING"
+      POLLING_VOTING = "POLLING_VOTING"
+      PUBLIC_SERVICE_ANNOUNCEMENT = "PUBLIC_SERVICE_ANNOUNCEMENT"
+      SECURITY_ALERT = "SECURITY_ALERT"
+      TWO_FA = "TWO_FA"
+    end
+  end
+end

@@ -2,9 +2,9 @@
 
 require "test_helper"
 
-describe Pinnacle::Internal::Types::Array do
+describe Rcs::Internal::Types::Array do
   module TestArray
-    StringArray = Pinnacle::Internal::Types::Array[String]
+    StringArray = Rcs::Internal::Types::Array[String]
   end
 
   describe "#initialize" do
@@ -19,7 +19,7 @@ describe Pinnacle::Internal::Types::Array do
     end
 
     it "raises an error if not an array and strictness is on" do
-      assert_raises Pinnacle::Internal::Errors::TypeError do
+      assert_raises Rcs::Internal::Errors::TypeError do
         TestArray::StringArray.coerce(1, strict: true)
       end
     end
@@ -29,7 +29,7 @@ describe Pinnacle::Internal::Types::Array do
     end
 
     it "raises an error if element of array is not coercable and strictness is on" do
-      assert_raises Pinnacle::Internal::Errors::TypeError do
+      assert_raises Rcs::Internal::Errors::TypeError do
         TestArray::StringArray.coerce([Object.new], strict: true)
       end
     end
