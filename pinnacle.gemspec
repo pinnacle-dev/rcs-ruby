@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require_relative "lib/pinnacle/version"
-require_relative "custom.gemspec.rb" # rubocop:disable Style/RedundantFileExtensionInRequire
+require_relative "custom.gemspec"
 
 # NOTE: A handful of these fields are required as part of the Ruby specification.
 #       You can change them here or overwrite them in the custom gemspec file.
