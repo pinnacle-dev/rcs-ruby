@@ -3,10 +3,9 @@
   "generatorName": "fernapi/fern-ruby-sdk",
   "generatorVersion": "1.0.0-rc78",
   "generatorConfig": {
-    "flattenModuleStructure": true,
     "clientModuleName": "PinnacleBaseClient",
-    "useProvidedDefaults": true,
-    "enableWireTests": true
+    "flattenModuleStructure": true,
+    "useProvidedDefaults": true
   },
-  "sdkVersion": "2.0.6-rc.1"
+  "sdkVersion": "2.0.8"
 }
