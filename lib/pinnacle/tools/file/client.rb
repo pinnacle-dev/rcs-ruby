@@ -25,14 +25,11 @@ module Pinnacle
         # @return [Pinnacle::Types::UploadResults]
         def upload(request_options: {}, **params)
           params = Pinnacle::Internal::Types::Utils.normalize_keys(params)
-          body_prop_names = %i[content_type size name options]
-          body_bag = params.slice(*body_prop_names)
-
           request = Pinnacle::Internal::JSON::Request.new(
             base_url: request_options[:base_url],
             method: "POST",
             path: "tools/files/upload",
-            body: Pinnacle::Tools::File::Types::UploadFileParams.new(body_bag).to_h,
+            body: Pinnacle::Tools::File::Types::UploadFileParams.new(params).to_h,
             request_options: request_options
           )
           begin
@@ -67,14 +64,11 @@ module Pinnacle
         # @return [Array[Pinnacle::Types::RefreshedFile]]
         def refresh(request_options: {}, **params)
           params = Pinnacle::Internal::Types::Utils.normalize_keys(params)
-          body_prop_names = %i[urls]
-          body_bag = params.slice(*body_prop_names)
-
           request = Pinnacle::Internal::JSON::Request.new(
             base_url: request_options[:base_url],
             method: "POST",
             path: "tools/files/refresh",
-            body: Pinnacle::Tools::File::Types::RefreshFileParams.new(body_bag).to_h,
+            body: Pinnacle::Tools::File::Types::RefreshFileParams.new(params).to_h,
             request_options: request_options
           )
           begin

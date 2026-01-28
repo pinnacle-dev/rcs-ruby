@@ -65,14 +65,11 @@ module Pinnacle
       # @return [Pinnacle::Types::ContactId]
       def create(request_options: {}, **params)
         params = Pinnacle::Internal::Types::Utils.normalize_keys(params)
-        body_prop_names = %i[phone_number description email name tags]
-        body_bag = params.slice(*body_prop_names)
-
         request = Pinnacle::Internal::JSON::Request.new(
           base_url: request_options[:base_url],
           method: "POST",
           path: "contacts",
-          body: Pinnacle::Contacts::Types::CreateContactParams.new(body_bag).to_h,
+          body: Pinnacle::Contacts::Types::CreateContactParams.new(params).to_h,
           request_options: request_options
         )
         begin
@@ -102,14 +99,11 @@ module Pinnacle
       # @return [Pinnacle::Types::UpdatedContactId]
       def update(request_options: {}, **params)
         params = Pinnacle::Internal::Types::Utils.normalize_keys(params)
-        body_prop_names = %i[id description email name tags]
-        body_bag = params.slice(*body_prop_names)
-
         request = Pinnacle::Internal::JSON::Request.new(
           base_url: request_options[:base_url],
           method: "PUT",
           path: "contacts",
-          body: Pinnacle::Contacts::Types::UpdateContactParams.new(body_bag).to_h,
+          body: Pinnacle::Contacts::Types::UpdateContactParams.new(params).to_h,
           request_options: request_options
         )
         begin

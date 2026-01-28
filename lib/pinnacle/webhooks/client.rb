@@ -23,14 +23,11 @@ module Pinnacle
       # @return [Pinnacle::Types::WebhookResult]
       def get(request_options: {}, **params)
         params = Pinnacle::Internal::Types::Utils.normalize_keys(params)
-        body_prop_names = %i[identifiers]
-        body_bag = params.slice(*body_prop_names)
-
         request = Pinnacle::Internal::JSON::Request.new(
           base_url: request_options[:base_url],
           method: "POST",
           path: "webhooks",
-          body: Pinnacle::Webhooks::Types::GetWebhookParams.new(body_bag).to_h,
+          body: Pinnacle::Webhooks::Types::GetWebhookParams.new(params).to_h,
           request_options: request_options
         )
         begin

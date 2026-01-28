@@ -68,14 +68,11 @@ module Pinnacle
       # @return [Pinnacle::Types::AudienceCountOnly]
       def create(request_options: {}, **params)
         params = Pinnacle::Internal::Types::Utils.normalize_keys(params)
-        body_prop_names = %i[name description contacts]
-        body_bag = params.slice(*body_prop_names)
-
         request = Pinnacle::Internal::JSON::Request.new(
           base_url: request_options[:base_url],
           method: "POST",
           path: "audiences",
-          body: Pinnacle::Audiences::Types::CreateAudienceParams.new(body_bag).to_h,
+          body: Pinnacle::Audiences::Types::CreateAudienceParams.new(params).to_h,
           request_options: request_options
         )
         begin
@@ -150,14 +147,11 @@ module Pinnacle
       # @return [Pinnacle::Types::AudienceCountOnly]
       def update(request_options: {}, **params)
         params = Pinnacle::Internal::Types::Utils.normalize_keys(params)
-        body_prop_names = %i[id name description]
-        body_bag = params.slice(*body_prop_names)
-
         request = Pinnacle::Internal::JSON::Request.new(
           base_url: request_options[:base_url],
           method: "PATCH",
           path: "audiences",
-          body: Pinnacle::Audiences::Types::UpdateAudienceParams.new(body_bag).to_h,
+          body: Pinnacle::Audiences::Types::UpdateAudienceParams.new(params).to_h,
           request_options: request_options
         )
         begin

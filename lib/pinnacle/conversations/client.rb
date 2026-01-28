@@ -55,14 +55,11 @@ module Pinnacle
       # @return [Pinnacle::Types::ConversationList]
       def list(request_options: {}, **params)
         params = Pinnacle::Internal::Types::Utils.normalize_keys(params)
-        body_prop_names = %i[brand_id campaign_id campaign_type page_index page_size receiver sender]
-        body_bag = params.slice(*body_prop_names)
-
         request = Pinnacle::Internal::JSON::Request.new(
           base_url: request_options[:base_url],
           method: "POST",
           path: "conversations/list",
-          body: Pinnacle::Conversations::Types::ListConversationsParams.new(body_bag).to_h,
+          body: Pinnacle::Conversations::Types::ListConversationsParams.new(params).to_h,
           request_options: request_options
         )
         begin
@@ -92,14 +89,11 @@ module Pinnacle
       # @return [Pinnacle::Types::SuccessfulConversationUpdate]
       def update(request_options: {}, **params)
         params = Pinnacle::Internal::Types::Utils.normalize_keys(params)
-        body_prop_names = %i[id notes]
-        body_bag = params.slice(*body_prop_names)
-
         request = Pinnacle::Internal::JSON::Request.new(
           base_url: request_options[:base_url],
           method: "POST",
           path: "conversations/update",
-          body: Pinnacle::Conversations::Types::UpdateConversationParams.new(body_bag).to_h,
+          body: Pinnacle::Conversations::Types::UpdateConversationParams.new(params).to_h,
           request_options: request_options
         )
         begin

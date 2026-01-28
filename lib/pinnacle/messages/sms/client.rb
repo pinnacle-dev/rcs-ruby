@@ -24,14 +24,11 @@ module Pinnacle
         # @return [Pinnacle::Messages::Sms::Types::SmsSendResponse]
         def send_(request_options: {}, **params)
           params = Pinnacle::Internal::Types::Utils.normalize_keys(params)
-          body_prop_names = %i[from options text to]
-          body_bag = params.slice(*body_prop_names)
-
           request = Pinnacle::Internal::JSON::Request.new(
             base_url: request_options[:base_url],
             method: "POST",
             path: "messages/send/sms",
-            body: Pinnacle::Messages::Sms::Types::Sms.new(body_bag).to_h,
+            body: Pinnacle::Messages::Sms::Types::Sms.new(params).to_h,
             request_options: request_options
           )
           begin

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Pinnacle
-  class Client
+  class PinnacleBaseClient
     # @param base_url [String, nil]
     # @param api_key [String]
     #
@@ -10,7 +10,7 @@ module Pinnacle
       @raw_client = Pinnacle::Internal::Http::RawClient.new(
         base_url: base_url || Pinnacle::Environment::DEFAULT,
         headers: {
-          "User-Agent" => "rcs/2.0.8",
+          "User-Agent" => "rcs/2.0.9",
           "X-Fern-Language" => "Ruby",
           "PINNACLE-API-KEY" => api_key.to_s
         }

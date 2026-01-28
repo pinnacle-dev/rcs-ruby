@@ -29,14 +29,11 @@ module Pinnacle
         # @return [Pinnacle::Messages::Blast::Types::BlastSmsResponse]
         def sms(request_options: {}, **params)
           params = Pinnacle::Internal::Types::Utils.normalize_keys(params)
-          body_prop_names = %i[audience_id senders message options]
-          body_bag = params.slice(*body_prop_names)
-
           request = Pinnacle::Internal::JSON::Request.new(
             base_url: request_options[:base_url],
             method: "POST",
             path: "messages/blast/sms",
-            body: Pinnacle::Messages::Blast::Types::BlastSms.new(body_bag).to_h,
+            body: Pinnacle::Messages::Blast::Types::BlastSms.new(params).to_h,
             request_options: request_options
           )
           begin
@@ -71,14 +68,11 @@ module Pinnacle
         # @return [Pinnacle::Messages::Blast::Types::BlastMmsResponse]
         def mms(request_options: {}, **params)
           params = Pinnacle::Internal::Types::Utils.normalize_keys(params)
-          body_prop_names = %i[audience_id senders message options]
-          body_bag = params.slice(*body_prop_names)
-
           request = Pinnacle::Internal::JSON::Request.new(
             base_url: request_options[:base_url],
             method: "POST",
             path: "messages/blast/mms",
-            body: Pinnacle::Messages::Blast::Types::BlastMms.new(body_bag).to_h,
+            body: Pinnacle::Messages::Blast::Types::BlastMms.new(params).to_h,
             request_options: request_options
           )
           begin
@@ -114,14 +108,11 @@ module Pinnacle
         # @return [Pinnacle::Messages::Blast::Types::BlastRcsResponse]
         def rcs(request_options: {}, **params)
           params = Pinnacle::Internal::Types::Utils.normalize_keys(params)
-          body_prop_names = %i[audience_id senders message options]
-          body_bag = params.slice(*body_prop_names)
-
           request = Pinnacle::Internal::JSON::Request.new(
             base_url: request_options[:base_url],
             method: "POST",
             path: "messages/blast/rcs",
-            body: Pinnacle::Messages::Blast::Types::BlastRcs.new(body_bag).to_h,
+            body: Pinnacle::Messages::Blast::Types::BlastRcs.new(params).to_h,
             request_options: request_options
           )
           begin

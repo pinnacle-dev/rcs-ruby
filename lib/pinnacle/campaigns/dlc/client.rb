@@ -138,14 +138,11 @@ module Pinnacle
         # @return [Pinnacle::Types::DlcCampaignWithExtendedBrandAndStatus]
         def upsert(request_options: {}, **params)
           params = Pinnacle::Internal::Types::Utils.normalize_keys(params)
-          body_prop_names = %i[auto_renew brand campaign_id description keywords links message_flow name options sample_messages use_case]
-          body_bag = params.slice(*body_prop_names)
-
           request = Pinnacle::Internal::JSON::Request.new(
             base_url: request_options[:base_url],
             method: "POST",
             path: "campaigns/dlc",
-            body: Pinnacle::Campaigns::Dlc::Types::UpsertDlcCampaignParams.new(body_bag).to_h,
+            body: Pinnacle::Campaigns::Dlc::Types::UpsertDlcCampaignParams.new(params).to_h,
             request_options: request_options
           )
           begin

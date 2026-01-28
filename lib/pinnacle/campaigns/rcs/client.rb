@@ -136,14 +136,11 @@ module Pinnacle
         # @return [Pinnacle::Types::ExtendedRcsCampaign]
         def upsert(request_options: {}, **params)
           params = Pinnacle::Internal::Types::Utils.normalize_keys(params)
-          body_prop_names = %i[agent brand campaign_id expected_agent_responses links use_case opt_in_terms_and_conditions messaging_type carrier_description keywords traffic agent_triggers interaction_description is_conversational cta_language demo_trigger]
-          body_bag = params.slice(*body_prop_names)
-
           request = Pinnacle::Internal::JSON::Request.new(
             base_url: request_options[:base_url],
             method: "POST",
             path: "campaigns/rcs",
-            body: Pinnacle::Campaigns::Rcs::Types::UpsertRcsCampaignParams.new(body_bag).to_h,
+            body: Pinnacle::Campaigns::Rcs::Types::UpsertRcsCampaignParams.new(params).to_h,
             request_options: request_options
           )
           begin

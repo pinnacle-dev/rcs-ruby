@@ -26,14 +26,11 @@ module Pinnacle
       # @return [Hash[String, Pinnacle::Types::RcsCapability, nil]]
       def get_capabilities(request_options: {}, **params)
         params = Pinnacle::Internal::Types::Utils.normalize_keys(params)
-        body_prop_names = %i[phone_numbers]
-        body_bag = params.slice(*body_prop_names)
-
         request = Pinnacle::Internal::JSON::Request.new(
           base_url: request_options[:base_url],
           method: "POST",
           path: "rcs/capabilities",
-          body: Pinnacle::Rcs::Types::RcsCapabilitiesQuery.new(body_bag).to_h,
+          body: Pinnacle::Rcs::Types::RcsCapabilitiesQuery.new(params).to_h,
           request_options: request_options
         )
         begin
@@ -91,14 +88,11 @@ module Pinnacle
       # @return [Pinnacle::Types::RcsWhitelistResponse]
       def whitelist(request_options: {}, **params)
         params = Pinnacle::Internal::Types::Utils.normalize_keys(params)
-        body_prop_names = %i[agent_id phone_number]
-        body_bag = params.slice(*body_prop_names)
-
         request = Pinnacle::Internal::JSON::Request.new(
           base_url: request_options[:base_url],
           method: "POST",
           path: "rcs/whitelist",
-          body: Pinnacle::Rcs::Types::RcsWhitelistRequest.new(body_bag).to_h,
+          body: Pinnacle::Rcs::Types::RcsWhitelistRequest.new(params).to_h,
           request_options: request_options
         )
         begin
@@ -131,14 +125,11 @@ module Pinnacle
       # @return [Pinnacle::Types::RcsLinkResult]
       def get_link(request_options: {}, **params)
         params = Pinnacle::Internal::Types::Utils.normalize_keys(params)
-        body_prop_names = %i[agent_id test_mode phone_number body]
-        body_bag = params.slice(*body_prop_names)
-
         request = Pinnacle::Internal::JSON::Request.new(
           base_url: request_options[:base_url],
           method: "POST",
           path: "rcs/link",
-          body: Pinnacle::Rcs::Types::RcsLinkRequest.new(body_bag).to_h,
+          body: Pinnacle::Rcs::Types::RcsLinkRequest.new(params).to_h,
           request_options: request_options
         )
         begin

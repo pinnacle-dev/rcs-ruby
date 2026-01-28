@@ -24,14 +24,11 @@ module Pinnacle
         # @return [Pinnacle::Types::AttachedPhoneNumberResult]
         def attach(request_options: {}, **params)
           params = Pinnacle::Internal::Types::Utils.normalize_keys(params)
-          body_prop_names = %i[phones campaign_type campaign_id]
-          body_bag = params.slice(*body_prop_names)
-
           request = Pinnacle::Internal::JSON::Request.new(
             base_url: request_options[:base_url],
             method: "POST",
             path: "phone-numbers/attach-campaign",
-            body: Pinnacle::PhoneNumbers::Campaign::Types::AttachCampaignParams.new(body_bag).to_h,
+            body: Pinnacle::PhoneNumbers::Campaign::Types::AttachCampaignParams.new(params).to_h,
             request_options: request_options
           )
           begin
@@ -61,14 +58,11 @@ module Pinnacle
         # @return [Pinnacle::Types::DetachedPhoneNumberResult]
         def detach(request_options: {}, **params)
           params = Pinnacle::Internal::Types::Utils.normalize_keys(params)
-          body_prop_names = %i[phones]
-          body_bag = params.slice(*body_prop_names)
-
           request = Pinnacle::Internal::JSON::Request.new(
             base_url: request_options[:base_url],
             method: "DELETE",
             path: "phone-numbers/detach-campaign",
-            body: Pinnacle::PhoneNumbers::Campaign::Types::DetachCampaignParams.new(body_bag).to_h,
+            body: Pinnacle::PhoneNumbers::Campaign::Types::DetachCampaignParams.new(params).to_h,
             request_options: request_options
           )
           begin

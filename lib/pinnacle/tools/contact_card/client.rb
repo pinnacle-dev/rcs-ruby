@@ -25,14 +25,11 @@ module Pinnacle
         # @return [Pinnacle::Types::VCardData]
         def get(request_options: {}, **params)
           params = Pinnacle::Internal::Types::Utils.normalize_keys(params)
-          body_prop_names = %i[id options]
-          body_bag = params.slice(*body_prop_names)
-
           request = Pinnacle::Internal::JSON::Request.new(
             base_url: request_options[:base_url],
             method: "POST",
             path: "tools/contact-card",
-            body: Pinnacle::Tools::ContactCard::Types::GetVcardParams.new(body_bag).to_h,
+            body: Pinnacle::Tools::ContactCard::Types::GetVcardParams.new(params).to_h,
             request_options: request_options
           )
           begin
@@ -63,14 +60,11 @@ module Pinnacle
         # @return [Pinnacle::Types::VcardResource]
         def upsert(request_options: {}, **params)
           params = Pinnacle::Internal::Types::Utils.normalize_keys(params)
-          body_prop_names = %i[photo id formatted_name name nickname birthday addresses url phones emails timezone geo title role organization categories note]
-          body_bag = params.slice(*body_prop_names)
-
           request = Pinnacle::Internal::JSON::Request.new(
             base_url: request_options[:base_url],
             method: "POST",
             path: "tools/contact-card/upsert",
-            body: Pinnacle::Tools::ContactCard::Types::UpsertVcardParams.new(body_bag).to_h,
+            body: Pinnacle::Tools::ContactCard::Types::UpsertVcardParams.new(params).to_h,
             request_options: request_options
           )
           begin

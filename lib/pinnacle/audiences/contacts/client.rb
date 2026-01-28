@@ -27,14 +27,11 @@ module Pinnacle
         # @return [Pinnacle::Types::AudienceCountOnly]
         def remove(request_options: {}, **params)
           params = Pinnacle::Internal::Types::Utils.normalize_keys(params)
-          body_prop_names = %i[id contacts]
-          body_bag = params.slice(*body_prop_names)
-
           request = Pinnacle::Internal::JSON::Request.new(
             base_url: request_options[:base_url],
             method: "DELETE",
             path: "audiences/contacts",
-            body: Pinnacle::Audiences::Contacts::Types::RemoveContactsParams.new(body_bag).to_h,
+            body: Pinnacle::Audiences::Contacts::Types::RemoveContactsParams.new(params).to_h,
             request_options: request_options
           )
           begin
@@ -68,14 +65,11 @@ module Pinnacle
         # @return [Pinnacle::Types::AudienceCountOnly]
         def add(request_options: {}, **params)
           params = Pinnacle::Internal::Types::Utils.normalize_keys(params)
-          body_prop_names = %i[id contacts]
-          body_bag = params.slice(*body_prop_names)
-
           request = Pinnacle::Internal::JSON::Request.new(
             base_url: request_options[:base_url],
             method: "PATCH",
             path: "audiences/contacts",
-            body: Pinnacle::Audiences::Contacts::Types::AddContactsParams.new(body_bag).to_h,
+            body: Pinnacle::Audiences::Contacts::Types::AddContactsParams.new(params).to_h,
             request_options: request_options
           )
           begin

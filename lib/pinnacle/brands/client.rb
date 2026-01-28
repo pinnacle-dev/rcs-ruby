@@ -23,14 +23,11 @@ module Pinnacle
       # @return [Pinnacle::Types::OptionalBrandInfo]
       def autofill(request_options: {}, **params)
         params = Pinnacle::Internal::Types::Utils.normalize_keys(params)
-        body_prop_names = %i[additional_info name options website]
-        body_bag = params.slice(*body_prop_names)
-
         request = Pinnacle::Internal::JSON::Request.new(
           base_url: request_options[:base_url],
           method: "POST",
           path: "brands/autofill",
-          body: Pinnacle::Brands::Types::AutofillBrandParams.new(body_bag).to_h,
+          body: Pinnacle::Brands::Types::AutofillBrandParams.new(params).to_h,
           request_options: request_options
         )
         begin
@@ -67,14 +64,11 @@ module Pinnacle
       # @return [Pinnacle::Types::ExtendedBrand]
       def upsert(request_options: {}, **params)
         params = Pinnacle::Internal::Types::Utils.normalize_keys(params)
-        body_prop_names = %i[address contact dba description ein email id name sector type entity_type website]
-        body_bag = params.slice(*body_prop_names)
-
         request = Pinnacle::Internal::JSON::Request.new(
           base_url: request_options[:base_url],
           method: "POST",
           path: "brands",
-          body: Pinnacle::Brands::Types::UpsertBrandParams.new(body_bag).to_h,
+          body: Pinnacle::Brands::Types::UpsertBrandParams.new(params).to_h,
           request_options: request_options
         )
         begin
@@ -215,16 +209,15 @@ module Pinnacle
       # @return [Pinnacle::Types::VettingResults]
       def vet(request_options: {}, **params)
         params = Pinnacle::Internal::Types::Utils.normalize_keys(params)
-        path_param_names = %i[brand_id]
-        body_params = params.except(*path_param_names)
-        body_prop_names = %i[type provider vetting_class]
-        body_bag = body_params.slice(*body_prop_names)
+        request_data = Pinnacle::Brands::Types::VetBrandParams.new(params).to_h
+        non_body_param_names = ["brandId"]
+        body = request_data.except(*non_body_param_names)
 
         request = Pinnacle::Internal::JSON::Request.new(
           base_url: request_options[:base_url],
           method: "POST",
           path: "brands/#{params[:brand_id]}/vet",
-          body: Pinnacle::Brands::Types::VetBrandParams.new(body_bag).to_h,
+          body: body,
           request_options: request_options
         )
         begin

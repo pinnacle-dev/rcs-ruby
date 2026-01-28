@@ -57,14 +57,11 @@ module Pinnacle
       # @return [Pinnacle::Types::ReactionResult]
       def react(request_options: {}, **params)
         params = Pinnacle::Internal::Types::Utils.normalize_keys(params)
-        body_prop_names = %i[message_id options reaction]
-        body_bag = params.slice(*body_prop_names)
-
         request = Pinnacle::Internal::JSON::Request.new(
           base_url: request_options[:base_url],
           method: "POST",
           path: "messages/react",
-          body: Pinnacle::Messages::Types::ReactMessageParams.new(body_bag).to_h,
+          body: Pinnacle::Messages::Types::ReactMessageParams.new(params).to_h,
           request_options: request_options
         )
         begin

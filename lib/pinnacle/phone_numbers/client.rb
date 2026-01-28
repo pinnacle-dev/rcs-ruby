@@ -23,14 +23,11 @@ module Pinnacle
       # @return [Array[Pinnacle::Types::PhoneNumberDetails]]
       def search(request_options: {}, **params)
         params = Pinnacle::Internal::Types::Utils.normalize_keys(params)
-        body_prop_names = %i[features location number options type]
-        body_bag = params.slice(*body_prop_names)
-
         request = Pinnacle::Internal::JSON::Request.new(
           base_url: request_options[:base_url],
           method: "POST",
           path: "phone-numbers/search",
-          body: Pinnacle::PhoneNumbers::Types::SearchPhoneNumberParams.new(body_bag).to_h,
+          body: Pinnacle::PhoneNumbers::Types::SearchPhoneNumberParams.new(params).to_h,
           request_options: request_options
         )
         begin
@@ -60,14 +57,11 @@ module Pinnacle
       # @return [Array[Pinnacle::Types::PurchasedNumber]]
       def buy(request_options: {}, **params)
         params = Pinnacle::Internal::Types::Utils.normalize_keys(params)
-        body_prop_names = %i[numbers]
-        body_bag = params.slice(*body_prop_names)
-
         request = Pinnacle::Internal::JSON::Request.new(
           base_url: request_options[:base_url],
           method: "POST",
           path: "phone-numbers/buy",
-          body: Pinnacle::PhoneNumbers::Types::BuyPhoneNumberParams.new(body_bag).to_h,
+          body: Pinnacle::PhoneNumbers::Types::BuyPhoneNumberParams.new(params).to_h,
           request_options: request_options
         )
         begin
@@ -95,14 +89,11 @@ module Pinnacle
       # @return [Pinnacle::PhoneNumbers::Types::PhoneNumbersGetResponse]
       def get(request_options: {}, **params)
         params = Pinnacle::Internal::Types::Utils.normalize_keys(params)
-        body_prop_names = %i[phone level options]
-        body_bag = params.slice(*body_prop_names)
-
         request = Pinnacle::Internal::JSON::Request.new(
           base_url: request_options[:base_url],
           method: "POST",
           path: "phone-numbers/details",
-          body: Pinnacle::PhoneNumbers::Types::RetrievePhoneNumberDetailsParams.new(body_bag).to_h,
+          body: Pinnacle::PhoneNumbers::Types::RetrievePhoneNumberDetailsParams.new(params).to_h,
           request_options: request_options
         )
         begin
