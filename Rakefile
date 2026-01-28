@@ -3,6 +3,14 @@
 require "bundler/gem_tasks"
 require "minitest/test_task"
 
+# Skip git push in CI - just build and push to RubyGems
+if ENV["CI"]
+  Rake::Task["release:source_control_push"].clear
+  task "release:source_control_push" do
+    # No-op in CI
+  end
+end
+
 Minitest::TestTask.create
 
 require "rubocop/rake_task"

@@ -7,3 +7,4 @@ custom.gemspec.rb
 pinnacle.gemspec
 Gemfile.lock
 .rubocop.yml
+Rakefile
