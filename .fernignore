@@ -2,5 +2,4 @@
 README.md
 lib/pinnacle/wrapper
 lib/pinnacle/pinnacle_client.rb
-lib/pinnacle.rb
-
+lib/rcs.rb
