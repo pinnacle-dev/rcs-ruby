@@ -5,8 +5,8 @@ require_relative "wrapper/tools/file_uploader"
 require_relative "wrapper/tools/client"
 
 module Pinnacle
-  # Reopen the Client class to add custom methods for webhook processing and file uploads.
-  class Client
+  # Client class that extends PinnacleBaseClient with custom methods for webhook processing and file uploads.
+  class Client < PinnacleBaseClient
     # Returns an enhanced messages client with webhook processing support.
     #
     # @return [Pinnacle::Wrapper::Messages::Client]
