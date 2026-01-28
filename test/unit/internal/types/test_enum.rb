@@ -2,10 +2,10 @@
 
 require "test_helper"
 
-describe Rcs::Internal::Types::Enum do
+describe Pinnacle::Internal::Types::Enum do
   module EnumTest
     module ExampleEnum
-      extend Rcs::Internal::Types::Enum
+      extend Pinnacle::Internal::Types::Enum
 
       FOO = :foo
       BAR = :bar
@@ -34,7 +34,7 @@ describe Rcs::Internal::Types::Enum do
     end
 
     it "raises an error if value is not a member with strictness on" do
-      assert_raises Rcs::Internal::Errors::TypeError do
+      assert_raises Pinnacle::Internal::Errors::TypeError do
         EnumTest::ExampleEnum.coerce(1, strict: true)
       end
     end
