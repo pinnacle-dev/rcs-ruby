@@ -4,3 +4,5 @@ lib/pinnacle/wrapper
 lib/pinnacle/pinnacle_client.rb
 lib/pinnacle.rb
 custom.gemspec.rb
+pinnacle.gemspec
+Gemfile.lock
