@@ -2,27 +2,27 @@
 
 require "test_helper"
 
-describe Rcs::Internal::Types::Union do
-  class Rectangle < Rcs::Internal::Types::Model
+describe Pinnacle::Internal::Types::Union do
+  class Rectangle < Pinnacle::Internal::Types::Model
     literal :type, "square"
 
     field :area, Float
   end
 
-  class Circle < Rcs::Internal::Types::Model
+  class Circle < Pinnacle::Internal::Types::Model
     literal :type, "circle"
 
     field :area, Float
   end
 
-  class Pineapple < Rcs::Internal::Types::Model
+  class Pineapple < Pinnacle::Internal::Types::Model
     literal :type, "pineapple"
 
     field :area, Float
   end
 
   module Shape
-    extend Rcs::Internal::Types::Union
+    extend Pinnacle::Internal::Types::Union
 
     discriminant :type
 
@@ -31,7 +31,7 @@ describe Rcs::Internal::Types::Union do
   end
 
   module StringOrInteger
-    extend Rcs::Internal::Types::Union
+    extend Pinnacle::Internal::Types::Union
 
     member String
     member Integer
