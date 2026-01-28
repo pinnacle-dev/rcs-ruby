@@ -58,3 +58,6 @@ Minitest/MultipleAssertions:
 
 Minitest/UselessAssertion:
   Enabled: false
+
+Style/ModuleMemberExistenceCheck:
+  Enabled: false

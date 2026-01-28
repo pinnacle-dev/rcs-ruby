@@ -6,3 +6,4 @@ lib/pinnacle.rb
 custom.gemspec.rb
 pinnacle.gemspec
 Gemfile.lock
+.rubocop.yml
