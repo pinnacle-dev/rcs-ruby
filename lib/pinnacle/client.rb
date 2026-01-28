@@ -10,7 +10,7 @@ module Pinnacle
       @raw_client = Pinnacle::Internal::Http::RawClient.new(
         base_url: base_url || Pinnacle::Environment::DEFAULT,
         headers: {
-          "User-Agent" => "rcs/2.0.9",
+          "User-Agent" => "rcs/2.0.10",
           "X-Fern-Language" => "Ruby",
           "PINNACLE-API-KEY" => api_key.to_s
         }
