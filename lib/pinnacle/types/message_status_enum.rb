@@ -13,6 +13,7 @@ module Pinnacle
       DELIVERY_FAILED = "DELIVERY_FAILED"
       RECEIVED = "RECEIVED"
       READ = "READ"
+      FALLBACK_SENT = "FALLBACK_SENT"
     end
   end
 end

@@ -12,6 +12,7 @@ module Pinnacle
       field :sent_at, -> { String }, optional: false, nullable: false, api_name: "sentAt"
       field :delivered_at, -> { String }, optional: true, nullable: false, api_name: "deliveredAt"
       field :message, -> { Pinnacle::Types::MessageEventContent }, optional: false, nullable: false
+      field :fallback_message, -> { Pinnacle::Types::MessageEventFallbackMessage }, optional: true, nullable: false, api_name: "fallbackMessage"
     end
   end
 end

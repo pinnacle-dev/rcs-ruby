@@ -4604,6 +4604,10 @@ client.messages.blast.rcs(
     quick_replies: [],
     text: 'Hello from Pinnacle RCS!'
   },
+  fallback: {
+    from: '+14155164736',
+    text: 'Hello from Pinnacle! Reply LEARN to learn more.'
+  },
   options: {
     transcode: true,
     validate: true
@@ -4652,6 +4656,14 @@ Messages will be evenly distributed across these agents.
 <dd>
 
 **message:** `Pinnacle::Types::RcsValidateContent` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**fallback:** `Pinnacle::Types::FallbackMessage` 
     
 </dd>
 </dl>

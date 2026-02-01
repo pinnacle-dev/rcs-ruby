@@ -8,8 +8,9 @@ module Pinnacle
     # This event contains information about which button was clicked, how many times it's been clicked, and any payload
     # or metadata attached to the button. Use this data to handle user interactions with your RCS messages.
     class MessageEventRcsButtonData < Internal::Types::Model
-      field :type, -> { String }, optional: false, nullable: false
       field :id, -> { String }, optional: false, nullable: false
+      field :button, -> { Pinnacle::Types::MessageEventRcsButtonDataButton }, optional: false, nullable: false
+      field :message_id, -> { String }, optional: false, nullable: true, api_name: "messageId"
     end
   end
 end

@@ -11,6 +11,7 @@ module Pinnacle
         SEND_FAILED = "SEND_FAILED"
         DELIVERED = "DELIVERED"
         DELIVERY_FAILED = "DELIVERY_FAILED"
+        FALLBACK_SENT = "FALLBACK_SENT"
         RECEIVED = "RECEIVED"
         READ = "READ"
       end

@@ -7,6 +7,7 @@ module Pinnacle
       field :cost, -> { Integer }, optional: false, nullable: true
       field :delivered_at, -> { String }, optional: false, nullable: true, api_name: "deliveredAt"
       field :error, -> { String }, optional: false, nullable: true
+      field :fallback, -> { Pinnacle::Types::FallbackMessage }, optional: true, nullable: false
       field :id, -> { String }, optional: false, nullable: false
       field :method_, -> { Pinnacle::Types::MessageMethodEnum }, optional: false, nullable: false, api_name: "method"
       field :num_segments, -> { Integer }, optional: false, nullable: false, api_name: "numSegments"
