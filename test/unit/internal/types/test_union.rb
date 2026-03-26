@@ -47,16 +47,16 @@ describe Pinnacle::Internal::Types::Union do
 
   describe "#member" do
     it "defines Model members" do
-      assert_includes Shape, Rectangle
-      assert_includes Shape, Circle
-      refute_includes Shape, Pineapple
+      assert Shape.member?(Rectangle) # rubocop:disable Minitest/AssertIncludes
+      assert Shape.member?(Circle) # rubocop:disable Minitest/AssertIncludes
+      refute Shape.member?(Pineapple) # rubocop:disable Minitest/RefuteIncludes
     end
 
     it "defines other members" do
-      assert_includes StringOrInteger, String
-      assert_includes StringOrInteger, Integer
-      refute_includes StringOrInteger, Float
-      refute_includes StringOrInteger, Pineapple
+      assert StringOrInteger.member?(String) # rubocop:disable Minitest/AssertIncludes
+      assert StringOrInteger.member?(Integer) # rubocop:disable Minitest/AssertIncludes
+      refute StringOrInteger.member?(Float) # rubocop:disable Minitest/RefuteIncludes
+      refute StringOrInteger.member?(Pineapple) # rubocop:disable Minitest/RefuteIncludes
     end
   end
 end
