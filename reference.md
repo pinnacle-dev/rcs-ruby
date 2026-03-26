@@ -569,6 +569,100 @@ This identifier is a string that always begins with the prefix `b_`, for example
 </dl>
 </details>
 
+<details><summary><code>client.brands.<a href="/lib/pinnacle/brands/client.rb">list</a>(request) -> Pinnacle::Types::ListBrandsResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+List all brands with optional filtering and pagination. Results are sorted by creation date, newest first.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.brands.list();
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**page_index:** `Integer` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page_size:** `Integer` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**status:** `Pinnacle::Brands::Types::ListBrandsRequestStatus` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**is_archived:** `Internal::Types::Boolean` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**name:** `String` — Case-insensitive substring search on brand name.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Pinnacle::Brands::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Audiences
 <details><summary><code>client.audiences.<a href="/lib/pinnacle/audiences/client.rb">get</a>() -> Pinnacle::Audiences::Types::AudiencesGetResponse</code></summary>
 <dl>
@@ -877,6 +971,84 @@ client.audiences.update(
 </dl>
 </details>
 
+<details><summary><code>client.audiences.<a href="/lib/pinnacle/audiences/client.rb">list</a>(request) -> Pinnacle::Types::ListAudiencesResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+List all audiences with optional filtering and pagination. Results are sorted by creation date, newest first.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.audiences.list();
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**page_index:** `Integer` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page_size:** `Integer` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**name:** `String` — Filter audiences by name (partial match).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Pinnacle::Audiences::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Contacts
 <details><summary><code>client.contacts.<a href="/lib/pinnacle/contacts/client.rb">get</a>() -> Pinnacle::Types::Contact</code></summary>
 <dl>
@@ -1063,6 +1235,108 @@ client.contacts.update(
 <dd>
 
 **id:** `String` — ID of the contact you want to update. This identifier is a string that always begins with the prefix `co_`, for example: `co_1234567890`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Pinnacle::Contacts::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.contacts.<a href="/lib/pinnacle/contacts/client.rb">list</a>(request) -> Pinnacle::Types::ListContactsResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+List all contacts with optional filtering and pagination. Results are sorted by creation date, newest first.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.contacts.list();
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**page_index:** `Integer` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page_size:** `Integer` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**phone_number:** `String` — Filter contacts by phone number (E.164 format).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**name:** `String` — Filter contacts by name (partial match).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**tags:** `Internal::Types::Array[String]` — Filter contacts by tags.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**is_archived:** `Internal::Types::Boolean` — Filter contacts by archived status.
     
 </dd>
 </dl>
@@ -1628,6 +1902,148 @@ Use `null` to remove existing reaction.
 </dl>
 </details>
 
+<details><summary><code>client.messages.<a href="/lib/pinnacle/messages/client.rb">list</a>(request) -> Pinnacle::Types::ListMessagesResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+List all messages with optional filtering and pagination. Results are sorted by creation date, newest first.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.messages.list();
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**page_index:** `Integer` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page_size:** `Integer` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**direction:** `Pinnacle::Messages::Types::ListMessagesRequestDirection` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**status:** `Pinnacle::Messages::Types::ListMessagesRequestStatus` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**type:** `Pinnacle::Messages::Types::ListMessagesRequestType` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**method_:** `Pinnacle::Messages::Types::ListMessagesRequestMethod` — Filter by the method used to send the message.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**from:** `String` — Filter by sender phone number (E.164 format) or agent id.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**to:** `String` — Filter by recipient phone number (E.164 format).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**content:** `String` — Search message content (partial match, case-insensitive).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**date_from:** `String` — Filter messages created on or after this date (ISO 8601 format).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**date_to:** `String` — Filter messages created on or before this date (ISO 8601 format).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Pinnacle::Messages::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## PhoneNumbers
 <details><summary><code>client.phone_numbers.<a href="/lib/pinnacle/phone_numbers/client.rb">search</a>(request) -> Internal::Types::Array[Pinnacle::Types::PhoneNumberDetails]</code></summary>
 <dl>
@@ -1902,7 +2318,142 @@ Choose how much detail you want in your results:
 </dl>
 </details>
 
-## RCS
+<details><summary><code>client.phone_numbers.<a href="/lib/pinnacle/phone_numbers/client.rb">list</a>(request) -> Pinnacle::Types::ListPhoneNumbersResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+List all owned phone numbers with pagination. Results are sorted by creation date, newest first.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.phone_numbers.list();
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**page_index:** `Integer` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page_size:** `Integer` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Pinnacle::PhoneNumbers::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Rcs
+<details><summary><code>client.rcs.<a href="/lib/pinnacle/rcs/client.rb">get_agent</a>(agent_id) -> Pinnacle::Types::RcsAgentResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve details of an RCS agent by its ID.
+
+Returns the agent's configuration including display name, description, logo, hero image,
+contact information, and other settings.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.rcs.get_agent(agent_id: 'agent_abc123def456');
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**agent_id:** `String` — The RCS agent ID (must be prefixed with `agent_`).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Pinnacle::Rcs::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.rcs.<a href="/lib/pinnacle/rcs/client.rb">get_capabilities</a>(request) -> Internal::Types::Hash[String, Pinnacle::Types::RcsCapability]</code></summary>
 <dl>
 <dd>
@@ -1959,96 +2510,7 @@ List of phone numbers to check RCS capabilities for (E.164 format). <br><br>
 <dl>
 <dd>
 
-**request_options:** `Pinnacle::Rcs::RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.rcs.<a href="/lib/pinnacle/rcs/client.rb">whitelist</a>(request) -> Pinnacle::Types::RcsWhitelistResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Whitelist a phone number for testing with your test RCS agent.
-
-## Overview
-During development and testing, RCS agents can only send messages to whitelisted phone numbers.
-Use this endpoint to whitelist specific phone numbers to send and receive messages from the test agent.
-
-## Verification Process
-After whitelisting a number, you'll need to complete verification:
-
-1. Check the test device for message from "RBM Tester Management"
-2. Click the "Make me a tester" button
-3. Enter the separate 4-digit verification SMS code in the Pinnacle dashboard at:
-   ```
-   https://app.pinnacle.sh/dashboard/brands/{brandId}?campaignId={campaignId}&campaignType=RCS
-   ```
-
- > **⚠️ Important: Re-whitelisting Numbers**
->
-> If you whitelist a number that's already whitelisted, you'll receive a new message from "RBM Tester Management". **You must click the "Make me a tester" button again to continue sending and receiving messages.**
-
-> **Important Notes**
->
-> - **Verification required:** Messages cannot be sent nor received until you have clicked the "Make me a tester" button on the test device.
-> - **Testing only:** This is only required for test agents. Production agents can message any RCS-enabled number.
-> - **Network limitations:** Whitelisting may be temporarily unavailable for some carriers but are usually restored shortly.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```ruby
-client.rcs.whitelist(
-  agent_id: 'agent_XXXXXXXXXXXX',
-  phone_number: '+12345678901'
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**agent_id:** `String` — The RCS agent ID (must be prefixed with 'agent_')
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**phone_number:** `String` — Phone number to whitelist for testing (E.164 format)
+**agent_id:** `String` — Optional RCS agent ID (prefixed with 'agent_') to check capabilities of a number from a specific agent.
     
 </dd>
 </dl>
@@ -2080,7 +2542,7 @@ client.rcs.whitelist(
 <dl>
 <dd>
 
-Generate a link for initiating an RCS conversation with your agent. 
+Generate a link for initiating an RCS conversation with your agent.
 
 Users can click these links to start conversations with your RCS agent directly
 from websites, emails, or other applications.
@@ -2100,7 +2562,6 @@ from websites, emails, or other applications.
 ```ruby
 client.rcs.get_link(
   agent_id: 'agent_XXXXXXXXXXXX',
-  test_mode: false,
   phone_number: '+12345678901',
   body: 'Hello, I need help with my order'
 );
@@ -2119,14 +2580,6 @@ client.rcs.get_link(
 <dd>
 
 **agent_id:** `String` — The RCS agent ID (must be prefixed with 'agent_')
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**test_mode:** `Internal::Types::Boolean` — Link to the test agent or the production agent if false
     
 </dd>
 </dl>
@@ -2209,6 +2662,92 @@ client.webhooks.get(identifiers: ['https://www.pinnacle.sh/payment', '+141556789
 
 List of URLs or phone numbers in E.164 format that the webhook is attached to. <br><br>
 **Limit:** 1 min
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Pinnacle::Webhooks::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.webhooks.<a href="/lib/pinnacle/webhooks/client.rb">list</a>(request) -> Pinnacle::Types::ListWebhooksResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+List all webhooks with optional filtering and pagination. Results are sorted by creation date, newest first.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.webhooks.list();
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**page_index:** `Integer` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page_size:** `Integer` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**status:** `Pinnacle::Webhooks::Types::ListWebhooksRequestStatus` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**endpoint:** `String` — Filter webhooks by endpoint URL (partial match, case-insensitive).
     
 </dd>
 </dl>
@@ -2839,6 +3378,100 @@ client.campaigns.dlc.validate(
 </dl>
 </details>
 
+<details><summary><code>client.campaigns.dlc.<a href="/lib/pinnacle/campaigns/dlc/client.rb">list</a>(request) -> Pinnacle::Types::ListDlcCampaignsResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+List all 10DLC campaigns with optional filtering and pagination. Results are sorted by creation date, newest first.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.campaigns.dlc.list();
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**page_index:** `Integer` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page_size:** `Integer` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**status:** `Pinnacle::Campaigns::Dlc::Types::ListDlcCampaignsRequestStatus` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**brand_id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**name:** `String` — Filter by campaign name (partial match, case-insensitive).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Pinnacle::Campaigns::Dlc::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Campaigns TollFree
 <details><summary><code>client.campaigns.toll_free.<a href="/lib/pinnacle/campaigns/toll_free/client.rb">autofill</a>(request) -> Pinnacle::Campaigns::TollFree::Types::TollFreeAutofillResponse</code></summary>
 <dl>
@@ -3250,6 +3883,100 @@ client.campaigns.toll_free.validate(
 <dd>
 
 **request:** `Pinnacle::Types::ValidateCampaignParams` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Pinnacle::Campaigns::TollFree::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.campaigns.toll_free.<a href="/lib/pinnacle/campaigns/toll_free/client.rb">list</a>(request) -> Pinnacle::Types::ListTollFreeCampaignsResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+List all toll-free campaigns with optional filtering and pagination. Results are sorted by creation date, newest first.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.campaigns.toll_free.list();
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**page_index:** `Integer` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page_size:** `Integer` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**status:** `Pinnacle::Campaigns::TollFree::Types::ListTollFreeCampaignsRequestStatus` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**brand_id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**name:** `String` — Filter by campaign name (partial match, case-insensitive).
     
 </dd>
 </dl>
@@ -3782,6 +4509,100 @@ client.campaigns.rcs.validate(
 </dl>
 </details>
 
+<details><summary><code>client.campaigns.rcs.<a href="/lib/pinnacle/campaigns/rcs/client.rb">list</a>(request) -> Pinnacle::Types::ListRcsCampaignsResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+List all RCS campaigns with optional filtering and pagination. Results are sorted by creation date, newest first.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.campaigns.rcs.list();
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**page_index:** `Integer` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page_size:** `Integer` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**status:** `Pinnacle::Campaigns::Rcs::Types::ListRcsCampaignsRequestStatus` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**brand_id:** `String` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**name:** `String` — Filter by campaign name (partial match, case-insensitive).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Pinnacle::Campaigns::Rcs::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Messages Sms
 <details><summary><code>client.messages.sms.<a href="/lib/pinnacle/messages/sms/client.rb">send_</a>(request) -> Pinnacle::Messages::Sms::Types::SmsSendResponse</code></summary>
 <dl>
@@ -4217,10 +5038,7 @@ This endpoint allows RCS agents to display a typing indicator to recipients. The
 ```ruby
 client.messages.rcs.send_typing(
   agent_id: 'agent_pinnacle',
-  to: '+14154746461',
-  options: {
-    test_mode: false
-  }
+  to: '+14154746461'
 );
 ```
 </dd>
@@ -4253,14 +5071,6 @@ Format: `agent_` followed by alphanumeric characters (e.g., `agent_pinnacle`).
 The recipient's phone number in E.164 format. <br>
 
 Must include country code with a leading plus sign (e.g., `+14155551234`).
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**options:** `Pinnacle::Messages::Rcs::Types::SendTypingIndicatorSchemaOptions` — Configure how your typing indicator is sent.
     
 </dd>
 </dl>
@@ -4645,8 +5455,6 @@ Array of RCS agent IDs to send from. Each must be prefixed with `agent_`. <br>
 
 Messages will be evenly distributed across these agents.
 
-> **Note:** Test agents cannot be used for blasts.
-
 **Limit:** 1 min
     
 </dd>
@@ -4745,6 +5553,196 @@ client.messages.schedule.cancel(id: 'id');
 <dd>
 
 **request_options:** `Pinnacle::Messages::Schedule::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Messages Schedules
+<details><summary><code>client.messages.schedules.<a href="/lib/pinnacle/messages/schedules/client.rb">list</a>(request) -> Pinnacle::Types::ListScheduledMessagesResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+List all scheduled messages with optional filtering and pagination. Results are sorted by creation date, newest first.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.messages.schedules.list();
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**page_index:** `Integer` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page_size:** `Integer` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**status:** `Pinnacle::Messages::Schedules::Types::ListScheduledMessagesRequestStatus` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**schedule_type:** `Pinnacle::Messages::Schedules::Types::ListScheduledMessagesRequestScheduleType` — Filter by schedule type — "MESSAGE" for individual messages, "BLAST" for bulk sends.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**content:** `String` — Search scheduled message content (partial match, case-insensitive).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Pinnacle::Messages::Schedules::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Messages Blasts
+<details><summary><code>client.messages.blasts.<a href="/lib/pinnacle/messages/blasts/client.rb">list</a>(request) -> Pinnacle::Types::ListBlastsResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+List all blasts with optional filtering and pagination. Results are sorted by creation date, newest first.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.messages.blasts.list();
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**page_index:** `Integer` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page_size:** `Integer` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**audience_id:** `String` — Filter blasts by audience ID.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sender:** `String` — Filter blasts that include this sender (phone number or agent ID).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**content:** `String` — Search blast content (partial match, case-insensitive).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Pinnacle::Messages::Blasts::RequestOptions` 
     
 </dd>
 </dl>
@@ -5067,6 +6065,818 @@ List of phone numbers (E.164 format). <br><br>
 <dd>
 
 **request_options:** `Pinnacle::PhoneNumbers::Campaign::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Rcs Agents
+<details><summary><code>client.rcs.agents.<a href="/lib/pinnacle/rcs/agents/client.rb">list</a>(request) -> Pinnacle::Types::ListAgentsResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+List all RCS agents with pagination. Results are sorted by creation date, newest first.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.rcs.agents.list();
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**page_index:** `Integer` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page_size:** `Integer` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**agent_type:** `Pinnacle::Rcs::Agents::Types::ListAgentsRequestAgentType` — Filter by agent type.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**name:** `String` — Case-insensitive substring search on agent name.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Pinnacle::Rcs::Agents::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Rcs WhitelistedNumbers
+<details><summary><code>client.rcs.whitelisted_numbers.<a href="/lib/pinnacle/rcs/whitelisted_numbers/client.rb">list</a>(request) -> Pinnacle::Types::ListTestNumbersResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+List all whitelisted test numbers with optional filtering and pagination. Results are sorted by creation date, newest first.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.rcs.whitelisted_numbers.list();
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**page_index:** `Integer` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page_size:** `Integer` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**agent_id:** `String` — Filter whitelisted numbers by agent ID (prefixed with 'agent_').
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**number:** `String` — Filter by phone number in E.164 format.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**status:** `Pinnacle::Rcs::WhitelistedNumbers::Types::ListTestNumbersRequestStatus` — Filter by whitelist status.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Pinnacle::Rcs::WhitelistedNumbers::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Rcs Test
+<details><summary><code>client.rcs.test.<a href="/lib/pinnacle/rcs/test/client.rb">create_agent</a>(request) -> Pinnacle::Types::TestAgentResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Create a new RCS test agent for development and testing.
+
+## Overview
+
+Test agents let you build and test full RCS functionality — rich cards, carousels, buttons,
+quick replies, and media messages — without going through the full carrier review process.
+Messages from test agents can only be sent to [whitelisted phone numbers](/api-reference/rcs-agents/test/whitelist-number).
+
+## Limits
+
+- **Maximum 5 test agents per account.**
+
+## Image Requirements
+
+| Image | Format | Max Size |
+|-------|--------|----------|
+| Logo  | JPEG, PNG | 50 KB |
+| Hero  | JPEG, PNG | 200 KB |
+
+## After Creation
+
+Once your test agent is created, you'll need to:
+
+1. **Whitelist test phone numbers** using [`POST /rcs/test/agents/{agentId}/whitelist`](/api-reference/rcs-agents/test/whitelist-number).
+2. **Accept the tester invite** on each whitelisted device.
+3. **Send messages** using [`POST /messages/send/rcs`](/api-reference/messages/send-rcs) with the returned agent ID as the `from` field.
+
+> **2-Minute Cooldown**
+>
+> After creating a test agent, there is a mandatory 2-minute cooldown before you can whitelist phone numbers.
+> This is a requirement imposed by Google's RBM platform.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.rcs.test.create_agent(
+  display_name: 'Acme Support',
+  description: 'Get help with your Acme orders and account',
+  logo_url: 'https://example.com/logo.png',
+  hero_url: 'https://example.com/hero.png',
+  phone_numbers: [{
+    number: '+14155550123',
+    label: 'Support'
+  }],
+  emails: [{
+    address: 'support@example.com',
+    label: 'Support'
+  }],
+  websites: [{
+    url: 'https://example.com',
+    label: 'Website'
+  }],
+  privacy_url: 'https://example.com/privacy',
+  terms_url: 'https://example.com/terms',
+  color: "#FF6B00",
+  is_conversational: true,
+  agent_use_case: 'MULTI_USE'
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**display_name:** `String` 
+
+Display name of the agent shown to users in RCS conversations.
+Must be between 1 and 40 characters.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**description:** `String` 
+
+Short description of what the agent does. Shown to users in the agent's profile.
+Must be between 1 and 100 characters.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**logo_url:** `String` 
+
+URL to the agent's logo image. Displayed as the agent's avatar in conversations.
+
+**Requirements:**
+- Format: JPEG or PNG
+- Max file size: 50 KB
+- Recommended: Square aspect ratio
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**hero_url:** `String` 
+
+URL to the agent's hero banner image. Displayed at the top of the agent's profile.
+
+**Requirements:**
+- Format: JPEG or PNG
+- Max file size: 200 KB
+- Recommended: Landscape aspect ratio
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**phone_numbers:** `Internal::Types::Array[Pinnacle::Types::AgentPhoneEntry]` 
+
+Contact phone numbers displayed on the agent's profile.
+At least 1 and up to 3 entries.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**emails:** `Internal::Types::Array[Pinnacle::Types::AgentEmailEntry]` 
+
+Contact email addresses displayed on the agent's profile.
+At least 1 and up to 3 entries.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**websites:** `Internal::Types::Array[Pinnacle::Types::AgentWebsiteEntry]` 
+
+Website links displayed on the agent's profile.
+At least 1 and up to 3 entries.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**privacy_url:** `String` — URL to the agent's privacy policy.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**terms_url:** `String` — URL to the agent's terms and conditions.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**color:** `String` 
+
+The agent's brand color as a hex color code. Used for UI accents in the RCS conversation.
+Must have sufficient contrast with white for accessibility.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**is_conversational:** `Internal::Types::Boolean` 
+
+Whether the agent supports two-way conversations. Set to `true` if the agent
+will respond to user messages. Set to `false` for send-only agents (e.g., notifications).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**agent_use_case:** `Pinnacle::Types::AgentUseCase` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Pinnacle::Rcs::Test::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.rcs.test.<a href="/lib/pinnacle/rcs/test/client.rb">update_agent</a>(agent_id, request) -> Pinnacle::Types::TestAgentResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Update an existing RCS test agent's configuration.
+
+All fields are optional — only include the fields you want to update.
+
+## Image Requirements
+
+If updating images, the same requirements apply as when creating an agent:
+
+| Image | Format | Max Size |
+|-------|--------|----------|
+| Logo  | JPEG, PNG | 50 KB |
+| Hero  | JPEG, PNG | 200 KB |
+
+> **2-Minute Cooldown**
+>
+> After updating a test agent, there is a mandatory 2-minute cooldown before you can whitelist phone numbers.
+> This is a requirement imposed by Google's RBM platform.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.rcs.test.update_agent(
+  agent_id: 'agent_abc123def456',
+  display_name: 'Acme Premium Support'
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**agent_id:** `String` — The RCS agent ID (must be prefixed with `agent_`).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**display_name:** `String` 
+
+Display name of the agent shown to users in RCS conversations.
+Must be between 1 and 40 characters.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**description:** `String` 
+
+Short description of what the agent does.
+Must be between 1 and 100 characters.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**logo_url:** `String` 
+
+URL to the agent's logo image.
+
+**Requirements:**
+- Format: JPEG or PNG
+- Max file size: 50 KB
+- Recommended: Square aspect ratio
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**hero_url:** `String` 
+
+URL to the agent's hero banner image.
+
+**Requirements:**
+- Format: JPEG or PNG
+- Max file size: 200 KB
+- Recommended: Landscape aspect ratio
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**phone_numbers:** `Internal::Types::Array[Pinnacle::Types::AgentPhoneEntry]` — Contact phone numbers displayed on the agent's profile. At least 1 and up to 3 entries.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**emails:** `Internal::Types::Array[Pinnacle::Types::AgentEmailEntry]` — Contact email addresses displayed on the agent's profile. At least 1 and up to 3 entries.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**websites:** `Internal::Types::Array[Pinnacle::Types::AgentWebsiteEntry]` — Website links displayed on the agent's profile. At least 1 and up to 3 entries.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**privacy_url:** `String` — URL to the agent's privacy policy.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**terms_url:** `String` — URL to the agent's terms and conditions.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**color:** `String` — The agent's brand color as a hex color code. Must have sufficient contrast with white.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**is_conversational:** `Internal::Types::Boolean` — Whether the agent supports two-way conversations.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**agent_use_case:** `Pinnacle::Types::AgentUseCase` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Pinnacle::Rcs::Test::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.rcs.test.<a href="/lib/pinnacle/rcs/test/client.rb">whitelist_number</a>(agent_id, request) -> Pinnacle::Types::TestAgentWhitelistResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Whitelist a phone number for testing with a specific test agent.
+
+During development and testing, RCS agents can only send messages to whitelisted phone numbers.
+Use this endpoint to whitelist specific phone numbers so you can send and receive messages from the test agent.
+
+## Verification Process
+
+After whitelisting, the recipient must accept the tester invite:
+
+1. The recipient's device will receive a message from "RBM Tester Management".
+2. The recipient must tap "Make me a tester" to accept.
+3. Once accepted, the status transitions from `PENDING` to `ACCEPTED`.
+
+## Verification
+
+<div style="display: flex; gap: 16px;">
+  <div style="flex: 1; text-align: center;">
+    <strong>Accepting the invite</strong><br/>
+    <img src="https://pncl.to/f769cAvCbEx-MmezZjR6dz6KVkr5ZO" alt="Accepting the tester invite" style="max-width: 100%;" />
+  </div>
+  <div style="flex: 1; text-align: center;">
+    <strong>Declining the invite</strong><br/>
+    <img src="https://pncl.to/VRere3tEKfx4n0HNaxK-vwl7pbLHTJ" alt="Declining the tester invite" style="max-width: 100%;" />
+  </div>
+</div>
+
+## Cooldown
+
+There is a **2-minute cooldown** after creating or updating a test agent before you can whitelist numbers.
+Attempting to whitelist during the cooldown returns a `500` error with the remaining wait time.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.rcs.test.whitelist_number(
+  agent_id: 'agent_abc123def456',
+  phone_number: '+12345678901'
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**agent_id:** `String` — The RCS agent ID (must be prefixed with `agent_`).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**phone_number:** `String` — Phone number to whitelist for testing in E.164 format.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Pinnacle::Rcs::Test::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.rcs.test.<a href="/lib/pinnacle/rcs/test/client.rb">get_whitelist_status</a>(agent_id) -> Pinnacle::Types::TestAgentWhitelistResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Check the current whitelist status of a phone number for a specific test agent.
+
+Use this endpoint to poll the status of a previously whitelisted number and determine
+whether the recipient has accepted or rejected the tester invite.
+
+## Status Values
+
+- **`PENDING`** — The tester invite was sent but the recipient has not yet responded. Ask the recipient to check their messages and accept the invite.
+- **`ACCEPTED`** — The recipient accepted the invite. Messages can be exchanged.
+- **`REJECTED`** — The recipient rejected the invite or the invite could not be delivered since the carrier does not support test agents. If the user rejected the invite, they can accept it again by tapping "Make me a tester" in the same message from "RBM Tester Management".
+
+<div style="display: flex; gap: 16px;">
+  <div style="flex: 1; text-align: center;">
+    <strong>Accepting the invite</strong><br/>
+    <img src="https://pncl.to/f769cAvCbEx-MmezZjR6dz6KVkr5ZO" alt="Accepting the tester invite" style="max-width: 100%;" />
+  </div>
+  <div style="flex: 1; text-align: center;">
+    <strong>Declining the invite</strong><br/>
+    <img src="https://pncl.to/VRere3tEKfx4n0HNaxK-vwl7pbLHTJ" alt="Declining the tester invite" style="max-width: 100%;" />
+  </div>
+</div>
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.rcs.test.get_whitelist_status(
+  agent_id: 'agent_abc123def456',
+  phone_number: '+12345678901'
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**agent_id:** `String` — The RCS agent ID (must be prefixed with `agent_`).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**phone_number:** `String` — The phone number to check whitelist status for (E.164 format).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Pinnacle::Rcs::Test::RequestOptions` 
     
 </dd>
 </dl>
@@ -5599,6 +7409,84 @@ See the response of [Create Shortened URL](./create-url) for more information.
 <dd>
 
 **options:** `Pinnacle::Types::CreateUrlOptions` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Pinnacle::Tools::Url::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.tools.url.<a href="/lib/pinnacle/tools/url/client.rb">list</a>(request) -> Pinnacle::Types::ListLinksResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+List all shortened URLs with pagination. Results are sorted by creation date, newest first.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.tools.url.list();
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**page_index:** `Integer` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page_size:** `Integer` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**endpoint:** `String` — Case-insensitive substring search on the destination URL.
     
 </dd>
 </dl>

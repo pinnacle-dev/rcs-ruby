@@ -9,6 +9,8 @@ module Pinnacle
 
           member -> { Pinnacle::Types::SentRichMessage }
           member -> { Pinnacle::Types::ScheduledMessage }
+          member -> { Pinnacle::Types::SentRichMessageFallbackSms }
+          member -> { Pinnacle::Types::SentRichMessageFallbackMms }
         end
       end
     end

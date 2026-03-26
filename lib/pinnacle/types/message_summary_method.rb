@@ -2,11 +2,12 @@
 
 module Pinnacle
   module Types
-    module MessageWithReactionDirection
+    module MessageSummaryMethod
       extend Pinnacle::Internal::Types::Enum
 
-      INBOUND = "INBOUND"
-      OUTBOUND = "OUTBOUND"
+      API = "API"
+      SDK = "SDK"
+      OTHER = "OTHER"
     end
   end
 end

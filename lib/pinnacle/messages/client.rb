@@ -78,6 +78,40 @@ module Pinnacle
         end
       end
 
+      # List all messages with optional filtering and pagination. Results are sorted by creation date, newest first.
+      #
+      # @param request_options [Hash]
+      # @param params [Pinnacle::Messages::Types::ListMessagesParams]
+      # @option request_options [String] :base_url
+      # @option request_options [Hash{String => Object}] :additional_headers
+      # @option request_options [Hash{String => Object}] :additional_query_parameters
+      # @option request_options [Hash{String => Object}] :additional_body_parameters
+      # @option request_options [Integer] :timeout_in_seconds
+      #
+      # @return [Pinnacle::Types::ListMessagesResponse]
+      def list(request_options: {}, **params)
+        params = Pinnacle::Internal::Types::Utils.normalize_keys(params)
+        request = Pinnacle::Internal::JSON::Request.new(
+          base_url: request_options[:base_url],
+          method: "POST",
+          path: "messages/list",
+          body: Pinnacle::Messages::Types::ListMessagesParams.new(params).to_h,
+          request_options: request_options
+        )
+        begin
+          response = @client.send(request)
+        rescue Net::HTTPRequestTimeout
+          raise Pinnacle::Errors::TimeoutError
+        end
+        code = response.code.to_i
+        if code.between?(200, 299)
+          Pinnacle::Types::ListMessagesResponse.load(response.body)
+        else
+          error_class = Pinnacle::Errors::ResponseError.subclass_for_code(code)
+          raise error_class.new(response.body, code: code)
+        end
+      end
+
       # @return [Pinnacle::Sms::Client]
       def sms
         @sms ||= Pinnacle::Messages::Sms::Client.new(client: @client)
@@ -101,6 +135,16 @@ module Pinnacle
       # @return [Pinnacle::Schedule::Client]
       def schedule
         @schedule ||= Pinnacle::Messages::Schedule::Client.new(client: @client)
+      end
+
+      # @return [Pinnacle::Schedules::Client]
+      def schedules
+        @schedules ||= Pinnacle::Messages::Schedules::Client.new(client: @client)
+      end
+
+      # @return [Pinnacle::Blasts::Client]
+      def blasts
+        @blasts ||= Pinnacle::Messages::Blasts::Client.new(client: @client)
       end
     end
   end
