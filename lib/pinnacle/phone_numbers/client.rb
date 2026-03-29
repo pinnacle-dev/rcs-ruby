@@ -144,11 +144,6 @@ module Pinnacle
         end
       end
 
-      # @return [Pinnacle::Webhook::Client]
-      def webhook
-        @webhook ||= Pinnacle::PhoneNumbers::Webhook::Client.new(client: @client)
-      end
-
       # @return [Pinnacle::Campaign::Client]
       def campaign
         @campaign ||= Pinnacle::PhoneNumbers::Campaign::Client.new(client: @client)

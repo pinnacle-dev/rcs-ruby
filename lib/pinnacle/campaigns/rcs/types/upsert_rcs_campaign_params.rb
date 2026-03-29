@@ -10,15 +10,12 @@ module Pinnacle
           field :campaign_id, -> { String }, optional: true, nullable: false, api_name: "campaignId"
           field :expected_agent_responses, -> { Internal::Types::Array[String] }, optional: true, nullable: false, api_name: "expectedAgentResponses"
           field :links, -> { Pinnacle::Campaigns::Rcs::Types::RcsLinks }, optional: true, nullable: false
-          field :use_case, -> { Pinnacle::Campaigns::Rcs::Types::RcsUseCase }, optional: true, nullable: false, api_name: "useCase"
-          field :opt_in_terms_and_conditions, -> { String }, optional: true, nullable: false, api_name: "optInTermsAndConditions"
+          field :use_case_description, -> { String }, optional: true, nullable: false, api_name: "useCaseDescription"
           field :messaging_type, -> { Pinnacle::Types::RcsMessagingTypeEnum }, optional: true, nullable: false, api_name: "messagingType"
-          field :carrier_description, -> { String }, optional: true, nullable: false, api_name: "carrierDescription"
+          field :cta_media, -> { String }, optional: true, nullable: false, api_name: "ctaMedia"
+          field :opt_in_method, -> { String }, optional: true, nullable: false, api_name: "optInMethod"
           field :keywords, -> { Pinnacle::Campaigns::Rcs::Types::RcsCampaignKeywords }, optional: true, nullable: false
           field :traffic, -> { Pinnacle::Campaigns::Rcs::Types::RcsCampaignTraffic }, optional: true, nullable: false
-          field :agent_triggers, -> { String }, optional: true, nullable: false, api_name: "agentTriggers"
-          field :interaction_description, -> { String }, optional: true, nullable: false, api_name: "interactionDescription"
-          field :is_conversational, -> { Internal::Types::Boolean }, optional: true, nullable: false, api_name: "isConversational"
           field :cta_language, -> { String }, optional: true, nullable: false, api_name: "ctaLanguage"
           field :demo_trigger, -> { String }, optional: true, nullable: false, api_name: "demoTrigger"
         end

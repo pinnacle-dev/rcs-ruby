@@ -7,6 +7,7 @@ module Pinnacle
 
       MESSAGE_STATUS = "MESSAGE.STATUS"
       MESSAGE_RECEIVED = "MESSAGE.RECEIVED"
+      USER_TYPING = "USER.TYPING"
     end
   end
 end

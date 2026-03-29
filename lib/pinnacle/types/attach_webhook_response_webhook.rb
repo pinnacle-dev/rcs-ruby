@@ -2,12 +2,11 @@
 
 module Pinnacle
   module Types
-    # Detailed information about the attached webhook.
     class AttachWebhookResponseWebhook < Internal::Types::Model
       field :id, -> { String }, optional: false, nullable: false
       field :name, -> { String }, optional: false, nullable: false
       field :url, -> { String }, optional: false, nullable: false
-      field :secret, -> { String }, optional: true, nullable: false
+      field :secret, -> { String }, optional: false, nullable: false
     end
   end
 end
