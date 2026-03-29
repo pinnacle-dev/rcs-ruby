@@ -2767,6 +2767,183 @@ client.webhooks.list();
 </dl>
 </details>
 
+<details><summary><code>client.webhooks.<a href="/lib/pinnacle/webhooks/client.rb">attach</a>(request) -> Pinnacle::Types::AttachWebhookResult</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Attach a webhook to one or more senders (phone numbers or RCS agent IDs) to receive real-time event notifications. <br>
+
+You can attach an existing webhook by providing its ID, or create a new webhook by specifying a name and URL. Supports bulk operations with up to 50 senders per request. <br>
+
+Subscriptions are additive — attaching new senders does not remove existing ones. Re-attaching the same sender updates the event type filter without creating duplicates.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.webhooks.attach(senders: ['+14155551234', 'agent_abc123']);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**senders:** `Internal::Types::Array[String]` — Array of senders to attach the webhook to. Can be phone numbers in E.164 format or RCS agent IDs.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**webhook_id:** `String` — Existing webhook ID (starts with `wh_`). Provide this OR `name` + `url` to create a new webhook. The webhook must be in ENABLED status. Disabled webhooks can be re-enabled from the [dashboard](https://app.pinnacle.sh/dashboard/development/webhooks).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**name:** `String` — Name for a new webhook (required if no `webhookId`).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**url:** `String` — HTTPS endpoint URL for a new webhook (required if no `webhookId`).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**event:** `Pinnacle::Types::WebhookEventEnum` 
+
+Event type filter for the subscription. Set to `null` to receive all events. <br>
+
+`USER.TYPING` is only supported for RCS agent senders, not phone numbers.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Pinnacle::Webhooks::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.webhooks.<a href="/lib/pinnacle/webhooks/client.rb">detach</a>(request) -> Pinnacle::Types::DetachWebhookResult</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Detach a webhook from one or more senders (phone numbers or RCS agent IDs) to stop receiving event notifications. <br>
+
+The webhook itself is not deleted and remains available for use with other senders. Works regardless of webhook status. Supports bulk operations with up to 50 senders per request.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.webhooks.detach(
+  webhook_id: 'webhookId',
+  senders: ['+14155551234', 'agent_abc123']
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**webhook_id:** `String` — Webhook ID to detach (starts with `wh_`). Must be a webhook owned by your team.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**senders:** `Internal::Types::Array[String]` — Array of senders to detach the webhook from. Can be phone numbers in E.164 format or RCS agent IDs.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Pinnacle::Webhooks::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Audiences Contacts
 <details><summary><code>client.audiences.contacts.<a href="/lib/pinnacle/audiences/contacts/client.rb">remove</a>(request) -> Pinnacle::Types::AudienceCountOnly</code></summary>
 <dl>
@@ -4245,20 +4422,17 @@ client.campaigns.rcs.upsert(
   campaign_id: 'rcs_1234567890',
   expected_agent_responses: ['Here are the things I can help you with.', 'I can assist you with booking an appointment, or you may choose to book manually.', 'Here are the available times to connect with a representative tomorrow.', 'Your appointment has been scheduled.'],
   links: {
-    privacy_policy: 'https://www.trypinnacle.app/privacy',
-    terms_of_service: 'https://www.trypinnacle.app/terms'
+    privacy_policy: '“https://www.trypinnacle.app/privacy”',
+    terms_of_service: '“https://www.trypinnacle.app/terms”'
   },
-  use_case: {
-    behavior: 'Pinnacle is a developer-focused RCS assistant that helps teams design, test, and optimize rich messaging experiences across SMS, MMS, and RCS. The agent acts as both an “onboarding guide” for new customers and a “best-practices coach” for existing teams exploring higher-value RCS workflows like rich cards, carousels, and suggested actions.<br>
-    The agent delivers a mix of operational updates and educational content (2–6 messages/month). Content includes important platform notices (e.g., deliverability or throughput changes), implementation tips with sample RCS templates, and personalized recommendations on how to upgrade existing SMS campaigns into richer, higher-converting RCS conversations.
-    ',
-    value: 'OTHER'
-  },
-  opt_in_terms_and_conditions: 'We ensure consent through an explicit opt-in process that follows 10DLC best practices.Users must agree to receive messages from Pinnacle before the agent sends them any messages.<br>
+  use_case_description: 'Pinnacle is a developer-focused RCS assistant that helps teams design, test, and optimize rich messaging experiences across SMS, MMS, and RCS. The agent acts as both an “onboarding guide” for new customers and a “best-practices coach” for existing teams exploring higher-value RCS workflows like rich cards, carousels, and suggested actions.<br>
+  The agent delivers a mix of operational updates and educational content (2–6 messages/month). Content includes important platform notices (e.g., deliverability or throughput changes), implementation tips with sample RCS templates, and personalized recommendations on how to upgrade existing SMS campaigns into richer, higher-converting RCS conversations.
+  ',
+  messaging_type: 'OTP',
+  cta_media: '“https://www.pinnacle.sh/send”',
+  opt_in_method: 'We ensure consent through an explicit opt-in process that follows 10DLC best practices.Users must agree to receive messages from Pinnacle before the agent sends them any messages.<br>
   Users agree to these messages by signing an opt-in paper form that they can be found online at https://www.pinnacle.sh/opt-in. We only send messages once users have filled out the form and submitted it to us via email or through the dashboard.
   ',
-  messaging_type: 'MULTI_USE',
-  carrier_description: 'Demonstrate the power of RCS to medium and large companies already sending massive SMS/MMS volumes through our platform. These clients send conversational messages in industries such as commerce, appointments, and customer support.',
   keywords: {
     help: {
       message: 'Email founders@trypinnacle.app for support.',
@@ -4281,9 +4455,6 @@ client.campaigns.rcs.upsert(
     monthly_website: 10000,
     monthly_rcs_estimate: 10000
   },
-  agent_triggers: 'The agent sends the first message when the user subscribes to Pinnacle. Messages are based on user actions such as pressing suggestion buttons. External triggers such as reminders can be setup by users in advance for a later time.',
-  interaction_description: "The agent's primary interaction will be customer service — helping users with questions, troubleshooting issues, and providing quick assistance through chat. Other interactions include appointment management and sending notifications to the user.",
-  is_conversational: true,
   cta_language: 'By checking this box and submitting this form, you consent to receive transactional text messages for support, appointment, and reminder messages from Pinnacle Software Development Inc. Reply STOP to opt out. Reply HELP for help. Standard message and data rates may apply. Message frequency may vary. View our Terms and Conditions at https://www.pinnacle.sh/terms. View our Privacy Policy at https://www.pinnacle.sh/privacy.',
   demo_trigger: 'Text "START" to trigger the flow.'
 );
@@ -4344,15 +4515,7 @@ List of what the agent might say to users. See the [Expected Agent Responses](/g
 <dl>
 <dd>
 
-**use_case:** `Pinnacle::Campaigns::Rcs::Types::RcsUseCase` — Use case classification for the campaign.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**opt_in_terms_and_conditions:** `String` — Details on how opt-in is acquired. If it is done through a website or app, provide the link. See the [Opt-In Terms and Conditions](/guides/campaigns/rcs-compliance#opt-in-terms-and-conditions) section for requirements.
+**use_case_description:** `String` — Detailed summary of what the brand is and how this agent will be used. See the [Use Case Behavior](/guides/campaigns/rcs-compliance#use-case-behavior) section for requirements.
     
 </dd>
 </dl>
@@ -4368,7 +4531,15 @@ List of what the agent might say to users. See the [Expected Agent Responses](/g
 <dl>
 <dd>
 
-**carrier_description:** `String` — Description of the agent's purpose, shown to carriers for approval. See the [Carrier Description](/guides/campaigns/rcs-compliance#carrier-description) section for requirements.
+**cta_media:** `String` — URL to the opt-in form or a URL to a screenshot of the opt-in CTA.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**opt_in_method:** `String` — Details on how opt-in is acquired. If it is done through a website or app, provide the link. See the [Opt-In Method](/guides/campaigns/rcs-compliance#opt-in-method) section for requirements.
     
 </dd>
 </dl>
@@ -4385,30 +4556,6 @@ List of what the agent might say to users. See the [Expected Agent Responses](/g
 <dd>
 
 **traffic:** `Pinnacle::Campaigns::Rcs::Types::RcsCampaignTraffic` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**agent_triggers:** `String` — Explanation of how the agent is triggered. This includes how the first message is delivered, whether messages follow a schedule or triggered by user actions, and any external triggers. See the [Agent Triggers](/guides/campaigns/rcs-compliance#agent-triggers) section for requirements.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**interaction_description:** `String` — Description of all agent interactions, including primary and secondary use cases. See the [Interaction Description](/guides/campaigns/rcs-compliance#interaction-description) section for requirements.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**is_conversational:** `Internal::Types::Boolean` — Whether the agent supports conversational flows or respond to P2A messages from the users. Set to false for one-way messages from agent to user.
     
 </dd>
 </dl>
@@ -5743,168 +5890,6 @@ client.messages.blasts.list();
 <dd>
 
 **request_options:** `Pinnacle::Messages::Blasts::RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## PhoneNumbers Webhook
-<details><summary><code>client.phone_numbers.webhook.<a href="/lib/pinnacle/phone_numbers/webhook/client.rb">attach</a>(phone, request) -> Pinnacle::Types::ConfiguredWebhook</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Connect a webhook to your phone number to receive real-time notifications for incoming messages, delivery status updates, and other communication events.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```ruby
-client.phone_numbers.webhook.attach(
-  phone: '%2B14155551234',
-  webhook_id: 'wh_1234567890',
-  event: 'MESSAGE.STATUS'
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**phone:** `String` 
-
-The phone number you want to attach the webhook to in E.164 format. Make sure it is url encoded (i.e. replace the leading + with %2B). <br>
-
-Must be a phone number that you own and have already [purchased](./buy) through the API. A phone number can have multiple webhooks attached to it.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Pinnacle::Types::AttachWebhookParams` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request_options:** `Pinnacle::PhoneNumbers::Webhook::RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.phone_numbers.webhook.<a href="/lib/pinnacle/phone_numbers/webhook/client.rb">detach</a>(phone, webhook_id) -> Pinnacle::Types::DetachedWebhookInfo</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Disconnect a webhook from your phone number to stop receiving event notifications for that specific number. <br>
-
-The webhook configuration itself remains intact and available for use with other phone numbers.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```ruby
-client.phone_numbers.webhook.detach(
-  phone: '+14155551234',
-  webhook_id: 'wh_1234567890'
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**phone:** `String` 
-
-The phone number you want to attach the webhook to in E.164 format. Make sure it is url encoded (i.e. replace the leading + with %2B). <br>
-
-Must be a phone number that you own and currently has the specified webhook attached.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**webhook_id:** `String` 
-
-The unique identifier of the webhook you want to detach from the phone number. <br>
-
-This must be a valid webhook ID that is currently attached to the specified phone number. This identifier is a string that always begins with the prefix `wh_`, for example: `wh_1234567890`.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request_options:** `Pinnacle::PhoneNumbers::Webhook::RequestOptions` 
     
 </dd>
 </dl>
