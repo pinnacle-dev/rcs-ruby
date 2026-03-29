@@ -81,10 +81,10 @@ module Pinnacle
                }
               return type.coerce(value, strict: strict)
             else
-              value
+              return value
             end
           else
-            value
+            return value
           end
 
           raise Errors::TypeError, "cannot coerce value of type `#{value.class}` to `#{target}`" if strict
