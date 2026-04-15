@@ -1,5 +1,5 @@
 {
-  "cliVersion": "3.51.3",
+  "cliVersion": "4.58.0",
   "generatorName": "fernapi/fern-ruby-sdk",
   "generatorVersion": "1.0.0-rc85",
   "generatorConfig": {
@@ -7,5 +7,6 @@
     "flattenModuleStructure": true,
     "useProvidedDefaults": true
   },
-  "sdkVersion": "2.0.15"
+  "originGitCommit": "b06b7bbbdb4c2685fd76f7cdfbb2c3433ba4e0ce",
+  "sdkVersion": "2.0.16"
 }
