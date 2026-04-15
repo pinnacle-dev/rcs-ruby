@@ -5109,7 +5109,6 @@ Requires an active RCS agent and recipient devices that support RCS Business Mes
 client.messages.rcs.send_(
   from: 'from',
   to: 'to',
-  quick_replies: [],
   text: 'text'
 );
 ```
@@ -5264,10 +5263,7 @@ Validate RCS message content without sending it.
 <dd>
 
 ```ruby
-client.messages.rcs.validate(
-  quick_replies: [],
-  text: 'text'
-);
+client.messages.rcs.validate(text: 'text');
 ```
 </dd>
 </dl>
