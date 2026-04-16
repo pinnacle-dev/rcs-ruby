@@ -17,7 +17,7 @@ module Pinnacle
         def self.coerce(value, strict: strict?)
           case value
           when TrueClass, FalseClass
-            return value
+            value
           when Integer
             return value == 1
           when String

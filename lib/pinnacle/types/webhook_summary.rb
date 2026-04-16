@@ -9,6 +9,7 @@ module Pinnacle
       field :status, -> { Pinnacle::Types::WebhookSummaryStatus }, optional: false, nullable: false
       field :created_at, -> { String }, optional: false, nullable: false, api_name: "createdAt"
       field :updated_at, -> { String }, optional: false, nullable: false, api_name: "updatedAt"
+      field :headers, -> { Internal::Types::Hash[String, String] }, optional: true, nullable: false
     end
   end
 end
