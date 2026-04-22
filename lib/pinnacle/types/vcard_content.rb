@@ -3,7 +3,7 @@
 module Pinnacle
   module Types
     class VcardContent < Internal::Types::Model
-      field :revision, -> { String }, optional: true, nullable: false
+      field :revision, -> { String }, optional: false, nullable: false
     end
   end
 end
