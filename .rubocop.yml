@@ -58,3 +58,22 @@ Minitest/MultipleAssertions:
 
 Minitest/UselessAssertion:
   Enabled: false
+
+# The generator emits bare `value` expressions as the fall-through result
+# of `case` blocks; rubocop flags these as void. Excluded here so the
+# suppressions survive Fern regeneration.
+Lint/Void:
+  Exclude:
+    - 'lib/pinnacle/internal/types/boolean.rb'
+    - 'lib/pinnacle/internal/types/utils.rb'
+
+# `Union.member?` is not a collection `include?`; the Minitest cops
+# don't distinguish them. Excluded for the union test file so Fern
+# regeneration doesn't need to preserve inline disables.
+Minitest/AssertIncludes:
+  Exclude:
+    - 'test/unit/internal/types/test_union.rb'
+
+Minitest/RefuteIncludes:
+  Exclude:
+    - 'test/unit/internal/types/test_union.rb'

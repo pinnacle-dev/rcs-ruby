@@ -9,6 +9,7 @@ module Pinnacle
         field :name, -> { String }, optional: true, nullable: false
         field :url, -> { String }, optional: true, nullable: false
         field :event, -> { Pinnacle::Types::WebhookEventEnum }, optional: true, nullable: false
+        field :headers, -> { Internal::Types::Hash[String, String] }, optional: true, nullable: false
       end
     end
   end
