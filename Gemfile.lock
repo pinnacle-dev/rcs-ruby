@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    rcs (2.0.16)
+    rcs (2.0.16.pre.rc.1)
 
 GEM
   remote: https://rubygems.org/
@@ -23,7 +23,7 @@ GEM
     minitest (5.27.0)
     minitest-rg (5.4.0)
       minitest (>= 5.0, < 7)
-    parallel (2.0.1)
+    parallel (2.1.0)
     parser (3.3.11.1)
       ast (~> 2.4.1)
       racc

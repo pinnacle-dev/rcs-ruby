@@ -45,13 +45,11 @@ Layout/LineLength:
   Enabled: false
 
 Naming/VariableNumber:
-  EnforcedStyle: snake_case
-  # Generated type classes carry symbols like `:gsm_7`, `:utf_16`, `:code_3`
-  # that mirror OpenAPI field names. Newer rubocop's symbol check reports
-  # these as offenses regardless of the enforced style. Exclude the
-  # generated-types tree so Fern regeneration doesn't need inline disables.
-  Exclude:
-    - 'lib/pinnacle/types/**/*'
+  # Fern's ruby-sdk generator emits symbols like :gsm_7 / :utf_16 / :code_3
+  # (snake_case) in generated type classes while shipping a template that
+  # enforces `normalcase`. The two are inconsistent, so disable the cop
+  # until the generator resolves it upstream.
+  Enabled: false
 
 Style/Documentation:
   Enabled: false
@@ -65,21 +63,11 @@ Minitest/MultipleAssertions:
 Minitest/UselessAssertion:
   Enabled: false
 
-# The generator emits bare `value` expressions as the fall-through result
-# of `case` blocks; rubocop flags these as void. Excluded here so the
-# suppressions survive Fern regeneration.
-Lint/Void:
+# Dynamic snippets are code samples for documentation, not standalone Ruby files.
+Style/FrozenStringLiteralComment:
   Exclude:
-    - 'lib/pinnacle/internal/types/boolean.rb'
-    - 'lib/pinnacle/internal/types/utils.rb'
+    - "dynamic-snippets/**/*"
 
-# `Union.member?` is not a collection `include?`; the Minitest cops
-# don't distinguish them. Excluded for the union test file so Fern
-# regeneration doesn't need to preserve inline disables.
-Minitest/AssertIncludes:
+Layout/FirstHashElementIndentation:
   Exclude:
-    - 'test/unit/internal/types/test_union.rb'
-
-Minitest/RefuteIncludes:
-  Exclude:
-    - 'test/unit/internal/types/test_union.rb'
+    - "dynamic-snippets/**/*"

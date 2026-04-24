@@ -115,7 +115,7 @@ module Pinnacle
           request = Pinnacle::Internal::JSON::Request.new(
             base_url: request_options[:base_url],
             method: "PATCH",
-            path: "rcs/test/agents/#{params[:agent_id]}",
+            path: "rcs/test/agents/#{URI.encode_uri_component(params[:agent_id].to_s)}",
             body: body,
             request_options: request_options
           )
@@ -186,7 +186,7 @@ module Pinnacle
           request = Pinnacle::Internal::JSON::Request.new(
             base_url: request_options[:base_url],
             method: "POST",
-            path: "rcs/test/agents/#{params[:agent_id]}/whitelist",
+            path: "rcs/test/agents/#{URI.encode_uri_component(params[:agent_id].to_s)}/whitelist",
             body: body,
             request_options: request_options
           )
@@ -252,7 +252,7 @@ module Pinnacle
           request = Pinnacle::Internal::JSON::Request.new(
             base_url: request_options[:base_url],
             method: "GET",
-            path: "rcs/test/agents/#{params[:agent_id]}/numbers",
+            path: "rcs/test/agents/#{URI.encode_uri_component(params[:agent_id].to_s)}/numbers",
             query: query_params,
             request_options: request_options
           )
