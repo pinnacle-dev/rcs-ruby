@@ -45,7 +45,11 @@ Layout/LineLength:
   Enabled: false
 
 Naming/VariableNumber:
-  EnforcedStyle: normalcase
+  # Fern's ruby-sdk generator emits symbols like :gsm_7 / :utf_16 / :code_3
+  # (snake_case) in generated type classes while shipping a template that
+  # enforces `normalcase`. The two are inconsistent, so disable the cop
+  # until the generator resolves it upstream.
+  Enabled: false
 
 Style/Documentation:
   Enabled: false
