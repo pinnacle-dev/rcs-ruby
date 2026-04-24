@@ -146,11 +146,6 @@ module Pinnacle
       def blasts
         @blasts ||= Pinnacle::Messages::Blasts::Client.new(client: @client)
       end
-
-      # @return [Pinnacle::Simulate::Client]
-      def simulate
-        @simulate ||= Pinnacle::Messages::Simulate::Client.new(client: @client)
-      end
     end
   end
 end
