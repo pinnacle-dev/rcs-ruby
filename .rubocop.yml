@@ -46,6 +46,12 @@ Layout/LineLength:
 
 Naming/VariableNumber:
   EnforcedStyle: snake_case
+  # Generated type classes carry symbols like `:gsm_7`, `:utf_16`, `:code_3`
+  # that mirror OpenAPI field names. Newer rubocop's symbol check reports
+  # these as offenses regardless of the enforced style. Exclude the
+  # generated-types tree so Fern regeneration doesn't need inline disables.
+  Exclude:
+    - 'lib/pinnacle/types/**/*'
 
 Style/Documentation:
   Enabled: false
