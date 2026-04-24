@@ -10,7 +10,7 @@ module Pinnacle
       @raw_client = Pinnacle::Internal::Http::RawClient.new(
         base_url: base_url || Pinnacle::Environment::DEFAULT,
         headers: {
-          "User-Agent" => "rcs/2.0.16",
+          "User-Agent" => "rcs/2.0.16.pre.rc.1",
           "X-Fern-Language" => "Ruby",
           "PINNACLE-API-KEY" => api_key.to_s
         }
@@ -55,6 +55,11 @@ module Pinnacle
     # @return [Pinnacle::Webhooks::Client]
     def webhooks
       @webhooks ||= Pinnacle::Webhooks::Client.new(client: @raw_client)
+    end
+
+    # @return [Pinnacle::Forms::Client]
+    def forms
+      @forms ||= Pinnacle::Forms::Client.new(client: @raw_client)
     end
 
     # @return [Pinnacle::Campaigns::Client]
