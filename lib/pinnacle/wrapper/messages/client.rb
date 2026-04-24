@@ -19,7 +19,7 @@ module Pinnacle
         # @param request [Hash] Request with :headers and :body keys
         # @param secret [String, nil] Webhook secret (falls back to PINNACLE_SIGNING_SECRET env var)
         #
-        # @return [Pinnacle::Types::MessageEvent, Pinnacle::Types::UserEvent]
+        # @return [Pinnacle::Types::MessageEvent, Pinnacle::Types::UserEvent, Pinnacle::Types::FormSubmissionEvent]
         # @raise [Pinnacle::Errors::UnauthorizedError] If webhook signature is invalid or missing
         # @raise [Pinnacle::Errors::ClientError] If request body cannot be parsed
         def process(request, secret: nil)
@@ -55,8 +55,11 @@ module Pinnacle
 
           parsed = body.is_a?(String) ? JSON.parse(body) : body
 
-          if parsed["type"] == "USER.TYPING"
+          case parsed["type"]
+          when "USER.TYPING"
             Pinnacle::Types::UserEvent.coerce(parsed)
+          when "FORM.SUBMISSION"
+            Pinnacle::Types::FormSubmissionEvent.coerce(parsed)
           else
             Pinnacle::Types::MessageEvent.coerce(parsed)
           end
