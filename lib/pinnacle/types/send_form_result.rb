@@ -1,0 +1,17 @@
+# frozen_string_literal: true
+
+module Pinnacle
+  module Types
+    # Successful `POST /forms/send` response.
+    #
+    # - When `to` was provided in the request, the message was dispatched: `submission.to` echoes that recipient and
+    # `message_id` is the id of the outbound SMS/RCS that carried the URL.
+    # - When `to` was omitted, no message was sent: both `submission.to` and `message_id` are `null` and only the
+    # submission URL is returned.
+    class SendFormResult < Internal::Types::Model
+      field :form, -> { Pinnacle::Types::Form }, optional: false, nullable: false
+      field :submission, -> { Pinnacle::Types::FormSubmission }, optional: false, nullable: false
+      field :message_id, -> { String }, optional: false, nullable: true
+    end
+  end
+end

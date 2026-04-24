@@ -147,7 +147,7 @@ module Pinnacle
         request = Pinnacle::Internal::JSON::Request.new(
           base_url: request_options[:base_url],
           method: "POST",
-          path: "conversations/#{params[:id]}/messages",
+          path: "conversations/#{URI.encode_uri_component(params[:id].to_s)}/messages",
           query: query_params,
           request_options: request_options
         )

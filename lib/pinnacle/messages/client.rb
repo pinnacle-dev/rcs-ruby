@@ -27,7 +27,7 @@ module Pinnacle
         request = Pinnacle::Internal::JSON::Request.new(
           base_url: request_options[:base_url],
           method: "GET",
-          path: "messages/#{params[:id]}",
+          path: "messages/#{URI.encode_uri_component(params[:id].to_s)}",
           request_options: request_options
         )
         begin
@@ -145,11 +145,6 @@ module Pinnacle
       # @return [Pinnacle::Blasts::Client]
       def blasts
         @blasts ||= Pinnacle::Messages::Blasts::Client.new(client: @client)
-      end
-
-      # @return [Pinnacle::Simulate::Client]
-      def simulate
-        @simulate ||= Pinnacle::Messages::Simulate::Client.new(client: @client)
       end
     end
   end

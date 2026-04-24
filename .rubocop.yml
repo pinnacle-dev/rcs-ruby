@@ -45,7 +45,7 @@ Layout/LineLength:
   Enabled: false
 
 Naming/VariableNumber:
-  EnforcedStyle: snake_case
+  EnforcedStyle: normalcase
 
 Style/Documentation:
   Enabled: false
@@ -59,21 +59,11 @@ Minitest/MultipleAssertions:
 Minitest/UselessAssertion:
   Enabled: false
 
-# The generator emits bare `value` expressions as the fall-through result
-# of `case` blocks; rubocop flags these as void. Excluded here so the
-# suppressions survive Fern regeneration.
-Lint/Void:
+# Dynamic snippets are code samples for documentation, not standalone Ruby files.
+Style/FrozenStringLiteralComment:
   Exclude:
-    - 'lib/pinnacle/internal/types/boolean.rb'
-    - 'lib/pinnacle/internal/types/utils.rb'
+    - "dynamic-snippets/**/*"
 
-# `Union.member?` is not a collection `include?`; the Minitest cops
-# don't distinguish them. Excluded for the union test file so Fern
-# regeneration doesn't need to preserve inline disables.
-Minitest/AssertIncludes:
+Layout/FirstHashElementIndentation:
   Exclude:
-    - 'test/unit/internal/types/test_union.rb'
-
-Minitest/RefuteIncludes:
-  Exclude:
-    - 'test/unit/internal/types/test_union.rb'
+    - "dynamic-snippets/**/*"
