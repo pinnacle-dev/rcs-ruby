@@ -62,4 +62,20 @@ jobs:
         run: gem build pinnacle.gemspec
 
       - name: Publish gem
-        run: gem push *.gem
+        # RubyGems uses version-string semantics for pre-releases — a
+        # version like `2.0.16.pre.rc.1` is automatically hidden from
+        # `gem install rcs` and only installs via `gem install rcs --pre`
+        # or an explicit `--version 2.0.16.pre.rc.1`. No dist-tag flag is
+        # needed here; `gem push` is identical for stable and pre-release
+        # tags. We just log which variant we're publishing.
+        run: |
+          if [[ ${GITHUB_REF} == *rc* ]]; then
+            echo "Publishing pre-release (RC) — RubyGems will hide from plain 'gem install rcs'"
+          elif [[ ${GITHUB_REF} == *alpha* ]]; then
+            echo "Publishing pre-release (alpha)"
+          elif [[ ${GITHUB_REF} == *beta* ]]; then
+            echo "Publishing pre-release (beta)"
+          else
+            echo "Publishing stable release"
+          fi
+          gem push *.gem
