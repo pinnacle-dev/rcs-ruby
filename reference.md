@@ -2855,7 +2855,7 @@ Supplying `headers` alongside `webhookId` **overwrites** the stored headers on t
 
 Event type filter for the subscription. Set to `null` to receive all events. <br>
 
-`USER.TYPING` is only supported for RCS agent senders, not phone numbers.
+`USER.TYPING` and `CAMPAIGN.STATUS` are only supported for RCS agent senders, not phone numbers — attempting to attach either of these events to a phone number returns `400 Bad Request`.
     
 </dd>
 </dl>
@@ -6414,6 +6414,75 @@ client.messages.blasts.list
 <dd>
 
 **request_options:** `Pinnacle::Messages::Blasts::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Messages Simulate
+<details><summary><code>client.messages.simulate.<a href="/lib/pinnacle/messages/simulate/client.rb">user</a>(request) -> Pinnacle::Types::SimulateUserResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Simulate inbound messages and button presses from a user.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.messages.simulate.user(
+  from: "+14155551234",
+  to: "+14155555678",
+  message: {
+    text: "Hello from the test user!"
+  }
+)
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Pinnacle::Types::SimulateUserParams` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Pinnacle::Messages::Simulate::RequestOptions` 
     
 </dd>
 </dl>

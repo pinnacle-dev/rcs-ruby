@@ -5,8 +5,9 @@
   "generatorConfig": {
     "clientModuleName": "PinnacleBaseClient",
     "flattenModuleStructure": true,
-    "useProvidedDefaults": true
+    "useProvidedDefaults": true,
+    "rubocopVariableNumberStyle": "snake_case"
   },
-  "originGitCommit": "fb028ee5e2c6395c9680eb66d1173e55015384c0",
-  "sdkVersion": "2.0.16.pre.rc.1"
+  "originGitCommit": "c9cb7751b3bf27100ed65b2122d4bc8b326d34ee",
+  "sdkVersion": "2.0.16.pre.rc.3"
 }
