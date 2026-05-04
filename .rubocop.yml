@@ -59,18 +59,11 @@ Minitest/MultipleAssertions:
 Minitest/UselessAssertion:
   Enabled: false
 
-# Auto-generated `internal/types/*.rb` ends with a bare `value` reference
-# inside the type-coercion fallthrough — intentional, not dead code.
-Lint/Void:
+# Dynamic snippets are code samples for documentation, not standalone Ruby files.
+Style/FrozenStringLiteralComment:
   Exclude:
-    - "lib/pinnacle/internal/types/**/*.rb"
+    - "dynamic-snippets/**/*"
 
-# Auto-generated test_union.rb uses `assert X.member?(Y)` because it's
-# testing the `member?` API directly, not a generic collection check.
-Minitest/AssertIncludes:
+Layout/FirstHashElementIndentation:
   Exclude:
-    - "test/unit/internal/types/**/*.rb"
-
-Minitest/RefuteIncludes:
-  Exclude:
-    - "test/unit/internal/types/**/*.rb"
+    - "dynamic-snippets/**/*"
