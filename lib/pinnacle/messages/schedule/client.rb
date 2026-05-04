@@ -31,7 +31,7 @@ module Pinnacle
           request = Pinnacle::Internal::JSON::Request.new(
             base_url: request_options[:base_url],
             method: "DELETE",
-            path: "messages/schedule/#{URI.encode_uri_component(params[:id].to_s)}",
+            path: "messages/schedule/#{params[:id]}",
             request_options: request_options
           )
           begin

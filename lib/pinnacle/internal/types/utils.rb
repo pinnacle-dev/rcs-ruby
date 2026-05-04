@@ -81,10 +81,10 @@ module Pinnacle
                }
               return type.coerce(value, strict: strict)
             else
-              value # rubocop:disable Lint/Void
+              value
             end
           else
-            value # rubocop:disable Lint/Void
+            value
           end
 
           raise Errors::TypeError, "cannot coerce value of type `#{value.class}` to `#{target}`" if strict

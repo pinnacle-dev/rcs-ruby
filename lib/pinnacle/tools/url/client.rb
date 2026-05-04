@@ -62,7 +62,7 @@ module Pinnacle
           request = Pinnacle::Internal::JSON::Request.new(
             base_url: request_options[:base_url],
             method: "GET",
-            path: "tools/url/#{URI.encode_uri_component(params[:link_id].to_s)}",
+            path: "tools/url/#{params[:link_id]}",
             request_options: request_options
           )
           begin
@@ -101,7 +101,7 @@ module Pinnacle
           request = Pinnacle::Internal::JSON::Request.new(
             base_url: request_options[:base_url],
             method: "PUT",
-            path: "tools/url/#{URI.encode_uri_component(params[:link_id].to_s)}",
+            path: "tools/url/#{params[:link_id]}",
             body: body,
             request_options: request_options
           )

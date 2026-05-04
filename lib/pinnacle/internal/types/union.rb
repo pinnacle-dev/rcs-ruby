@@ -21,7 +21,7 @@ module Pinnacle
           self
         end
 
-        def type_member?(type)
+        def member?(type)
           members.any? { |_key, type_fn| type == type_fn.call }
         end
 

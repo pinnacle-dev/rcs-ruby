@@ -45,18 +45,18 @@ describe Pinnacle::Internal::Types::Union do
     end
   end
 
-  describe "#type_member?" do
+  describe "#member" do
     it "defines Model members" do
-      assert Shape.type_member?(Rectangle)
-      assert Shape.type_member?(Circle)
-      refute Shape.type_member?(Pineapple)
+      assert Shape.member?(Rectangle)
+      assert Shape.member?(Circle)
+      refute Shape.member?(Pineapple)
     end
 
     it "defines other members" do
-      assert StringOrInteger.type_member?(String)
-      assert StringOrInteger.type_member?(Integer)
-      refute StringOrInteger.type_member?(Float)
-      refute StringOrInteger.type_member?(Pineapple)
+      assert StringOrInteger.member?(String)
+      assert StringOrInteger.member?(Integer)
+      refute StringOrInteger.member?(Float)
+      refute StringOrInteger.member?(Pineapple)
     end
   end
 end

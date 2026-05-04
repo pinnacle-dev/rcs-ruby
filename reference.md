@@ -28,13 +28,13 @@ Automatically populate brand information based on partial input data you provide
 
 ```ruby
 client.brands.autofill(
-  additional_info: "A developer-friendly, compliant API for SMS, MMS, and RCS, built to scale real conversations.",
-  name: "Pinnacle",
+  additional_info: 'A developer-friendly, compliant API for SMS, MMS, and RCS, built to scale real conversations.',
+  name: 'Pinnacle',
   options: {
     force_reload: true
   },
-  website: "https://www.pinnacle.sh"
-)
+  website: 'https://www.pinnacle.sh'
+);
 ```
 </dd>
 </dl>
@@ -127,24 +127,24 @@ All fields are **required** except `description` and `dba`, and will be validate
 
 ```ruby
 client.brands.upsert(
-  address: "500 Folsom St, San Francisco, CA 94105",
+  address: '500 Folsom St, San Francisco, CA 94105',
   contact: {
-    email: "michael.chen@trypinnacle.app",
-    name: "Michael Chen",
-    phone: "+14155551234",
-    title: "Customer Support Representative"
+    email: 'michael.chen@trypinnacle.app',
+    name: 'Michael Chen',
+    phone: '+14155551234',
+    title: 'Customer Support Representative'
   },
-  dba: "Pinnacle RCS",
-  description: "A developer-friendly, compliant API for SMS, MMS, and RCS, built to scale real conversations.",
-  ein: "88-1234567",
-  email: "founders@trypinnacle.app",
-  id: "b_1234567890",
-  name: "Pinnacle",
-  sector: "TECHNOLOGY",
-  type: "PRIVATE_PROFIT",
-  entity_type: "LLC",
-  website: "https://www.pinnacle.sh"
-)
+  dba: 'Pinnacle RCS',
+  description: 'A developer-friendly, compliant API for SMS, MMS, and RCS, built to scale real conversations.',
+  ein: '88-1234567',
+  email: 'founders@trypinnacle.app',
+  id: 'b_1234567890',
+  name: 'Pinnacle',
+  sector: 'TECHNOLOGY',
+  type: 'PRIVATE_PROFIT',
+  entity_type: 'LLC',
+  website: 'https://www.pinnacle.sh'
+);
 ```
 </dd>
 </dl>
@@ -297,7 +297,7 @@ Retrieve detailed information for a specific brand in your account by ID.
 <dd>
 
 ```ruby
-client.brands.get(id: "b_1234567890")
+client.brands.get(id: 'b_1234567890');
 ```
 </dd>
 </dl>
@@ -374,7 +374,7 @@ Submit your brand for review and approval by the compliance team.
 <dd>
 
 ```ruby
-client.brands.submit(brand_id: "b_1234567890")
+client.brands.submit(brand_id: 'b_1234567890');
 ```
 </dd>
 </dl>
@@ -439,7 +439,7 @@ Validate your brand information for compliance and correctness before submission
 <dd>
 
 ```ruby
-client.brands.validate
+client.brands.validate();
 ```
 </dd>
 </dl>
@@ -502,11 +502,11 @@ Submit a brand for external vetting verification to enhance your brand's trust s
 
 ```ruby
 client.brands.vet(
-  brand_id: "b_1234567890",
-  type: "EXTERNAL",
-  provider: "AEGIS",
-  vetting_class: "STANDARD"
-)
+  brand_id: 'b_1234567890',
+  type: 'EXTERNAL',
+  provider: 'AEGIS',
+  vetting_class: 'STANDARD'
+);
 ```
 </dd>
 </dl>
@@ -596,7 +596,7 @@ List all brands with optional filtering and pagination. Results are sorted by cr
 <dd>
 
 ```ruby
-client.brands.list
+client.brands.list();
 ```
 </dd>
 </dl>
@@ -691,7 +691,7 @@ Retrieve an audience by ID with optional pagination.
 <dd>
 
 ```ruby
-client.audiences.get(id: "aud_abc123")
+client.audiences.get(id: 'aud_abc123');
 ```
 </dd>
 </dl>
@@ -770,9 +770,9 @@ Create a new audience with optional initial contacts. Phone numbers that don't e
 
 ```ruby
 client.audiences.create(
-  name: "Marketing Campaign Q1",
-  description: "Contacts for Q1 marketing push"
-)
+  name: 'Marketing Campaign Q1',
+  description: 'Contacts for Q1 marketing push'
+);
 ```
 </dd>
 </dl>
@@ -852,7 +852,7 @@ Note: This will NOT delete the contacts themselves, only the audience and its me
 <dd>
 
 ```ruby
-client.audiences.delete(id: "aud_abc123")
+client.audiences.delete(id: 'aud_abc123');
 ```
 </dd>
 </dl>
@@ -917,10 +917,10 @@ To add or remove contacts, use the [Add Contacts](/api-reference/audiences/add-c
 
 ```ruby
 client.audiences.update(
-  id: "aud_abc123",
-  name: "Updated Audience Name",
-  description: "New description"
-)
+  id: 'aud_abc123',
+  name: 'Updated Audience Name',
+  description: 'New description'
+);
 ```
 </dd>
 </dl>
@@ -998,7 +998,7 @@ List all audiences with optional filtering and pagination. Results are sorted by
 <dd>
 
 ```ruby
-client.audiences.list
+client.audiences.list();
 ```
 </dd>
 </dl>
@@ -1077,7 +1077,7 @@ Retrieve contact information for a given number.
 <dd>
 
 ```ruby
-client.contacts.get(id: "co_1234567890")
+client.contacts.get(id: 'co_1234567890');
 ```
 </dd>
 </dl>
@@ -1151,7 +1151,7 @@ Create a new contact for a given phone number.
 <dd>
 
 ```ruby
-client.contacts.create(phone_number: "phoneNumber")
+client.contacts.create(phone_number: 'phoneNumber');
 ```
 </dd>
 </dl>
@@ -1214,12 +1214,12 @@ Update an existing contact.
 
 ```ruby
 client.contacts.update(
-  description: "Retired",
-  email: "alvaroopedtech@pinnacle.sh",
-  name: "Retired Bestie",
-  tags: ["friend"],
-  id: "co_1234567890"
-)
+  description: 'Retired',
+  email: 'alvaroopedtech@pinnacle.sh',
+  name: 'Retired Bestie',
+  tags: ['friend'],
+  id: 'co_1234567890'
+);
 ```
 </dd>
 </dl>
@@ -1281,7 +1281,7 @@ List all contacts with optional filtering and pagination. Results are sorted by 
 <dd>
 
 ```ruby
-client.contacts.list
+client.contacts.list();
 ```
 </dd>
 </dl>
@@ -1384,7 +1384,7 @@ Fetch a specific conversation using either its unique identifier or by matching 
 <dd>
 
 ```ruby
-client.conversations.get(id: "conv_1234567890")
+client.conversations.get(id: 'conv_1234567890');
 ```
 </dd>
 </dl>
@@ -1447,14 +1447,14 @@ Retrieves conversations by page with optional filtering based off provided param
 
 ```ruby
 client.conversations.list(
-  brand_id: "b_1234567890",
-  campaign_id: "tf_1234567890",
-  campaign_type: "TOLL_FREE",
+  brand_id: 'b_1234567890',
+  campaign_id: 'tf_1234567890',
+  campaign_type: 'TOLL_FREE',
   page_index: 0,
   page_size: 20,
-  receiver: "+16509231662",
-  sender: "+18445551234"
-)
+  receiver: '+16509231662',
+  sender: '+18445551234'
+);
 ```
 </dd>
 </dl>
@@ -1570,9 +1570,9 @@ Update the notes associated with a specific conversation.
 
 ```ruby
 client.conversations.update(
-  id: "conv_1234567890",
-  notes: "Follow-up completed. Customer satisfied with resolution."
-)
+  id: 'conv_1234567890',
+  notes: 'Follow-up completed. Customer satisfied with resolution.'
+);
 ```
 </dd>
 </dl>
@@ -1642,7 +1642,7 @@ Retrieve a paginated and filtered list of messages for a specific conversation.
 <dd>
 
 ```ruby
-client.conversations.list_messages(id: "id")
+client.conversations.list_messages(id: 'id');
 ```
 </dd>
 </dl>
@@ -1779,7 +1779,7 @@ Retrieve a previously sent message.
 <dd>
 
 ```ruby
-client.messages.get(id: "msg_1234567890")
+client.messages.get(id: 'msg_1234567890');
 ```
 </dd>
 </dl>
@@ -1842,12 +1842,12 @@ Add or remove an emoji reaction to a previously sent message.
 
 ```ruby
 client.messages.react(
-  message_id: "msg_1234567890",
+  message_id: 'msg_1234567890',
   options: {
     force: true
   },
-  reaction: "👍"
-)
+  reaction: '👍'
+);
 ```
 </dd>
 </dl>
@@ -1929,7 +1929,7 @@ List all messages with optional filtering and pagination. Results are sorted by 
 <dd>
 
 ```ruby
-client.messages.list
+client.messages.list();
 ```
 </dd>
 </dl>
@@ -2073,20 +2073,20 @@ Search for available phone numbers that match your exact criteria.
 
 ```ruby
 client.phone_numbers.search(
-  features: %w[SMS MMS],
+  features: ['SMS', 'MMS'],
   location: {
-    city: "New York",
-    national_destination_code: "212"
+    city: 'New York',
+    national_destination_code: '212'
   },
   number: {
-    contains: "514",
-    starts_with: "45"
+    contains: '514',
+    starts_with: '45'
   },
   options: {
     limit: 4
   },
-  type: ["LOCAL"]
-)
+  type: ['LOCAL']
+);
 ```
 </dd>
 </dl>
@@ -2186,7 +2186,7 @@ Billing uses your account credits and the numbers are ready for immediate use.
 <dd>
 
 ```ruby
-client.phone_numbers.buy(numbers: ["+18559491727"])
+client.phone_numbers.buy(numbers: ['+18559491727']);
 ```
 </dd>
 </dl>
@@ -2255,15 +2255,15 @@ Retrieve information about any phone number.
 
 ```ruby
 client.phone_numbers.get(
-  phone: "+11234567890",
-  level: "advanced",
+  phone: '+11234567890',
+  level: 'advanced',
   options: {
     risk: true,
     enhanced_contact_info: {
-      context: "This is my friend from JZ. He has done a lot in the crypto space."
+      context: 'This is my friend from JZ. He has done a lot in the crypto space.'
     }
   }
-)
+);
 ```
 </dd>
 </dl>
@@ -2345,7 +2345,7 @@ List all owned phone numbers with pagination. Results are sorted by creation dat
 <dd>
 
 ```ruby
-client.phone_numbers.list
+client.phone_numbers.list();
 ```
 </dd>
 </dl>
@@ -2419,7 +2419,7 @@ contact information, and other settings.
 <dd>
 
 ```ruby
-client.rcs.get_agent(agent_id: "agent_abc123def456")
+client.rcs.get_agent(agent_id: 'agent_abc123def456');
 ```
 </dd>
 </dl>
@@ -2484,7 +2484,7 @@ on specific phone numbers before sending RCS messages to them.
 <dd>
 
 ```ruby
-client.rcs.get_capabilities(phone_numbers: %w[+12345678901 +19876543210])
+client.rcs.get_capabilities(phone_numbers: ['+12345678901', '+19876543210']);
 ```
 </dd>
 </dl>
@@ -2561,10 +2561,10 @@ from websites, emails, or other applications.
 
 ```ruby
 client.rcs.get_link(
-  agent_id: "agent_XXXXXXXXXXXX",
-  phone_number: "+12345678901",
-  body: "Hello, I need help with my order"
-)
+  agent_id: 'agent_XXXXXXXXXXXX',
+  phone_number: '+12345678901',
+  body: 'Hello, I need help with my order'
+);
 ```
 </dd>
 </dl>
@@ -2643,7 +2643,7 @@ Retrieve all webhook that are set up to receive events for specific URLs or phon
 <dd>
 
 ```ruby
-client.webhooks.get(identifiers: %w[https://www.pinnacle.sh/payment +14155678901 https://www.pinnacle.sh/sms-callback +14153456659])
+client.webhooks.get(identifiers: ['https://www.pinnacle.sh/payment', '+14155678901', 'https://www.pinnacle.sh/sms-callback', '+14153456659']);
 ```
 </dd>
 </dl>
@@ -2708,7 +2708,7 @@ List all webhooks with optional filtering and pagination. Results are sorted by 
 <dd>
 
 ```ruby
-client.webhooks.list
+client.webhooks.list();
 ```
 </dd>
 </dl>
@@ -2800,7 +2800,7 @@ Subscriptions are additive — attaching new senders does not remove existing on
 <dd>
 
 ```ruby
-client.webhooks.attach(senders: %w[+14155551234 agent_abc123])
+client.webhooks.attach(senders: ['+14155551234', 'agent_abc123']);
 ```
 </dd>
 </dl>
@@ -2921,9 +2921,9 @@ The webhook itself is not deleted and remains available for use with other sende
 
 ```ruby
 client.webhooks.detach(
-  webhook_id: "webhookId",
-  senders: %w[+14155551234 agent_abc123]
-)
+  webhook_id: 'webhookId',
+  senders: ['+14155551234', 'agent_abc123']
+);
 ```
 </dd>
 </dl>
@@ -2994,7 +2994,7 @@ Retrieve a form by id. Includes submission count, last submission timestamp, and
 <dd>
 
 ```ruby
-client.forms.get(id: "form_Oy2n7iUoi9CJwUU6")
+client.forms.get(id: 'form_Oy2n7iUoi9CJwUU6');
 ```
 </dd>
 </dl>
@@ -3060,11 +3060,11 @@ Partial update. Only keys present in the body are applied. Archived forms (non-n
 
 ```ruby
 client.forms.update(
-  id: "form_Oy2n7iUoi9CJwUU6",
-  name: "Contact request (v2)",
+  id: 'form_Oy2n7iUoi9CJwUU6',
+  name: 'Contact request (v2)',
   can_update: true,
-  expires_at: "2026-12-31T23:59:59Z"
-)
+  expires_at: '2026-12-31T23:59:59Z'
+);
 ```
 </dd>
 </dl>
@@ -3188,7 +3188,7 @@ Paginated list of forms on your team, sorted by creation date (newest first). In
 client.forms.list(
   page_index: 0,
   page_size: 20
-)
+);
 ```
 </dd>
 </dl>
@@ -3263,11 +3263,11 @@ To also deliver the URL to a recipient over SMS or RCS in a single call, use [`P
 
 ```ruby
 client.forms.create(
-  name: "Contact request",
+  name: 'Contact request',
   description: "We'll follow up over SMS or RCS.",
   fields: [],
   can_update: false
-)
+);
 ```
 </dd>
 </dl>
@@ -3342,16 +3342,16 @@ On completion, a `FORM.SUBMISSION` webhook event is delivered to webhooks subscr
 
 ```ruby
 client.forms.send_(
-  from: "agent_iM9wQcyBBjYn",
-  to: "+14155551234",
-  form: "form_Oy2n7iUoi9CJwUU6",
+  from: 'agent_iM9wQcyBBjYn',
+  to: '+14155551234',
+  form: 'form_Oy2n7iUoi9CJwUU6',
   fallback: {
-    from: "+14155550000"
+    from: '+14155550000'
   },
   options: {
-    webview_mode: "FULL"
+    webview_mode: 'FULL'
   }
-)
+);
 ```
 </dd>
 </dl>
@@ -3418,9 +3418,9 @@ Remove contacts from an existing audience. This operation is idempotent.
 
 ```ruby
 client.audiences.contacts.remove(
-  id: "aud_abc123",
-  contacts: %w[+12125551234 co_def456]
-)
+  id: 'aud_abc123',
+  contacts: ['+12125551234', 'co_def456']
+);
 ```
 </dd>
 </dl>
@@ -3498,9 +3498,9 @@ Add contacts to an existing audience. This operation is additive and idempotent.
 
 ```ruby
 client.audiences.contacts.add(
-  id: "aud_abc123",
-  contacts: %w[+12125551234 co_def456 +13105551234]
-)
+  id: 'aud_abc123',
+  contacts: ['+12125551234', 'co_def456', '+13105551234']
+);
 ```
 </dd>
 </dl>
@@ -3575,9 +3575,9 @@ Generate campaign details based off existing campaign and the brand it's connect
 
 ```ruby
 client.campaigns.dlc.autofill(
-  additional_info: "Please autofill missing campaign fields using my brand profile",
-  campaign_id: "dlc_1234567890"
-)
+  additional_info: 'Please autofill missing campaign fields using my brand profile',
+  campaign_id: 'dlc_1234567890'
+);
 ```
 </dd>
 </dl>
@@ -3639,7 +3639,7 @@ Retrieve 10DLC campaign.
 <dd>
 
 ```ruby
-client.campaigns.dlc.get(campaign_id: "dlc_1234567890")
+client.campaigns.dlc.get(campaign_id: 'dlc_1234567890');
 ```
 </dd>
 </dl>
@@ -3701,7 +3701,7 @@ Submit your 10DLC campaign for approval and activation with carriers.
 <dd>
 
 ```ruby
-client.campaigns.dlc.submit(campaign_id: "dlc_1234567890")
+client.campaigns.dlc.submit(campaign_id: 'dlc_1234567890');
 ```
 </dd>
 </dl>
@@ -3778,25 +3778,25 @@ All fields are **required** unless specified otherwise, and will be validated wh
 ```ruby
 client.campaigns.dlc.upsert(
   auto_renew: true,
-  brand: "b_1234567890",
-  description: "This campaign sends transactional SMS messages to customers who have opted in, including account notifications, security alerts, and customer care responses. Messages are sent when triggered by account activity such as login attempts, password changes, order updates, or support inquiries. All messages include required STOP/HELP disclosures and comply with TCPA guidelines.",
+  brand: 'b_1234567890',
+  description: 'This campaign sends transactional SMS messages to customers who have opted in, including account notifications, security alerts, and customer care responses. Messages are sent when triggered by account activity such as login attempts, password changes, order updates, or support inquiries. All messages include required STOP/HELP disclosures and comply with TCPA guidelines.',
   keywords: {
     help: {
-      message: "Pinnacle Software Development Inc.: For assistance, visit https://pinnacle.sh/support or email founders@trypinnacle.app. Msg&data rates may apply. Reply STOP to cancel.",
-      values: %w[HELP SUPPORT INFO]
+      message: 'Pinnacle Software Development Inc.: For assistance, visit https://pinnacle.sh/support or email founders@trypinnacle.app. Msg&data rates may apply. Reply STOP to cancel.',
+      values: ['HELP', 'SUPPORT', 'INFO']
     },
     opt_in: {
       message: "Pinnacle Software Development Inc.: You're enrolled in account & security alerts. Msg&data rates may apply. Message frequency varies. Reply HELP for help, STOP to cancel. Terms: https://pinnacle.sh/terms Privacy: https://pinnacle.sh/privacy",
-      values: %w[START YES SUBSCRIBE]
+      values: ['START', 'YES', 'SUBSCRIBE']
     },
     opt_out: {
       message: "Pinnacle Software Development Inc.: You're unsubscribed and will receive no further texts. For assistance, visit https://pinnacle.sh or call 877-389-0460. Reply START to resubscribe.",
-      values: %w[STOP CANCEL UNSUBSCRIBE]
+      values: ['STOP', 'CANCEL', 'UNSUBSCRIBE']
     }
   },
   links: {
-    privacy_policy: "https://www.pinnacle.sh/privacy",
-    terms_of_service: "https://www.pinnacle.sh/terms"
+    privacy_policy: 'https://www.pinnacle.sh/privacy',
+    terms_of_service: 'https://www.pinnacle.sh/terms'
   },
   message_flow: 'The user fills out a paper form during onboarding at [Address] which they learn about at our website (https://pinnacle.sh) in which they provide their phone number and sign their consent. The form includes a disclaimer: "By signing this form and providing your phone number, you agree to receive SMS Mixed - Account Notification, Customer Care, Security Alert, Delivery Notification from Pinnacle Software Development Inc. Message frequency may vary. Standard Message and Data Rates may apply. Reply STOP to opt out. Reply HELP for help. Consent is not a condition of purchase. Your mobile information will not be sold or shared with third parties for promotional or marketing purposes." Once the information is entered into the system, the user receives a confirmation SMS: "Thank you for signing up for SMS updates from Pinnacle Software Development Inc. Msg freq may vary. Std msg & data rates apply. Reply STOP to opt out, HELP for help." Link to paper form: https://www.pinnacle.sh/opt-in',
   name: "Pinnacle's Account Notifications",
@@ -3804,16 +3804,16 @@ client.campaigns.dlc.upsert(
     affiliate_marketing: false,
     age_gated: false,
     direct_lending: false,
-    embedded_link: "https://www.pinnacle.sh/example",
+    embedded_link: 'https://www.pinnacle.sh/example',
     embedded_phone: false,
     number_pooling: false
   },
-  sample_messages: ["Pinnacle Software Development Inc.: We're here to help. Visit https://pinnacle.sh or call 877-389-0460. Msg&data rates may apply. Reply STOP to cancel.", "Pinnacle Software Development Inc.: You're enrolled in account & security alerts. Msg&data rates may apply. Message frequency varies. Reply HELP for help, STOP to cancel. Terms: https://pinnacle.sh/terms/ Privacy: https://pinnacle.sh/privacy/", "Pinnacle Software Development Inc.: An update has been made to your account. Read it in the portal.", "Pinnacle Software Development Inc.: We received your message. A team member will reply shortly. For immediate help call 877-389-0460. Msg&data rates may apply. Reply STOP to cancel."],
+  sample_messages: ["Pinnacle Software Development Inc.: We're here to help. Visit https://pinnacle.sh or call 877-389-0460. Msg&data rates may apply. Reply STOP to cancel.", "Pinnacle Software Development Inc.: You're enrolled in account & security alerts. Msg&data rates may apply. Message frequency varies. Reply HELP for help, STOP to cancel. Terms: https://pinnacle.sh/terms/ Privacy: https://pinnacle.sh/privacy/", 'Pinnacle Software Development Inc.: An update has been made to your account. Read it in the portal.', 'Pinnacle Software Development Inc.: We received your message. A team member will reply shortly. For immediate help call 877-389-0460. Msg&data rates may apply. Reply STOP to cancel.'],
   use_case: {
-    sub: %w[ACCOUNT_NOTIFICATION CUSTOMER_CARE SECURITY_ALERT],
-    value: "MIXED"
+    sub: ['ACCOUNT_NOTIFICATION', 'CUSTOMER_CARE', 'SECURITY_ALERT'],
+    value: 'MIXED'
   }
-)
+);
 ```
 </dd>
 </dl>
@@ -3960,9 +3960,9 @@ Validate your 10DLC campaign configuration against carrier requirements and comp
 
 ```ruby
 client.campaigns.dlc.validate(
-  additional_info: "Please validate this DLC campaign for 10DLC compliance",
-  campaign_id: "dlc_1234567890"
-)
+  additional_info: 'Please validate this DLC campaign for 10DLC compliance',
+  campaign_id: 'dlc_1234567890'
+);
 ```
 </dd>
 </dl>
@@ -4024,7 +4024,7 @@ List all 10DLC campaigns with optional filtering and pagination. Results are sor
 <dd>
 
 ```ruby
-client.campaigns.dlc.list
+client.campaigns.dlc.list();
 ```
 </dd>
 </dl>
@@ -4120,9 +4120,9 @@ Generate campaign details based off existing campaign and the brand it's connect
 
 ```ruby
 client.campaigns.toll_free.autofill(
-  additional_info: "Please autofill missing campaign fields using my brand profile",
-  campaign_id: "dlc_1234567890"
-)
+  additional_info: 'Please autofill missing campaign fields using my brand profile',
+  campaign_id: 'dlc_1234567890'
+);
 ```
 </dd>
 </dl>
@@ -4184,7 +4184,7 @@ Retrieve Toll-Free campaign.
 <dd>
 
 ```ruby
-client.campaigns.toll_free.get(campaign_id: "tf_1234567890")
+client.campaigns.toll_free.get(campaign_id: 'tf_1234567890');
 ```
 </dd>
 </dl>
@@ -4246,7 +4246,7 @@ Submit your toll-free campaign for approval and activation with carriers.
 <dd>
 
 ```ruby
-client.campaigns.toll_free.submit(campaign_id: "tf_1234567890")
+client.campaigns.toll_free.submit(campaign_id: 'tf_1234567890');
 ```
 </dd>
 </dl>
@@ -4319,26 +4319,26 @@ All fields are **required** unless specified otherwise, and will be validated wh
 
 ```ruby
 client.campaigns.toll_free.upsert(
-  brand: "b_1234567890",
-  campaign_id: "tf_1234567890",
+  brand: 'b_1234567890',
+  campaign_id: 'tf_1234567890',
   keywords: {
     help: {
-      message: "Pinnacle Software Development Inc.: For assistance, visit https://pinnacle.sh/support or email founders@trypinnacle.app. Msg&data rates may apply. Reply STOP to cancel."
+      message: 'Pinnacle Software Development Inc.: For assistance, visit https://pinnacle.sh/support or email founders@trypinnacle.app. Msg&data rates may apply. Reply STOP to cancel.'
     },
     opt_in: {
       message: "Pinnacle Software Development Inc.: You're enrolled in account & security alerts. Msg&data rates may apply. Message frequency varies. Reply HELP for help, STOP to cancel. Terms: https://pinnacle.sh/terms/ Privacy: https://pinnacle.sh/privacy/",
-      keywords: %w[START SUBSCRIBE]
+      keywords: ['START', 'SUBSCRIBE']
     }
   },
   links: {
-    privacy_policy: "https://www.pinnacle.sh/privacy",
-    terms_of_service: "https://www.pinnacle.sh/terms"
+    privacy_policy: 'https://www.pinnacle.sh/privacy',
+    terms_of_service: 'https://www.pinnacle.sh/terms'
   },
-  monthly_volume: "10,000",
-  name: "Pinnacle",
+  monthly_volume: '10,000',
+  name: 'Pinnacle',
   opt_in: {
-    method_: "PAPER",
-    url: "https://www.pinnacle.sh/opt-in",
+    method_: 'PAPER',
+    url: 'https://www.pinnacle.sh/opt-in',
     workflow_description: "End users opt-in when filling out the in-person intake forms where they will write their phone numbers and check a box indicating that they've opted in to messages. Link to paper form: https://www.pinnacle.sh/opt-in"
   },
   options: {
@@ -4346,10 +4346,10 @@ client.campaigns.toll_free.upsert(
   },
   production_message_content: "Hi [First Name], your order #[Order ID] has shipped and will arrive [Date]. Track here: [URL]. Reply HELP for help or STOP to unsubscribe.",
   use_case: {
-    summary: "Customers who have opted into text messages can interact with our automated SMS chatbot to receive transaction-driven notifications (order status, shipping updates, account alerts), ask support questions, share photos with friends, and manage their account details via simple, conversational text flows. All messages are transactional or interactive flows customers opt into. Users can send images (e.g., receipts) and get guided replies.",
-    value: "CHATBOT"
+    summary: 'Customers who have opted into text messages can interact with our automated SMS chatbot to receive transaction-driven notifications (order status, shipping updates, account alerts), ask support questions, share photos with friends, and manage their account details via simple, conversational text flows. All messages are transactional or interactive flows customers opt into. Users can send images (e.g., receipts) and get guided replies.',
+    value: 'CHATBOT'
   }
-)
+);
 ```
 </dd>
 </dl>
@@ -4484,9 +4484,9 @@ Validate your toll-free campaign configuration against carrier requirements and 
 
 ```ruby
 client.campaigns.toll_free.validate(
-  additional_info: "Please validate this DLC campaign for 10DLC compliance",
-  campaign_id: "dlc_1234567890"
-)
+  additional_info: 'Please validate this DLC campaign for 10DLC compliance',
+  campaign_id: 'dlc_1234567890'
+);
 ```
 </dd>
 </dl>
@@ -4548,7 +4548,7 @@ List all toll-free campaigns with optional filtering and pagination. Results are
 <dd>
 
 ```ruby
-client.campaigns.toll_free.list
+client.campaigns.toll_free.list();
 ```
 </dd>
 </dl>
@@ -4644,9 +4644,9 @@ Generate campaign details based off existing campaign and the brand it's connect
 
 ```ruby
 client.campaigns.rcs.autofill(
-  additional_info: "Please autofill missing campaign fields using my brand profile",
-  campaign_id: "dlc_1234567890"
-)
+  additional_info: 'Please autofill missing campaign fields using my brand profile',
+  campaign_id: 'dlc_1234567890'
+);
 ```
 </dd>
 </dl>
@@ -4708,7 +4708,7 @@ Retrieve RCS campaign.
 <dd>
 
 ```ruby
-client.campaigns.rcs.get(campaign_id: "rcs_1234567890")
+client.campaigns.rcs.get(campaign_id: 'rcs_1234567890');
 ```
 </dd>
 </dl>
@@ -4770,7 +4770,7 @@ Submit your RCS campaign for approval and activation with carriers.
 <dd>
 
 ```ruby
-client.campaigns.rcs.submit(campaign_id: "rcs_1234567890")
+client.campaigns.rcs.submit(campaign_id: 'rcs_1234567890');
 ```
 </dd>
 </dl>
@@ -4843,42 +4843,42 @@ All fields are **required** unless specified otherwise, and will be validated wh
 client.campaigns.rcs.upsert(
   agent: {
     color: "#000000",
-    description: "Experience the power of RCS messaging with interactive demos. Test rich features like carousels, suggested replies, and media sharing. Get started with our developer-friendly APIs.",
+    description: 'Experience the power of RCS messaging with interactive demos. Test rich features like carousels, suggested replies, and media sharing. Get started with our developer-friendly APIs.',
     emails: [{
-      email: "founders@trypinnacle.app",
-      label: "Email Us"
+      email: 'founders@trypinnacle.app',
+      label: 'Email Us'
     }],
-    hero_url: "https://pncl.to/D6pDSqGxqgfbCfQmw4gXdnlHu4uSB4",
-    icon_url: "https://pncl.to/mq_tdIDenRb5eYpJiM8-3THCaUBrZP",
-    name: "Pinnacle - RCS Demo",
+    hero_url: 'https://pncl.to/D6pDSqGxqgfbCfQmw4gXdnlHu4uSB4',
+    icon_url: 'https://pncl.to/mq_tdIDenRb5eYpJiM8-3THCaUBrZP',
+    name: 'Pinnacle - RCS Demo',
     phones: [{
-      label: "Contact us directly",
-      phone: "+14154467821"
+      label: 'Contact us directly',
+      phone: '+14154467821'
     }],
     websites: [{
-      label: "Get started with Pinnacle",
-      url: "https://www.trypinnacle.app/"
+      label: 'Get started with Pinnacle',
+      url: 'https://www.trypinnacle.app/'
     }]
   },
-  brand: "b_1234567890",
-  campaign_id: "rcs_1234567890",
-  expected_agent_responses: ["Here are the things I can help you with.", "I can assist you with booking an appointment, or you may choose to book manually.", "Here are the available times to connect with a representative tomorrow.", "Your appointment has been scheduled."],
+  brand: 'b_1234567890',
+  campaign_id: 'rcs_1234567890',
+  expected_agent_responses: ['Here are the things I can help you with.', 'I can assist you with booking an appointment, or you may choose to book manually.', 'Here are the available times to connect with a representative tomorrow.', 'Your appointment has been scheduled.'],
   links: {
-    privacy_policy: "“https://www.trypinnacle.app/privacy”",
-    terms_of_service: "“https://www.trypinnacle.app/terms”"
+    privacy_policy: '“https://www.trypinnacle.app/privacy”',
+    terms_of_service: '“https://www.trypinnacle.app/terms”'
   },
-  use_case_description: "Pinnacle is a developer-focused RCS assistant that helps teams design, test, and optimize rich messaging experiences across SMS, MMS, and RCS. The agent acts as both an “onboarding guide” for new customers and a “best-practices coach” for existing teams exploring higher-value RCS workflows like rich cards, carousels, and suggested actions.<br>
+  use_case_description: 'Pinnacle is a developer-focused RCS assistant that helps teams design, test, and optimize rich messaging experiences across SMS, MMS, and RCS. The agent acts as both an “onboarding guide” for new customers and a “best-practices coach” for existing teams exploring higher-value RCS workflows like rich cards, carousels, and suggested actions.<br>
   The agent delivers a mix of operational updates and educational content (2–6 messages/month). Content includes important platform notices (e.g., deliverability or throughput changes), implementation tips with sample RCS templates, and personalized recommendations on how to upgrade existing SMS campaigns into richer, higher-converting RCS conversations.
-  ",
-  messaging_type: "OTP",
-  cta_media: "“https://www.pinnacle.sh/send”",
-  opt_in_method: "We ensure consent through an explicit opt-in process that follows 10DLC best practices.Users must agree to receive messages from Pinnacle before the agent sends them any messages.<br>
+  ',
+  messaging_type: 'OTP',
+  cta_media: '“https://www.pinnacle.sh/send”',
+  opt_in_method: 'We ensure consent through an explicit opt-in process that follows 10DLC best practices.Users must agree to receive messages from Pinnacle before the agent sends them any messages.<br>
   Users agree to these messages by signing an opt-in paper form that they can be found online at https://www.pinnacle.sh/opt-in. We only send messages once users have filled out the form and submitted it to us via email or through the dashboard.
-  ",
+  ',
   keywords: {
     help: {
-      message: "Email founders@trypinnacle.app for support.",
-      keywords: %w[HELP SUPPORT]
+      message: 'Email founders@trypinnacle.app for support.',
+      keywords: ['HELP', 'SUPPORT']
     },
     opt_in: {
       message: "Welcome back to Pinnacle!<br>
@@ -4886,20 +4886,20 @@ client.campaigns.rcs.upsert(
       
       Reply STOP to opt out and HELP for support. Message & rates may apply.
       ",
-      keywords: %w[START SUBSCRIBE]
+      keywords: ['START', 'SUBSCRIBE']
     },
     opt_out: {
       message: "You've been unsubscribed from Pinnacle - RCS Demo and will no longer receive notifications. If you ever change your mind, reply START or SUBSCRIBE to rejoin anytime.",
-      keywords: %w[STOP UNSUBSCRIBE END]
+      keywords: ['STOP', 'UNSUBSCRIBE', 'END']
     }
   },
   traffic: {
     monthly_website: 10000,
     monthly_rcs_estimate: 10000
   },
-  cta_language: "By checking this box and submitting this form, you consent to receive transactional text messages for support, appointment, and reminder messages from Pinnacle Software Development Inc. Reply STOP to opt out. Reply HELP for help. Standard message and data rates may apply. Message frequency may vary. View our Terms and Conditions at https://www.pinnacle.sh/terms. View our Privacy Policy at https://www.pinnacle.sh/privacy.",
+  cta_language: 'By checking this box and submitting this form, you consent to receive transactional text messages for support, appointment, and reminder messages from Pinnacle Software Development Inc. Reply STOP to opt out. Reply HELP for help. Standard message and data rates may apply. Message frequency may vary. View our Terms and Conditions at https://www.pinnacle.sh/terms. View our Privacy Policy at https://www.pinnacle.sh/privacy.',
   demo_trigger: 'Text "START" to trigger the flow.'
-)
+);
 ```
 </dd>
 </dl>
@@ -5061,9 +5061,9 @@ Validate your RCS campaign configuration against carrier requirements and compli
 
 ```ruby
 client.campaigns.rcs.validate(
-  additional_info: "Please validate this DLC campaign for 10DLC compliance",
-  campaign_id: "dlc_1234567890"
-)
+  additional_info: 'Please validate this DLC campaign for 10DLC compliance',
+  campaign_id: 'dlc_1234567890'
+);
 ```
 </dd>
 </dl>
@@ -5125,7 +5125,7 @@ List all RCS campaigns with optional filtering and pagination. Results are sorte
 <dd>
 
 ```ruby
-client.campaigns.rcs.list
+client.campaigns.rcs.list();
 ```
 </dd>
 </dl>
@@ -5221,10 +5221,10 @@ Paginated list of completed submissions for a form, newest first. Each row inclu
 
 ```ruby
 client.forms.submissions.list(
-  id: "form_Oy2n7iUoi9CJwUU6",
+  id: 'form_Oy2n7iUoi9CJwUU6',
   page_index: 0,
   page_size: 20
-)
+);
 ```
 </dd>
 </dl>
@@ -5307,10 +5307,10 @@ Send a SMS message immediately or schedule it for future delivery.
 
 ```ruby
 client.messages.sms.send_(
-  from: "+14155164736",
-  text: "Hey!",
-  to: "+14154746461"
-)
+  from: '+14155164736',
+  text: 'Hey!',
+  to: '+14154746461'
+);
 ```
 </dd>
 </dl>
@@ -5396,7 +5396,7 @@ Validate SMS message content without sending it.
 <dd>
 
 ```ruby
-client.messages.sms.validate(text: "Hello from Pinnacle")
+client.messages.sms.validate(text: 'Hello from Pinnacle');
 ```
 </dd>
 </dl>
@@ -5460,15 +5460,15 @@ Send a MMS immediately or schedule it for future delivery.
 
 ```ruby
 client.messages.mms.send_(
-  from: "+14155164736",
-  media_urls: ["https://fastly.picsum.photos/id/941/300/300.jpg?hmac=mDxM9PWSqRDjecwSCEpzU4bj35gqnG7yA25OL29uNv0"],
+  from: '+14155164736',
+  media_urls: ['https://fastly.picsum.photos/id/941/300/300.jpg?hmac=mDxM9PWSqRDjecwSCEpzU4bj35gqnG7yA25OL29uNv0'],
   options: {
     multiple_messages: true,
     validate: true
   },
-  text: "Check out this image!",
-  to: "+14154746461"
-)
+  text: 'Check out this image!',
+  to: '+14154746461'
+);
 ```
 </dd>
 </dl>
@@ -5567,9 +5567,9 @@ Validate MMS message content without sending it.
 
 ```ruby
 client.messages.mms.validate(
-  media_urls: %w[https://upload.wikimedia.org/wikipedia/commons/b/b9/Pizigani_1367_Chart_1MB.jpg https://fastly.picsum.photos/id/528/1000/1000.jpg?hmac=aTG0xNif9KbNryFN0ZNZ_nFK6aEpZxqUGCZF1KjOT8w https://file-examples.com/storage/fefdd7ab126835e7993bb1a/2017/10/file_example_JPG_500kB.jpg],
-  text: "Check out these images!"
-)
+  media_urls: ['https://upload.wikimedia.org/wikipedia/commons/b/b9/Pizigani_1367_Chart_1MB.jpg', 'https://fastly.picsum.photos/id/528/1000/1000.jpg?hmac=aTG0xNif9KbNryFN0ZNZ_nFK6aEpZxqUGCZF1KjOT8w', 'https://file-examples.com/storage/fefdd7ab126835e7993bb1a/2017/10/file_example_JPG_500kB.jpg'],
+  text: 'Check out these images!'
+);
 ```
 </dd>
 </dl>
@@ -5635,10 +5635,10 @@ Requires an active RCS agent and recipient devices that support RCS Business Mes
 
 ```ruby
 client.messages.rcs.send_(
-  from: "from",
-  to: "to",
-  text: "text"
-)
+  from: 'from',
+  to: 'to',
+  text: 'text'
+);
 ```
 </dd>
 </dl>
@@ -5711,9 +5711,9 @@ This endpoint allows RCS agents to display a typing indicator to recipients. The
 
 ```ruby
 client.messages.rcs.send_typing(
-  agent_id: "agent_pinnacle",
-  to: "+14154746461"
-)
+  agent_id: 'agent_pinnacle',
+  to: '+14154746461'
+);
 ```
 </dd>
 </dl>
@@ -5791,7 +5791,7 @@ Validate RCS message content without sending it.
 <dd>
 
 ```ruby
-client.messages.rcs.validate(text: "text")
+client.messages.rcs.validate(text: 'text');
 ```
 </dd>
 </dl>
@@ -5859,12 +5859,12 @@ Use the optional `schedule` parameter in `options` to schedule the blast for fut
 
 ```ruby
 client.messages.blast.sms(
-  audience_id: "aud_abc123",
-  senders: %w[+14155164736 +14155164737],
+  audience_id: 'aud_abc123',
+  senders: ['+14155164736', '+14155164737'],
   message: {
-    text: "Hello from Pinnacle!"
+    text: 'Hello from Pinnacle!'
   }
-)
+);
 ```
 </dd>
 </dl>
@@ -5967,16 +5967,16 @@ Use the optional `schedule` parameter in `options` to schedule the blast for fut
 
 ```ruby
 client.messages.blast.mms(
-  audience_id: "aud_abc123",
-  senders: %w[+14155164736 +14155164737],
+  audience_id: 'aud_abc123',
+  senders: ['+14155164736', '+14155164737'],
   message: {
-    media_urls: ["https://fastly.picsum.photos/id/941/300/300.jpg"],
-    text: "Check out this image!"
+    media_urls: ['https://fastly.picsum.photos/id/941/300/300.jpg'],
+    text: 'Check out this image!'
   },
   options: {
     validate: true
   }
-)
+);
 ```
 </dd>
 </dl>
@@ -6079,21 +6079,21 @@ Use the optional `schedule` parameter in `options` to schedule the blast for fut
 
 ```ruby
 client.messages.blast.rcs(
-  audience_id: "aud_abc123",
-  senders: %w[agent_pinnacle agent_pinnacle2],
+  audience_id: 'aud_abc123',
+  senders: ['agent_pinnacle', 'agent_pinnacle2'],
   message: {
     quick_replies: [],
-    text: "Hello from Pinnacle RCS!"
+    text: 'Hello from Pinnacle RCS!'
   },
   fallback: {
-    from: "+14155164736",
-    text: "Hello from Pinnacle! Reply LEARN to learn more."
+    from: '+14155164736',
+    text: 'Hello from Pinnacle! Reply LEARN to learn more.'
   },
   options: {
     transcode: true,
     validate: true
   }
-)
+);
 ```
 </dd>
 </dl>
@@ -6200,7 +6200,7 @@ Works for both individual scheduled messages and scheduled blasts. Use the `sche
 <dd>
 
 ```ruby
-client.messages.schedule.cancel(id: "id")
+client.messages.schedule.cancel(id: 'id');
 ```
 </dd>
 </dl>
@@ -6263,7 +6263,7 @@ List all scheduled messages with optional filtering and pagination. Results are 
 <dd>
 
 ```ruby
-client.messages.schedules.list
+client.messages.schedules.list();
 ```
 </dd>
 </dl>
@@ -6358,7 +6358,7 @@ List all blasts with optional filtering and pagination. Results are sorted by cr
 <dd>
 
 ```ruby
-client.messages.blasts.list
+client.messages.blasts.list();
 ```
 </dd>
 </dl>
@@ -6454,12 +6454,12 @@ Simulate inbound messages and button presses from a user.
 
 ```ruby
 client.messages.simulate.user(
-  from: "+14155551234",
-  to: "+14155555678",
+  from: '+14155551234',
+  to: '+14155555678',
   message: {
-    text: "Hello from the test user!"
+    text: 'Hello from the test user!'
   }
-)
+);
 ```
 </dd>
 </dl>
@@ -6523,10 +6523,10 @@ Link a phone number to a specific campaign. Phone numbers must be linked to a ca
 
 ```ruby
 client.phone_numbers.campaign.attach(
-  phones: %w[+14155550123 +14155559876 +14155550111],
-  campaign_type: "TOLL_FREE",
-  campaign_id: "tf_1234567890"
-)
+  phones: ['+14155550123', '+14155559876', '+14155550111'],
+  campaign_type: 'TOLL_FREE',
+  campaign_id: 'tf_1234567890'
+);
 ```
 </dd>
 </dl>
@@ -6616,7 +6616,7 @@ Remove the association between a phone number and its attached campaign.
 <dd>
 
 ```ruby
-client.phone_numbers.campaign.detach(phones: %w[+14155559876 14155550111])
+client.phone_numbers.campaign.detach(phones: ['+14155559876', '14155550111']);
 ```
 </dd>
 </dl>
@@ -6682,7 +6682,7 @@ List all RCS agents with pagination. Results are sorted by creation date, newest
 <dd>
 
 ```ruby
-client.rcs.agents.list
+client.rcs.agents.list();
 ```
 </dd>
 </dl>
@@ -6769,7 +6769,7 @@ List all whitelisted test numbers with optional filtering and pagination. Result
 <dd>
 
 ```ruby
-client.rcs.whitelisted_numbers.list
+client.rcs.whitelisted_numbers.list();
 ```
 </dd>
 </dl>
@@ -6895,28 +6895,28 @@ Once your test agent is created, you'll need to:
 
 ```ruby
 client.rcs.test.create_agent(
-  display_name: "Acme Support",
-  description: "Get help with your Acme orders and account",
-  logo_url: "https://example.com/logo.png",
-  hero_url: "https://example.com/hero.png",
+  display_name: 'Acme Support',
+  description: 'Get help with your Acme orders and account',
+  logo_url: 'https://example.com/logo.png',
+  hero_url: 'https://example.com/hero.png',
   phone_numbers: [{
-    number: "+14155550123",
-    label: "Support"
+    number: '+14155550123',
+    label: 'Support'
   }],
   emails: [{
-    address: "support@example.com",
-    label: "Support"
+    address: 'support@example.com',
+    label: 'Support'
   }],
   websites: [{
-    url: "https://example.com",
-    label: "Website"
+    url: 'https://example.com',
+    label: 'Website'
   }],
-  privacy_url: "https://example.com/privacy",
-  terms_url: "https://example.com/terms",
+  privacy_url: 'https://example.com/privacy',
+  terms_url: 'https://example.com/terms',
   color: "#FF6B00",
   is_conversational: true,
-  agent_use_case: "MULTI_USE"
-)
+  agent_use_case: 'MULTI_USE'
+);
 ```
 </dd>
 </dl>
@@ -7118,9 +7118,9 @@ If updating images, the same requirements apply as when creating an agent:
 
 ```ruby
 client.rcs.test.update_agent(
-  agent_id: "agent_abc123def456",
-  display_name: "Acme Premium Support"
-)
+  agent_id: 'agent_abc123def456',
+  display_name: 'Acme Premium Support'
+);
 ```
 </dd>
 </dl>
@@ -7328,9 +7328,9 @@ Attempting to whitelist during the cooldown returns a `500` error with the remai
 
 ```ruby
 client.rcs.test.whitelist_number(
-  agent_id: "agent_abc123def456",
-  phone_number: "+12345678901"
-)
+  agent_id: 'agent_abc123def456',
+  phone_number: '+12345678901'
+);
 ```
 </dd>
 </dl>
@@ -7421,9 +7421,9 @@ whether the recipient has accepted or rejected the tester invite.
 
 ```ruby
 client.rcs.test.get_whitelist_status(
-  agent_id: "agent_abc123def456",
-  phone_number: "+12345678901"
-)
+  agent_id: 'agent_abc123def456',
+  phone_number: '+12345678901'
+);
 ```
 </dd>
 </dl>
@@ -7494,7 +7494,7 @@ Retrieve a brand's status.
 <dd>
 
 ```ruby
-client.status.get.brand(brand_id: "b_1234567890")
+client.status.get.brand(brand_id: 'b_1234567890');
 ```
 </dd>
 </dl>
@@ -7556,7 +7556,7 @@ Retrieve a toll-free campaign's status.
 <dd>
 
 ```ruby
-client.status.get.toll_free(campaign_id: "tf_1234567890")
+client.status.get.toll_free(campaign_id: 'tf_1234567890');
 ```
 </dd>
 </dl>
@@ -7618,7 +7618,7 @@ Retrieve a 10DLC campaign's status.
 <dd>
 
 ```ruby
-client.status.get.dlc(campaign_id: "dlc_1234567890")
+client.status.get.dlc(campaign_id: 'dlc_1234567890');
 ```
 </dd>
 </dl>
@@ -7680,7 +7680,7 @@ Retrieve a RCS campaign's status.
 <dd>
 
 ```ruby
-client.status.get.rcs(campaign_id: "rcs_1234567890")
+client.status.get.rcs(campaign_id: 'rcs_1234567890');
 ```
 </dd>
 </dl>
@@ -7744,7 +7744,7 @@ Check if a number is active and ready to send messages.
 <dd>
 
 ```ruby
-client.status.get.phone_number(phone_number: "+14151234567")
+client.status.get.phone_number(phone_number: '+14151234567');
 ```
 </dd>
 </dl>
@@ -7808,11 +7808,11 @@ Create a shortened URL that redirects visitors to the provided destination URL.
 
 ```ruby
 client.tools.url.create(
-  url: "https://www.pinnacle.sh/",
+  url: 'https://www.pinnacle.sh/',
   options: {
-    expires_at: "2025-06-23T16:18:25.000Z"
+    expires_at: '2025-06-23T16:18:25.000Z'
   }
-)
+);
 ```
 </dd>
 </dl>
@@ -7882,7 +7882,7 @@ Retrieve configuration and details for your shortened URL using its unique ident
 <dd>
 
 ```ruby
-client.tools.url.get(link_id: "ePzVxILF")
+client.tools.url.get(link_id: 'ePzVxILF');
 ```
 </dd>
 </dl>
@@ -7949,9 +7949,9 @@ Update the destination or expiration date of an existing shortened URL. Expiring
 
 ```ruby
 client.tools.url.update(
-  link_id: "ePzVxILF",
-  url: "https://www.pinnacle.sh/"
-)
+  link_id: 'ePzVxILF',
+  url: 'https://www.pinnacle.sh/'
+);
 ```
 </dd>
 </dl>
@@ -8033,7 +8033,7 @@ List all shortened URLs with pagination. Results are sorted by creation date, ne
 <dd>
 
 ```ruby
-client.tools.url.list
+client.tools.url.list();
 ```
 </dd>
 </dl>
@@ -8113,16 +8113,16 @@ Generate presigned URLs that let you upload files directly to our storage and al
 
 ```ruby
 client.tools.file.upload(
-  content_type: "image/jpeg",
+  content_type: 'image/jpeg',
   size: 1024,
-  name: "test.jpg",
+  name: 'test.jpg',
   options: {
-    delete_at: "2025-12-31T23:59:59Z",
+    delete_at: '2025-12-31T23:59:59Z',
     download: {
-      expires_at: "2025-06-30T12:00:00.000Z"
+      expires_at: '2025-06-30T12:00:00.000Z'
     }
   }
-)
+);
 ```
 </dd>
 </dl>
@@ -8220,7 +8220,7 @@ Refresh expiring presigned URLs for Pinnacle-hosted files to extend their access
 <dd>
 
 ```ruby
-client.tools.file.refresh(urls: %w[https://server.trypinnacle.app/storage/v1/object/sign/vault/3/test.jpg?token=oldtoken https://server.trypinnacle.app/storage/v1/object/sign/vault/3/document.pdf?token=oldtoken2 invalid/url https://google.com])
+client.tools.file.refresh(urls: ['https://server.trypinnacle.app/storage/v1/object/sign/vault/3/test.jpg?token=oldtoken', 'https://server.trypinnacle.app/storage/v1/object/sign/vault/3/document.pdf?token=oldtoken2', 'invalid/url', 'https://google.com']);
 ```
 </dd>
 </dl>
@@ -8283,7 +8283,7 @@ Retrieve contact information as a vCard and get a presigned URL to download the 
 <dd>
 
 ```ruby
-client.tools.contact_card.get(id: "cc_1234567890")
+client.tools.contact_card.get(id: 'cc_1234567890');
 ```
 </dd>
 </dl>
@@ -8354,51 +8354,51 @@ Create a new contact card or updates an existing one with full vCard data. Conta
 
 ```ruby
 client.tools.contact_card.upsert(
-  id: "cc_1234567890",
-  formatted_name: "Jane Smith",
+  id: 'cc_1234567890',
+  formatted_name: 'Jane Smith',
   name: {
-    family_name: "Smith",
-    given_name: "Jane",
-    additional_names: ["A."],
-    honorific_prefixes: ["Dr."],
-    honorific_suffixes: ["PhD"]
+    family_name: 'Smith',
+    given_name: 'Jane',
+    additional_names: ['A.'],
+    honorific_prefixes: ['Dr.'],
+    honorific_suffixes: ['PhD']
   },
-  nickname: ["Janie"],
-  birthday: "1990-02-15",
+  nickname: ['Janie'],
+  birthday: '1990-02-15',
   addresses: [{
-    country_name: "USA",
-    extended_address: "Apt. 4B",
-    locality: "Anytown",
-    postal_code: "90210",
-    post_office_box: "PO Box 123",
-    region: "CA",
-    street_address: "123 Main St",
-    type: %w[HOME PREF]
+    country_name: 'USA',
+    extended_address: 'Apt. 4B',
+    locality: 'Anytown',
+    postal_code: '90210',
+    post_office_box: 'PO Box 123',
+    region: 'CA',
+    street_address: '123 Main St',
+    type: ['HOME', 'PREF']
   }],
-  url: "https://app.pinnacle.sh",
+  url: 'https://app.pinnacle.sh',
   phones: [{
-    type: ["CELL"],
-    value: "+15551234567"
+    type: ['CELL'],
+    value: '+15551234567'
   }],
   emails: [{
-    type: ["INTERNET"],
-    value: "jane.smith@example.com"
+    type: ['INTERNET'],
+    value: 'jane.smith@example.com'
   }],
-  timezone: "America/Los_Angeles",
+  timezone: 'America/Los_Angeles',
   geo: {
     latitude: 34.0522,
     longitude: -118.2437
   },
-  title: "Engineer",
-  role: "Developer",
+  title: 'Engineer',
+  role: 'Developer',
   organization: {
-    name: "Acme Co",
-    units: %w[Engineering R&D]
+    name: 'Acme Co',
+    units: ['Engineering', 'R&D']
   },
-  categories: %w[Friend Colleague],
-  note: "Test contact entry",
-  photo: "https://fastly.picsum.photos/id/853/200/200.jpg?hmac=f4LF-tVBBnJb9PQAVEO8GCTGWgLUnxQLw44rUofE6mQ"
-)
+  categories: ['Friend', 'Colleague'],
+  note: 'Test contact entry',
+  photo: 'https://fastly.picsum.photos/id/853/200/200.jpg?hmac=f4LF-tVBBnJb9PQAVEO8GCTGWgLUnxQLw44rUofE6mQ'
+);
 ```
 </dd>
 </dl>
@@ -8432,4 +8432,3 @@ client.tools.contact_card.upsert(
 </dd>
 </dl>
 </details>
-

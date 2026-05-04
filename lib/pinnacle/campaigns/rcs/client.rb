@@ -62,7 +62,7 @@ module Pinnacle
           request = Pinnacle::Internal::JSON::Request.new(
             base_url: request_options[:base_url],
             method: "GET",
-            path: "campaigns/rcs/#{URI.encode_uri_component(params[:campaign_id].to_s)}",
+            path: "campaigns/rcs/#{params[:campaign_id]}",
             request_options: request_options
           )
           begin
@@ -96,7 +96,7 @@ module Pinnacle
           request = Pinnacle::Internal::JSON::Request.new(
             base_url: request_options[:base_url],
             method: "POST",
-            path: "campaigns/rcs/submit/#{URI.encode_uri_component(params[:campaign_id].to_s)}",
+            path: "campaigns/rcs/submit/#{params[:campaign_id]}",
             request_options: request_options
           )
           begin

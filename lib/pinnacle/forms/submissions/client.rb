@@ -33,7 +33,7 @@ module Pinnacle
           request = Pinnacle::Internal::JSON::Request.new(
             base_url: request_options[:base_url],
             method: "POST",
-            path: "forms/#{URI.encode_uri_component(params[:id].to_s)}/submissions/list",
+            path: "forms/#{params[:id]}/submissions/list",
             body: body,
             request_options: request_options
           )
