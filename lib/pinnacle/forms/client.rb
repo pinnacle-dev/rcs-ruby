@@ -27,7 +27,7 @@ module Pinnacle
         request = Pinnacle::Internal::JSON::Request.new(
           base_url: request_options[:base_url],
           method: "GET",
-          path: "forms/#{params[:id]}",
+          path: "forms/#{URI.encode_uri_component(params[:id].to_s)}",
           request_options: request_options
         )
         begin
@@ -66,7 +66,7 @@ module Pinnacle
         request = Pinnacle::Internal::JSON::Request.new(
           base_url: request_options[:base_url],
           method: "PATCH",
-          path: "forms/#{params[:id]}",
+          path: "forms/#{URI.encode_uri_component(params[:id].to_s)}",
           body: body,
           request_options: request_options
         )
