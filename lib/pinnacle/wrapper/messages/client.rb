@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 require "json"
+require_relative "../../types/message_event"
+require_relative "../../types/user_event"
+require_relative "../../types/form_submission_event"
+require_relative "../../types/campaign_status_event"
 
 module Pinnacle
   module Wrapper
