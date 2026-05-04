@@ -1,5 +1,5 @@
 {
-  "cliVersion": "4.58.0",
+  "cliVersion": "5.5.0",
   "generatorName": "fernapi/fern-ruby-sdk",
   "generatorVersion": "1.1.13",
   "generatorConfig": {
@@ -8,6 +8,6 @@
     "useProvidedDefaults": true,
     "rubocopVariableNumberStyle": "snake_case"
   },
-  "originGitCommit": "67b02c6fdcc864a804560f25bfdf6c6bad6dde2e",
-  "sdkVersion": "2.0.16.pre.rc.9"
+  "originGitCommit": "dd4e49c86599d05be05b0e173b210243e7475db6",
+  "sdkVersion": "2.0.17"
 }

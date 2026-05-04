@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    rcs (2.0.16.pre.rc.9)
+    rcs (2.0.17)
 
 GEM
   remote: https://rubygems.org/
@@ -16,7 +16,7 @@ GEM
       rexml
     hashdiff (1.2.1)
     io-console (0.8.2)
-    json (2.19.4)
+    json (2.19.5)
     language_server-protocol (3.17.0.5)
     lint_roller (1.1.0)
     method_source (1.1.0)
