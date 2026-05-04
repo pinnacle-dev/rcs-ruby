@@ -58,3 +58,19 @@ Minitest/MultipleAssertions:
 
 Minitest/UselessAssertion:
   Enabled: false
+
+# Auto-generated `internal/types/*.rb` ends with a bare `value` reference
+# inside the type-coercion fallthrough — intentional, not dead code.
+Lint/Void:
+  Exclude:
+    - "lib/pinnacle/internal/types/**/*.rb"
+
+# Auto-generated test_union.rb uses `assert X.member?(Y)` because it's
+# testing the `member?` API directly, not a generic collection check.
+Minitest/AssertIncludes:
+  Exclude:
+    - "test/unit/internal/types/**/*.rb"
+
+Minitest/RefuteIncludes:
+  Exclude:
+    - "test/unit/internal/types/**/*.rb"
