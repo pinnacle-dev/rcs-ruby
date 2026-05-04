@@ -4,7 +4,7 @@ module Pinnacle
   module Types
     # Represents an incoming message or message status update received via webhook.
     class MessageEvent < Internal::Types::Model
-      field :type, -> { Pinnacle::Types::WebhookEventEnum }, optional: false, nullable: false
+      field :type, -> { Pinnacle::Types::MessageEventType }, optional: false, nullable: false
       field :conversation, -> { Pinnacle::Types::MessageEventConversation }, optional: false, nullable: false
       field :status, -> { Pinnacle::Types::MessageStatusEnum }, optional: false, nullable: false
       field :direction, -> { Pinnacle::Types::MessageEventDirection }, optional: false, nullable: false
