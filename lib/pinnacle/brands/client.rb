@@ -108,7 +108,7 @@ module Pinnacle
         request = Pinnacle::Internal::JSON::Request.new(
           base_url: request_options[:base_url],
           method: "GET",
-          path: "brands/#{URI.encode_uri_component(params[:id].to_s)}",
+          path: "brands/#{params[:id]}",
           query: query_params,
           request_options: request_options
         )
@@ -143,7 +143,7 @@ module Pinnacle
         request = Pinnacle::Internal::JSON::Request.new(
           base_url: request_options[:base_url],
           method: "POST",
-          path: "brands/#{URI.encode_uri_component(params[:brand_id].to_s)}/submit",
+          path: "brands/#{params[:brand_id]}/submit",
           request_options: request_options
         )
         begin
@@ -216,7 +216,7 @@ module Pinnacle
         request = Pinnacle::Internal::JSON::Request.new(
           base_url: request_options[:base_url],
           method: "POST",
-          path: "brands/#{URI.encode_uri_component(params[:brand_id].to_s)}/vet",
+          path: "brands/#{params[:brand_id]}/vet",
           body: body,
           request_options: request_options
         )

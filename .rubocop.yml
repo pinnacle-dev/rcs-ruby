@@ -58,12 +58,3 @@ Minitest/MultipleAssertions:
 
 Minitest/UselessAssertion:
   Enabled: false
-
-# Dynamic snippets are code samples for documentation, not standalone Ruby files.
-Style/FrozenStringLiteralComment:
-  Exclude:
-    - "dynamic-snippets/**/*"
-
-Layout/FirstHashElementIndentation:
-  Exclude:
-    - "dynamic-snippets/**/*"

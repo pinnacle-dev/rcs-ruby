@@ -28,7 +28,7 @@ module Pinnacle
           request = Pinnacle::Internal::JSON::Request.new(
             base_url: request_options[:base_url],
             method: "GET",
-            path: "status/brand/#{URI.encode_uri_component(params[:brand_id].to_s)}",
+            path: "status/brand/#{params[:brand_id]}",
             request_options: request_options
           )
           begin
@@ -62,7 +62,7 @@ module Pinnacle
           request = Pinnacle::Internal::JSON::Request.new(
             base_url: request_options[:base_url],
             method: "GET",
-            path: "status/toll-free-campaign/#{URI.encode_uri_component(params[:campaign_id].to_s)}",
+            path: "status/toll-free-campaign/#{params[:campaign_id]}",
             request_options: request_options
           )
           begin
@@ -96,7 +96,7 @@ module Pinnacle
           request = Pinnacle::Internal::JSON::Request.new(
             base_url: request_options[:base_url],
             method: "GET",
-            path: "status/dlc-campaign/#{URI.encode_uri_component(params[:campaign_id].to_s)}",
+            path: "status/dlc-campaign/#{params[:campaign_id]}",
             request_options: request_options
           )
           begin
@@ -130,7 +130,7 @@ module Pinnacle
           request = Pinnacle::Internal::JSON::Request.new(
             base_url: request_options[:base_url],
             method: "GET",
-            path: "status/rcs-campaign/#{URI.encode_uri_component(params[:campaign_id].to_s)}",
+            path: "status/rcs-campaign/#{params[:campaign_id]}",
             request_options: request_options
           )
           begin
@@ -166,7 +166,7 @@ module Pinnacle
           request = Pinnacle::Internal::JSON::Request.new(
             base_url: request_options[:base_url],
             method: "GET",
-            path: "status/phone-number/#{URI.encode_uri_component(params[:phone_number].to_s)}",
+            path: "status/phone-number/#{params[:phone_number]}",
             request_options: request_options
           )
           begin

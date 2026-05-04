@@ -30,7 +30,7 @@ module Pinnacle
         request = Pinnacle::Internal::JSON::Request.new(
           base_url: request_options[:base_url],
           method: "GET",
-          path: "rcs/#{URI.encode_uri_component(params[:agent_id].to_s)}",
+          path: "rcs/#{params[:agent_id]}",
           request_options: request_options
         )
         begin
