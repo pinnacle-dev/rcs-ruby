@@ -7,6 +7,7 @@ module Pinnacle
     # `verification`.
     class CampaignStatusEventCarrierLaunches < Internal::Types::Model
       field :carriers, -> { Pinnacle::Types::CampaignStatusEventCarrierLaunchesCarriers }, optional: false, nullable: false
+
       field :verification, -> { Pinnacle::Types::CampaignStatusEventCarrierLaunchesVerification }, optional: false, nullable: false
     end
   end

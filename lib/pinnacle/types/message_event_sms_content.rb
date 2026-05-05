@@ -5,6 +5,7 @@ module Pinnacle
     # SMS message containing plain text only.
     class MessageEventSmsContent < Internal::Types::Model
       field :id, -> { String }, optional: false, nullable: false
+
       field :text, -> { String }, optional: false, nullable: false
     end
   end

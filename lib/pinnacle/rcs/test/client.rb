@@ -109,7 +109,7 @@ module Pinnacle
         def update_agent(request_options: {}, **params)
           params = Pinnacle::Internal::Types::Utils.normalize_keys(params)
           request_data = Pinnacle::Rcs::Test::Types::UpdateTestAgentRequest.new(params).to_h
-          non_body_param_names = ["agentId"]
+          non_body_param_names = %w[agentId]
           body = request_data.except(*non_body_param_names)
 
           request = Pinnacle::Internal::JSON::Request.new(
@@ -180,7 +180,7 @@ module Pinnacle
         def whitelist_number(request_options: {}, **params)
           params = Pinnacle::Internal::Types::Utils.normalize_keys(params)
           request_data = Pinnacle::Rcs::Test::Types::TestAgentWhitelistRequest.new(params).to_h
-          non_body_param_names = ["agentId"]
+          non_body_param_names = %w[agentId]
           body = request_data.except(*non_body_param_names)
 
           request = Pinnacle::Internal::JSON::Request.new(
@@ -244,10 +244,8 @@ module Pinnacle
         # @return [Pinnacle::Types::TestAgentWhitelistResponse]
         def get_whitelist_status(request_options: {}, **params)
           params = Pinnacle::Internal::Types::Utils.normalize_keys(params)
-          query_param_names = %i[phone_number]
           query_params = {}
           query_params["phoneNumber"] = params[:phone_number] if params.key?(:phone_number)
-          params = params.except(*query_param_names)
 
           request = Pinnacle::Internal::JSON::Request.new(
             base_url: request_options[:base_url],

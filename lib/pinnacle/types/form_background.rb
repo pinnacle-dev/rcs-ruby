@@ -9,8 +9,11 @@ module Pinnacle
       discriminant :type
 
       member -> { Pinnacle::Types::FormBackgroundSolid }, key: "SOLID"
+
       member -> { Pinnacle::Types::FormBackgroundGradient }, key: "GRADIENT"
+
       member -> { Pinnacle::Types::FormBackgroundImage }, key: "IMAGE"
+
       member -> { Pinnacle::Types::FormBackgroundPattern }, key: "PATTERN"
     end
   end

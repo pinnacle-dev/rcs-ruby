@@ -5,7 +5,9 @@ module Pinnacle
     # Campaign that the phone is now detached from.
     class PhoneNumberCampaignDetachPhoneNumbersItemCampaign < Internal::Types::Model
       field :id, -> { String }, optional: false, nullable: false
+
       field :name, -> { String }, optional: false, nullable: false
+
       field :type, -> { Pinnacle::Types::MessagingProfileEnum }, optional: false, nullable: false
     end
   end

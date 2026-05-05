@@ -11,6 +11,7 @@ module Pinnacle
     # > GIFs and videos are not supported and will be rendered as vertical cards.
     class RichStandaloneCardOptions < Internal::Types::Model
       field :orientation, -> { Pinnacle::Types::SendRcsCardOptionsStandaloneCardOrientation }, optional: true, nullable: false
+
       field :image_alignment, -> { Pinnacle::Types::SendRcsCardOptionsStandaloneCardImageAlignment }, optional: true, nullable: false
     end
   end

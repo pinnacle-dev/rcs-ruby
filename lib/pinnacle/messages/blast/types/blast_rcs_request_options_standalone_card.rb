@@ -12,6 +12,7 @@ module Pinnacle
         # to fail with a validation error.
         class BlastRcsRequestOptionsStandaloneCard < Internal::Types::Model
           field :orientation, -> { Pinnacle::Messages::Blast::Types::BlastRcsRequestOptionsStandaloneCardOrientation }, optional: true, nullable: false
+
           field :image_alignment, -> { Pinnacle::Messages::Blast::Types::BlastRcsRequestOptionsStandaloneCardImageAlignment }, optional: true, nullable: false
         end
       end

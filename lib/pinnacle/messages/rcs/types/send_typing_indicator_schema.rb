@@ -6,6 +6,7 @@ module Pinnacle
       module Types
         class SendTypingIndicatorSchema < Internal::Types::Model
           field :agent_id, -> { String }, optional: false, nullable: false, api_name: "agentId"
+
           field :to, -> { String }, optional: false, nullable: false
         end
       end

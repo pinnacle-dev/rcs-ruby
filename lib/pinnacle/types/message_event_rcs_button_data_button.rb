@@ -5,9 +5,13 @@ module Pinnacle
     # Information about the button that was clicked.
     class MessageEventRcsButtonDataButton < Internal::Types::Model
       field :type, -> { Pinnacle::Types::MessageEventRcsButtonDataButtonType }, optional: true, nullable: false
+
       field :raw, -> { Pinnacle::Types::MessageEventRcsButtonDataButtonRaw }, optional: false, nullable: false
+
       field :payload, -> { String }, optional: true, nullable: false
+
       field :metadata, -> { String }, optional: true, nullable: false
+
       field :clicks, -> { Integer }, optional: false, nullable: false
     end
   end

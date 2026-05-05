@@ -27,7 +27,7 @@ module Pinnacle
         def list(request_options: {}, **params)
           params = Pinnacle::Internal::Types::Utils.normalize_keys(params)
           request_data = Pinnacle::Forms::Submissions::Types::ListFormSubmissionsParams.new(params).to_h
-          non_body_param_names = ["id"]
+          non_body_param_names = %w[id]
           body = request_data.except(*non_body_param_names)
 
           request = Pinnacle::Internal::JSON::Request.new(

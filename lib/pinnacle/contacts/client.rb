@@ -25,11 +25,9 @@ module Pinnacle
       # @return [Pinnacle::Types::Contact]
       def get(request_options: {}, **params)
         params = Pinnacle::Internal::Types::Utils.normalize_keys(params)
-        query_param_names = %i[id phone_number]
         query_params = {}
         query_params["id"] = params[:id] if params.key?(:id)
         query_params["phoneNumber"] = params[:phone_number] if params.key?(:phone_number)
-        params.except(*query_param_names)
 
         request = Pinnacle::Internal::JSON::Request.new(
           base_url: request_options[:base_url],

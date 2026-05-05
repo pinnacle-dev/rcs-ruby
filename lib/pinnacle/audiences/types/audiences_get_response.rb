@@ -7,6 +7,7 @@ module Pinnacle
         extend Pinnacle::Internal::Types::Union
 
         member -> { Pinnacle::Types::AudienceWithPagination }
+
         member -> { Pinnacle::Types::AudienceCountOnly }
       end
     end

@@ -12,8 +12,11 @@ module Pinnacle
       extend Pinnacle::Internal::Types::Union
 
       member -> { String }
+
       member -> { Integer }
+
       member -> { Internal::Types::Boolean }
+
       member -> { Internal::Types::Array[String] }
     end
   end

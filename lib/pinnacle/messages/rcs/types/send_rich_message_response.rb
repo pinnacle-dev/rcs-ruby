@@ -8,8 +8,11 @@ module Pinnacle
           extend Pinnacle::Internal::Types::Union
 
           member -> { Pinnacle::Types::SentRichMessage }
+
           member -> { Pinnacle::Types::ScheduledMessage }
+
           member -> { Pinnacle::Types::SentRichMessageFallbackSms }
+
           member -> { Pinnacle::Types::SentRichMessageFallbackMms }
         end
       end

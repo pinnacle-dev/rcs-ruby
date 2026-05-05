@@ -8,8 +8,11 @@ module Pinnacle
       # Toll-free numbers ignore city and state filters.
       class SearchPhoneNumberByLocation < Internal::Types::Model
         field :city, -> { String }, optional: true, nullable: false
+
         field :country_code, -> { String }, optional: true, nullable: false, api_name: "countryCode"
+
         field :national_destination_code, -> { String }, optional: true, nullable: false, api_name: "nationalDestinationCode"
+
         field :state, -> { String }, optional: true, nullable: false
       end
     end

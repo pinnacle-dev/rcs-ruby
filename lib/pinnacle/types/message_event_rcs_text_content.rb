@@ -5,7 +5,9 @@ module Pinnacle
     # RCS message containing longer text content with optional quick reply buttons.
     class MessageEventRcsTextContent < Internal::Types::Model
       field :id, -> { String }, optional: false, nullable: false
+
       field :quick_replies, -> { Internal::Types::Array[Pinnacle::Types::RichButton] }, optional: false, nullable: false, api_name: "quickReplies"
+
       field :text, -> { String }, optional: false, nullable: false
     end
   end

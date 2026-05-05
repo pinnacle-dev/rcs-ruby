@@ -7,6 +7,7 @@ module Pinnacle
     # the AEGIS and Google verification flows.
     class CarrierLaunches < Internal::Types::Model
       field :carriers, -> { Pinnacle::Types::CarrierLaunchesCarriers }, optional: false, nullable: false
+
       field :verification, -> { Pinnacle::Types::CarrierLaunchesVerification }, optional: false, nullable: false
     end
   end

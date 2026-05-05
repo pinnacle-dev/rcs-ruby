@@ -100,10 +100,8 @@ module Pinnacle
       # @return [Pinnacle::Types::ExtendedBrandWithVetting]
       def get(request_options: {}, **params)
         params = Pinnacle::Internal::Types::Utils.normalize_keys(params)
-        query_param_names = %i[hide_ein]
         query_params = {}
         query_params["hideEIN"] = params[:hide_ein] if params.key?(:hide_ein)
-        params = params.except(*query_param_names)
 
         request = Pinnacle::Internal::JSON::Request.new(
           base_url: request_options[:base_url],
@@ -210,7 +208,7 @@ module Pinnacle
       def vet(request_options: {}, **params)
         params = Pinnacle::Internal::Types::Utils.normalize_keys(params)
         request_data = Pinnacle::Brands::Types::VetBrandParams.new(params).to_h
-        non_body_param_names = ["brandId"]
+        non_body_param_names = %w[brandId]
         body = request_data.except(*non_body_param_names)
 
         request = Pinnacle::Internal::JSON::Request.new(

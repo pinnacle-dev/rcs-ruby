@@ -5,6 +5,7 @@ module Pinnacle
     module Types
       class ListFormsParams < Internal::Types::Model
         field :page_index, -> { Integer }, optional: true, nullable: false, api_name: "pageIndex"
+
         field :page_size, -> { Integer }, optional: true, nullable: false, api_name: "pageSize"
       end
     end

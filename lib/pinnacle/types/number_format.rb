@@ -6,7 +6,9 @@ module Pinnacle
     # Provides flexibility for display, storage, and integration requirements.
     class NumberFormat < Internal::Types::Model
       field :international, -> { String }, optional: false, nullable: false
+
       field :national, -> { String }, optional: false, nullable: false
+
       field :raw, -> { String }, optional: false, nullable: false
     end
   end

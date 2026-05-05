@@ -5,8 +5,11 @@ module Pinnacle
     # Webhook configuration that defines where event notifications are sent.
     class Webhooks < Internal::Types::Model
       field :endpoint, -> { String }, optional: false, nullable: false
+
       field :id, -> { String }, optional: false, nullable: false
+
       field :name, -> { String }, optional: false, nullable: false
+
       field :headers, -> { Internal::Types::Hash[String, String] }, optional: true, nullable: false
     end
   end

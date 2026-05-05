@@ -7,6 +7,7 @@ module Pinnacle
       extend Pinnacle::Internal::Types::Union
 
       member -> { Pinnacle::Types::ConversationByIdParams }
+
       member -> { Pinnacle::Types::ConversationByParticipantsParams }
     end
   end

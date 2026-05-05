@@ -9,7 +9,9 @@ module Pinnacle
     # user chose to share. Use this data to process location-based requests or provide location-specific services.
     class MessageEventRcsLocationData < Internal::Types::Model
       field :id, -> { String }, optional: false, nullable: false
+
       field :data, -> { Pinnacle::Types::MessageEventRcsLocationDataData }, optional: false, nullable: false
+
       field :message_id, -> { String }, optional: true, nullable: false, api_name: "messageId"
     end
   end

@@ -6,6 +6,7 @@ module Pinnacle
     # `theme_mode`.
     class FormBackgroundGradient < Internal::Types::Model
       field :light, -> { Pinnacle::Types::FormGradient }, optional: false, nullable: false
+
       field :dark, -> { Pinnacle::Types::FormGradient }, optional: false, nullable: false
     end
   end

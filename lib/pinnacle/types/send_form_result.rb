@@ -10,7 +10,9 @@ module Pinnacle
     # submission URL is returned.
     class SendFormResult < Internal::Types::Model
       field :form, -> { Pinnacle::Types::Form }, optional: false, nullable: false
+
       field :submission, -> { Pinnacle::Types::FormSubmission }, optional: false, nullable: false
+
       field :message_id, -> { String }, optional: false, nullable: true
     end
   end

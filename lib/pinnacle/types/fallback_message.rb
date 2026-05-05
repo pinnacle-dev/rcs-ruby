@@ -14,7 +14,9 @@ module Pinnacle
     # will not be charged if the fallback is sent instead.
     class FallbackMessage < Internal::Types::Model
       field :from, -> { String }, optional: false, nullable: false
+
       field :text, -> { String }, optional: true, nullable: false
+
       field :media_urls, -> { Internal::Types::Array[String] }, optional: true, nullable: false, api_name: "mediaUrls"
     end
   end

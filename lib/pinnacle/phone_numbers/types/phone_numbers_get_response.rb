@@ -7,6 +7,7 @@ module Pinnacle
         extend Pinnacle::Internal::Types::Union
 
         member -> { Pinnacle::Types::BasicPhoneInformation }
+
         member -> { Pinnacle::Types::AdvancedPhoneInformation }
       end
     end

@@ -5,6 +5,7 @@ module Pinnacle
     # Star rating 1..`max`. Submitted value is the selected integer.
     class RatingField < Internal::Types::Model
       field :min, -> { Integer }, optional: true, nullable: false
+
       field :max, -> { Integer }, optional: true, nullable: false
     end
   end

@@ -14,6 +14,7 @@ module Pinnacle
       extend Pinnacle::Internal::Types::Union
 
       member -> { Pinnacle::Types::SendFormViaRcsParams }
+
       member -> { Pinnacle::Types::SendFormViaSmsParams }
     end
   end

@@ -8,6 +8,7 @@ module Pinnacle
       extend Pinnacle::Internal::Types::Union
 
       member -> { Pinnacle::Types::RichButton }
+
       member -> { String }
     end
   end

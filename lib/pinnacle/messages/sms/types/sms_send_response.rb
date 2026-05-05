@@ -8,6 +8,7 @@ module Pinnacle
           extend Pinnacle::Internal::Types::Union
 
           member -> { Pinnacle::Types::SentSmsDetails }
+
           member -> { Pinnacle::Types::ScheduledMessage }
         end
       end

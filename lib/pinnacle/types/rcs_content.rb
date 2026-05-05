@@ -7,7 +7,9 @@ module Pinnacle
       extend Pinnacle::Internal::Types::Union
 
       member -> { Pinnacle::Types::RichText }
+
       member -> { Pinnacle::Types::RcsMediaContent }
+
       member -> { Pinnacle::Types::RcsCardsContent }
     end
   end

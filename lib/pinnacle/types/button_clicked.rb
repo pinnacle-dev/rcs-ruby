@@ -6,6 +6,7 @@ module Pinnacle
       extend Pinnacle::Internal::Types::Union
 
       member -> { Pinnacle::Types::ButtonClickedData }
+
       member -> { Pinnacle::Types::LocationShareAction }
     end
   end

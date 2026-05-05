@@ -5,6 +5,7 @@ module Pinnacle
     # Opt-out keyword settings.
     class DlcWithExtendedBrandAndStatusKeywordsOptOut < Internal::Types::Model
       field :message, -> { String }, optional: true, nullable: false
+
       field :values, -> { Internal::Types::Array[String] }, optional: false, nullable: false
     end
   end

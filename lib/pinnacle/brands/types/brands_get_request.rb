@@ -5,6 +5,7 @@ module Pinnacle
     module Types
       class BrandsGetRequest < Internal::Types::Model
         field :id, -> { String }, optional: false, nullable: false
+
         field :hide_ein, -> { Internal::Types::Boolean }, optional: true, nullable: false, api_name: "hideEIN"
       end
     end
