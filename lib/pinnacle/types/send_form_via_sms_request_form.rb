@@ -6,6 +6,7 @@ module Pinnacle
       extend Pinnacle::Internal::Types::Union
 
       member -> { String }
+
       member -> { Pinnacle::Types::FormDefinition }
     end
   end

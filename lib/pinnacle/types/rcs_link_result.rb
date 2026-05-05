@@ -7,6 +7,7 @@ module Pinnacle
     # To create a link follow the format: sms://{PHONE_NUMBER}?service_id={SERVICE_ID}&body={URL_ENCODED_BODY}
     class RcsLinkResult < Internal::Types::Model
       field :url, -> { String }, optional: true, nullable: false
+
       field :service_id, -> { String }, optional: false, nullable: false, api_name: "serviceId"
     end
   end

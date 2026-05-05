@@ -13,7 +13,9 @@ module Pinnacle
     # flows.
     class FormSubmissionEventConversation < Internal::Types::Model
       field :id, -> { String }, optional: false, nullable: false
+
       field :from, -> { String }, optional: false, nullable: false
+
       field :to, -> { String }, optional: false, nullable: false
     end
   end

@@ -10,10 +10,15 @@ module Pinnacle
     # messages that were sent.
     class MessageEventFallbackMessage < Internal::Types::Model
       field :ids, -> { Internal::Types::Array[String] }, optional: false, nullable: false
+
       field :type, -> { Pinnacle::Types::MessageEventFallbackMessageType }, optional: false, nullable: false
+
       field :from, -> { String }, optional: false, nullable: false
+
       field :to, -> { String }, optional: false, nullable: false
+
       field :text, -> { String }, optional: true, nullable: false
+
       field :media_urls, -> { Internal::Types::Array[String] }, optional: true, nullable: false, api_name: "mediaUrls"
     end
   end

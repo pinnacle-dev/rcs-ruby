@@ -6,7 +6,9 @@ module Pinnacle
       extend Pinnacle::Internal::Types::Union
 
       member -> { Pinnacle::Types::RichTextMessage }
+
       member -> { Pinnacle::Types::RichMediaMessage }
+
       member -> { Pinnacle::Types::RichCardsMessage }
     end
   end

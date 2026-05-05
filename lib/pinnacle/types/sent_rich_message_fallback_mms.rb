@@ -7,6 +7,7 @@ module Pinnacle
     # a `FALLBACK_SENT` webhook event for the original RCS message.
     class SentRichMessageFallbackMms < Internal::Types::Model
       field :fallback_sent, -> { Internal::Types::Boolean }, optional: false, nullable: false, api_name: "fallbackSent"
+
       field :original_message_id, -> { String }, optional: false, nullable: false, api_name: "originalMessageId"
     end
   end

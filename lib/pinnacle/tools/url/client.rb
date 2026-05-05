@@ -95,7 +95,7 @@ module Pinnacle
         def update(request_options: {}, **params)
           params = Pinnacle::Internal::Types::Utils.normalize_keys(params)
           request_data = Pinnacle::Tools::Url::Types::UpdateUrlParams.new(params).to_h
-          non_body_param_names = ["linkId"]
+          non_body_param_names = %w[linkId]
           body = request_data.except(*non_body_param_names)
 
           request = Pinnacle::Internal::JSON::Request.new(

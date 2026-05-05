@@ -5,14 +5,23 @@ module Pinnacle
     # Represents an incoming message or message status update received via webhook.
     class MessageEvent < Internal::Types::Model
       field :type, -> { Pinnacle::Types::MessageEventType }, optional: false, nullable: false
+
       field :conversation, -> { Pinnacle::Types::MessageEventConversation }, optional: false, nullable: false
+
       field :status, -> { Pinnacle::Types::MessageStatusEnum }, optional: false, nullable: false
+
       field :direction, -> { Pinnacle::Types::MessageEventDirection }, optional: false, nullable: false
+
       field :segments, -> { Integer }, optional: false, nullable: false
+
       field :sent_at, -> { String }, optional: false, nullable: true, api_name: "sentAt"
+
       field :delivered_at, -> { String }, optional: true, nullable: false, api_name: "deliveredAt"
+
       field :message, -> { Pinnacle::Types::MessageEventContent }, optional: false, nullable: false
+
       field :original_message_id, -> { String }, optional: true, nullable: false, api_name: "originalMessageId"
+
       field :fallback_message, -> { Pinnacle::Types::MessageEventFallbackMessage }, optional: true, nullable: false, api_name: "fallbackMessage"
     end
   end

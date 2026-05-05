@@ -6,6 +6,7 @@ module Pinnacle
       module Types
         class AddContactsParams < Internal::Types::Model
           field :id, -> { String }, optional: false, nullable: false
+
           field :contacts, -> { Internal::Types::Array[String] }, optional: false, nullable: false
         end
       end

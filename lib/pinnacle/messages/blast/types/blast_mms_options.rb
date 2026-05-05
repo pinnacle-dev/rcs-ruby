@@ -7,6 +7,7 @@ module Pinnacle
         # Additional settings to customize MMS blast delivery.
         class BlastMmsOptions < Internal::Types::Model
           field :validate, -> { Internal::Types::Boolean }, optional: true, nullable: false
+
           field :schedule, -> { Pinnacle::Types::MessageSchedule }, optional: true, nullable: false
         end
       end

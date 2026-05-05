@@ -26,12 +26,10 @@ module Pinnacle
       # @return [Pinnacle::Audiences::Types::AudiencesGetResponse]
       def get(request_options: {}, **params)
         params = Pinnacle::Internal::Types::Utils.normalize_keys(params)
-        query_param_names = %i[id page limit]
         query_params = {}
         query_params["id"] = params[:id] if params.key?(:id)
         query_params["page"] = params[:page] if params.key?(:page)
         query_params["limit"] = params[:limit] if params.key?(:limit)
-        params.except(*query_param_names)
 
         request = Pinnacle::Internal::JSON::Request.new(
           base_url: request_options[:base_url],
@@ -105,10 +103,8 @@ module Pinnacle
       # @return [Pinnacle::Types::DeleteAudienceResponse]
       def delete(request_options: {}, **params)
         params = Pinnacle::Internal::Types::Utils.normalize_keys(params)
-        query_param_names = %i[id]
         query_params = {}
         query_params["id"] = params[:id] if params.key?(:id)
-        params.except(*query_param_names)
 
         request = Pinnacle::Internal::JSON::Request.new(
           base_url: request_options[:base_url],

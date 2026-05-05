@@ -8,7 +8,9 @@ module Pinnacle
     # endpoint](../phone-numbers/attach-campaign).
     class GetTollFreeCampaignStatusResponseUpdates < Internal::Types::Model
       field :errors, -> { Internal::Types::Array[String] }, optional: false, nullable: false
+
       field :number, -> { String }, optional: false, nullable: false
+
       field :status, -> { Pinnacle::Types::TollFreeStatusEnum }, optional: false, nullable: false
     end
   end

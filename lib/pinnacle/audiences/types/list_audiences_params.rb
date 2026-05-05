@@ -5,7 +5,9 @@ module Pinnacle
     module Types
       class ListAudiencesParams < Internal::Types::Model
         field :page_index, -> { Integer }, optional: true, nullable: false, api_name: "pageIndex"
+
         field :page_size, -> { Integer }, optional: true, nullable: false, api_name: "pageSize"
+
         field :name, -> { String }, optional: true, nullable: false
       end
     end

@@ -4,6 +4,7 @@ module Pinnacle
   module Types
     class AgentSummaryConfigWebsitesItem < Internal::Types::Model
       field :url, -> { String }, optional: true, nullable: false
+
       field :label, -> { String }, optional: true, nullable: false
     end
   end

@@ -6,6 +6,7 @@ module Pinnacle
     # Includes all communication capabilities currently enabled for immediate use.
     class PurchasedNumber < Internal::Types::Model
       field :number, -> { String }, optional: false, nullable: false
+
       field :capabilities, -> { Pinnacle::Types::BuyResponseCapabilities }, optional: false, nullable: false
     end
   end

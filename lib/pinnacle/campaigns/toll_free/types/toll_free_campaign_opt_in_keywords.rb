@@ -7,6 +7,7 @@ module Pinnacle
         # Opt-in keyword settings.
         class TollFreeCampaignOptInKeywords < Internal::Types::Model
           field :message, -> { String }, optional: true, nullable: false
+
           field :keywords, -> { Internal::Types::Array[String] }, optional: true, nullable: false
         end
       end

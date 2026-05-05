@@ -6,6 +6,7 @@ module Pinnacle
       module Types
         class GetVcardParams < Internal::Types::Model
           field :id, -> { String }, optional: false, nullable: false
+
           field :options, -> { Pinnacle::Tools::ContactCard::Types::GetVCardSchemaOptions }, optional: true, nullable: false
         end
       end

@@ -6,8 +6,11 @@ module Pinnacle
     # pattern); the place lookup happens entirely in the browser and is purely for suggestion UX.
     class AddressField < Internal::Types::Model
       field :placeholder, -> { String }, optional: true, nullable: false
+
       field :pattern, -> { String }, optional: true, nullable: false
+
       field :min_length, -> { Integer }, optional: true, nullable: false
+
       field :max_length, -> { Integer }, optional: true, nullable: false
     end
   end

@@ -3798,7 +3798,7 @@ client.campaigns.dlc.upsert(
     privacy_policy: "https://www.pinnacle.sh/privacy",
     terms_of_service: "https://www.pinnacle.sh/terms"
   },
-  message_flow: 'The user fills out a paper form during onboarding at [Address] which they learn about at our website (https://pinnacle.sh) in which they provide their phone number and sign their consent. The form includes a disclaimer: "By signing this form and providing your phone number, you agree to receive SMS Mixed - Account Notification, Customer Care, Security Alert, Delivery Notification from Pinnacle Software Development Inc. Message frequency may vary. Standard Message and Data Rates may apply. Reply STOP to opt out. Reply HELP for help. Consent is not a condition of purchase. Your mobile information will not be sold or shared with third parties for promotional or marketing purposes." Once the information is entered into the system, the user receives a confirmation SMS: "Thank you for signing up for SMS updates from Pinnacle Software Development Inc. Msg freq may vary. Std msg & data rates apply. Reply STOP to opt out, HELP for help." Link to paper form: https://www.pinnacle.sh/opt-in',
+  message_flow: "The user fills out a paper form during onboarding at [Address] which they learn about at our website (https://pinnacle.sh) in which they provide their phone number and sign their consent. The form includes a disclaimer: \"By signing this form and providing your phone number, you agree to receive SMS Mixed - Account Notification, Customer Care, Security Alert, Delivery Notification from Pinnacle Software Development Inc. Message frequency may vary. Standard Message and Data Rates may apply. Reply STOP to opt out. Reply HELP for help. Consent is not a condition of purchase. Your mobile information will not be sold or shared with third parties for promotional or marketing purposes.\" Once the information is entered into the system, the user receives a confirmation SMS: \"Thank you for signing up for SMS updates from Pinnacle Software Development Inc. Msg freq may vary. Std msg & data rates apply. Reply STOP to opt out, HELP for help.\" Link to paper form: https://www.pinnacle.sh/opt-in",
   name: "Pinnacle's Account Notifications",
   options: {
     affiliate_marketing: false,
@@ -4898,7 +4898,7 @@ client.campaigns.rcs.upsert(
     monthly_rcs_estimate: 10000
   },
   cta_language: "By checking this box and submitting this form, you consent to receive transactional text messages for support, appointment, and reminder messages from Pinnacle Software Development Inc. Reply STOP to opt out. Reply HELP for help. Standard message and data rates may apply. Message frequency may vary. View our Terms and Conditions at https://www.pinnacle.sh/terms. View our Privacy Policy at https://www.pinnacle.sh/privacy.",
-  demo_trigger: 'Text "START" to trigger the flow.'
+  demo_trigger: "Text \"START\" to trigger the flow."
 )
 ```
 </dd>

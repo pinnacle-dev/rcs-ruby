@@ -7,6 +7,7 @@ module Pinnacle
         # Opt-in keyword settings.
         class DlcCampaignOptInKeywords < Internal::Types::Model
           field :message, -> { String }, optional: true, nullable: false
+
           field :values, -> { Internal::Types::Array[String] }, optional: true, nullable: false
         end
       end

@@ -5,6 +5,7 @@ module Pinnacle
     # Button that prompts the recipient to share their current location.
     class RcsButtonRequestUserLocation < Internal::Types::Model
       field :metadata, -> { String }, optional: true, nullable: false
+
       field :title, -> { String }, optional: false, nullable: false
     end
   end

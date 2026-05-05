@@ -7,8 +7,11 @@ module Pinnacle
       extend Pinnacle::Internal::Types::Union
 
       member -> { Pinnacle::Types::SmsContent }
+
       member -> { Pinnacle::Types::MmsContent }
+
       member -> { Pinnacle::Types::RcsContent }
+
       member -> { Pinnacle::Types::ButtonClicked }
     end
   end

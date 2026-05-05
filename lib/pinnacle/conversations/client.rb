@@ -132,7 +132,6 @@ module Pinnacle
       # @return [Pinnacle::Types::MessageList]
       def list_messages(request_options: {}, **params)
         params = Pinnacle::Internal::Types::Utils.normalize_keys(params)
-        query_param_names = %i[page_index page_size sort_order direction status type date_from date_to]
         query_params = {}
         query_params["pageIndex"] = params[:page_index] if params.key?(:page_index)
         query_params["pageSize"] = params[:page_size] if params.key?(:page_size)
@@ -142,7 +141,6 @@ module Pinnacle
         query_params["type"] = params[:type] if params.key?(:type)
         query_params["dateFrom"] = params[:date_from] if params.key?(:date_from)
         query_params["dateTo"] = params[:date_to] if params.key?(:date_to)
-        params = params.except(*query_param_names)
 
         request = Pinnacle::Internal::JSON::Request.new(
           base_url: request_options[:base_url],

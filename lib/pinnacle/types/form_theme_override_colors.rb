@@ -6,6 +6,7 @@ module Pinnacle
     # Omit a mode to inherit the team default for it.
     class FormThemeOverrideColors < Internal::Types::Model
       field :light, -> { Pinnacle::Types::FormColorPalette }, optional: true, nullable: false
+
       field :dark, -> { Pinnacle::Types::FormColorPalette }, optional: true, nullable: false
     end
   end

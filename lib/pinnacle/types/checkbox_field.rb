@@ -6,7 +6,9 @@ module Pinnacle
     # boolean checkbox.
     class CheckboxField < Internal::Types::Model
       field :options, -> { Internal::Types::Array[Pinnacle::Types::FormFieldOption] }, optional: true, nullable: false
+
       field :min_selected, -> { Integer }, optional: true, nullable: false
+
       field :max_selected, -> { Integer }, optional: true, nullable: false
     end
   end

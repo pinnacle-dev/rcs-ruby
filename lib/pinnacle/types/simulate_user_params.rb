@@ -7,6 +7,7 @@ module Pinnacle
       extend Pinnacle::Internal::Types::Union
 
       member -> { Pinnacle::Types::SimulateUserMessage }
+
       member -> { Pinnacle::Types::SimulateUserButton }
     end
   end

@@ -10,6 +10,7 @@ module Pinnacle
       extend Pinnacle::Internal::Types::Union
 
       member -> { Pinnacle::Types::Phone }
+
       member -> { Pinnacle::Types::Agent }
     end
   end

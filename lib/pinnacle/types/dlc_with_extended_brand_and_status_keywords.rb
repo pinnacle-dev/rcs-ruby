@@ -5,7 +5,9 @@ module Pinnacle
     # Keyword response configuration.
     class DlcWithExtendedBrandAndStatusKeywords < Internal::Types::Model
       field :help, -> { Pinnacle::Types::DlcWithExtendedBrandAndStatusKeywordsHelp }, optional: false, nullable: false, api_name: "HELP"
+
       field :opt_in, -> { Pinnacle::Types::DlcWithExtendedBrandAndStatusKeywordsOptIn }, optional: false, nullable: false, api_name: "OPT_IN"
+
       field :opt_out, -> { Pinnacle::Types::DlcWithExtendedBrandAndStatusKeywordsOptOut }, optional: false, nullable: false, api_name: "OPT_OUT"
     end
   end

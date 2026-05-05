@@ -7,6 +7,7 @@ module Pinnacle
     # See [supported media types](https://app.pinnacle.sh/supported-file-types?type=RCS-MEDIA).
     class RcsValidateContentMedia < Internal::Types::Model
       field :media, -> { String }, optional: false, nullable: false
+
       field :quick_replies, -> { Internal::Types::Array[Pinnacle::Types::RichButton] }, optional: true, nullable: false, api_name: "quickReplies"
     end
   end

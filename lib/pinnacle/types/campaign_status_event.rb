@@ -11,10 +11,15 @@ module Pinnacle
     # to before trusting the payload.
     class CampaignStatusEvent < Internal::Types::Model
       field :type, -> { String }, optional: false, nullable: false
+
       field :agent, -> { Pinnacle::Types::CampaignStatusEventAgent }, optional: false, nullable: false
+
       field :campaign, -> { Pinnacle::Types::CampaignStatusEventCampaign }, optional: false, nullable: false
+
       field :brand, -> { Pinnacle::Types::CampaignStatusEventBrand }, optional: false, nullable: false
+
       field :carrier_launches, -> { Pinnacle::Types::CampaignStatusEventCarrierLaunches }, optional: false, nullable: false, api_name: "carrierLaunches"
+
       field :updated_at, -> { String }, optional: false, nullable: false, api_name: "updatedAt"
     end
   end

@@ -7,6 +7,7 @@ module Pinnacle
         extend Pinnacle::Internal::Types::Union
 
         member -> { Pinnacle::Types::SendFormResult }
+
         member -> { Pinnacle::Types::ScheduledFormSendResult }
       end
     end

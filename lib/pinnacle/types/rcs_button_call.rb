@@ -5,7 +5,9 @@ module Pinnacle
     # Button that initiates a phone call when tapped by the recipient.
     class RcsButtonCall < Internal::Types::Model
       field :metadata, -> { String }, optional: true, nullable: false
+
       field :payload, -> { String }, optional: false, nullable: false
+
       field :title, -> { String }, optional: false, nullable: false
     end
   end
