@@ -8,9 +8,9 @@
     "useProvidedDefaults": true,
     "rubocopVariableNumberStyle": "snake_case"
   },
-  "originGitCommit": "ea44c7af1bfea2caa2e7e18c7fcfba57c5b2cfdd",
-  "originGitCommitIsDirty": false,
-  "invokedBy": "ci",
-  "ciProvider": "github",
-  "sdkVersion": "2.0.19"
+  "originGitCommit": "56bec55eb338c11dbccc6202441e34ae1d1fe336",
+  "originGitCommitIsDirty": true,
+  "invokedBy": "manual",
+  "requestedVersion": "2.0.22.pre.rc.1",
+  "sdkVersion": "2.0.22.pre.rc.1"
 }

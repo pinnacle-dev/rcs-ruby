@@ -5,6 +5,7 @@ require_relative "../../types/message_event"
 require_relative "../../types/user_event"
 require_relative "../../types/form_submission_event"
 require_relative "../../types/campaign_status_event"
+require_relative "../../types/call_status_event"
 
 module Pinnacle
   module Wrapper
@@ -23,7 +24,7 @@ module Pinnacle
         # @param request [Hash] Request with :headers and :body keys
         # @param secret [String, nil] Webhook secret (falls back to PINNACLE_SIGNING_SECRET env var)
         #
-        # @return [Pinnacle::Types::MessageEvent, Pinnacle::Types::UserEvent, Pinnacle::Types::FormSubmissionEvent, Pinnacle::Types::CampaignStatusEvent]
+        # @return [Pinnacle::Types::MessageEvent, Pinnacle::Types::UserEvent, Pinnacle::Types::FormSubmissionEvent, Pinnacle::Types::CampaignStatusEvent, Pinnacle::Types::CallStatusEvent]
         # @raise [Pinnacle::Errors::UnauthorizedError] If webhook signature is invalid or missing
         # @raise [Pinnacle::Errors::ClientError] If request body cannot be parsed
         def process(request, secret: nil)
@@ -66,6 +67,8 @@ module Pinnacle
             Pinnacle::Types::FormSubmissionEvent.coerce(parsed)
           when "CAMPAIGN.STATUS"
             Pinnacle::Types::CampaignStatusEvent.coerce(parsed)
+          when "CALL.STATUS"
+            Pinnacle::Types::CallStatusEvent.coerce(parsed)
           else
             Pinnacle::Types::MessageEvent.coerce(parsed)
           end

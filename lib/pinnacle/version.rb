@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
 module Pinnacle
-  VERSION = "2.0.19"
+  VERSION = "2.0.22.pre.rc.1"
 end
