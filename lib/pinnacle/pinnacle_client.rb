@@ -3,6 +3,7 @@
 require_relative "wrapper/messages/client"
 require_relative "wrapper/tools/file_uploader"
 require_relative "wrapper/tools/client"
+require_relative "wrapper/voice/client"
 
 module Pinnacle
   # Client class that extends PinnacleBaseClient with custom methods for webhook processing and file uploads.
@@ -19,6 +20,13 @@ module Pinnacle
     # @return [Pinnacle::Wrapper::Tools::Client]
     def tools
       @tools ||= Pinnacle::Wrapper::Tools::Client.new(client: @raw_client)
+    end
+
+    # Returns an enhanced voice client with WebSocket stream helpers.
+    #
+    # @return [Pinnacle::Wrapper::Voice::Client]
+    def voice
+      @voice ||= Pinnacle::Wrapper::Voice::Client.new(client: @raw_client)
     end
   end
 end
