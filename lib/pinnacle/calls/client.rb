@@ -72,7 +72,7 @@ module Pinnacle
       # @option request_options [Hash{String => Object}] :additional_body_parameters
       # @option request_options [Integer] :timeout_in_seconds
       #
-      # @return [Pinnacle::Types::Call]
+      # @return [Pinnacle::Types::CreatedCall]
       def create(request_options: {}, **params)
         params = Pinnacle::Internal::Types::Utils.normalize_keys(params)
         request = Pinnacle::Internal::JSON::Request.new(
@@ -89,7 +89,7 @@ module Pinnacle
         end
         code = response.code.to_i
         if code.between?(200, 299)
-          Pinnacle::Types::Call.load(response.body)
+          Pinnacle::Types::CreatedCall.load(response.body)
         else
           error_class = Pinnacle::Errors::ResponseError.subclass_for_code(code)
           raise error_class.new(response.body, code: code)

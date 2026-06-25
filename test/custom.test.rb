@@ -61,6 +61,54 @@ describe "Custom Test" do
     assert_equal "voice.v1", FakeSocket.instances.last.protocols
   end
 
+  it "creates calls and connects voice streams with one helper" do
+    FakeSocket.instances = []
+    client = Pinnacle::Client.new(api_key: "test")
+    fake_calls = FakeCalls.new(["wss://voice.example.test/token-1"])
+    client.voice.instance_variable_set(:@calls, fake_calls)
+
+    socket = client.voice.create_and_connect(
+      from: "+14155559876",
+      to: "+14155551234",
+      record: true,
+      metadata: { customer_id: "cus_123" },
+      socket: FakeSocket,
+      token: { commands_enabled: true, stream_id: "agent", record: true }
+    )
+
+    assert_equal "call_123", socket.call_id
+    assert_equal "call_123", socket.call.id
+    assert_equal "wss://voice.example.test/token-1", FakeSocket.instances.last.url
+    assert_equal [
+      {
+        to: "+14155551234",
+        from: "+14155559876",
+        record: true,
+        metadata: { customer_id: "cus_123" },
+        request_options: {}
+      }
+    ], fake_calls.create_requests
+    assert_equal [
+      { id: "call_123", commands_enabled: true, stream_id: "agent", record: true }
+    ], fake_calls.token_requests
+  end
+
+  it "uses websocket-client-simple as the default socket" do
+    FakeSimpleSocket.instances = []
+    client = Pinnacle::Client.new(api_key: "test")
+    socket = client.voice.connect_stream("wss://voice.example.test/stream", protocols: "voice.v1")
+
+    socket.send_media({ track: "outbound", payload: "base64-pcm" })
+
+    assert_instance_of Pinnacle::Wrapper::Voice::VoiceSocket, socket
+    assert_equal "wss://voice.example.test/stream", FakeSimpleSocket.instances.last.url
+    assert_equal({ "Sec-WebSocket-Protocol" => "voice.v1" }, FakeSimpleSocket.instances.last.headers)
+    assert_equal(
+      { "event" => "media", "media" => { "track" => "outbound", "payload" => "base64-pcm" } },
+      JSON.parse(FakeSimpleSocket.instances.last.sent.last)
+    )
+  end
+
   it "serializes command and media helpers exactly as the gateway expects" do
     fake = FakeSocket.new("wss://voice.example.test/stream")
     socket = Pinnacle::Wrapper::Voice::VoiceSocket.new(fake)
@@ -133,6 +181,7 @@ describe "Custom Test" do
 
     waiter = socket.wait_for_ack("cmd_wait", timeout_ms: 100)
     socket.command({ event: "command", command_id: "cmd_wait", action: "audio.stop" })
+    fake.emit_message({ event: "connected", stream_sid: "stream_123", sequence_number: 0 })
     fake.emit_message(
       {
         event: "event",
@@ -154,7 +203,7 @@ describe "Custom Test" do
     ack = waiter.call
 
     assert_equal "ok", ack["status"]
-    assert_equal 3, frames.length
+    assert_equal 4, frames.length
     assert_equal 1, events.length
     assert_equal 1, media.length
   end
@@ -207,7 +256,29 @@ describe "Custom Test" do
     ], FakeSocket.instances.map(&:url)
   end
 
-  it "refreshes stream tokens when reconnecting call streams" do
+  it "refreshes stream tokens by default when reconnecting call streams" do
+    FakeSocket.instances = []
+    client = Pinnacle::Client.new(api_key: "test")
+    fake_calls = FakeCalls.new(["wss://voice.example.test/token-1", "wss://voice.example.test/token-2"])
+    client.voice.instance_variable_set(:@calls, fake_calls)
+    socket = client.voice.connect(
+      call_id: "call_123",
+      socket: FakeSocket
+    )
+    reconnected = []
+    socket.on("reconnected") { |event| reconnected << event }
+
+    FakeSocket.instances.first.close
+    wait_for { reconnected.length == 1 }
+
+    assert_equal %w[call_123 call_123], fake_calls.requests
+    assert_equal [
+      "wss://voice.example.test/token-1",
+      "wss://voice.example.test/token-2"
+    ], FakeSocket.instances.map(&:url)
+  end
+
+  it "keeps reconnect enabled when callers pass partial reconnect options" do
     FakeSocket.instances = []
     client = Pinnacle::Client.new(api_key: "test")
     fake_calls = FakeCalls.new(["wss://voice.example.test/token-1", "wss://voice.example.test/token-2"])
@@ -215,7 +286,7 @@ describe "Custom Test" do
     socket = client.voice.connect(
       call_id: "call_123",
       socket: FakeSocket,
-      reconnect: { enabled: true, initial_delay_ms: 1, max_attempts: 2 }
+      reconnect: { initial_delay_ms: 1, max_attempts: 2 }
     )
     reconnected = []
     socket.on("reconnected") { |event| reconnected << event }
@@ -241,6 +312,46 @@ describe "Custom Test" do
   end
 end
 
+module WebSocket
+  module Client
+    class Simple
+      def self.connect(url, headers: {})
+        FakeSimpleSocket.new(url, headers)
+      end
+    end
+  end
+end
+
+class FakeSimpleSocket
+  class << self
+    attr_accessor :instances
+  end
+
+  attr_reader :url, :headers, :sent
+
+  self.instances = []
+
+  def initialize(url, headers)
+    @url = url
+    @headers = headers
+    @sent = []
+    @listeners = Hash.new { |hash, key| hash[key] = [] }
+    self.class.instances << self
+  end
+
+  def on(event, &listener)
+    @listeners[event] << listener
+  end
+
+  def send(data)
+    @sent << data
+  end
+
+  def close
+    @listeners[:close].each { |listener| listener.call({}) }
+  end
+end
+
 class FakeStreamToken
   attr_reader :stream_url
 
@@ -249,16 +360,32 @@ class FakeStreamToken
   end
 end
 
+class FakeCall
+  attr_reader :id
+
+  def initialize(id)
+    @id = id
+  end
+end
+
 class FakeCalls
-  attr_reader :requests
+  attr_reader :requests, :create_requests, :token_requests
 
   def initialize(stream_urls)
     @stream_urls = stream_urls
     @requests = []
+    @create_requests = []
+    @token_requests = []
+  end
+
+  def create(**params)
+    @create_requests << params
+    FakeCall.new("call_123")
   end
 
   def create_stream_token(**params)
     @requests << params.fetch(:id)
+    @token_requests << params
     FakeStreamToken.new(@stream_urls.fetch(@requests.length - 1))
   end
 end

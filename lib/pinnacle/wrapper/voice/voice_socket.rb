@@ -10,6 +10,7 @@ module Pinnacle
   module Wrapper
     module Voice
       class VoiceSocket
+        attr_accessor :call, :call_id
         attr_reader :socket
 
         def initialize(socket, create_socket: nil, reconnect: nil)
@@ -212,6 +213,8 @@ module Pinnacle
             emit("event", frame)
           when "media"
             emit("media", frame)
+          when "connected"
+            nil
           else
             raise "Voice socket received an unknown frame event."
           end

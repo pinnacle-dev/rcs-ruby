@@ -3085,7 +3085,7 @@ client.calls.list
 </dl>
 </details>
 
-<details><summary><code>client.calls.<a href="/lib/pinnacle/calls/client.rb">create</a>(request) -> Pinnacle::Types::Call</code></summary>
+<details><summary><code>client.calls.<a href="/lib/pinnacle/calls/client.rb">create</a>(request) -> Pinnacle::Types::CreatedCall</code></summary>
 <dl>
 <dd>
 

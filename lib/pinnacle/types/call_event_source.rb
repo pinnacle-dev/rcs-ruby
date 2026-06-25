@@ -7,7 +7,8 @@ module Pinnacle
 
       WEBHOOK = "WEBHOOK"
       REST = "REST"
-      WS_COMMAND = "WS_COMMAND"
+      WS = "WS"
+      SYSTEM = "SYSTEM"
     end
   end
 end

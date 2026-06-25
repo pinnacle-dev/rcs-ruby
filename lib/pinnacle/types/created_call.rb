@@ -2,7 +2,7 @@
 
 module Pinnacle
   module Types
-    class Call < Internal::Types::Model
+    class CreatedCall < Internal::Types::Model
       field :id, -> { String }, optional: false, nullable: false
 
       field :state, -> { Pinnacle::Types::CallState }, optional: false, nullable: false
@@ -26,6 +26,8 @@ module Pinnacle
       field :recording_state, -> { Pinnacle::Types::RecordingState }, optional: false, nullable: true
 
       field :hangup_cause, -> { String }, optional: false, nullable: true
+
+      field :record, -> { Internal::Types::Boolean }, optional: false, nullable: false
     end
   end
 end
