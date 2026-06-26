@@ -109,6 +109,29 @@ describe "Custom Test" do
     )
   end
 
+  it "handles websocket-client-simple callbacks that run in socket context" do
+    FakeSimpleSocket.instances = []
+    client = Pinnacle::Client.new(api_key: "test")
+    socket = client.voice.connect_stream("wss://voice.example.test/stream", protocols: "voice.v1")
+    opened = []
+    closed = []
+    frames = []
+
+    socket.on("open") { |event| opened << event }
+    socket.on("close") { |event| closed << event }
+    socket.on("frame") { |frame| frames << frame }
+
+    simple = FakeSimpleSocket.instances.last
+    simple.emit(:open, {})
+    simple.emit(:message, FakeMessage.new({ event: "connected", stream_sid: "stream_123", sequence_number: 0 }.to_json))
+    simple.emit(:close, {})
+
+    assert_equal 1, opened.length
+    assert_equal 1, frames.length
+    assert_equal 1, closed.length
+    assert_equal 3, socket.ready_state
+  end
+
   it "serializes command and media helpers exactly as the gateway expects" do
     fake = FakeSocket.new("wss://voice.example.test/stream")
     socket = Pinnacle::Wrapper::Voice::VoiceSocket.new(fake)
@@ -327,6 +350,7 @@ class FakeSimpleSocket
     attr_accessor :instances
   end
 
+  attr_accessor :ready_state
   attr_reader :url, :headers, :sent
 
   self.instances = []
@@ -336,6 +360,7 @@ class FakeSimpleSocket
     @headers = headers
     @sent = []
     @listeners = Hash.new { |hash, key| hash[key] = [] }
+    @ready_state = 0
     self.class.instances << self
   end
 
@@ -348,9 +373,15 @@ class FakeSimpleSocket
   end
 
   def close
-    @listeners[:close].each { |listener| listener.call({}) }
+    emit(:close, {})
+  end
+
+  def emit(event, payload)
+    @listeners[event].each { |listener| instance_exec(payload, &listener) }
   end
 end
+
+FakeMessage = Struct.new(:data)
 
 class FakeStreamToken
   attr_reader :stream_url

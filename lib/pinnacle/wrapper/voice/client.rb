@@ -21,15 +21,14 @@ module Pinnacle
                         { "Sec-WebSocket-Protocol" => Array(protocols).join(", ") }
                       end
             @socket = WebSocket::Client::Simple.connect(url, headers: headers)
+            wrapper = self
             @socket.on(:open) do |event|
-              @ready_state = 1
-              emit("open", event)
+              wrapper.__send__(:dispatch_open, event)
             end
-            @socket.on(:message) { |message| emit("message", { data: message.data }) }
-            @socket.on(:error) { |error| emit("error", error) }
+            @socket.on(:message) { |message| wrapper.__send__(:emit, "message", { data: message.data }) }
+            @socket.on(:error) { |error| wrapper.__send__(:emit, "error", error) }
             @socket.on(:close) do |event|
-              @ready_state = 3
-              emit("close", event)
+              wrapper.__send__(:dispatch_close, event)
             end
           end
 
@@ -46,6 +45,16 @@ module Pinnacle
           end
 
           private
+
+          def dispatch_open(event)
+            @ready_state = 1
+            emit("open", event)
+          end
+
+          def dispatch_close(event)
+            @ready_state = 3
+            emit("close", event)
+          end
 
           def emit(event, payload)
             @listeners[event].each { |listener| listener.call(payload) }
