@@ -5,7 +5,7 @@ module Pinnacle
     # Raw per-carrier launch + verification state for the agent. Each
     # value is tri-state — `null` means "no launch requested" or "not
     # sent yet"; `false` means "pending" / "sent"; `true` means
-    # "launched" / "verified". Use the [GET /rcs/{agentId}](/api-reference/rcs-agents/get)
+    # "launched" / "verified". Use the [GET /rcs/{agentId}](/api-reference/rcs-agents/get-agent)
     # endpoint for the resolved enum representation.
     class AgentSummaryCarrierLaunches < Internal::Types::Model
       field :att, -> { Internal::Types::Boolean }, optional: true, nullable: false, api_name: "ATT"

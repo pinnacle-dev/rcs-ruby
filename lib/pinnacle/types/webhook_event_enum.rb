@@ -10,6 +10,7 @@ module Pinnacle
       USER_TYPING = "USER.TYPING"
       FORM_SUBMISSION = "FORM.SUBMISSION"
       CAMPAIGN_STATUS = "CAMPAIGN.STATUS"
+      CALL_STATUS = "CALL.STATUS"
     end
   end
 end
