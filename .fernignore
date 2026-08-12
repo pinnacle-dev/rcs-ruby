@@ -4,3 +4,6 @@ lib/pinnacle/wrapper
 lib/pinnacle/pinnacle_client.rb
 lib/rcs.rb
 .github/workflows/ci.yml
+.fern/replay.lock
+.fern/replay.yml
+.gitattributes
