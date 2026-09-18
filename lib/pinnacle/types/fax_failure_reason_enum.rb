@@ -1,0 +1,16 @@
+# frozen_string_literal: true
+
+module Pinnacle
+  module Types
+    module FaxFailureReasonEnum
+      extend Pinnacle::Internal::Types::Enum
+
+      MEDIA_PREPARATION_FAILED = "MEDIA_PREPARATION_FAILED"
+      MEDIA_PREPARATION_INTERRUPTED = "MEDIA_PREPARATION_INTERRUPTED"
+      INSUFFICIENT_CREDITS = "INSUFFICIENT_CREDITS"
+      SUBMISSION_UNCONFIRMED = "SUBMISSION_UNCONFIRMED"
+      SUBMISSION_REJECTED = "SUBMISSION_REJECTED"
+      DELIVERY_FAILED = "DELIVERY_FAILED"
+    end
+  end
+end

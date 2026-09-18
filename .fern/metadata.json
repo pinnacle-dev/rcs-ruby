@@ -8,9 +8,10 @@
     "useProvidedDefaults": true,
     "rubocopVariableNumberStyle": "snake_case"
   },
-  "originGitCommit": "ea44c7af1bfea2caa2e7e18c7fcfba57c5b2cfdd",
+  "originGitCommit": "383d6b59c43597874070074325db9ee4bd58f911",
   "originGitCommitIsDirty": false,
   "invokedBy": "ci",
+  "requestedVersion": "2.0.20.pre.rc.3",
   "ciProvider": "github",
-  "sdkVersion": "2.0.19"
+  "sdkVersion": "2.0.20.pre.rc.3"
 }

@@ -10,6 +10,8 @@ module Pinnacle
       USER_TYPING = "USER.TYPING"
       FORM_SUBMISSION = "FORM.SUBMISSION"
       CAMPAIGN_STATUS = "CAMPAIGN.STATUS"
+      FAX_STATUS = "FAX.STATUS"
+      FAX_RECEIVED = "FAX.RECEIVED"
     end
   end
 end
