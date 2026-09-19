@@ -2966,6 +2966,351 @@ client.webhooks.detach(
 </dl>
 </details>
 
+## Faxes
+<details><summary><code>client.faxes.<a href="/lib/pinnacle/faxes/client.rb">list</a>() -> Pinnacle::Types::ListFaxesResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+List your team's fax history, newest first.
+
+**HIPAA only:** this endpoint exists only in Pinnacle's HIPAA cell and is unavailable at `https://api.pinnacle.sh`.
+
+Results contain complete faxes only. Use `nextOffset` until it is null. The maximum page size is 100 records and the maximum offset is 100,000.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.faxes.list
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**limit:** `Integer` — Maximum logical faxes to return. Defaults to 25.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**offset:** `Integer` — Zero-based number of logical faxes to skip. Defaults to 0.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**direction:** `Pinnacle::Types::FaxDirectionEnum` — Return only inbound or outbound logical faxes.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Pinnacle::Faxes::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.faxes.<a href="/lib/pinnacle/faxes/client.rb">send_</a>(request) -> Pinnacle::Types::Fax</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Send one PDF, TIFF, JPEG, PNG, DOC, DOCX, RTF, or TXT document from a configured fax number.
+
+**HIPAA only:** this endpoint exists only in Pinnacle's HIPAA cell. Complete HIPAA onboarding and use the connection details provided by Pinnacle. It is not available at `https://api.pinnacle.sh`.
+
+**Availability:** `from` must be an enabled fax number owned by your team. Fax sending is unavailable for development-mode teams and sandbox numbers. Each request accepts exactly one document; cover pages and per-request webhook URLs are not supported.
+
+**Source URL:** `mediaUrl` must be a publicly reachable HTTPS URL on port 443. Signed query parameters are supported. URLs with credentials, redirects, private or local network addresses, and non-200 responses are rejected. Downloads must complete within 30 seconds.
+
+**Document limits:** the document must contain 1–3,500 pages and be no larger than 50 MB. Documents over 350 pages are split automatically and remain one fax in the API. File extensions and response headers do not override file validation.
+
+**Document safety:** encrypted files, macros, ActiveX controls, embedded objects, symbolic links, unsafe archive paths, and malformed documents are rejected.
+
+**Quality:** `HIGH` is the default and recommended choice for most documents. Use `NORMAL` when speed matters more than detail, `VERY_HIGH` for small text and fine lines, `ULTRA_LIGHT` for image-heavy documents, or `ULTRA_DARK` for text-heavy documents.
+
+**Asynchronous processing:** the request returns 202 after preparation is queued. Downloading, validation, conversion, splitting, and archival happen afterward. A 202 response does not mean the document is valid or delivered. Watch `FAX.STATUS` webhooks or retrieve the fax for the final result. The initial status is `PREPARING`, `reservedCost` is zero, and `hasMedia` is false.
+
+**Multipart delivery:** the original `id` identifies the complete fax across list, detail, cancellation, billing, media, and webhooks. Parts are sent in order. If a part fails, later parts are not sent. The fax becomes `FAILED`, and `partialContent` is true if any earlier pages were transmitted.
+
+**Pricing:** sent and received faxes cost $0.025 per transmitted page. Quality does not change the rate. Pinnacle reserves the estimated cost after preparation, charges only for transmitted pages, and returns unused reserved credits. If your balance is too low, the fax becomes `FAILED` with `failureReason: INSUFFICIENT_CREDITS`.
+
+**Delivery uncertainty:** Pinnacle does not automatically retry a fax after transmission may have started, which prevents duplicate delivery and charges. If transmission cannot be confirmed, status becomes `SUBMISSION_UNKNOWN` while Pinnacle reconciles the fax.
+
+**Idempotency:** `Idempotency-Key` is optional. Without it, each request creates a new fax, including retries. For retry-safe sending, generate a UUID for each intended fax and retain it until the outcome is known. After a client timeout, retry with the same key and identical body. The key is scoped to your team and covers `from`, `to`, `mediaUrl`, and `quality`. Reusing it with an identical body returns the existing fax; changing any of those fields returns 409.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.faxes.send_(
+  from: "from",
+  to: "to",
+  media_url: "mediaUrl"
+)
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**idempotency_key:** `String` — Optional unique key for one logical send. Without it, every request creates a new fax. Use 1–128 ASCII letters, numbers, periods, underscores, or hyphens. Reuse it only with the identical `from`, `to`, `mediaUrl`, and effective `quality`; any change returns 409.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**from:** `String` — Fax-enabled, non-sandbox number owned by your HIPAA team, in E.164 format (`+` followed by 10–15 digits; the first digit cannot be zero). The number must remain enabled and configured through preparation. Fax sending is unavailable to development-mode teams.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**to:** `String` — Recipient fax number in E.164 format (`+` followed by 10–15 digits; the first digit cannot be zero).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**media_url:** `String` 
+
+Public HTTPS URL on port 443 for one PDF, TIFF, JPEG, PNG, DOC, DOCX, RTF, or TXT document. The URL must contain 9–8,192 characters, including signed query parameters. Usernames, passwords, redirects, private or local addresses, IPv6-only hosts, and non-200 responses are rejected.
+
+The origin must complete the download within 30 seconds and return no more than 16 KiB of response headers. If present, `Content-Length` must be a non-negative decimal integer no greater than 50,000,000, and `Content-Type` must be one of the accepted types listed in the endpoint description. The source and processed document must each be no larger than 50,000,000 bytes. The document must contain 1–3,500 pages.
+
+A permitted URL extension or `Content-Type` is not sufficient: file signatures and structure must identify a supported format. JPEG/PNG images are limited to 250,000,000 pixels and TIFF images to 2,000,000,000 pixels. DOCX archives must be non-encrypted and free of macros, ActiveX controls, embedded objects, symbolic links, and unsafe paths; ZIP64 and multi-disk containers are not accepted. See the endpoint description for the complete DOCX archive and document-processing limits.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**quality:** `Pinnacle::Types::FaxQualityEnum` — Rendering profile applied to the fax. Defaults to `HIGH`. Higher-detail profiles can take longer to process but do not change the $0.025 per-page price or any document limit.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Pinnacle::Faxes::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.faxes.<a href="/lib/pinnacle/faxes/client.rb">get</a>(id) -> Pinnacle::Types::FaxDetail</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve a fax and a one-hour signed document URL when its media is available.
+
+**HIPAA only:** this endpoint exists only in Pinnacle's HIPAA cell and is unavailable at `https://api.pinnacle.sh`.
+
+Only faxes owned by your team are accessible. Unknown IDs and records removed by your team's HIPAA retention policy return 404. `mediaUrl` is null until archival completes and expires one hour after retrieval; request the fax again for a new URL.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.faxes.get(id: "id")
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — Fax ID returned by send, list, or a fax webhook.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Pinnacle::Faxes::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.faxes.<a href="/lib/pinnacle/faxes/client.rb">cancel</a>(id) -> Pinnacle::Types::Fax</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Cancel an outbound fax before transmission starts.
+
+Cancellation stops queued preparation and every unsent part, releases the credit reservation, and changes the status to `CANCELLED`. Repeating a successful cancellation returns the same fax.
+
+Cancellation is unavailable for inbound faxes, completed faxes, and `SUBMISSION_UNKNOWN` faxes. Pinnacle returns 409 once transmission may have started, even when later parts remain unsent.
+
+**HIPAA only:** this endpoint exists only in Pinnacle's HIPAA cell and is unavailable at `https://api.pinnacle.sh`.
+
+Only a fax ID owned by your team is accepted. Unknown IDs return 404.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```ruby
+client.faxes.cancel(id: "id")
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `String` — Fax ID returned by send, list, or a fax webhook.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `Pinnacle::Faxes::RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Forms
 <details><summary><code>client.forms.<a href="/lib/pinnacle/forms/client.rb">get</a>(id) -> Pinnacle::Types::Form</code></summary>
 <dl>
