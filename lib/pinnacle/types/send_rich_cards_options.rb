@@ -13,6 +13,8 @@ module Pinnacle
       field :validate, -> { Internal::Types::Boolean }, optional: true, nullable: false
 
       field :standalone_card, -> { Pinnacle::Types::RichStandaloneCardOptions }, optional: true, nullable: false
+
+      field :card_width, -> { Pinnacle::Types::SendRcsCardOptionsCardWidth }, optional: true, nullable: false, api_name: "cardWidth"
     end
   end
 end

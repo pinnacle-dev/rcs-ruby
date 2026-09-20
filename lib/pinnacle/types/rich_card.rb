@@ -8,6 +8,8 @@ module Pinnacle
 
       field :media, -> { String }, optional: true, nullable: false
 
+      field :media_height, -> { Pinnacle::Types::RcsCardsCardsItemMediaHeight }, optional: true, nullable: false, api_name: "mediaHeight"
+
       field :subtitle, -> { String }, optional: true, nullable: false
 
       field :title, -> { String }, optional: false, nullable: false
