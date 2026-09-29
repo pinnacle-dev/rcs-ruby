@@ -1,5 +1,6 @@
 # Specify files that shouldn't be modified by Fern
 README.md
+CONTRIBUTING.md
 lib/pinnacle/wrapper
 lib/pinnacle/pinnacle_client.rb
 lib/rcs.rb
