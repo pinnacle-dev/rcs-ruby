@@ -81,6 +81,10 @@ jobs:
       - name: Apply generated sources
         working-directory: docs
         run: scripts/apply-generated-sdk.sh ruby
+      - name: Verify maintained files were preserved
+        working-directory: docs/sdks/ruby
+        run: |
+          git diff --exit-code -- .fern/replay.lock .fern/replay.yml .fernignore .gitattributes .github/workflows/ci.yml .github/workflows/regenerate-sdk.yml CONTRIBUTING.md README.md lib/pinnacle/pinnacle_client.rb lib/pinnacle/wrapper lib/rcs.rb
       - name: Test generated SDK
         working-directory: docs/sdks/ruby
         run: |
