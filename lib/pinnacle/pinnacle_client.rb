@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require_relative "wrapper/validation_pricing"
 require_relative "wrapper/messages/client"
 require_relative "wrapper/tools/file_uploader"
 require_relative "wrapper/tools/client"

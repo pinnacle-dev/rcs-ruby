@@ -45,10 +45,13 @@ module Pinnacle
           end
         end
 
-        # Validate SMS message content without sending it.
+        # Validate SMS content without sending or charging. Supply your business sender
+        # and direction for a team-specific pricing estimate. Sender always identifies the
+        # business side, including for inbound messages. Without sender, segmentation still
+        # works and the response uses generic legacy pricing. No client-provided rate is accepted.
         #
         # @param request_options [Hash]
-        # @param params [Pinnacle::Types::SmsContent]
+        # @param params [Pinnacle::Messages::Sms::Types::SmsValidateContent]
         # @option request_options [String] :base_url
         # @option request_options [Hash{String => Object}] :additional_headers
         # @option request_options [Hash{String => Object}] :additional_query_parameters
@@ -62,7 +65,7 @@ module Pinnacle
             base_url: request_options[:base_url],
             method: "POST",
             path: "messages/validate/sms",
-            body: Pinnacle::Types::SmsContent.new(params).to_h,
+            body: Pinnacle::Messages::Sms::Types::SmsValidateContent.new(params).to_h,
             request_options: request_options
           )
           begin

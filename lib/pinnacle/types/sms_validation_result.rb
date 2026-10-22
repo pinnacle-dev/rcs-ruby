@@ -3,6 +3,8 @@
 module Pinnacle
   module Types
     class SmsValidationResult < Internal::Types::Model
+      field :pricing_context, -> { Pinnacle::Types::ValidationPricingContext }, optional: true, nullable: false, api_name: "pricingContext"
+
       field :is_over_segment_limit, -> { Internal::Types::Boolean }, optional: true, nullable: false, api_name: "isOverSegmentLimit"
 
       field :segments, -> { Pinnacle::Types::SmsValidationResponseSegments }, optional: false, nullable: false

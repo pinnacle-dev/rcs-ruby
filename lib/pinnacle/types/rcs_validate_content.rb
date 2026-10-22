@@ -5,11 +5,11 @@ module Pinnacle
     class RcsValidateContent < Internal::Types::Model
       extend Pinnacle::Internal::Types::Union
 
-      member -> { Pinnacle::Types::RichText }
+      member -> { Pinnacle::Types::RcsValidateContentText }
 
       member -> { Pinnacle::Types::RcsValidateContentMedia }
 
-      member -> { Pinnacle::Types::RichCards }
+      member -> { Pinnacle::Types::RcsValidateContentCards }
     end
   end
 end

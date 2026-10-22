@@ -3,6 +3,8 @@
 module Pinnacle
   module Types
     class RcsValidationResult < Internal::Types::Model
+      field :pricing_context, -> { Pinnacle::Types::ValidationPricingContext }, optional: true, nullable: false, api_name: "pricingContext"
+
       field :total, -> { Integer }, optional: false, nullable: false
 
       field :unit, -> { Integer }, optional: false, nullable: false

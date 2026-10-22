@@ -98,7 +98,10 @@ module Pinnacle
           end
         end
 
-        # Validate RCS message content without sending it.
+        # Validate RCS content without sending or charging. Supply your business sender
+        # and direction for a team-specific pricing estimate. Sender always identifies the
+        # business side, including for inbound messages. Without sender, segmentation still
+        # works and the response uses generic legacy pricing. No client-provided rate is accepted.
         #
         # @param request_options [Hash]
         # @param params [Pinnacle::Types::RcsValidateContent]

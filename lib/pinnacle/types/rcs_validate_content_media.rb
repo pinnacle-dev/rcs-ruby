@@ -9,6 +9,10 @@ module Pinnacle
       field :media, -> { String }, optional: false, nullable: false
 
       field :quick_replies, -> { Internal::Types::Array[Pinnacle::Types::RichButton] }, optional: true, nullable: false, api_name: "quickReplies"
+
+      field :sender, -> { String }, optional: true, nullable: false
+
+      field :direction, -> { Pinnacle::Types::RcsValidateContentMediaDirection }, optional: true, nullable: false
     end
   end
 end
