@@ -4,7 +4,7 @@ The Pinnacle Ruby library provides access to the Pinnacle API from Ruby.
 
 ## Documentation
 
-API reference documentation is available [here](docs.trypinnacle.app).
+API reference documentation is available at [docs.pinnacle.sh](https://docs.pinnacle.sh).
 
 ## Installation
 
