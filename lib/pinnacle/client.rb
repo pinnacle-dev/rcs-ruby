@@ -10,11 +10,16 @@ module Pinnacle
       @raw_client = Pinnacle::Internal::Http::RawClient.new(
         base_url: base_url || Pinnacle::Environment::DEFAULT,
         headers: {
-          "User-Agent" => "rcs/2.0.21",
+          "User-Agent" => "rcs/2.0.22.pre.rc.2",
           "X-Fern-Language" => "Ruby",
           "PINNACLE-API-KEY" => api_key.to_s
         }
       )
+    end
+
+    # @return [Pinnacle::Audiences::Client]
+    def audiences
+      @audiences ||= Pinnacle::Audiences::Client.new(client: @raw_client)
     end
 
     # @return [Pinnacle::Brands::Client]
@@ -22,9 +27,14 @@ module Pinnacle
       @brands ||= Pinnacle::Brands::Client.new(client: @raw_client)
     end
 
-    # @return [Pinnacle::Audiences::Client]
-    def audiences
-      @audiences ||= Pinnacle::Audiences::Client.new(client: @raw_client)
+    # @return [Pinnacle::Calls::Client]
+    def calls
+      @calls ||= Pinnacle::Calls::Client.new(client: @raw_client)
+    end
+
+    # @return [Pinnacle::Conferences::Client]
+    def conferences
+      @conferences ||= Pinnacle::Conferences::Client.new(client: @raw_client)
     end
 
     # @return [Pinnacle::Contacts::Client]
@@ -35,6 +45,16 @@ module Pinnacle
     # @return [Pinnacle::Conversations::Client]
     def conversations
       @conversations ||= Pinnacle::Conversations::Client.new(client: @raw_client)
+    end
+
+    # @return [Pinnacle::Faxes::Client]
+    def faxes
+      @faxes ||= Pinnacle::Faxes::Client.new(client: @raw_client)
+    end
+
+    # @return [Pinnacle::Forms::Client]
+    def forms
+      @forms ||= Pinnacle::Forms::Client.new(client: @raw_client)
     end
 
     # @return [Pinnacle::Messages::Client]
@@ -57,19 +77,14 @@ module Pinnacle
       @webhooks ||= Pinnacle::Webhooks::Client.new(client: @raw_client)
     end
 
-    # @return [Pinnacle::Faxes::Client]
-    def faxes
-      @faxes ||= Pinnacle::Faxes::Client.new(client: @raw_client)
-    end
-
-    # @return [Pinnacle::Forms::Client]
-    def forms
-      @forms ||= Pinnacle::Forms::Client.new(client: @raw_client)
-    end
-
     # @return [Pinnacle::Campaigns::Client]
     def campaigns
       @campaigns ||= Pinnacle::Campaigns::Client.new(client: @raw_client)
+    end
+
+    # @return [Pinnacle::Network::Client]
+    def network
+      @network ||= Pinnacle::Network::Client.new(client: @raw_client)
     end
 
     # @return [Pinnacle::Status::Client]
