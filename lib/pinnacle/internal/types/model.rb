@@ -141,13 +141,12 @@ module Pinnacle
           values = Utils.symbolize_keys(values.dup)
 
           self.class.fields.each do |field_name, field|
-            value = values.delete(field.api_name.to_sym) || values.delete(field.api_name) || values.delete(field_name)
-
-            field_value = value || (if field.literal?
-                                      field.value
-                                    elsif field.default
-                                      field.default
-                                    end)
+            # Defaults apply only to omitted fields, never explicit false or nil.
+            field_value = values.fetch(field.api_name.to_sym) do
+              values.fetch(field_name) { field.literal? ? field.value : field.default }
+            end
+            values.delete(field.api_name.to_sym)
+            values.delete(field_name)
 
             @data[field_name] = Utils.coerce(field.type, field_value)
           end
@@ -171,8 +170,8 @@ module Pinnacle
             next if value.nil? && field.optional && !field.nullable
 
             if value.is_a?(::Array)
-              value = value.map { |item| item.respond_to?(:to_h) ? item.to_h : item }
-            elsif value.respond_to?(:to_h)
+              value = value.map { |item| !item.nil? && item.respond_to?(:to_h) ? item.to_h : item }
+            elsif !value.nil? && value.respond_to?(:to_h)
               value = value.to_h
             end
 
