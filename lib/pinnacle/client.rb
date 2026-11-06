@@ -17,6 +17,11 @@ module Pinnacle
       )
     end
 
+    # @return [Pinnacle::Keywords::Client]
+    def keywords
+      @keywords ||= Pinnacle::Keywords::Client.new(client: @raw_client)
+    end
+
     # @return [Pinnacle::Brands::Client]
     def brands
       @brands ||= Pinnacle::Brands::Client.new(client: @raw_client)
