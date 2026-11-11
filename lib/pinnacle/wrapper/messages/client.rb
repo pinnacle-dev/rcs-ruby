@@ -2,6 +2,7 @@
 
 require "json"
 require_relative "../../types/message_event"
+require_relative "../../types/keyword_received_event"
 require_relative "../../types/user_event"
 require_relative "../../types/form_submission_event"
 require_relative "../../types/campaign_status_event"
@@ -23,7 +24,7 @@ module Pinnacle
         # @param request [Hash] Request with :headers and :body keys
         # @param secret [String, nil] Webhook secret (falls back to PINNACLE_SIGNING_SECRET env var)
         #
-        # @return [Pinnacle::Types::MessageEvent, Pinnacle::Types::UserEvent, Pinnacle::Types::FormSubmissionEvent, Pinnacle::Types::CampaignStatusEvent]
+        # @return [Pinnacle::Types::KeywordReceivedEvent, Pinnacle::Types::MessageEvent, Pinnacle::Types::UserEvent, Pinnacle::Types::FormSubmissionEvent, Pinnacle::Types::CampaignStatusEvent]
         # @raise [Pinnacle::Errors::UnauthorizedError] If webhook signature is invalid or missing
         # @raise [Pinnacle::Errors::ClientError] If request body cannot be parsed
         def process(request, secret: nil)
@@ -60,6 +61,8 @@ module Pinnacle
           parsed = body.is_a?(String) ? JSON.parse(body) : body
 
           case parsed["type"]
+          when "KEYWORD.RECEIVED"
+            Pinnacle::Types::KeywordReceivedEvent.coerce(parsed)
           when "USER.TYPING"
             Pinnacle::Types::UserEvent.coerce(parsed)
           when "FORM.SUBMISSION"

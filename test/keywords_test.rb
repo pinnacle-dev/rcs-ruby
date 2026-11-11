@@ -61,3 +61,12 @@ rescue Pinnacle::Errors::ForbiddenError => e
   assert_equal("RECIPIENT_OPTED_OUT", JSON.parse(e.message)["code"])
 end
 puts "Ruby keyword contracts passed: eight operations, models, wire aliases, filters, authentication, and error body."
+
+media_category = Pinnacle::Types::KeywordCategory.new(keywords: ["HELP"], response: "Support", media_urls: ["https://example.com/help.jpg"])
+assert_equal(["https://example.com/help.jpg"], media_category.to_h["mediaUrls"])
+consent = Pinnacle::Types::KeywordReceivedEvent::Consent.new(status: nil, applied: false)
+assert_equal({ "status" => nil, "applied" => false }, consent.to_h)
+reply = Pinnacle::Types::KeywordReceivedEvent::Reply.new(status: "SKIPPED", message_id: nil, type: nil, text: nil, media_urls: [], reason: "NO_RESPONSE_CONFIGURED")
+assert_equal(nil, reply.to_h["messageId"])
+assert_equal([], reply.to_h["mediaUrls"])
+puts "Keyword webhook nullable fields, consent booleans, and media aliases passed."

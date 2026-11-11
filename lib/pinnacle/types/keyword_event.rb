@@ -13,10 +13,6 @@ module Pinnacle
 
       field :sender, -> { String }, optional: false, nullable: false
 
-      field :provider_id, -> { Integer }, optional: false, nullable: false, api_name: "providerId"
-
-      field :provider_message_id, -> { String }, optional: false, nullable: false, api_name: "providerMessageId"
-
       field :category, -> { Pinnacle::Types::KeywordEventCategory }, optional: false, nullable: false
 
       field :keyword, -> { String }, optional: false, nullable: false
@@ -25,11 +21,12 @@ module Pinnacle
 
       field :created_at, -> { String }, optional: false, nullable: false, api_name: "createdAt"
 
+      field :response_media_urls, -> { Internal::Types::Array[String] }, optional: false, nullable: false, api_name: "responseMediaUrls"
+
       field :response, -> { String }, optional: false, nullable: false
 
-      field :response_owner, -> { Pinnacle::Types::KeywordEventResponseOwner }, optional: false, nullable: false, api_name: "responseOwner"
 
-      field :reply_message_id, -> { Integer }, optional: false, nullable: true, api_name: "replyMessageId"
+      field :reply_message_id, -> { String }, optional: false, nullable: true, api_name: "replyMessageId"
     end
   end
 end
