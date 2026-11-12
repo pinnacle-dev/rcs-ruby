@@ -25,7 +25,6 @@ module Pinnacle
 
       field :response, -> { String }, optional: false, nullable: false
 
-
       field :reply_message_id, -> { String }, optional: false, nullable: true, api_name: "replyMessageId"
     end
   end

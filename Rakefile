@@ -9,7 +9,8 @@ require "rubocop/rake_task"
 
 RuboCop::RakeTask.new
 
-task default: %i[test]
+# CI gates on both; running them together keeps lint failures local.
+task default: %i[test rubocop]
 
 task lint: %i[rubocop]
 

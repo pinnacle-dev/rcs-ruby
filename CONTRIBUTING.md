@@ -47,6 +47,18 @@ Fix code style issues:
 bundle exec rubocop -a
 ```
 
+Run tests and lint together, as CI does:
+
+```bash
+bundle exec rake
+```
+
+Enable the pre-commit hook once per clone to autocorrect staged Ruby files before each commit:
+
+```bash
+git config core.hooksPath .githooks
+```
+
 ## About Generated Code
 
 **Important**: Most files in this SDK are automatically generated from Pinnacle's API definition by the repository-owned SDK pipeline. Direct modifications to generated files will be overwritten the next time the SDK is generated.

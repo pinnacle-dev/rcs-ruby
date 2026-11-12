@@ -9,8 +9,9 @@ group :test, :development do
   gem "minitest-rg"
   gem "pry"
   gem "rake", "~> 13.0"
-  gem "rubocop", "~> 1.21"
-  gem "rubocop-minitest"
+  # NewCops is enabled, so loose versions let a gem release fail CI with no code change.
+  gem "rubocop", "~> 1.92.0"
+  gem "rubocop-minitest", "~> 0.41.0"
   gem "webmock"
 end
 

@@ -5,6 +5,11 @@ AllCops:
   TargetRubyVersion: 3.3
   NewCops: enable
 
+# A plain script with its own assert_equal; Minitest autocorrects (assert_nil) would break it.
+Minitest:
+  Exclude:
+    - test/keywords_test.rb
+
 Style/StringLiterals:
   EnforcedStyle: double_quotes
 

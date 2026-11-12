@@ -1,0 +1,19 @@
+#!/bin/sh
+# Autocorrect staged Ruby so lint offenses never reach CI.
+# Enable once per clone: git config core.hooksPath .githooks
+
+files=$(git diff --cached --name-only --diff-filter=ACMR -- '*.rb')
+[ -z "$files" ] && exit 0
+
+# Re-adding a partially staged file would commit its unstaged hunks, so those are only checked.
+clean=""
+for file in $files; do
+  git diff --quiet -- "$file" && clean="$clean $file"
+done
+
+if [ -n "$clean" ]; then
+  bundle exec rubocop -a --force-exclusion $clean >/dev/null
+  git add -- $clean
+fi
+
+exec bundle exec rubocop --force-exclusion $files
